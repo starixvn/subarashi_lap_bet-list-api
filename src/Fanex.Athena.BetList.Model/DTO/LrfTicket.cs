@@ -1,0 +1,35 @@
+﻿namespace Fanex.Athena.BetList.Model.DTO
+{
+    using Fanex.BetList.Core.Entities;
+
+    public class LrfTicket : Ticket
+    {
+        public string ExternalId { get; set; }
+
+        public int CustomerClass { get; set; }
+
+        public decimal LicenseeWL { get; set; }
+
+        public decimal BetEffective { get; set; }
+
+        public int SpecialLevel { get; set; }
+
+        public string BetFrom { get; set; }
+
+        public decimal WinLossComm
+        {
+            get
+            {
+                return Winlost + PlayerComm;
+            }
+        }
+
+        public decimal LicenseeWLComm
+        {
+            get
+            {
+                return LicenseeWL + Comm;
+            }
+        }
+    }
+}

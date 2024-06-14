@@ -1,0 +1,91 @@
+﻿using BetListNPOI.HSSF.Record.Chart;
+using Fanex.Athena.BetList.DataAccess;
+using Fanex.Athena.BetList.DataAccess.Interfaces;
+using Fanex.Athena.BetList.Service;
+using Fanex.Athena.BetList.Service.Interfaces;
+using Fanex.Athena.Common.DataAccess;
+using Fanex.Athena.Common.DataAccess.Interfaces;
+using Fanex.Athena.Common.Services;
+using Fanex.Athena.Common.Services.Interfaces;
+using Fanex.Athena.Common.Utility.Services;
+using Fanex.Athena.Common.Utility.Services.Interfaces;
+using Fanex.Athena.Common.Utility.Services.Internal;
+using Fanex.BetList.Core.Builder;
+using Fanex.BetList.Core.Entities;
+using Fanex.BetList.Core.TicketHelper;
+using Fanex.RemotingRef;
+
+namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
+{
+    public static class BelistDIExtentions
+    {
+        public static IServiceCollection AddLapBetList(this IServiceCollection services)
+        {
+            services.AddCommonDataAccess()
+                .AddCommonServices()
+                .AddBetListDataAccess()
+                .AddBetListServices();
+            return services;
+        }
+
+        private static IServiceCollection AddCommonDataAccess(this IServiceCollection services)
+        {
+            services.AddScoped<IBalanceUpDataAccess, BalanceUpDataAccess>();
+            services.AddScoped<ICurrencyDataAccess, CurrencyDataAccess>();
+            return services;
+        }
+
+        public static IServiceCollection AddCommonServices(this IServiceCollection services)
+        {
+            services.AddHttpContextAccessor();
+
+            services.AddScoped<IAppSettings>(provider => 
+            {
+                var config = provider.GetService<IConfiguration>();
+                return config.GetSection("AppSettings").Get<AppSettings>();
+            });
+            services.AddScoped<ICustomMemoryCache, CustomMemoryCache>();
+            services.AddScoped<IMemoryCacheService, MemoryCacheService>();
+            services.AddScoped<IFileSystem, FileSystem>();
+            services.AddScoped<ITempFileService, TempFileService>();
+            services.AddSingleton<IShardInfoAccessor, ShardInfoAccessor>();
+            services.AddSingleton<IContextService, ContextService>();
+            services.AddScoped<ICacheRefAdapter, CacheRefAdapter>();
+            services.AddScoped<ITemplateBuilder, TemplateBuilder>();
+            return services;
+        }
+
+        private static IServiceCollection AddBetListDataAccess(this IServiceCollection services)
+        {
+            services.AddScoped<IBetListByProductDataAccess, BetListByProductDataAccess>();
+            services.AddScoped<IBetListDataAccess, BetListDataAccess>();
+            services.AddScoped<IBettingTicketCenterAdvancedSearchDataAccess, BettingTicketCenterAdvancedSearchDataAccess>();
+            services.AddScoped<IBettingTicketCenterDataAccess, BettingTicketCenterDataAccess>();
+            services.AddScoped<ICashOutBetListDataAccess, CashOutBetListDataAccess>();
+            services.AddScoped<IExchangeBetListDataAccess, ExchangeBetListDataAccess>();
+            services.AddScoped<IIPDataAccess, IPDataAccess>();
+            services.AddScoped<ILastBetsMonitoringBetListDataAccess, LastBetsMonitoringBetListDataAccess>();
+            services.AddScoped<IPlayerAdminBetListDataAccess, PlayerAdminBetListDataAccess>();
+            services.AddScoped<IPlayerSegmentationBetListDataAccess, PlayerSegmentationBetListDataAccess>();
+            services.AddScoped<ISingleMatchParlayDetailDataAccess, SingleMatchParlayDetailDataAccess>();
+            services.AddScoped<ISystemParlayDetailDataAccess, SystemParlayDetailDataAccess>();
+            return services;
+        }
+
+        private static IServiceCollection AddBetListServices(this IServiceCollection services)
+        {
+            services.AddScoped<IBetListByProductService, BetListByProductService>();
+            services.AddScoped<IBetListService, BetListService>();
+            services.AddScoped<IExchangeBetListService, ExchangeBetListService>();
+            services.AddScoped<IIpInfoService, IpInfoService>();
+            services.AddScoped<IIPService, IPService>();
+            services.AddScoped<ILastBetsMonitoringBetListService, LastBetsMonitoringBetListService>();
+            services.AddScoped<ISystemParlayDetailService, SystemParlayDetailService>();
+            services.AddScoped<ITicketBuilderService, TicketBuilderService>();
+            services.AddScoped<IBetListHTMLBuilder, BetListHTMLBuilder>();
+            services.AddScoped<ITicketHelper, TicketHelper>();
+            services.AddSingleton<IRemotingRefService, RemotingRefService>();
+            return services;
+        }
+    }
+}
