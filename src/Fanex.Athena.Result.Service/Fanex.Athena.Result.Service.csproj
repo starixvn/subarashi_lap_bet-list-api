@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fanex.Result.Core.KenoLotteryTG" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.Athena.Result.DataAccess\Fanex.Athena.Result.DataAccess.csproj" />
+    <ProjectReference Include="..\Fanex.Athena.Result.Model\Fanex.Athena.Result.Model.csproj" />
+  </ItemGroup>
+
+</Project>

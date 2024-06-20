@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fanex.Result.Core-Bitcoin" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.Result.Core-NumberGame" Version="2.0.0" />
+    <PackageReference Include="Fanex.Result.Core-Racing" Version="2.0.0" />
+    <PackageReference Include="Fanex.Result.Core-Sportsbook" Version="2.0.0.8" />
+    <PackageReference Include="Fanex.Result.Core.Happy5" Version="2.0.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.Athena.Common.DataAccess\Fanex.Athena.Common.DataAccess.csproj" />
+    <ProjectReference Include="..\Fanex.Athena.Common.Model\Fanex.Athena.Common.Model.csproj" />
+    <ProjectReference Include="..\Fanex.Athena.Result.Model\Fanex.Athena.Result.Model.csproj" />
+  </ItemGroup>
+
+</Project>

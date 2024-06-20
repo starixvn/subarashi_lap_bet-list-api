@@ -1,0 +1,13 @@
+﻿namespace Fanex.Athena.Result.Model.Const
+{
+    public static class ResultVendorProductTypes
+    {
+        public const int Keno = 1;
+
+        public const int Lottery = 28;
+
+        public const int Table = 40;
+
+        public const int VirtualGames = 38;
+    }
+}

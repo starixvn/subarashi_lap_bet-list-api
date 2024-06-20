@@ -1,0 +1,9 @@
+{
+  "Configs": {
+    "AdvantPlayMiniResult": {
+      "Url": "http://10.40.40.248:8129/api/AdvantPlayMiniInternal/GetBetHistoryUrl",
+      "VendorId": 68,
+      "Debug": false
+    }
+  }
+}

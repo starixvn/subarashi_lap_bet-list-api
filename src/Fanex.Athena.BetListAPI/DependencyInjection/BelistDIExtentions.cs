@@ -1,5 +1,4 @@
-﻿using BetListNPOI.HSSF.Record.Chart;
-using Fanex.Athena.BetList.DataAccess;
+﻿using Fanex.Athena.BetList.DataAccess;
 using Fanex.Athena.BetList.DataAccess.Interfaces;
 using Fanex.Athena.BetList.Service;
 using Fanex.Athena.BetList.Service.Interfaces;
