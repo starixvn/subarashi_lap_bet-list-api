@@ -6,8 +6,8 @@
 
     public interface IKenoApi
     {
-        KenoExtendedToken ExtendToken(KenoResultMetaModel setting, string userId);
+        Task<KenoExtendedToken> ExtendToken(KenoResultMetaModel setting, string userId);
 
-        string CreateKenoResultAddress(KenoResultMetaModel setting, string userId, DateTime resultDate);
+        Task<string> CreateKenoResultAddress(KenoResultMetaModel setting, string userId, DateTime resultDate);
     }
 }

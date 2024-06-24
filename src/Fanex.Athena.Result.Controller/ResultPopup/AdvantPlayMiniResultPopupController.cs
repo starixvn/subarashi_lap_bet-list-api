@@ -1,28 +1,29 @@
 ﻿using Fanex.Result.Core.ThirdParty.Models;
-using Fanex.Result.Core.ThirdParty;
 using Microsoft.AspNetCore.Mvc;
 using Fanex.Athena.Result.Controller.MetaModel;
+using Fanex.Athena.Result.Service.Interfaces;
 
 namespace Fanex.Athena.Result.Controller.ResultPopup
 {
     public class AdvantPlayMiniResultPopupController : ControllerBase
     {      
-        private readonly IThirdPartyResult _resultApi;
+        private readonly IBetlistResultGetterFactory _factory;
 
-        public AdvantPlayMiniResultPopupController(IThirdPartyResult resultApi)
-        {
-            _resultApi = resultApi ?? new ThirdPartyResult("AdvantPlayMiniResultConfigs");
-        }
+        public AdvantPlayMiniResultPopupController(IBetlistResultGetterFactory factory)        
+            => _factory = factory;
+        
 
         [HttpPost]
         public string Index(ThirdPartyMetaModel metaModel)
         {
+            var resultApi = _factory.CreateThirdPartyResultGetter(ConfigHelpers.GetConfigKey(ConfigName.AdvantPlayMiniResult));
+
             var request = new ResultRequest(metaModel.CustId, metaModel.TransId3rd, metaModel.GameId3rd, metaModel.CurrencyId, metaModel.SiteId, metaModel.LanguageCode)
             {
                 BetTypeId = metaModel.BetTypeId
             };
 
-            return _resultApi.GetResultGET(request);
+            return resultApi.GetResultGET(request);
         }
     }
 }

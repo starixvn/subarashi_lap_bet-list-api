@@ -4,7 +4,6 @@
     using System.Net;
     using System.Text;
     using System.Web;
-    using Common.Utility.Services.Interfaces;
     using Interfaces;
     using Model.Const;
     using Model.DTO.Keno;
@@ -27,12 +26,12 @@
             _webClient = webClient;
         }
 
-        public KenoExtendedToken ExtendToken(KenoResultMetaModel setting, string userId)
+        public async Task<KenoExtendedToken> ExtendToken(KenoResultMetaModel setting, string userId)
         {
             try
             {
                 var extendedUrl = string.Format(setting.ExtendTokenUrl, setting.Vendor, setting.VenderKey, userId, setting.VendorProduct);
-                var data = _webClient.G(extendedUrl);
+                var data = await _webClient.GetStringAsync(extendedUrl);
                 if (string.IsNullOrEmpty(data))
                 {
                     throw new WebException(GetServiceName(setting.VendorProduct) + "Couldn't get authorized data from: " + extendedUrl);
@@ -46,9 +45,9 @@
             }
         }
 
-        public string CreateKenoResultAddress(KenoResultMetaModel setting, string userId, DateTime resultDate)
+        public async Task<string> CreateKenoResultAddress(KenoResultMetaModel setting, string userId, DateTime resultDate)
         {
-            var authorizedData = this.Authorize(setting, userId);
+            var authorizedData = await Authorize(setting, userId);
             if (authorizedData.ErrorCode > 0)
             {
                 throw new WebException(GetServiceName(setting.VendorProduct) + authorizedData.ErrorMsg);
@@ -106,12 +105,12 @@
             return gameName;
         }
 
-        protected internal virtual KenoAuthorization Authorize(KenoResultMetaModel setting, string userId)
+        protected internal virtual async Task<KenoAuthorization> Authorize(KenoResultMetaModel setting, string userId)
         {
             try
             {
                 var authorizedUrl = string.Format(setting.AuthorizedUrl, setting.Vendor, setting.VenderKey, userId, setting.VendorProduct);
-                var data = _webClient.DownloadString(authorizedUrl);
+                var data = await _webClient.GetStringAsync(authorizedUrl);
                 if (string.IsNullOrEmpty(data))
                 {
                     throw new WebException(GetServiceName(setting.VendorProduct) + "Couldn't get authorized data from: " + authorizedUrl, WebExceptionStatus.ReceiveFailure);
