@@ -28,7 +28,7 @@ namespace Fanex.Athena.BetList.DataAccess
             using (var db = GetObjectDb(UspKey))
             {
                 AddAbnormalBetListParameters(db, metaModel);
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     ticketResult.MainTicketList.AddRange(ReadBetListTicket(reader, currencyList));
                 }

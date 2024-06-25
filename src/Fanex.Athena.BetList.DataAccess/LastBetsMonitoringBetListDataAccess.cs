@@ -26,9 +26,9 @@ namespace Fanex.Athena.BetList.DataAccess
             const string UspKey = "Shard_Lrf_BetList_LastBetsMonitoring";
 
             var ticketResult = new TicketResult();
-            var currencyList = await this.GetCurrencyListAsync();
+            var currencyList = await GetCurrencyListAsync();
 
-            using (var db = this.GetObjectDb(UspKey))
+            using (var db = GetObjectDb(UspKey))
             {
                 db.SetParameterValue("AgentList", metaModel.AgentListXml);
                 db.SetParameterValue("BetType", metaModel.BetType);
@@ -48,7 +48,7 @@ namespace Fanex.Athena.BetList.DataAccess
                 db.SetParameterValue("ProductList", metaModel.ProductCodeList);
                 db.SetParameterValue("CustomerClass", metaModel.CustomerClass);
                 db.SetParameterValue("FullCustomerClass", string.Join(",", metaModel.RiskLevels.Select(_ => string.Join(",", _.CustomerClassList))));
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     var mainTicket = ReadBetListTicket(reader, currencyList);
                     mainTicket.Sort("TransId", false);
@@ -61,9 +61,9 @@ namespace Fanex.Athena.BetList.DataAccess
 
         public async Task<IList<BetListMatch>> GetMatchList(string uspKey)
         {
-            using (var db = this.GetObjectDb(uspKey))
+            using (var db = GetObjectDb(uspKey))
             {
-                return (await db.QueryAsync<BetListMatch>().ConfigureAwait(false)).ToList();
+                return (await db.QueryAsync<BetListMatch>()).ToList();
             }
         }
 
@@ -71,11 +71,11 @@ namespace Fanex.Athena.BetList.DataAccess
         {
             const string UspName = "Lrf_Monitor_MatchSelById";
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
                 db.SetParameterValue("MatchId", matchId);
 
-                return (await db.QueryEntityAsync<BetListMatch>().ConfigureAwait(false));
+                return (await db.QueryEntityAsync<BetListMatch>());
             }
         }
     }

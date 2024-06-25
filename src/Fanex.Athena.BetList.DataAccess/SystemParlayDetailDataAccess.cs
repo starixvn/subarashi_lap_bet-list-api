@@ -24,11 +24,11 @@
         public async Task<SystemParlayDetailData> GetData(SystemParlayDetailMetaModel metaModel)
         {
             const string UspName = "Shard_Lrf_BetList_SelCombinationParlayDetail";
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
                 SetSystemParlayDetailParameter(db, metaModel);
 
-                var dataSet = await db.ExecuteDataSetAsync().ConfigureAwait(false);
+                var dataSet = await db.ExecuteDataSetAsync();
                 var ticketList = new List<SystemParlayDetailTicket>();
                 var serialList = new List<SystemParlayDetailSerial>();
 

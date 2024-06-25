@@ -31,7 +31,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpPost]
         public async Task<object> GetBetList(PlayerAdminBetListMetaModel metaModel)
         {
-            var ticketResult = await _dataAccess.GetRunningBetListAsync(metaModel).ConfigureAwait(false);
+            var ticketResult = await _dataAccess.GetRunningBetListAsync(metaModel);
 
             return ReturnData(ticketResult, GetBetListOption(metaModel), metaModel);
         }
@@ -41,7 +41,7 @@ namespace Fanex.Athena.BetList.Controllers
         {
             metaModel.PageIndex = 1;
             metaModel.PageSize = int.MaxValue - 1;
-            var ticketResult = await _dataAccess.GetRunningBetListAsync(metaModel).ConfigureAwait(false);
+            var ticketResult = await _dataAccess.GetRunningBetListAsync(metaModel);
 
             if (ticketResult.MainTicketList.Count == 0)
             {

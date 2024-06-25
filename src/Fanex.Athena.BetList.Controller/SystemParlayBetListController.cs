@@ -3,14 +3,11 @@ using Fanex.Athena.BetList.Service.Interfaces;
 using Fanex.BetList.Core.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.BetList.Controllers
 {
+    [ApiController]
+    [Route("[controller]/[action]")]
     public class SystemParlayBetListController
     {
         private readonly ITicketHelper _ticketHelper;

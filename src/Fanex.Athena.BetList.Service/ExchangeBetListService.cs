@@ -20,7 +20,7 @@
 
         public async Task<ExchangeBetListViewModel> GetBetListDataAsync(ExchangeBetListMetaModel metaModel)
         {
-            var betList = await _dataAccess.GetBetListDataAsync(metaModel).ConfigureAwait(false);
+            var betList = await _dataAccess.GetBetListDataAsync(metaModel);
 
             if (betList.SumWinLossList.Any() && betList.TicketList.Any())
             {
@@ -42,7 +42,7 @@
 
         public async Task<IEnumerable<ExchangeTicketDetail>> GetTicketDetailListAsync(ExchangeBetListDetailMetaModel metaModel)
         {
-            return await _dataAccess.GetTicketDetailListAsync(metaModel).ConfigureAwait(false);
+            return await _dataAccess.GetTicketDetailListAsync(metaModel);
         }
     }
 }

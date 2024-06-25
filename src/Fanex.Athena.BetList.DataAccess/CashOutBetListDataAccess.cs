@@ -32,7 +32,7 @@
             const string UspKey = "Lrf_BetList_CashOut_Detail";
 
             var balanceUpData = _balanceUpDataAccess.GetBalanceUp();
-            var currencyList = await this.GetCurrencyListAsync().ConfigureAwait(false);
+            var currencyList = await GetCurrencyListAsync();
 
             using (var db = GetObjectDb(UspKey))
             {
@@ -47,7 +47,7 @@
                     balanceUpData.MoveBetsDay,
                     balanceUpData.BalanceUpDay
                 };
-                using (var reader = await db.ExecuteReaderAsync(param).ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync(param))
                 {
                     var viewModel = new CashOutBetListDetailViewModel
                     {
@@ -81,7 +81,7 @@
                     db.SetParameterValue(DbColumn.BalanceUpDay, balanceUpData.BalanceUpDay);
                 }
 
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     var result = new CashOutHistoryDetailViewModel
                     {

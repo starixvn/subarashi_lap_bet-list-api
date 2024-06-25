@@ -22,7 +22,7 @@
             const string UspKey = "Lrf_BetList_Statement_Mem";
 
             var ticketResult = new TicketResult();
-            var currencyList = await this.GetCurrencyListAsync();
+            var currencyList = await GetCurrencyListAsync();
             using (var db = GetObjectDb(UspKey))
             {
                 SetParam(metaModel, db);

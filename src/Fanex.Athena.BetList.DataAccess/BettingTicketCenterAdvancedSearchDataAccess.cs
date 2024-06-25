@@ -36,19 +36,19 @@
             {
                 RowPerGroup = rowPerGroup
             };
-            var currencyList = await this.GetCurrencyListAsync();
+            var currencyList = await GetCurrencyListAsync();
 
             using (var db = GetObjectDb(UspKey))
             {
                 AddAdvancedSearchParameters(db, metaModel);
 
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     var count = 0;
                     var ticket = new TicketResult();
 
                     var columns = GetColumns();
-                    var safeReader = this.GetSafeDataReader(reader, columns.Select(x => x.Value).ToList());
+                    var safeReader = GetSafeDataReader(reader, columns.Select(x => x.Value).ToList());
 
                     while (reader.Read())
                     {
@@ -81,13 +81,13 @@
             const string UspKey = "Lrf_BetList_Licensee";
 
             var ticketResult = new TicketResult();
-            var currencyList = await this.GetCurrencyListAsync();
+            var currencyList = await GetCurrencyListAsync();
 
             using (var db = GetObjectDb(UspKey))
             {
                 AddAdvancedSearchParameters(db, metaModel);
 
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     ticketResult.MainTicketList.AddRange(ReadBetListTicket(reader, currencyList));
                 }
@@ -131,7 +131,7 @@
 
                 db.SetParameterValue(DbColumn.TotalRows, null);
 
-                await db.ExecuteNonQueryAsync().ConfigureAwait(false);
+                await db.ExecuteNonQueryAsync();
 
                 var outSqlParams = db.GetOutputParams();
                 return Converter.ToInt(outSqlParams[DbColumn.TotalRows]);

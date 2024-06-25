@@ -19,13 +19,13 @@
             const string UspKey = "Shard_Lrf_BetList_Running_Mem";
 
             var ticketResult = new TicketResult();
-            var currencyList = await this.GetCurrencyListAsync();
+            var currencyList = await GetCurrencyListAsync();
 
             using (var db = GetObjectDb(UspKey))
             {
                 SetParameter(db, metaModel);
 
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     ticketResult.MainTicketList = ReadBetListTicket(reader, currencyList);
 

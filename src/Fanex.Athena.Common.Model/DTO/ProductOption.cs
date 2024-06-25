@@ -10,7 +10,7 @@
 
         public override int GetHashCode()
         {
-            return this.Code.GetHashCode();
+            return Code.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -22,7 +22,7 @@
                 return false;
             }
 
-            return this.Code.Equals(item.Code, StringComparison.OrdinalIgnoreCase);
+            return Code.Equals(item.Code, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -13,9 +13,12 @@
   <ItemGroup>
     <PackageReference Include="Fanex.Result.Core.AllBetCasino" Version="2.0.0.2" />
     <PackageReference Include="Fanex.Result.Core.LinkedGames" Version="2.0.1-upgrade-01" />
+    <PackageReference Include="Fanex.Result.Core.SabaClub" Version="2.0.1-upgrade-01" />
+    <PackageReference Include="Fanex.Result.Core.SAGaming" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Fanex.Athena.BetList.Service\Fanex.Athena.BetList.Service.csproj" />
     <ProjectReference Include="..\Fanex.Athena.Result.Service\Fanex.Athena.Result.Service.csproj" />
   </ItemGroup>
 

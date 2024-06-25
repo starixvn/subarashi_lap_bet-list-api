@@ -44,6 +44,9 @@ namespace Fanex.Athena.Result.Model.MetaModel
         [JsonIgnore]
         public int UserId { get; set; }
 
+        [JsonIgnore]
+        public bool IsHideSaba { get; set; }
+
         public IEnumerable<int> SpecialLeagues { get; set; }
     }
 }

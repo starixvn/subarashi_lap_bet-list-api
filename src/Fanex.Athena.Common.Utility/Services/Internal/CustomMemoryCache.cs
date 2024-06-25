@@ -55,7 +55,7 @@
                 .Select(i => i.Key).ToList();
             foreach (var key in keys)
             {
-                this.Remove(key);
+                Remove(key);
             }
         }
 

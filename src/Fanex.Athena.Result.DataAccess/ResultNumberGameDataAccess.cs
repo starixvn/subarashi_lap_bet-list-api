@@ -26,9 +26,9 @@ namespace Fanex.Athena.Result.DataAccess
                 isshowall = true
             };
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
-                using (var reader = await db.ExecuteReaderAsync(uspParams).ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync(uspParams))
                 {
                     return ReadNumberGameMatches(reader);
                 }
@@ -46,9 +46,9 @@ namespace Fanex.Athena.Result.DataAccess
                 isshowall = true
             };
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
-                using (var reader = await db.ExecuteReaderAsync(uspParams).ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync(uspParams))
                 {
                     return ReadHappy5Matches(reader);
                 }
@@ -63,9 +63,9 @@ namespace Fanex.Athena.Result.DataAccess
                 matchId
             };
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
-                using (var reader = await db.ExecuteReaderAsync(uspParams).ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync(uspParams))
                 {
                     return ReadNumberGameMatches(reader);
                 }
@@ -80,9 +80,9 @@ namespace Fanex.Athena.Result.DataAccess
                 matchId
             };
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
-                using (var reader = await db.ExecuteReaderAsync(uspParams).ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync(uspParams))
                 {
                     return ReadHappy5Matches(reader);
                 }

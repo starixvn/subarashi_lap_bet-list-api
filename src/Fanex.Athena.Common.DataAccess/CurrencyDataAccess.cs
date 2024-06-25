@@ -26,7 +26,7 @@ namespace Fanex.Athena.Common.DataAccess
             {
                 return currencyList;
             }
-            currencyList = await GetCurrencyListFromDbAsync().ConfigureAwait(false);
+            currencyList = await GetCurrencyListFromDbAsync();
             if (currencyList.Keys.Any())
             {
                 _cache.Set(CacheKey, currencyList, CacheTime1DayInSecond);
@@ -38,7 +38,7 @@ namespace Fanex.Athena.Common.DataAccess
         {
             const string UspName = "Lrf_CurrencySel";
             var result = new Dictionary<int, string>();
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
                 using (var reader = await db.ExecuteReaderAsync())
                 {

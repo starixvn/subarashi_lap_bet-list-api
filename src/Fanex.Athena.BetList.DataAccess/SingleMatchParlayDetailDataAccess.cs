@@ -15,11 +15,11 @@
             const string UspName = "Lrf_BetList_BetBuilder_Detail";
             var result = new List<SingleMatchParlayDetail>();
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
                 db.SetParameterValue("TransId", metaModel.TransId);
                 db.SetParameterValue("CustId", metaModel.CustId);
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     while (reader.Read())
                     {

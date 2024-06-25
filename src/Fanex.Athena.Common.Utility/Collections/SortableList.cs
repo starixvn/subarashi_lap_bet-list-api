@@ -14,7 +14,7 @@
 
             // Apply and set the sort, if items to sort
             var comparer = new PropertyComparer<T>(propertyName, _ascending ? ListSortDirection.Ascending : ListSortDirection.Descending);
-            this.Sort(comparer);
+            Sort(comparer);
         }
 
         private void UpdateSortingData(string propertyName, bool ascending)

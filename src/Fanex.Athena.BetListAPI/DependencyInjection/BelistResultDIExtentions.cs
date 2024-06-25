@@ -5,6 +5,9 @@ using Fanex.Result.Core.LinkedGames;
 using Fanex.Result.Core.Base.Utilities;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Fanex.Result.Core.SabaClub;
+using Fanex.Result.Core.SAGaming;
+using Fanex.Result.Core.AllBetCasino;
+using Fanex.Result.Core.SportsLottery;
 
 namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
 {
@@ -29,12 +32,22 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
         {
             services.TryAddScoped<ISerializer, JsonSerializer>();
             services.TryAddScoped<IWebClient, JsonWebClient>();
+            services.AddAllBetResultService();
             services.AddLinkGamesResultService(configuration);
-            services.AddSabaClubService(configuration);
+            services.AddSabaClubResultService(configuration);
+            services.AddSAGamingResultService();
+            services.AddSportLotteryResultService(configuration);
             services.AddScoped<IKenoApi, KenoApi>();
+            services.AddScoped<IKenoLotteryTGResultFactory, KenoLotteryTGResultApi>();
 
             return services;
         }
+
+        private static IServiceCollection AddAllBetResultService(this IServiceCollection services)
+        {
+            services.AddScoped<IAllbetResultBuilder, AllbetResultBuilder>();
+            return services;
+        }   
 
         private static IServiceCollection AddLinkGamesResultService(this IServiceCollection services, IConfiguration configuration)
         {
@@ -44,11 +57,25 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
             return services;
         }
 
-        private static IServiceCollection AddSabaClubService(this IServiceCollection services, IConfiguration configuration)
+        private static IServiceCollection AddSabaClubResultService(this IServiceCollection services, IConfiguration configuration)
         {
             var config = configuration.GetSection("ResultConfigs:SabaClubResult").Get<SabaClubConfigs>();
             services.AddSingleton(config);
             services.AddScoped<ISabaClubResult, SabaClubResult>();
+            return services;
+        }
+
+        private static IServiceCollection AddSAGamingResultService(this IServiceCollection service)
+        {
+            service.AddScoped<ISAGamingResultBuilder, SAGamingResultBuilder>();
+            return service;
+        }
+
+        private static IServiceCollection AddSportLotteryResultService(this IServiceCollection services, IConfiguration configuration)
+        {
+            var config = configuration.GetSection("ResultConfigs:SportLotteryResult").Get<SportsLotteryConfigs>();
+            services.AddSingleton(config);
+            services.AddScoped<ISportsLotteryResult, SportsLotteryResult>();
             return services;
         }
     }

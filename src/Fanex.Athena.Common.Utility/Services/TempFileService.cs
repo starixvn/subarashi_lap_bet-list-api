@@ -20,6 +20,7 @@ namespace Fanex.Athena.Common.Utility.Services
         {
             _appSettings = appSetting ?? new AppSettings();
             _fileSystem = fileSystem ?? new FileSystem();
+            _enviroment = environment;
         }
 
         public void Delete(string path)

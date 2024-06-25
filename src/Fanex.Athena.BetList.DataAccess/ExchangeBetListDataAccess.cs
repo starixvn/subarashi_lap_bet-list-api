@@ -19,7 +19,7 @@
         {
             const string UspName = "Lrf_BetList_Exchange_Mem";
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
                 db.SetParameterValue("AgentList", metaModel.AgentListXml);
                 db.SetParameterValue("CustId", metaModel.CustId);
@@ -32,7 +32,7 @@
 
                 var result = new ExchangeBetListResult();
 
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     result.SumWinLossList = ReadSumWinLossData(reader);
                     result.TicketList = ReadTicketData(reader);
@@ -47,14 +47,14 @@
         {
             const string UspName = "Lrf_BetList_Exchange_Detail";
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
                 db.SetParameterValue("AgentList", metaModel.AgentListXml);
                 db.SetParameterValue("CustId", metaModel.CustId);
                 db.SetParameterValue("BetID", metaModel.BetId);
                 db.SetParameterValue("BaseCurrency", metaModel.BaseCurrency);
 
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     return ReadTicketDetailData(reader, metaModel.Type);
                 }

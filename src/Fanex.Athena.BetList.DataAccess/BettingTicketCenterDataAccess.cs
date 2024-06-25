@@ -32,12 +32,12 @@
             const string UspKey = "Lrf_BetList_Mem";
 
             var ticketResult = new TicketResult();
-            var currencyList = await this.GetCurrencyListAsync();
+            var currencyList = await GetCurrencyListAsync();
             using (var db = GetObjectDb(UspKey))
             {
                 AddSingleCustomerParameters(db, metaModel);
 
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     ticketResult.MainTicketList.AddRange(ReadBetListTicket(reader, currencyList));
                 }
@@ -82,7 +82,7 @@
             const string UspKey = "Shard_Lrf_BetList_Running";
 
             var ticketResult = new TicketResult();
-            var currencyList = await this.GetCurrencyListAsync();
+            var currencyList = await GetCurrencyListAsync();
 
             using (var db = GetObjectDb(UspKey))
             {
@@ -102,7 +102,7 @@
                 db.SetParameterValue(DbColumn.SumStake, null);
                 AddSortParameter(db, metaModel.SortBy, metaModel.SortOrder);
 
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     ticketResult.MainTicketList.AddRange(ReadBetListTicket(reader, currencyList));
                 }
@@ -120,7 +120,7 @@
             const string UspKey = "Lrf_BetList_TxID_Mem";
 
             var ticketResult = new TicketResult();
-            var currencyList = await this.GetCurrencyListAsync();
+            var currencyList = await GetCurrencyListAsync();
 
             using (var db = GetObjectDb(UspKey))
             {
@@ -133,7 +133,7 @@
                 db.SetParameterValue(DbColumn.BalanceUpDay, balanceUp.BalanceUpDay);
                 db.SetParameterValue(DbColumn.BaseCurrency, metaModel.BaseCurrency);
 
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     ticketResult.MainTicketList.AddRange(ReadBetListTicket(reader, currencyList));
                     ticketResult.TotalRows = ticketResult.MainTicketList.Count;

@@ -43,9 +43,9 @@ namespace Fanex.Athena.BetList.Service
 
         public async Task<TicketResult> GetLastBetsMonitoringData(LastBetsMonitoringMetaModel metaModel)
         {
-            var ticketResult = await this._lastBetsMonitoringBetListDataAccess.GetLastBetsMonitoringData(metaModel).ConfigureAwait(false);
+            var ticketResult = await _lastBetsMonitoringBetListDataAccess.GetLastBetsMonitoringData(metaModel);
 
-            await UpdateMatchInfo(metaModel, ticketResult).ConfigureAwait(false);
+            await UpdateMatchInfo(metaModel, ticketResult);
 
             return ticketResult;
         }
@@ -168,7 +168,7 @@ namespace Fanex.Athena.BetList.Service
             var data = _cache.Get<IList<BetListMatch>>(matchListCacheKey);
             if (data == null)
             {
-                data = await this._lastBetsMonitoringBetListDataAccess.GetMatchList(matchListSpKey).ConfigureAwait(false);
+                data = await this._lastBetsMonitoringBetListDataAccess.GetMatchList(matchListSpKey);
                 _cache.Set(matchListCacheKey, data, CacheTimeout);
             }
 
@@ -183,7 +183,7 @@ namespace Fanex.Athena.BetList.Service
             var data = _cache.Get<IList<BetListMatch>>(OutrightMatchListCacheKey);
             if (data == null)
             {
-                data = await this._lastBetsMonitoringBetListDataAccess.GetMatchList(OutrightMatchListSpKey).ConfigureAwait(false);
+                data = await this._lastBetsMonitoringBetListDataAccess.GetMatchList(OutrightMatchListSpKey);
                 _cache.Set(OutrightMatchListCacheKey, data, CacheTimeout);
             }
 
@@ -203,12 +203,12 @@ namespace Fanex.Athena.BetList.Service
         {
             var mainTicketList = ticketResult.MainTicketList;
             var timeZoneDelta = metaModel.TimeZone - (-4);
-            var matchList = await GetMatchList(MatchListCacheKey, MatchListSpKey).ConfigureAwait(false);
-            var match3rdList = await GetMatchList(Match3rdListCacheKey, Match3rdListSpKey).ConfigureAwait(false);
-            var outrightMatchList = await GetOutrightMatchList().ConfigureAwait(false);
+            var matchList = await GetMatchList(MatchListCacheKey, MatchListSpKey);
+            var match3rdList = await GetMatchList(Match3rdListCacheKey, Match3rdListSpKey);
+            var outrightMatchList = await GetOutrightMatchList();
             foreach (LrfTicket ticket in mainTicketList)
             {
-                await AssignMatchInfo(ticket, matchList, outrightMatchList, match3rdList).ConfigureAwait(false);
+                await AssignMatchInfo(ticket, matchList, outrightMatchList, match3rdList);
 
                 // Update time zone
                 if (timeZoneDelta > 0)
@@ -236,7 +236,7 @@ namespace Fanex.Athena.BetList.Service
                 (isOutright ? outrightMatchList : matchList).FirstOrDefault(x => x.MatchId == ticket.MatchId)
                 ?? match3rdList.FirstOrDefault(x => x.MatchId == ticket.MatchId)
                 )
-                ?? await _lastBetsMonitoringBetListDataAccess.GetMatchById(ticket.MatchId).ConfigureAwait(false);
+                ?? await _lastBetsMonitoringBetListDataAccess.GetMatchById(ticket.MatchId);
 
             if (match != null)
             {

@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Fanex.Result.Core.SAGaming;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Athena.Result.Controller.ResultPopup
 {
@@ -14,14 +10,11 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
         private readonly ISAGamingResultBuilder _resultApi;
 
         public SAGamingResultPopupController(ISAGamingResultBuilder resultApi)
-        {
-            _resultApi = resultApi;
-        }
+            => _resultApi = resultApi;
 
         [HttpPost]
         public string Index(string transDesc, string matchCode, string betType, string languageCode)
-        {
-            return _resultApi.Render(transDesc, matchCode, betType, languageCode);
-        }
+            => _resultApi.Render(transDesc, matchCode, betType, languageCode);
+
     }
 }

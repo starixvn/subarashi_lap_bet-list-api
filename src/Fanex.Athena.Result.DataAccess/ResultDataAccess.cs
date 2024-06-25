@@ -57,9 +57,9 @@
                 isshowall = !_appSettings.IsProduction
             };
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
-                using (var reader = await db.ExecuteReaderAsync(uspParams).ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync(uspParams))
                 {
                     var data = new List<Outright>();
 
@@ -88,13 +88,13 @@
         {
             const string UspName = "Lrf_Result_SportSelByDate";
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
                 var balanceUp = _balanceUpDataAccess.GetBalanceUp();
                 db.SetParameterValue(EventDateColumn, dateValue);
                 db.SetParameterValue("licenseeid", licenseeId);
                 db.SetParameterValue("movebetsday", balanceUp.MoveBetsDay);
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     var data = new List<Sport>();
                     while (reader.Read())
@@ -124,9 +124,9 @@
                 movebetsday = balanceUp.MoveBetsDay
             };
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
-                using (var reader = await db.ExecuteReaderAsync(uspParams).ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync(uspParams))
                 {
                     var data = new List<League>();
                     while (reader.Read())
@@ -168,9 +168,9 @@
                 movebetsday = _balanceUpDataAccess.GetBalanceUp().MoveBetsDay
             };
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
-                using (var reader = await db.ExecuteReaderAsync(uspParams).ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync(uspParams))
                 {
                     return ReadVirtualSportMatches(reader);
                 }
@@ -189,9 +189,9 @@
                 transdesc = metaModel.TransDesc
             };
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
-                using (var reader = await db.ExecuteReaderAsync(uspParams).ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync(uspParams))
                 {
                     var type = typeof(T);
 
@@ -221,9 +221,9 @@
             const string UspName = "Lrf_BetList_SelMatchResultParlay";
             var uspParams = new { refno = refNo };
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
-                using (var reader = await db.ExecuteReaderAsync(uspParams).ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync(uspParams))
                 {
                     var results = new List<Parlay>();
 
@@ -256,12 +256,12 @@
         {
             const string UspName = "Lrf_TicketResult_BetBuilder";
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
                 db.SetParameterValue(MatchidColumn, matchId);
                 db.SetParameterValue("marketId", marketId);
 
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     if (reader.Read())
                     {
@@ -296,9 +296,9 @@
                 isshowall = !_appSettings.IsProduction
             };
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
-                using (var reader = await db.ExecuteReaderAsync(uspParams).ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync(uspParams))
                 {
                     var type = typeof(T);
 
@@ -325,9 +325,9 @@
                 movebetsday = balanceUp.MoveBetsDay
             };
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
-                using (var reader = await db.ExecuteReaderAsync(uspParams).ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync(uspParams))
                 {
                     var type = typeof(T);
 
@@ -350,10 +350,10 @@
         /// <returns>The SPORTSBOOK data.</returns>
         public async Task<Sportsbook> GetSportsbookGameDetailAsync(int matchId)
         {
-            using (var db = this.GetObjectDb("Lrf_Result_MatchSelByLeague_Detail"))
+            using (var db = GetObjectDb("Lrf_Result_MatchSelByLeague_Detail"))
             {
                 db.SetParameterValue(MatchidColumn, matchId);
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     if (reader.Read())
                     {
@@ -562,9 +562,9 @@
                 matchId
             };
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
-                using (var reader = await db.ExecuteReaderAsync(uspParams).ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync(uspParams))
                 {
                     var type = typeof(T);
 

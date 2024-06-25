@@ -1,6 +1,16 @@
 {
-  "AllbetUseOriginalPath": true,
   "AllbetResultImagePath": "/bundles/images/results/allbet/template/public/game_result/",
+  "AllbetUseOriginalPath": true,
+
+  "SAGamingResultImagePath": "/bundles/images/results/sagaming/template/public/game_result/",
+  "SAGamingUseOriginalPath": true,
+
+  "SexyGamingResultImagePath": "/bundles/images/results/sexygaming/template/public/game_result/",
+  "SexyGamingUseOriginalPath": true,
+
+  "WMResultImagePath": "/bundles/images/results/WM/template/public/game_result/",
+  "WMUseOriginalPath": true,
+
   "ResultConfigs": {
     "AdvantPlayMiniResult": {
       "Url": "http://10.40.40.248:8129/api/AdvantPlayMiniInternal/GetBetHistoryUrl",
@@ -94,6 +104,69 @@
       "Login": "Login",
       "Password": "U1YwYm1IbGpSeVdMeWhTaE1Ia1I3QT09",
       "Debug": 0
+    },
+    "SealEntertainmentResult": {
+      "Url": "http://10.40.40.248:7051/api/SealEntertainmentInternal/GetBetHistoryUrl",
+      "Debug": 0
+    },
+    "SpadegamingResult": {
+      "Url": "http://10.40.40.248:8096/api/SpadeGamingInternal/GetBetHistoryUrl",
+      "VendorId": 36,
+      "Debug": 0
+    },
+    "SportsLotteryResult": {
+      "UrlPage": "http://10.40.40.248:7038/api/SportsLotteryInternal/Result",
+      "SiteId": 4100200,
+      "Debug": 0
+    },
+    "SportsLotteryDetailResult": {
+      "Url": "http://10.40.40.248:7038/api/SportsLotteryInternal/GetBetHistoryUrl",
+      "Debug": 0
+    },
+    "UUSlotsResult": {
+      "Url": "http://10.40.40.248:7058/api/UuSlotsInternal/GetBetHistoryUrl",
+      "Debug": 0
+    },
+    "VGamingResult": {
+      "Url": "http://10.40.40.248:7028/api/VGamingInternal/GetBetHistoryUrl",
+      "Debug": 0
+    },
+    "VirtualGamesDetailResult": {
+      "Url": "http://10.40.40.248:7035/api/VirtualGamesInternal/GetBetHistoryUrl",
+      "VendorId": 38,
+      "Debug": 0
+    },
+    "VoidbridgeResult": {
+      "Url": "http://10.40.40.248:8066/api/VoidBridgeInternal/GetBetHistoryUrl",
+      "VendorId": 12,
+      "Debug": 0
+    },
+    "WEResult": {
+      "Url": "http://10.40.40.248:7021/api/WorldEntertainmentInternal/GetBetHistoryUrl",
+      "Debug": 0
+    }
+  },
+  "KenoConfigs": {
+    "KenoResult": {
+      "Url": "http://10.40.40.248:7053/api/KenoInternal/GetResultUrl",
+      "SiteId": 3100100,
+      "Debug": 0
+    },
+    "LotteryResult": {
+      "Url": "http://10.40.40.248:7055/api/LotteryInternal/GetResultUrl",
+      "SiteId": 3100100,
+      "Debug": 0
+    },
+    "TableGameResult": {
+      "Url": "http://10.40.40.248:7057/api/TableGameInternal/GetResultUrl",
+      "SiteId": 3100100,
+      "Debug": 0
+    },
+    "VirtualGamesResult": {
+      "Url": "http://10.40.40.248:7035/api/VirtualGamesInternal/GetResultUrl",
+      "SiteId": 3100100,
+      "Debug": 0
     }
   }
+
 }

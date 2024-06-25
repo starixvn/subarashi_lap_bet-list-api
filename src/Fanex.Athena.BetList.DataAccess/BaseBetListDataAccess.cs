@@ -29,7 +29,7 @@
 
         protected async Task<IDictionary<int, string>> GetCurrencyListAsync()
         {
-            return await _currencyDataAccess.GetCurrencyListAsync().ConfigureAwait(false);
+            return await _currencyDataAccess.GetCurrencyListAsync();
         }
 
         protected internal static LrfTicket MapTicket(
@@ -62,7 +62,7 @@
             var columns = GetColumns();
             var tickets = new SortableList<LrfTicket>();
 
-            var reader = this.GetSafeDataReader(dataReader, columns.Select(x => x.Value).ToList());
+            var reader = GetSafeDataReader(dataReader, columns.Select(x => x.Value).ToList());
             while (reader.Read())
             {
                 tickets.Add(MapTicket(reader, columns, currencyList, custId));
@@ -117,7 +117,7 @@
                 assignCommonParamters.Invoke(db);
                 assignSpecificParamters?.Invoke(db);
 
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     return ReadBetListTicket(reader, currencyList);
                 }

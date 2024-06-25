@@ -36,7 +36,7 @@
         {
             const string UspName = "Lrf_SelBalanceUpDay";
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
                 var balanceUp = new BalanceUp();
                 using (var reader = db.ExecuteReader())

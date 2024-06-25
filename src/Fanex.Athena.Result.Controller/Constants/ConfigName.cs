@@ -38,5 +38,21 @@ namespace Fanex.Athena.Result.Controller.Constants
         public const string PPResult = "PPResult";
 
         public const string RNGCasinoResult = "RNGCasinoResult";
+
+        public const string SealEntertainmentResult = "SealEntertainmentResult";
+
+        public const string SpadegamingResult = "SpadegamingResult";
+
+        public const string SportsLotteryDetailResult = "SportsLotteryDetailResult";
+
+        public const string UUSlotsResult = "UUSlotsResult";
+
+        public const string VGamingResult = "VGamingResult";
+
+        public const string VirtualGamesDetailResult = "VirtualGamesDetailResult";
+
+        public const string VoidbridgeResult = "VoidbridgeResult";
+
+        public const string WEResult = "WEResult";
     }
 }

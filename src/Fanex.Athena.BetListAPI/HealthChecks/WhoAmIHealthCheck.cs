@@ -34,7 +34,7 @@ namespace Aff.YB.DataSync.Service.Host.Middleware
             var hostName = Dns.GetHostName();
             result.Add("Host Name", hostName);
 
-            var serverIps = await Dns.GetHostAddressesAsync(hostName).ConfigureAwait(false);
+            var serverIps = await Dns.GetHostAddressesAsync(hostName);
             for (var i = 0; i < serverIps.Length; i++)
             {
                 if (serverIps[i].AddressFamily == AddressFamily.InterNetwork)

@@ -97,7 +97,7 @@ namespace Fanex.Athena.BetList.Excel
 
         public IWorkbook Export(TicketResult ticketResult, string title, int startIndex = 1)
         {
-            var builder = this.CreateExcelBuilder();
+            var builder = CreateExcelBuilder();
             Build(builder, ticketResult, title, startIndex);
             var workbook = builder.GetBetList();
             ProcessUi(workbook);
