@@ -242,6 +242,7 @@ namespace Fanex.Athena.BetList.Service
             {
                 ticket.SportTypeId = match.SportType;
                 ticket.LeagueId = match.LeagueId;
+                ticket.LeagueGroupId = match.LeagueGroupId;
                 ticket.MatchCode = match.MatchCode;
                 ticket.HomeId = match.HomeId;
                 ticket.AwayId = match.AwayId;

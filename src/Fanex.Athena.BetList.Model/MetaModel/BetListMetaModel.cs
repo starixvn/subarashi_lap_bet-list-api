@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Athena.BetList.Model.MetaModel
 {
     using Fanex.Athena.Common.Model.MetaModel;
+    using Fanex.Athena.Common.Utility.Helpers;
     using System;
     using System.Text.Json.Serialization;
 
@@ -94,6 +95,8 @@
         public bool UseShardDB { get; set; }
 
         public int SpecialPlatform { get; set; }
+
+        public bool IsHideSaba => SabaHelper.IsHideSaba(SpecialPlatform);
 
         public bool InBettransRange => Date > MoveBetsDay;
 

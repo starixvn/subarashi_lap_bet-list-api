@@ -1,5 +1,4 @@
-﻿using System;
-using BetListNPOI.HSSF.UserModel;
+﻿using BetListNPOI.HSSF.UserModel;
 using BetListNPOI.HSSF.Util;
 using BetListNPOI.SS.UserModel;
 using BetListNPOI.SS.Util;
@@ -18,9 +17,9 @@ namespace Fanex.Athena.BetList.Excel.Builders
 {
     public class BettingTicketCenterExcelBuilder : IBettingTicketCenterExcelBuilder, IDisposable
     {
-        private const int NumberOfColumns = 15;
+        private const int NumberOfColumns = 16;
 
-        private const int ColumnTotalStart = 8;
+        private const int ColumnTotalStart = 10;
 
         private const int ContentRowIndex = 2;
 
@@ -40,6 +39,10 @@ namespace Fanex.Athena.BetList.Excel.Builders
 
         private ICellStyle _oddCellCenterAlign;
 
+        private ICellStyle _evenCellRightAlign;
+
+        private ICellStyle _oddCellRightAlign;
+
         // Default Fonts
         private IFont _negativeWinLossFont;
 
@@ -48,6 +51,8 @@ namespace Fanex.Athena.BetList.Excel.Builders
         private IFont _liveFont;
 
         private IFont _mixLiveFont;
+
+        private IFont _oddsFont;
 
         public BettingTicketCenterExcelBuilder(IBetListExcelBuilder builder, ITicketHelper ticketHelper, IIPService ipService)
         {
@@ -94,7 +99,7 @@ namespace Fanex.Athena.BetList.Excel.Builders
 
         public void AddHeader(BettingTicketCenterOption option)
         {
-            var columnWidths = new short[] { 1500, 4800, 4800, 5200, 5400, 5400, 15500, 3400, 4800, 7800, 7800, 9000, 5400, 3400, 4000 };
+            var columnWidths = new short[] { 1500, 4800, 4800, 5200, 5200, 5400, 5400, 15500, 3400, 3400, 4800, 7800, 7800, 9000, 5400, 3400, 4000 };
             var index = 0;
 
             var headerStyle = _builder.CreateHeaderCellStyle();
@@ -111,6 +116,12 @@ namespace Fanex.Athena.BetList.Excel.Builders
             }
             ++index;
 
+            if (option.IsBookedBet)
+            {
+                AddHeaderCell(ViewResources.BookedId, columnWidths[index], headerStyle);
+            }
+            ++index;
+
             AddHeaderCell(ViewResources.RefNo, columnWidths[index++], headerStyle);
 
             if (option.ShowTxId)
@@ -119,9 +130,18 @@ namespace Fanex.Athena.BetList.Excel.Builders
             }
             ++index;
 
-            AddHeaderCell(ViewResources.TransTime, columnWidths[index++], headerStyle);
+            AddHeaderCell(option.IsBookedBet ? ViewResources.BookedTime : ViewResources.TransTime, columnWidths[index++], headerStyle);
             AddHeaderCell(ViewResources.Choice, columnWidths[index++], headerStyle);
-            AddHeaderCell(ViewResources.Odds, columnWidths[index++], headerStyle);
+            if (option.IsBookedBet)
+            {
+                AddHeaderCell(ViewResources.OddsLower, columnWidths[index++], headerStyle);
+                AddHeaderCell(ViewResources.OddsUpper, columnWidths[index++], headerStyle);
+            }
+            else
+            {
+                AddHeaderCell(ViewResources.Odds, columnWidths[index++], headerStyle);
+                ++index;
+            }
             AddHeaderCell(ViewResources.OddsType, columnWidths[index++], headerStyle);
             AddHeaderCell(ViewResources.Stake, columnWidths[index++], headerStyle);
 
@@ -131,7 +151,7 @@ namespace Fanex.Athena.BetList.Excel.Builders
             }
             ++index;
 
-            if (option.ShowLicenseeWl)
+            if (option.ShowLicenseeWl && !option.ViewSabaCoins)
             {
                 AddHeaderCell(ViewResources.LicenseeWL + "/" + ViewResources.Comm, columnWidths[index], headerStyle);
             }
@@ -139,7 +159,11 @@ namespace Fanex.Athena.BetList.Excel.Builders
 
             AddHeaderCell(ViewResources.Status, columnWidths[index++], headerStyle);
             AddHeaderCell(ViewResources.Platform, columnWidths[index++], headerStyle);
-            AddHeaderCell(ViewResources.Live, columnWidths[index], headerStyle);
+
+            if (!option.IsBookedBet)
+            {
+                AddHeaderCell(ViewResources.Live, columnWidths[index], headerStyle);
+            }
         }
 
         public void AddFooter(
@@ -152,7 +176,7 @@ namespace Fanex.Athena.BetList.Excel.Builders
         {
             var footerStyle = _builder.CreateFooterCellStyle();
             var cols = GetActualCols(option);
-            var totalColIndex = ColumnTotalStart - (!option.ShowExternalId).ToInt() - (!option.ShowSystemId).ToInt() + option.ShowTxId.ToInt();
+            var totalColIndex = ColumnTotalStart - (!option.ShowExternalId).ToInt() - (!option.ShowSystemId).ToInt() - (!option.IsBookedBet).ToInt() * 2 + option.ShowTxId.ToInt();
             var currentTotalColIndex = totalColIndex;
 
             var rtfTotal = new HSSFRichTextString(totalText);
@@ -175,7 +199,7 @@ namespace Fanex.Athena.BetList.Excel.Builders
                 currentTotalColIndex++;
             }
 
-            if (option.ShowLicenseeWl)
+            if (option.ShowLicenseeWl && !option.ViewSabaCoins)
             {
                 var rtfSumLicenseeWl = new HSSFRichTextString(sumLicenseeWL.ToString(FormatKey.DecimalFormat));
                 rtfSumLicenseeWl.ApplyFont(sumLicenseeWL < 0 ? _negativeWinLossFont : _winLossFont);
@@ -209,7 +233,15 @@ namespace Fanex.Athena.BetList.Excel.Builders
                 _builder.AddSystemId(_ticketHelper, ticket.UserName, _oddCellLeftAlign, _evenCellLeftAlign);
             }
 
-            _builder.AddRefNo(ticket, _ticketHelper);
+            if (option.IsBookedBet)
+            {
+                AddBookedIdBetCell(ticket);
+                AddBookedBetRefNoCell(ticket);
+            }
+            else
+            {
+                _builder.AddRefNo(ticket, _ticketHelper);
+            }
 
             if (option.ShowTxId)
             {
@@ -218,8 +250,18 @@ namespace Fanex.Athena.BetList.Excel.Builders
 
             _builder.AddTransTime(ticket, _ticketHelper);
             _builder.AddChoice(ticket, _ticketHelper, ticketResult.TicketDataList);
-            _builder.AddOddsValue(ticket, ticketResult.TicketDataList, _ticketHelper.GetValidOddsTypeNameById);
-            _builder.AddOddsType(ticket, ticketResult.TicketDataList, _ticketHelper.GetValidOddsTypeNameById);
+
+            if (option.IsBookedBet)
+            {
+                AddBookedBetOddstCell(ticket.OddsLower);
+                AddBookedBetOddstCell(ticket.OddsUpper);
+            }
+            else
+            {
+                _builder.AddOddsValue(ticket, ticketResult.TicketDataList, _ticketHelper.GetValidOddsTypeNameById);
+            }
+
+            AddOddType(ticket, ticketResult);
             _builder.AddStake(ticket, _ticketHelper);
 
             if (option.ShowWinLoss)
@@ -227,7 +269,7 @@ namespace Fanex.Athena.BetList.Excel.Builders
                 _builder.AddCustomerWL(ticket, option.IsAllowedCustomerComm, _winLossFont);
             }
 
-            if (option.ShowLicenseeWl)
+            if (option.ShowLicenseeWl && !option.ViewSabaCoins)
             {
                 _builder.AddLicenseeWL(ticket, licenseeId == LicenseeIdentity.OneTwoBet, _negativeWinLossFont, _winLossFont);
             }
@@ -237,15 +279,30 @@ namespace Fanex.Athena.BetList.Excel.Builders
             {
                 _ticketHelper.IsVnIp = _ipService.IsVNIP;
             }
-            _builder.AddStatus(ticket, _ticketHelper, ticketResult.TicketDataList, option.IsShowIpvn);
+
+            if (option.IsBookedBet)
+            {
+                AddBookedBetStatusCell(ticket, (option.IsShowIp && (option.IsShowIpvn || !(_ipService.IsVNIP(ticket.IP)))));
+            }
+            else
+            {
+                _builder.AddStatus(ticket, _ticketHelper, ticketResult.TicketDataList, option.IsShowIpvn);
+            }
+
             AddPlatfromCell(ticket, option.SpecialPlatform);
-            AddLiveCell(ticket);
+
+            if (!option.IsBookedBet)
+            {
+                AddLiveCell(ticket);
+            }
         }
 
         public void InitializeCellStyles()
         {
             _oddCellLeftAlign = CreateCellStyle(HorizontalAlignment.Left, false);
             _evenCellLeftAlign = CreateCellStyle(HorizontalAlignment.Left, true);
+            _oddCellRightAlign = CreateCellStyle(HorizontalAlignment.Right, false);
+            _evenCellRightAlign = CreateCellStyle(HorizontalAlignment.Right, true);
             _oddCellCenterAlign = CreateCellStyle(HorizontalAlignment.Center, false);
             _evenCellCenterAlign = CreateCellStyle(HorizontalAlignment.Center, true);
         }
@@ -267,10 +324,79 @@ namespace Fanex.Athena.BetList.Excel.Builders
 
             _mixLiveFont = _builder.CreateFont();
             _mixLiveFont.Color = MixLiveColor;
+
+            _oddsFont = _builder.CreateFont();
+            _winLossFont.IsBold = true;
         }
 
-        private static int GetActualCols(BettingTicketCenterOption option)
-            => NumberOfColumns - (!option.ShowWinLoss).ToInt() - (!option.ShowLicenseeWl).ToInt() - (!option.ShowExternalId).ToInt() - (!option.ShowSystemId).ToInt() - (!option.ShowTxId).ToInt();
+        private void AddOddType(LrfTicket ticket, TicketResult ticketResult)
+        {
+            if (ticket.BetTypeId == (int)BetType.VirtualSports4MixParlay)
+            {
+                ticket.OddsType = string.Empty;
+            }
+
+            _builder.AddOddsType(ticket, ticketResult.TicketDataList, _ticketHelper.GetValidOddsTypeNameById);
+        }
+
+        private static int GetActualCols(BettingTicketCenterOption option)        
+            => NumberOfColumns - (!option.ShowWinLoss).ToInt() - (!option.ShowLicenseeWl || option.ViewSabaCoins).ToInt() - (!option.ShowExternalId).ToInt() -
+                (!option.ShowSystemId).ToInt() - (!option.ShowTxId).ToInt() - (!option.IsBookedBet).ToInt();
+
+        private void AddBookedIdBetCell(LrfTicket ticket)
+        {
+            var rtfBookedId = new HSSFRichTextString(ticket.TransId.ToString());
+            BuilDataAlignedCenterCell(rtfBookedId);
+        }
+
+        private void AddBookedBetRefNoCell(LrfTicket ticket)
+        {
+            var bookedBetRefno = ticket.RefNo;
+            ticket.RefNo = SystemConstants.DefaultBookedBetRefno;
+
+            var rtfRefNo = new HSSFRichTextString(bookedBetRefno != "0" ? bookedBetRefno : string.Empty);
+            BuilDataAlignedCenterCell(rtfRefNo);
+        }
+
+        private void AddBookedBetOddstCell(decimal odds)
+        {
+            var rtfOdds = new HSSFRichTextString(odds == 0 ? "-" : odds.ToString("#,##0.###"));
+            rtfOdds.ApplyFont(_oddsFont);
+            BuilDataAlignedRightCell(rtfOdds);
+        }
+
+        private void AddBookedBetStatusCell(LrfTicket ticket, bool isShowIp)
+        {
+            const string statusTmp = "{0} \n {1}";
+            var ipText = isShowIp ? ticket.IP : string.Empty;
+
+            string statusText;
+            switch (ticket.StatusId)
+            {
+                case BookedBetStatusTypes.Booking:
+                case BookedBetStatusTypes.ProcressingBet:
+                    statusText = ViewResources.Booking;
+                    break;
+
+                case BookedBetStatusTypes.Successful:
+                    statusText = ViewResources.Successful;
+                    break;
+
+                case BookedBetStatusTypes.Unsuccessful:
+                    statusText = ViewResources.Unsuccessful + " \n " + ViewResources.Reason + ": \n " + _ticketHelper.GetResourceData("BookedBet_Reason", ticket.Reason);
+                    break;
+
+                case BookedBetStatusTypes.Cancelled:
+                    statusText = ViewResources.Cancelled;
+                    break;
+
+                default:
+                    statusText = string.Empty;
+                    break;
+            }
+
+            BuilDataAlignedCenterCell(new HSSFRichTextString(string.Format(statusTmp, statusText, ipText)));
+        }
 
         private void AddPlatfromCell(LrfTicket ticket, int specialPlatform)
         {
@@ -311,6 +437,11 @@ namespace Fanex.Athena.BetList.Excel.Builders
             _builder.AddCell(text, _ticketHelper.Index.IsEvenNumber() ? _oddCellCenterAlign : _evenCellCenterAlign);
         }
 
+        private void BuilDataAlignedRightCell(IRichTextString text)
+        {
+            _builder.AddCell(text, _ticketHelper.Index.IsEvenNumber() ? _oddCellRightAlign : _evenCellRightAlign);
+        }
+
         private ICellStyle CreateCellStyle(HorizontalAlignment align, bool isEvenCell)
         {
             var cellStyle = _builder.CreateCellStyle();
@@ -349,12 +480,15 @@ namespace Fanex.Athena.BetList.Excel.Builders
                 _builder = null;
                 _evenCellLeftAlign = null;
                 _oddCellLeftAlign = null;
+                _oddCellRightAlign = null;
+                _evenCellRightAlign = null;
                 _evenCellCenterAlign = null;
                 _oddCellCenterAlign = null;
                 _negativeWinLossFont = null;
                 _winLossFont = null;
                 _liveFont = null;
                 _mixLiveFont = null;
+                _oddsFont = null;
             }
 
             disposed = true;

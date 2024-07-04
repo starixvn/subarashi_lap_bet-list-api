@@ -21,6 +21,7 @@
     public class BaseBetListDataAccess : BaseDataAccess
     {
         private readonly ICurrencyDataAccess _currencyDataAccess;
+        private const string SuffixSabaCoins = "_SabaCoins";
 
         protected BaseBetListDataAccess(ICurrencyDataAccess currenyDataAccess)
         {
@@ -87,7 +88,15 @@
             var tasks = new List<Task<SortableList<LrfTicket>>>(2);
             if (metaModel.UseShardDB)
             {
-                tasks.Add(GetMainTicketListBasedShardDBAsync($"SiteDB_{uspKey}", currencyList, assignCommonParamters, assignShardSpecificParamters));
+                if (uspKey.EndsWith(SuffixSabaCoins, StringComparison.OrdinalIgnoreCase))
+                {
+                    tasks.Add(GetMainTicketListBasedShardDBAsync(uspKey, currencyList, assignCommonParamters, assignShardSpecificParamters));
+                    uspKey = uspKey.Substring(0, uspKey.Length - SuffixSabaCoins.Length);
+                }
+                else
+                {
+                    tasks.Add(GetMainTicketListBasedShardDBAsync($"SiteDB_{uspKey}", currencyList, assignCommonParamters, assignShardSpecificParamters));
+                }
             }
             tasks.Add(GetMainTicketListBasedShardDBAsync(uspKey, currencyList, assignCommonParamters,
                 db =>
@@ -134,7 +143,7 @@
                 "SpecialLevel", "StatusId", "transid", "betid", "winlostdate", "transdate", "JackpotInfo",
                 "odds", "modds", "hdp1", "hdp2", "transdesc", "currency", "betdaqid", "extrainfo", "originalbettype",
                 "refcode", "wallettype", "oddsspread", "SettlementStatus", "eventdate", "ip", "siteId", "customerclass",
-                "leagueGroupId"
+                "leagueGroupId", "oddslower", "oddsupper", "reason"
             };
             var result = columns.ToDictionary(x => x, y => y);
             result.Add("playerCommCol", "playercomm");
@@ -190,6 +199,7 @@
             ticket.IP = reader.GetString("ip");
             ticket.SiteId = reader.GetString("siteId");
             ticket.JackpotInfo = reader.GetString("JackpotInfo");
+            ticket.Reason = reader.GetString("reason");
         }
 
         private static void ReadBooleanData(LrfTicket ticket, ISafeDataReader reader)
@@ -245,6 +255,10 @@
             ticket.OddsSpread = reader.GetDecimal("oddsspread");
 
             ticket.SettlementStatus = reader.GetByte("SettlementStatus");
+
+            // Booked Bet
+            ticket.OddsLower = reader.GetDecimal("oddslower");
+            ticket.OddsUpper = reader.GetDecimal("oddsupper");
         }
     }
 }

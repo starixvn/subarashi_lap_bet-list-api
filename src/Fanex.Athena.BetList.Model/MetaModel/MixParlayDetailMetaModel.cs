@@ -14,7 +14,11 @@
         public bool IsShowIp { get; set; }
 
         public DateTime MoveBetsDay { get; set; }
+
         public DateTime BalanceUpDay { get; set; }
+
         public bool UseShardDB { get; set; }
+
+        public bool IsHideSaba { get; set; }
     }
 }

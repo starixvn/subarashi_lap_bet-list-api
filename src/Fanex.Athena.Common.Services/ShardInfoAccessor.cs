@@ -4,8 +4,8 @@ namespace Fanex.Athena.Common.Services
 {
     public class ShardInfoAccessor : IShardInfoAccessor
     {
-        const string PrefixSharding = "shard_";
-        const string PrefixSiteDB = "sitedb_";
+        private const string PrefixSharding = "shard_";
+        private const string PrefixSiteDB = "sitedb_";
 
         private readonly IContextService _contextService;
 

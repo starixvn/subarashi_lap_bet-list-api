@@ -28,6 +28,8 @@
 
         public int SpecialPlatform { get; set; }
 
+        public byte ViewType { get; set; }
+
         public string Sort { get; set; } = "Transid ASC";
     }
 }

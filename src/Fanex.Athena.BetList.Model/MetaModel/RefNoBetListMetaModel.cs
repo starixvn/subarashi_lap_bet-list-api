@@ -4,9 +4,11 @@
 
     public class RefNoBetListMetaModel : BaseBettingTicketMetaModel, IShardDBMetaModel
     {
-        public long RefNo { get; set; }
+        public string RefNo { get; set; }
+
         public string TxId { get; set; }
-        public override bool IsValid => RefNo > 0 || !string.IsNullOrEmpty(TxId);
+
+        public override bool IsValid => !string.IsNullOrEmpty(RefNo) || !string.IsNullOrEmpty(TxId);
 
         public bool UseShardDB { get; set; }
     }

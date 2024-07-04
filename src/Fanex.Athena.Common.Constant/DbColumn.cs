@@ -97,5 +97,11 @@
         public const string OddsGroup = "OddsGroup";
 
         public const string ExcludeBettrans = "ExcludeBettrans";
+
+        public const string SearchText = "SearchText";
+
+        public const string SearchOption = "SearchOption";
+
+        public const string ViewSabaCoins = "ViewSabaCoins";
     }
 }

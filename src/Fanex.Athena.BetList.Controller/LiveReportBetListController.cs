@@ -23,11 +23,11 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpPost]
         public async Task<object> GetData(LiveReportBetListMetaModel metaModel)
         {
-            var ticketResult = await _betListService.GetBetListData(metaModel).ConfigureAwait(false);
+            var ticketResult = await _betListService.GetBetListData(metaModel);
 
             var result = new
             {
-                Main = _ticketBuilderService.BuildTicketText(ticketResult, isShowIpvn: metaModel.IsShowIpvn),
+                Main = _ticketBuilderService.BuildTicketText(ticketResult, isShowIpvn: metaModel.IsShowIpvn, isHideSaba: metaModel.IsHideSaba, isAllowedCustomerComm: metaModel.HasPlayerCom),
                 Total = new
                 {
                     SumWinLoss = ticketResult.SumWinLoss + ticketResult.SumPlayerComm,
@@ -41,15 +41,15 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpPost]
         public async Task<object> GetPagingData(LiveReportBetListMetaModel metaModel)
         {
-            var ticketResult = await _betListService.GetBetListData(metaModel).ConfigureAwait(false);
+            var ticketResult = await _betListService.GetBetListData(metaModel);
 
-            var totalPage = metaModel.TotalRows % metaModel.PageSize == 0
-                ? metaModel.TotalRows / metaModel.PageSize
-                : (metaModel.TotalRows / metaModel.PageSize) + 1;
+            var totalPage = ticketResult.TotalRows % metaModel.PageSize == 0
+                ? ticketResult.TotalRows / metaModel.PageSize
+                : (ticketResult.TotalRows / metaModel.PageSize) + 1;
             var startIndex = ((metaModel.PageIndex - 1) * metaModel.PageSize) + 1;
 
-            var sumLicenseeWl = metaModel.SumLicenseeWL + metaModel.SumComm;
-            var sumWinLossText = NumberHelper.DecFormat(metaModel.SumWinlost + metaModel.SumPlayerComm, 2);
+            var sumLicenseeWl = ticketResult.SumLicenseeWL + ticketResult.SumComm;
+            var sumWinLossText = NumberHelper.DecFormat(ticketResult.SumWinLoss + ticketResult.SumPlayerComm, 2);
             var sumLicenseeWlText = NumberHelper.DecFormat(sumLicenseeWl, 2);
             sumLicenseeWlText = sumLicenseeWl < 0
                 ? string.Format("<span class='negative-number'>{0}</span>", sumLicenseeWlText)
@@ -59,8 +59,8 @@ namespace Fanex.Athena.BetList.Controllers
             {
                 page = metaModel.PageIndex,
                 total = totalPage,
-                records = metaModel.TotalRows,
-                rows = _ticketBuilderService.BuildTicketText(ticketResult, metaModel, startIndex),
+                records = ticketResult.TotalRows,
+                rows = _ticketBuilderService.BuildTicketText(ticketResult, metaModel, startIndex, isAllowedCustomerComm: metaModel.HasPlayerCom),
                 userdata = new
                 {
                     WinLoss = sumWinLossText,

@@ -20,6 +20,8 @@ namespace Fanex.Athena.BetList.Model.DTO
 
         public int LeagueId { get; set; }
 
+        public int LeagueGroupId { get; set; }
+
         public string MatchCode { get; set; }
 
         public int HomeId { get; set; }

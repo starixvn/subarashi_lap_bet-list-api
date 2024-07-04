@@ -309,4 +309,46 @@
   <data name="ServerBusyMessage" xml:space="preserve">
     <value>Yêu cầu của bạn chưa được xử lý do máy chủ đang bận. Vui lòng thử lại sau.</value>
   </data>
+  <data name="Booking" xml:space="preserve">
+    <value>Đang đặt</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>Đã hủy</value>
+  </data>
+  <data name="Successful" xml:space="preserve">
+    <value>Thành công</value>
+  </data>
+  <data name="Unsuccessful" xml:space="preserve">
+    <value>Thất bại</value>
+  </data>
+  <data name="BookedId" xml:space="preserve">
+    <value>Mã đặt trước</value>
+  </data>
+  <data name="BookedTime" xml:space="preserve">
+    <value>Thời gian đặt</value>
+  </data>
+  <data name="OddsLower" xml:space="preserve">
+    <value>Tỉ lệ cược tối thiểu</value>
+  </data>
+  <data name="OddsUpper" xml:space="preserve">
+    <value>Tỉ lệ cược tối đa</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Lý do</value>
+  </data>
+  <data name="Booked" xml:space="preserve">
+    <value>Đặt trước</value>
+  </data>
+  <data name="SabaCoins" xml:space="preserve">
+    <value>Saba Xu</value>
+  </data>
+  <data name="Viewin" xml:space="preserve">
+    <value>Xem theo {0}</value>
+  </data>
+  <data name="DesktopCompact" xml:space="preserve">
+    <value>Desktop nhỏ gọn</value>
+  </data>
+  <data name="BookedBet" xml:space="preserve">
+    <value>Đặt cược trước</value>
+  </data>
 </root>

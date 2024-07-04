@@ -329,4 +329,46 @@
   <data name="ServerBusyMessage" xml:space="preserve">
     <value>Your request can't be processed now due to busy server. Please try again later</value>
   </data>
+  <data name="Booking" xml:space="preserve">
+    <value>Booking</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="Successful" xml:space="preserve">
+    <value>Successful</value>
+  </data>
+  <data name="Unsuccessful" xml:space="preserve">
+    <value>Unsuccessful</value>
+  </data>
+  <data name="BookedId" xml:space="preserve">
+    <value>Booked ID</value>
+  </data>
+  <data name="BookedTime" xml:space="preserve">
+    <value>Booked Time</value>
+  </data>
+  <data name="OddsLower" xml:space="preserve">
+    <value>Odds Lower</value>
+  </data>
+  <data name="OddsUpper" xml:space="preserve">
+    <value>Odds Upper</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="Booked" xml:space="preserve">
+    <value>Booked</value>
+  </data>
+  <data name="SabaCoins" xml:space="preserve">
+    <value>Saba Coins</value>
+  </data>
+  <data name="Viewin" xml:space="preserve">
+    <value>View in {0}</value>
+  </data>
+  <data name="DesktopCompact" xml:space="preserve">
+    <value>Desktop Compact</value>
+  </data>
+  <data name="BookedBet" xml:space="preserve">
+    <value>BookedBet</value>
+  </data>
 </root>

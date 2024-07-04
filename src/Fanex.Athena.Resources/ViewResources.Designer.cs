@@ -115,6 +115,60 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Booked.
+        /// </summary>
+        public static string Booked {
+            get {
+                return ResourceManager.GetString("Booked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BookedBet.
+        /// </summary>
+        public static string BookedBet {
+            get {
+                return ResourceManager.GetString("BookedBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Booked ID.
+        /// </summary>
+        public static string BookedId {
+            get {
+                return ResourceManager.GetString("BookedId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Booked Time.
+        /// </summary>
+        public static string BookedTime {
+            get {
+                return ResourceManager.GetString("BookedTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Booking.
+        /// </summary>
+        public static string Booking {
+            get {
+                return ResourceManager.GetString("Booking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelled.
+        /// </summary>
+        public static string Cancelled {
+            get {
+                return ResourceManager.GetString("Cancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chat Room.
         /// </summary>
         public static string ChatRoom {
@@ -174,6 +228,15 @@ namespace Fanex.Athena.Resources {
         public static string DesktopChina {
             get {
                 return ResourceManager.GetString("DesktopChina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Desktop Compact.
+        /// </summary>
+        public static string DesktopCompact {
+            get {
+                return ResourceManager.GetString("DesktopCompact", resourceCulture);
             }
         }
         
@@ -448,11 +511,29 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Odds Lower.
+        /// </summary>
+        public static string OddsLower {
+            get {
+                return ResourceManager.GetString("OddsLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Odds Type.
         /// </summary>
         public static string OddsType {
             get {
                 return ResourceManager.GetString("OddsType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odds Upper.
+        /// </summary>
+        public static string OddsUpper {
+            get {
+                return ResourceManager.GetString("OddsUpper", resourceCulture);
             }
         }
         
@@ -480,6 +561,15 @@ namespace Fanex.Athena.Resources {
         public static string Platform {
             get {
                 return ResourceManager.GetString("Platform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reason.
+        /// </summary>
+        public static string Reason {
+            get {
+                return ResourceManager.GetString("Reason", resourceCulture);
             }
         }
         
@@ -516,6 +606,15 @@ namespace Fanex.Athena.Resources {
         public static string Saba {
             get {
                 return ResourceManager.GetString("Saba", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saba Coins.
+        /// </summary>
+        public static string SabaCoins {
+            get {
+                return ResourceManager.GetString("SabaCoins", resourceCulture);
             }
         }
         
@@ -561,6 +660,15 @@ namespace Fanex.Athena.Resources {
         public static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successful.
+        /// </summary>
+        public static string Successful {
+            get {
+                return ResourceManager.GetString("Successful", resourceCulture);
             }
         }
         
@@ -615,6 +723,24 @@ namespace Fanex.Athena.Resources {
         public static string Uncategorized {
             get {
                 return ResourceManager.GetString("Uncategorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsuccessful.
+        /// </summary>
+        public static string Unsuccessful {
+            get {
+                return ResourceManager.GetString("Unsuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View in {0}.
+        /// </summary>
+        public static string Viewin {
+            get {
+                return ResourceManager.GetString("Viewin", resourceCulture);
             }
         }
         

@@ -52,6 +52,8 @@ namespace Fanex.Athena.BetList.Excel
 
         private readonly bool _isShowIp;
 
+        private readonly bool _isHideSaba;
+
         private readonly BetListShowingOption _showingOption;
 
         private ICellStyle _evenCellStyleLeftAligned;
@@ -63,8 +65,8 @@ namespace Fanex.Athena.BetList.Excel
 
         private IFont _winLossFont;
 
-        public BetListExcel(BetListShowingOption showingOption, int licenseeId, IEnumerable<int> hiddenColumnIndexes, bool isShowSumStake = false,
-            bool isShowIpvn = false, bool isShowIp = false, IIPService ipService = null)
+        public BetListExcel(BetListShowingOption showingOption, int licenseeId, IEnumerable<int> hiddenColumnIndexes, bool isHideSaba, bool isShowSumStake = false,
+           bool isShowIpvn = false, bool isShowIp = false, IIPService ipService = null)
         {
             _appSettings = new AppSettings();
             _licenseeId = licenseeId;
@@ -93,6 +95,7 @@ namespace Fanex.Athena.BetList.Excel
             _isShowSumStake = isShowSumStake;
             _showingOption = showingOption;
             _hiddenColumnIndexes = hiddenColumnIndexes;
+            _isHideSaba = isHideSaba;
         }
 
         public IWorkbook Export(TicketResult ticketResult, string title, int startIndex = 1)
@@ -170,6 +173,7 @@ namespace Fanex.Athena.BetList.Excel
 
             _ticketHelper.Index = startIndex;
             _ticketHelper.IsVnIp = _ipService.IsAlwaysIpvn;
+            _ticketHelper.HideSabaText = _isHideSaba;
 
             if (_isShowIp)
             {

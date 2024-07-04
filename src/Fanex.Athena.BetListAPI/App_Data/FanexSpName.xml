@@ -61,6 +61,7 @@
 		<Setting Key="Lrf_BetList_RefNo_Mem" SpName="Lrf_BetList_RefNo_Mem" DbName="DBACC.bodb02.wsv_lap" />
 		<Setting Key="Shard_Lrf_BetList_Running" SpName="Lrf_BetList_Running" DbName="DBBOF.bodb02.wsv_lap" />
 		<Setting Key="Lrf_BetList_TxID_Mem" SpName="Lrf_BetList_TxID_Mem" DbName="DBACC.bodb02.wsv_lap" />
+    <Setting Key="Lrf_BetList_BookedBets" SpName="Lrf_BetList_BookedBets" DbName="DBACC.bodb02.wsv_lap" />
 		<Setting Key="Lrf_BetList_Mem" SpName="Lrf_BetList_Mem" DbName="DBACC.bodb02.wsv_lap" />
 		<Setting Key="Lrf_BetList_Licensee" SpName="Lrf_BetList_Licensee" DbName="DBEXT.bodb02.wsv_lap" />
 		<Setting Key="Lrf_BetList_Licensee_TotalRows" SpName="Lrf_BetList_Licensee_TotalRows" DbName="DBEXT.bodb02.wsv_lap" />
@@ -83,6 +84,7 @@
 		<Setting Key="SiteDB_Lrf_BetList_RNG_Detail" SpName="SiteDB_Lrf_BetList_RNG_Detail" DbName="DBSID.bodb02.wsv_lap" />
 		<Setting Key="SiteDB_Lrf_BetList_LC_Detail" SpName="SiteDB_Lrf_BetList_LC_Detail" DbName="DBSID.bodb02.wsv_lap" />
 		<Setting Key="SiteDB_Lrf_BetList_RefNo_Mem" SpName="SiteDB_Lrf_BetList_RefNo_Mem" DbName="DBSID.bodb02.wsv_lap" />
+    <Setting Key="Lrf_BetList_RefNo_Mem_SabaCoins" SpName="SiteDB_Lrf_BetList_RefNo_Mem" DbName="DBSIDSC.bodb02.wsv_lap" />
 		<Setting Key="SiteDB_Lrf_BetList_LicenseeWL_Mem" SpName="SiteDB_Lrf_BetList_LicenseeWL_Mem" DbName="DBSID.bodb02.wsv_lap" />
 		<Setting Key="SiteDB_Lrf_BetList_CustomerWL_Mem" SpName="SiteDB_Lrf_BetList_CustomerWL_Mem" DbName="DBSID.bodb02.wsv_lap" />
 		<Setting Key="SiteDB_Lrf_BetList_Jackpot_Detail" SpName="SiteDB_Lrf_BetList_Jackpot_Detail" DbName="DBSID.bodb02.wsv_lap" />

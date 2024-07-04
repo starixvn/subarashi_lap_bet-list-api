@@ -96,6 +96,8 @@
 
         public int SpecialPlatform { get; set; }
 
+        public bool ViewSabaCoins { get; set; }
+
         public bool IsExcludedTestData { get; set; }
 
         public string SubsidiaryList { get; set; }

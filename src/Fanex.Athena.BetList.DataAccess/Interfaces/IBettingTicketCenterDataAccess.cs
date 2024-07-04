@@ -6,15 +6,14 @@
 
     public interface IBettingTicketCenterDataAccess
     {
-        Task<TicketResult> GetBetListForSingleCustomerAsync(
-            SingleCustomersBetListMetaModel metaModel);
+        Task<TicketResult> GetBetListForSingleCustomerAsync(SingleCustomersBetListMetaModel metaModel);
 
-        Task<TicketResult> GetBetListByRefnoAsync(RefNoBetListMetaModel metaModel
-           );
+        Task<TicketResult> GetBetListByRefnoAsync(RefNoBetListMetaModel metaModel);
 
         Task<TicketResult> GetRunningBetListAsync(BaseBettingTicketMetaModel metaModel);
 
-        Task<TicketResult> GetBetListByTxIDAsync(TxIDBetListMetaModel metaModel
-           );
+        Task<TicketResult> GetBetListByTxIDAsync(TxIDBetListMetaModel metaModel);
+
+        Task<TicketResult> GetBetListForBookedBetAsync(BookedBetBetListMetaModel metaModel);
     }
 }

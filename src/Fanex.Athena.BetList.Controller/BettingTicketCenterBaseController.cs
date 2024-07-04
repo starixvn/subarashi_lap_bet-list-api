@@ -27,6 +27,11 @@
 
         protected static string GetTitle(BaseBettingTicketMetaModel metaModel)
         {
+            if (metaModel.ViewSabaCoins)
+            {
+                return $"{ViewResources.BettingTicketCenter} {string.Format(ViewResources.Viewin, ViewResources.SabaCoins)}";
+            }
+
             var date = metaModel.FromDate == DateTime.MinValue
                 ? string.Empty
                 : $", {metaModel.FromDate.ToString(FormatKey.DateFormat)}-->{metaModel.ToDate.ToString(FormatKey.DateFormat)}";

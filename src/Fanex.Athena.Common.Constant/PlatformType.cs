@@ -1,6 +1,4 @@
-﻿using System.Resources;
-
-namespace Fanex.Athena.Common.Constant
+﻿namespace Fanex.Athena.Common.Constant
 {
     using System.Collections.Generic;
     using Resources;
@@ -11,6 +9,7 @@ namespace Fanex.Athena.Common.Constant
         private const string DesktopChina = "DesktopChina";
         private const string DesktopOthers = "DesktopOthers";
         private const string DesktopGalaxy = "DesktopGalaxy";
+        private const string DesktopCompact = "DesktopCompact";
         private const string MobileStandard = "MobileStandard";
         private const string MobileEuro = "MobileEuro";
         private const string MobileGalaxy = "MobileGalaxy";
@@ -37,10 +36,12 @@ namespace Fanex.Athena.Common.Constant
             { "9", DesktopOthers },
             { ">", DesktopOthers },
             { "W001", DesktopGalaxy },
+            { "W003", DesktopCompact },
             { "l", MobileStandard },
             { "]", MobileStandard },
             { "%", MobileEuro },
             { "W002", MobileGalaxy },
+            { "W004", MobileCompact },
             { "c", MobileCompact },
             { "@", MobileCompact },
             { "7", MobileOthers },
@@ -63,6 +64,7 @@ namespace Fanex.Athena.Common.Constant
             { "t", DeepLink },
             { "m", Wap },
             { "A000", ChatRoom },
+            { "A003", ChatRoom },
         };
 
         private static readonly IDictionary<string, string> _JollysportsPlatform = new Dictionary<string, string>

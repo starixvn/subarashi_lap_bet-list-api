@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using Fanex.Athena.Common.Model.DTO;
+    using Fanex.Athena.Common.Utility.Helpers;
 
     public class LastBetsMonitoringMetaModel
     {
@@ -61,6 +62,8 @@
         public string ProductCodeList { get; set; }
 
         public int SpecialPlatform { get; set; }
+
+        public bool IsHideSaba => SabaHelper.IsHideSaba(SpecialPlatform);
 
         public IEnumerable<RiskLevel> RiskLevels { get; set; } = new List<RiskLevel>();
     }

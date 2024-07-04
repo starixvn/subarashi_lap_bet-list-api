@@ -316,4 +316,46 @@
   <data name="ServerBusyMessage" xml:space="preserve">
     <value>由于服务器繁忙，您的请求现在无法处理。请稍后再试。</value>
   </data>
+  <data name="Booking" xml:space="preserve">
+    <value>预约中</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>已取消</value>
+  </data>
+  <data name="Successful" xml:space="preserve">
+    <value>已成功</value>
+  </data>
+  <data name="Unsuccessful" xml:space="preserve">
+    <value>未成功</value>
+  </data>
+  <data name="BookedId" xml:space="preserve">
+    <value>预约注单ID</value>
+  </data>
+  <data name="BookedTime" xml:space="preserve">
+    <value>预约时间</value>
+  </data>
+  <data name="OddsLower" xml:space="preserve">
+    <value>较低赔率</value>
+  </data>
+  <data name="OddsUpper" xml:space="preserve">
+    <value>较高赔率</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>原因</value>
+  </data>
+  <data name="Booked" xml:space="preserve">
+    <value>预约</value>
+  </data>
+  <data name="SabaCoins" xml:space="preserve">
+    <value>沙巴点数</value>
+  </data>
+  <data name="Viewin" xml:space="preserve">
+    <value>以{0}查看</value>
+  </data>
+  <data name="DesktopCompact" xml:space="preserve">
+    <value>桌机轻量版</value>
+  </data>
+  <data name="BookedBet" xml:space="preserve">
+    <value>预约投注</value>
+  </data>
 </root>

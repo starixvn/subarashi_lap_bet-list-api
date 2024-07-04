@@ -7,6 +7,8 @@
 
     public interface ITicketBuilderService
     {
+        IList<TicketText> BuildBookedBetTicketText(TicketResult ticketResult, ICommonValueMetaModel metaModel);
+
         IList<TicketText> BuildTicketText(TicketResult ticketResult, ICommonValueMetaModel metaModel, bool isAllowedCustomerComm);
 
 #pragma warning disable S107 // Methods should not have too many parameters
@@ -19,7 +21,8 @@
             bool isAllowedCustomerComm = false,
             bool isMobileView = false,
             bool isShowIpvn = false,
-            bool isShowIp = true);
+            bool isShowIp = true,
+            bool isHideSaba = false);
 
 #pragma warning restore S107 // Methods should not have too many parameters
 

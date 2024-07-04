@@ -64,6 +64,7 @@
             db.SetParameterValue("PageSize", metaModel.PageSize);
             db.SetParameterValue("PageIndex", metaModel.PageIndex);
             db.SetParameterValue("@Sort", metaModel.Sort);
+            db.SetParameterValue("@ViewSabaCoins", --metaModel.ViewType);
             db.SetParameterValue("@TotalRows", null);
             db.SetParameterValue("@SumStake", null);
             db.SetParameterValue("@SumWinLost", null);

@@ -27,6 +27,7 @@
         private const string LcolorColumn = "lcolor";
         private const string IsFavorColumn = "IsFavor";
         private const string LeagueIdColumn = "leagueid";
+        private const string LeagueGroupIdColumn = "leaguegroupid";
         private const string SportTypeColumn = "sporttype";
         private const string Status = "status";
 
@@ -392,6 +393,7 @@
                 HomeId = reader.ToInt("homeID"),
                 BetStatus = reader[BetstatusColumn] != DBNull.Value ? reader.ToString(BetstatusColumn) : string.Empty,
                 LeagueId = leagueId ?? reader.ToInt(LeagueIdColumn),
+                LeagueGroupId = reader.HasColumn(LeagueGroupIdColumn) ? reader.ToInt(LeagueGroupIdColumn) : 0,
                 MatchId = reader.ToInt(MatchidColumn),
                 EventStatus = reader.ToString("eventstatus"),
                 FinalAwayScore = reader.ToNullableInt("finalawayscore"),
@@ -412,7 +414,9 @@
                 SettlementStatus = reader.ToByte("SettlementStatus"),
                 Bettype = reader.HasColumn("bettype") ? reader.ToInt("bettype") : 0,
                 BetID = reader.HasColumn("betcheck") ? reader.ToString("betcheck") : string.Empty,
-                NoHTScore = reader.HasColumn("NoHTScore") && reader.ToBool("NoHTScore")
+                NoHTScore = reader.HasColumn("NoHTScore") && reader.ToBool("NoHTScore"),
+                MainType = reader.HasColumn("MainType") ? reader.ToByte("MainType") : byte.MinValue,
+                SubType = reader.HasColumn("SubType") ? reader.ToInt("SubType") : 0,
             };
         }
 

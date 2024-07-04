@@ -297,4 +297,46 @@
   <data name="ServerBusyMessage" xml:space="preserve">
     <value>Permintaan Anda tidak dapat diproses saat ini karena server sibuk. Harap coba lagi nanti.</value>
   </data>
+  <data name="Booking" xml:space="preserve">
+    <value>Sedang Dipesan</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>Dibatalkan</value>
+  </data>
+  <data name="Unsuccessful" xml:space="preserve">
+    <value>Tidak berhasil</value>
+  </data>
+  <data name="Successful" xml:space="preserve">
+    <value>Berhasil</value>
+  </data>
+  <data name="BookedId" xml:space="preserve">
+    <value>ID Pemesanan</value>
+  </data>
+  <data name="BookedTime" xml:space="preserve">
+    <value>Waktu yang Dipesan</value>
+  </data>
+  <data name="OddsLower" xml:space="preserve">
+    <value>Peluang Terendah</value>
+  </data>
+  <data name="OddsUpper" xml:space="preserve">
+    <value>Peluang Tertinggi</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Alasan</value>
+  </data>
+  <data name="Booked" xml:space="preserve">
+    <value>Dipesan</value>
+  </data>
+  <data name="SabaCoins" xml:space="preserve">
+    <value>Koin SABA</value>
+  </data>
+  <data name="Viewin" xml:space="preserve">
+    <value>Lihat {0}</value>
+  </data>
+  <data name="DesktopCompact" xml:space="preserve">
+    <value>Desktop Kompak</value>
+  </data>
+  <data name="BookedBet" xml:space="preserve">
+    <value>Taruhan yang Dipesan</value>
+  </data>
 </root>

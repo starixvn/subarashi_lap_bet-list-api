@@ -85,6 +85,30 @@ namespace Fanex.Athena.BetList.Controllers
             return new JsonResult(ReturnData(ticketResult, option, metaModel));
         }
 
+        [HttpPost]
+        public async Task<IActionResult> GetByBookedBet(BookedBetBetListMetaModel metaModel)
+        {
+            var ticketResult = await _dataAccess.GetBetListForBookedBetAsync(metaModel);
+
+            var option = new BettingTicketCenterOption
+            {
+                IsBookedBet = true,
+                ShowTotal = true,
+                ShowSumStake = true,
+                ShowSystemId = true,
+                ShowExternalId = true,
+                IsShowIpvn = metaModel.IsShowIpvn,
+                IsShowIp = metaModel.IsShowIp
+            };
+
+            if (metaModel.IsExport)
+            {
+                return Export(ticketResult, option, metaModel, ViewResources.Total);
+            }
+
+            return ReturnData(ticketResult, option, metaModel);
+        }
+
         private async Task<IActionResult> GetBySingleCustomerResult(SingleCustomersBetListMetaModel metaModel)
         {
             var ticketResult = await _dataAccess.GetBetListForSingleCustomerAsync(metaModel);
@@ -128,6 +152,7 @@ namespace Fanex.Athena.BetList.Controllers
                 IsShowIpvn = metaModel.IsShowIpvn,
                 IsShowIp = metaModel.IsShowIp,
                 SpecialPlatform = metaModel.SpecialPlatform,
+                ViewSabaCoins = metaModel.ViewSabaCoins
             };
 
             if (metaModel.IsExport)

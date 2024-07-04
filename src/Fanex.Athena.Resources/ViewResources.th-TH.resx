@@ -309,4 +309,46 @@
   <data name="ServerBusyMessage" xml:space="preserve">
     <value>คำขอของคุณไม่สามารถดำเนินการได้ในขณะนี้เนื่องจากเซิร์ฟเวอร์ไม่ว่าง กรุณาลองใหม่อีกครั้งในภายหลัง</value>
   </data>
+  <data name="Booking" xml:space="preserve">
+    <value>กำลังจอง</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>ถูกยกเลิก</value>
+  </data>
+  <data name="Successful" xml:space="preserve">
+    <value>สำเร็จแล้ว</value>
+  </data>
+  <data name="Unsuccessful" xml:space="preserve">
+    <value>ไม่สำเร็จ</value>
+  </data>
+  <data name="BookedId" xml:space="preserve">
+    <value>รหัสการจอง</value>
+  </data>
+  <data name="BookedTime" xml:space="preserve">
+    <value>เวลาที่จองไว้</value>
+  </data>
+  <data name="OddsLower" xml:space="preserve">
+    <value>อัตราต่อรองต่ำสุด</value>
+  </data>
+  <data name="OddsUpper" xml:space="preserve">
+    <value>อัตราต่อรองสูงสุด</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>เหตุผล</value>
+  </data>
+  <data name="Booked" xml:space="preserve">
+    <value>จองแล้ว</value>
+  </data>
+  <data name="SabaCoins" xml:space="preserve">
+    <value>เหรียญ SABA</value>
+  </data>
+  <data name="Viewin" xml:space="preserve">
+    <value>ดูใน {0}</value>
+  </data>
+  <data name="DesktopCompact" xml:space="preserve">
+    <value>เดสก์ท็อปคอมแพค</value>
+  </data>
+  <data name="BookedBet" xml:space="preserve">
+    <value>การเดิมพันที่จองไว้</value>
+  </data>
 </root>
