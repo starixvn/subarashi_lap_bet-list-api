@@ -168,7 +168,7 @@ namespace Fanex.Athena.BetList.Service
             var data = _cache.Get<IList<BetListMatch>>(matchListCacheKey);
             if (data == null)
             {
-                data = await this._lastBetsMonitoringBetListDataAccess.GetMatchList(matchListSpKey);
+                data = await _lastBetsMonitoringBetListDataAccess.GetMatchList(matchListSpKey);
                 _cache.Set(matchListCacheKey, data, CacheTimeout);
             }
 
@@ -183,7 +183,7 @@ namespace Fanex.Athena.BetList.Service
             var data = _cache.Get<IList<BetListMatch>>(OutrightMatchListCacheKey);
             if (data == null)
             {
-                data = await this._lastBetsMonitoringBetListDataAccess.GetMatchList(OutrightMatchListSpKey);
+                data = await _lastBetsMonitoringBetListDataAccess.GetMatchList(OutrightMatchListSpKey);
                 _cache.Set(OutrightMatchListCacheKey, data, CacheTimeout);
             }
 

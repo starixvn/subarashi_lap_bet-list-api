@@ -43,7 +43,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpPost]
         public async Task<object> Detail(MixParlayDetailMetaModel metaModel)
         {
-            var ticketResult = await _betListService.GetMixParlayDetailTicket(metaModel).ConfigureAwait(false);
+            var ticketResult = await _betListService.GetMixParlayDetailTicket(metaModel);
             var result = _ticketBuilderService.BuildTicketText(ticketResult: ticketResult, showOdds: true, isShowIpvn: metaModel.IsShowIpvn);
             BetListHelper.ClearData(ticketResult);
             return result;

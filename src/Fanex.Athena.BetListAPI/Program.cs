@@ -16,11 +16,16 @@ using Fanex.Athena.BetListAPI.Site.DbSettingConfig;
 using Newtonsoft.Json.Serialization;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Site.Authentications;
+using Fanex.Result.Core.Base;
+using Fanex.Result.Core.RemotingRef;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseSentry();
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
-    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: false);
+        .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: false)
+        .AddJsonFile("betlistresultsettings.json", optional: true, reloadOnChange: false)
+        .AddJsonFile($"betlistresultsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: false);
+
 var services = builder.Services;
 var configuration = builder.Configuration;
 var identityServer = configuration.GetSection("IdentityServer").Get<IdentityServerSetting>();
@@ -75,7 +80,10 @@ BetListManager.RegisterRemotingRef(new CacheRef());
 DbSettingProviderManager.StartNewSession()
     .WithSqlServer(configuration)
     .UseShardDbSettingProvider(app.Services.GetRequiredService<IShardInfoAccessor>(), configuration.GetSection("StoredProcedurePath").Get<string>())
-    .Run();
+.Run();
+
+BetListManager.RegisterRemotingRef(new CacheRef());
+ResultCoreManager.RegisterRefDataHelper(new RefDataHelper());
 
 //Middleares
 app.UsePing();

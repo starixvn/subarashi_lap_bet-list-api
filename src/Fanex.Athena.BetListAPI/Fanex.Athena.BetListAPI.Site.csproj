@@ -12,8 +12,51 @@
     <PackageReference Include="AspNetCore.HealthChecks.OpenIdConnectServer" Version="8.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.2" />
     <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="8.0.1" />
+    <PackageReference Include="Fanex.BetList.AdvantPlay" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.AdvantPlayMini" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.AGCasino" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.Allbet" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.BetList.BetTrade" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.BG" Version="2.0.0.1-test-02" />
+    <PackageReference Include="Fanex.BetList.Bitcoin" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.CardClub" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.CashOut" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.CG" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.Core.RemotingRef" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.BetList.ESports" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.FGG" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.Habanero" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.Indo4D" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.Betlist.Jili" Version="1.0.0.2" />
+    <PackageReference Include="Fanex.BetList.Joker" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.Keno" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.KenoLottery" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.LeapGaming" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.Live22" Version="1.0.0.1" />
+    <PackageReference Include="Fanex.BetList.MaxGame" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.BetList.MGRNGCasino" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.NumberGame" Version="2.0.0.3" />
+    <PackageReference Include="Fanex.BetList.PGSoft" Version="2.0.0.1-PromotionPrize-01" />
+    <PackageReference Include="Fanex.BetList.PlayerTips" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.PP" Version="2.0.0.3" />
+    <PackageReference Include="Fanex.BetList.RnGCasino" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.BetList.SabaClub" Version="2.0.0.3" />
+    <PackageReference Include="Fanex.BetList.SAGaming" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.SealEntertainment" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.SexyGaming" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.BetList.Spadegaming" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.SportsLottery" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.TableGames" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.UUSlots" Version="1.0.0" />
+    <PackageReference Include="Fanex.BetList.VGaming" Version="2.0.0.6" />
+    <PackageReference Include="Fanex.BetList.VirtualGames" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.BetList.VirtualSports" Version="2.0.0.9" />
+    <PackageReference Include="Fanex.BetList.Voidbridge" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.WE" Version="1.0.0.1" />
+    <PackageReference Include="Fanex.BetList.WM" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.YeeBet" Version="1.0.0" />
     <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.4" />
+    <PackageReference Include="Fanex.Result.Core.RemotingRef" Version="2.0.0.2" />
     <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.29" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
@@ -31,6 +74,10 @@
     <None Update="App_Data\FanexSpName.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="App_Data\Fanex.Result\" />
   </ItemGroup>
 
 </Project>

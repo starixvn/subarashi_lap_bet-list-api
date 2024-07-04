@@ -11,7 +11,6 @@
     using Common.DataAccess.Interfaces;
     using Common.Model.DTO;
     using Common.Utility.Services.Interfaces;
-    using Fanex.Athena.Common.DataAccess;
     using Fanex.Common.Extensions;
     using Fanex.Result.Core.Base;
     using Fanex.Result.Core.Bitcoin.DTO;

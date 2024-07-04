@@ -1,4 +1,5 @@
 ﻿using Fanex.Athena.Common.Model.DTO;
+using Fanex.Athena.Common.Utility.Extensions;
 using Fanex.Athena.Common.Utility.Helpers;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Resources;
@@ -7,21 +8,16 @@ using Fanex.Athena.Result.Service.Interfaces;
 using Fanex.Result.Core.Base;
 using Fanex.Result.Core.LeapGaming.DTO;
 using Fanex.Result.Core.Sportsbook.DTO;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace Fanex.Athena.Result.Controller.ResultReports
 {
     public class ResultReportController : ControllerBase
     {
-        private const string ResultExcelTemplateAddress = "~/App_Data/Fanex.Result/";
+        private const string ResultExcelTemplateAddress = "App_Data/Fanex.Result/";
 
         private const int ParlayBetType = 9;
         private const int SystemParlayBetType = 29;
@@ -37,8 +33,8 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         };
 
         private readonly IResultService _resultService;
-
         private readonly ICacheRefAdapter _cacheRefAdapter;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
         private string _htmlResult;
         private MemoryStream _excelStream;
@@ -47,10 +43,12 @@ namespace Fanex.Athena.Result.Controller.ResultReports
 
         public ResultReportController(
             IResultService resultService,
-            ICacheRefAdapter cacheRefAdapter)
+            ICacheRefAdapter cacheRefAdapter,
+            IWebHostEnvironment webHostEnvironment)
         {
             _resultService = resultService;
             _cacheRefAdapter = cacheRefAdapter;
+            _hostingEnvironment = webHostEnvironment;
         }
 
         [HttpPost]
@@ -62,10 +60,8 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         }
 
         [HttpPost]
-        public async Task ResultExcel(ResultMetaModel metalModel)
+        public async Task<IActionResult> ResultExcel(ResultMetaModel metalModel)
         {
-            var response = ControllerContext.HttpContext.Response;
-
             if (ModelState.IsValid)
             {
                 metalModel.IsExportExcel = true;
@@ -79,20 +75,17 @@ namespace Fanex.Athena.Result.Controller.ResultReports
                 }
 
                 _excelStream = _excelStream ?? ExportNoneData(metalModel);
-
-                _excelStream.WriteTo(response.OutputStream);
+                return File(_excelStream, "application/vnd.ms-excel", "Result.xls");
             }
             else
             {
-                response.StatusCode = (int)HttpStatusCode.BadRequest;
-                response.StatusDescription = ViewResources.InvalidParams;
+                return BadRequest(ViewResources.InvalidParams);
             }
 
-            response.Flush();
         }
 
         [HttpPost]
-        public async Task<ActionResult> GetSports(GetSportResultMetaModel metalModel)
+        public async Task<IActionResult> GetSports(GetSportResultMetaModel metalModel)
         {
             if (metalModel.IsOutRight)
             {
@@ -116,7 +109,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
                 }).ToList();
             }
 
-            return Json(new { Leagues = leagues });
+            return new JsonResult(new { Leagues = leagues });
         }
 
         #endregion Result-Page
@@ -356,11 +349,11 @@ namespace Fanex.Athena.Result.Controller.ResultReports
                             LeagueName = SabaHelper.RemoveSabaText(l.LeagueName)
                         }).ToList();
                     }
-                    return Json(new { Sports = limitedSports, Leagues = leagues });
+                    return new JsonResult(new { Sports = limitedSports, Leagues = leagues });
                 }
             }
 
-            return Json(string.Empty);
+            return new JsonResult(string.Empty);
         }
 
         private async Task<JsonResult> GetOutRightSports(ResultMetaModel metalModel)
@@ -398,11 +391,11 @@ namespace Fanex.Athena.Result.Controller.ResultReports
                         }).ToList();
                     }
 
-                    return Json(new { Sports = sports, Leagues = leagues });
+                    return new JsonResult(new { Sports = sports, Leagues = leagues });
                 }
             }
 
-            return Json(string.Empty);
+            return new JsonResult(string.Empty);
         }
 
         #endregion spots list
@@ -511,7 +504,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             {
                 IsOutright = true,
                 ExcelTitle = ViewResources.Result,
-                ExcelTemplatePath = HostingEnvironment.MapPath(ResultExcelTemplateAddress),
+                ExcelTemplatePath = _hostingEnvironment.MapPath(ResultExcelTemplateAddress),
                 LanguageCode = languageCode,
                 VisibleMatchCodeIDColumn = true,
                 SupportHideSabaText = isHideSaba,
@@ -525,7 +518,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             {
                 SportType = sportType,
                 ExcelTitle = ViewResources.Result,
-                ExcelTemplatePath = HostingEnvironment.MapPath(ResultExcelTemplateAddress),
+                ExcelTemplatePath = _hostingEnvironment.MapPath(ResultExcelTemplateAddress),
                 LanguageCode = Thread.CurrentThread.CurrentUICulture.Name,
                 VisibleDetailedLink = true,
                 VisibleFreeHeader = true,

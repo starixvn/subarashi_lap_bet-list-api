@@ -1,4 +1,5 @@
 ﻿using Fanex.Athena.Common.Constant;
+using Fanex.Athena.Resources;
 
 namespace Fanex.Athena.Common.Utility.Helpers
 {
@@ -11,6 +12,14 @@ namespace Fanex.Athena.Common.Utility.Helpers
                 return true;
             }
             return false;
+        }
+
+        public static string RemoveSabaText(string text)
+        {
+            var sabaText = ViewResources.Saba.Trim();
+            var result = System.Text.RegularExpressions.Regex.Replace(text, sabaText, string.Empty, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            // remove duplicate space
+            return System.Text.RegularExpressions.Regex.Replace(result, "  ", " ", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
         }
     }
 }

@@ -32,6 +32,7 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
         {
             services.TryAddScoped<ISerializer, JsonSerializer>();
             services.TryAddScoped<IWebClient, JsonWebClient>();
+            services.AddSingleton<IBetlistResultGetterFactory, BetlistResultGettterFactory>();
             services.AddAllBetResultService();
             services.AddLinkGamesResultService(configuration);
             services.AddSabaClubResultService(configuration);

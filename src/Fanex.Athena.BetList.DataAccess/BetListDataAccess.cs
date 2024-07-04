@@ -55,7 +55,7 @@
             {
                 BetListParameterBuilder.CreateBetListParameters(db, metaModel);
 
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     ticketResult.MainTicketList.AddRange(ReadBetListTicket(reader,
                        currencyList, metaModel.CustId));
