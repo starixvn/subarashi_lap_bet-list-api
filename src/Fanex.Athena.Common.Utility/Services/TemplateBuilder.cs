@@ -13,6 +13,7 @@ namespace Fanex.Athena.Common.Utility.Services
         public TemplateBuilder(IFileSystem fileSystem, IRazorEngine razorEngine)
         {
             _fileSystem = fileSystem;
+            _razorEngine = razorEngine;
         }
 
         public string BuildContent(string path, object model)

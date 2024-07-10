@@ -5,7 +5,7 @@
 
     public class SortableList<T> : List<T>
     {
-        private string? _propertyName;
+        private string _propertyName;
         private bool _ascending;
 
         public void Sort(string propertyName, bool ascending)

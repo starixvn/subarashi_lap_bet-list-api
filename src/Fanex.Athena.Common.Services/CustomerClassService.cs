@@ -13,7 +13,6 @@ namespace Fanex.Athena.Common.Services
     {
         private readonly IMemoryCacheService _cache;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IWebClientService _webClientService;
         private readonly IAppSettings _appSettings;
         private readonly ILogger _logger;
         private readonly HttpClient _httpClient;
@@ -28,6 +27,7 @@ namespace Fanex.Athena.Common.Services
             _appSettings = appSettings;
             _cache = cache;
             _httpContextAccessor = httpContextAccessor;
+            _httpClient = httpClient;
             _logger = logger;
         }
 

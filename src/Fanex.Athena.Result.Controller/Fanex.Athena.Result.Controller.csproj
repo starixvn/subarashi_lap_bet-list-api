@@ -13,7 +13,6 @@
   <ItemGroup>
     <PackageReference Include="Fanex.Result.Core-LeapGaming" Version="2.0.0" />
     <PackageReference Include="Fanex.Result.Core.AllBetCasino" Version="2.0.0.3-upgrade-03" />
-    <PackageReference Include="Fanex.Result.Core.Casino" Version="1.0.0.1" />
     <PackageReference Include="Fanex.Result.Core.LinkedGames" Version="2.0.1-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.SabaClub" Version="2.0.1-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.SAGaming" Version="2.0.0" />

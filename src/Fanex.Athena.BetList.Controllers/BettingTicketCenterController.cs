@@ -107,7 +107,7 @@ namespace Fanex.Athena.BetList.Controllers
                 return Export(ticketResult, option, metaModel, ViewResources.Total);
             }
 
-            return ReturnData(ticketResult, option, metaModel);
+            return new JsonResult(ReturnData(ticketResult, option, metaModel));
         }
 
         private async Task<IActionResult> GetBySingleCustomerResult(SingleCustomersBetListMetaModel metaModel)

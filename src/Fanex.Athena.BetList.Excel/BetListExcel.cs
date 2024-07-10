@@ -77,6 +77,7 @@ namespace Fanex.Athena.BetList.Excel
             _isShowIpvn = isShowIpvn;
             _isShowIp = isShowIp;
             _ipService = ipService;
+            _isHideSaba = isHideSaba;
         }
 
         protected internal BetListExcel(
@@ -95,7 +96,6 @@ namespace Fanex.Athena.BetList.Excel
             _isShowSumStake = isShowSumStake;
             _showingOption = showingOption;
             _hiddenColumnIndexes = hiddenColumnIndexes;
-            _isHideSaba = isHideSaba;
         }
 
         public IWorkbook Export(TicketResult ticketResult, string title, int startIndex = 1)
