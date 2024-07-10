@@ -3,12 +3,12 @@
 using Fanex.Athena.BetList.DataAccess.Interfaces;
 using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Site.Attributes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Athena.BetList.Controllers
 {
     [ApiController]
+    [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]
     public class PlayerSegmentationBetListController
     {

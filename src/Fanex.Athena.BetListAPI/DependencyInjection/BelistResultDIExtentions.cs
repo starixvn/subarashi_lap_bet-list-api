@@ -38,6 +38,7 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
             services.AddSabaClubResultService(configuration);
             services.AddSAGamingResultService();
             services.AddSportLotteryResultService(configuration);
+            services.AddScoped<IResultService, ResultService>();
             services.AddScoped<IKenoApi, KenoApi>();
             services.AddScoped<IKenoLotteryTGResultFactory, KenoLotteryTGResultApi>();
 

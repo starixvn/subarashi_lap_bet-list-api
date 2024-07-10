@@ -8,6 +8,7 @@ namespace Fanex.Athena.BetList.Controllers
 {
     [ApiController]
     [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     public class SystemParlayBetListController
     {
         private readonly ITicketHelper _ticketHelper;

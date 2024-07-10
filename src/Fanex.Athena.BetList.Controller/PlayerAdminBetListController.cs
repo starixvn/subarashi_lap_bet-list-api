@@ -12,6 +12,7 @@ namespace Fanex.Athena.BetList.Controllers
 {
     [ApiController]
     [BearerAuthorize()]
+    [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]
     public class PlayerAdminBetListController : BettingTicketCenterController
     {

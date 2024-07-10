@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Athena.BetList.Controllers
 {
+    [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class MixParlayBetListController
@@ -103,6 +104,8 @@ namespace Fanex.Athena.BetList.Controllers
 
             _ticketHelper.IsShowOddsWithChoice = showOdds;
 
+
+            _ticketHelper.HideSabaText = isHideSaba;
             _ticketHelper.IsVnIp = _ipService.IsAlwaysIpvn;
 
             // If show ip check ipvn

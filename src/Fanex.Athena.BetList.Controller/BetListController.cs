@@ -16,6 +16,7 @@ namespace Fanex.Athena.BetList.Controllers
     using Service.Helpers;
 
     [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class BetListController 
     {

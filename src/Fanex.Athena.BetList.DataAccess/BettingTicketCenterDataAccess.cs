@@ -155,7 +155,7 @@
             const int UserNameOption = 3;
 
             var ticketResult = new TicketResult();
-            var currencyList = await this.GetCurrencyListAsync();
+            var currencyList = await GetCurrencyListAsync();
 
             if (metaModel.SearchOption == UserNameOption || long.TryParse(metaModel.SearchText, out long _))
             {

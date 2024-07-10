@@ -10,7 +10,6 @@ using Fanex.Result.Core.LeapGaming.DTO;
 using Fanex.Result.Core.Sportsbook.DTO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 using System.Web;
 
 namespace Fanex.Athena.Result.Controller.ResultReports

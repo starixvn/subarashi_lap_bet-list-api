@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Fanex.Athena.BetList.Controllers
 {
     [ApiController]
+    [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]
     public class CashOutBetListController
     {
