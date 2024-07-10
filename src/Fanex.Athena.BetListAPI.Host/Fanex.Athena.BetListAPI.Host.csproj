@@ -65,7 +65,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fanex.Athena.BetList.Controller\Fanex.Athena.BetList.Controllers.csproj" />
+    <ProjectReference Include="..\Fanex.Athena.BetList.Controllers\Fanex.Athena.BetList.Controllers.csproj" />
     <ProjectReference Include="..\Fanex.Athena.Common.Utility\Fanex.Athena.Common.Utility.csproj" />
     <ProjectReference Include="..\Fanex.Athena.Result.Controller\Fanex.Athena.Result.Controller.csproj" />
   </ItemGroup>

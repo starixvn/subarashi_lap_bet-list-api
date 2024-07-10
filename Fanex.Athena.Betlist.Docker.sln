@@ -6,8 +6,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CDC531B6-4C2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{58840102-77F1-487D-A816-70EC51828737}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.BetListAPI.Site", "src\Fanex.Athena.BetListAPI\Fanex.Athena.BetListAPI.Site.csproj", "{F4EADBF0-EFBE-4519-A3B1-218C9D4F5A66}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{357EA2AD-DD32-4C32-8B66-1710D6F58D75}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Common.Constant", "src\Fanex.Athena.Common.Constant\Fanex.Athena.Common.Constant.csproj", "{13E83D34-DBA3-4A21-AF3B-B6253CE9E7E8}"
@@ -32,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.BetList.Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.BetList.Excel", "src\Fanex.Athena.BetList.Excel\Fanex.Athena.BetList.Excel.csproj", "{170C21C6-7C92-4EB9-8F75-3B146A2130AC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.BetList.Controllers", "src\Fanex.Athena.BetList.Controller\Fanex.Athena.BetList.Controllers.csproj", "{1C393925-6049-44FF-85B2-427D79CC3D3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.BetList.Controllers", "src\Fanex.Athena.BetList.Controllers\Fanex.Athena.BetList.Controllers.csproj", "{1C393925-6049-44FF-85B2-427D79CC3D3A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Common.Services", "src\Fanex.Athena.Common.Services\Fanex.Athena.Common.Services.csproj", "{8D74BF73-05E6-45CA-ADCC-DB7D1B9A8EB1}"
 EndProject
@@ -40,13 +38,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Common.Site", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Result", "Result", "{DFA3F3C9-D49D-4108-B69E-69610655E5F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.Result.Model", "src\Fanex.Athena.Result.Model\Fanex.Athena.Result.Model.csproj", "{B5AB9DF6-DE60-4FB0-AB49-EC0850CB7494}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Result.Model", "src\Fanex.Athena.Result.Model\Fanex.Athena.Result.Model.csproj", "{B5AB9DF6-DE60-4FB0-AB49-EC0850CB7494}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Result.Controller", "src\Fanex.Athena.Result.Controller\Fanex.Athena.Result.Controller.csproj", "{DD68E1AB-BE7D-4698-86FE-3A2A0BB0A281}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.Result.DataAccess", "src\Fanex.Athena.Result.DataAccess\Fanex.Athena.Result.DataAccess.csproj", "{6C0113C3-327A-4B7E-83CE-4B7BFB470EA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Result.DataAccess", "src\Fanex.Athena.Result.DataAccess\Fanex.Athena.Result.DataAccess.csproj", "{6C0113C3-327A-4B7E-83CE-4B7BFB470EA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.Result.Service", "src\Fanex.Athena.Result.Service\Fanex.Athena.Result.Service.csproj", "{70433D08-D88C-45EB-BB79-38C1A7EC2478}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Result.Service", "src\Fanex.Athena.Result.Service\Fanex.Athena.Result.Service.csproj", "{70433D08-D88C-45EB-BB79-38C1A7EC2478}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.BetListAPI.Host", "src\Fanex.Athena.BetListAPI.Host\Fanex.Athena.BetListAPI.Host.csproj", "{14C82EB7-3057-45D6-AB12-361036639906}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,10 +54,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F4EADBF0-EFBE-4519-A3B1-218C9D4F5A66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F4EADBF0-EFBE-4519-A3B1-218C9D4F5A66}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F4EADBF0-EFBE-4519-A3B1-218C9D4F5A66}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F4EADBF0-EFBE-4519-A3B1-218C9D4F5A66}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13E83D34-DBA3-4A21-AF3B-B6253CE9E7E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13E83D34-DBA3-4A21-AF3B-B6253CE9E7E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13E83D34-DBA3-4A21-AF3B-B6253CE9E7E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -122,12 +118,15 @@ Global
 		{70433D08-D88C-45EB-BB79-38C1A7EC2478}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70433D08-D88C-45EB-BB79-38C1A7EC2478}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70433D08-D88C-45EB-BB79-38C1A7EC2478}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14C82EB7-3057-45D6-AB12-361036639906}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14C82EB7-3057-45D6-AB12-361036639906}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14C82EB7-3057-45D6-AB12-361036639906}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14C82EB7-3057-45D6-AB12-361036639906}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F4EADBF0-EFBE-4519-A3B1-218C9D4F5A66} = {CDC531B6-4C2D-49F6-A00D-DFCFB722AF2E}
 		{357EA2AD-DD32-4C32-8B66-1710D6F58D75} = {CDC531B6-4C2D-49F6-A00D-DFCFB722AF2E}
 		{13E83D34-DBA3-4A21-AF3B-B6253CE9E7E8} = {357EA2AD-DD32-4C32-8B66-1710D6F58D75}
 		{881A832C-1BBD-4C8C-99ED-6A58CF1EB2D8} = {CDC531B6-4C2D-49F6-A00D-DFCFB722AF2E}
@@ -148,6 +147,7 @@ Global
 		{DD68E1AB-BE7D-4698-86FE-3A2A0BB0A281} = {DFA3F3C9-D49D-4108-B69E-69610655E5F5}
 		{6C0113C3-327A-4B7E-83CE-4B7BFB470EA4} = {DFA3F3C9-D49D-4108-B69E-69610655E5F5}
 		{70433D08-D88C-45EB-BB79-38C1A7EC2478} = {DFA3F3C9-D49D-4108-B69E-69610655E5F5}
+		{14C82EB7-3057-45D6-AB12-361036639906} = {CDC531B6-4C2D-49F6-A00D-DFCFB722AF2E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C284B560-5312-4A13-B93D-B01FE1162964}

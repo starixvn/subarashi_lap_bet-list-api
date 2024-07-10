@@ -60,15 +60,15 @@ RUN dotnet restore "Fanex.Athena.Result.Controller/Fanex.Athena.Result.Controlle
 
 
 # Copy host project and restore as distinct layers
-COPY ["src/Fanex.Athena.BetListAPI.Site/Fanex.Athena.BetListAPI.Site.csproj", "./Fanex.Athena.BetListAPI.Site/"]
-RUN dotnet restore "Fanex.Athena.BetListAPI.Site/Fanex.Athena.BetListAPI.Site.csproj" -v n
+COPY ["src/Fanex.Athena.BetListAPI.Host/Fanex.Athena.BetListAPI.Host.csproj", "./Fanex.Athena.BetListAPI.Host/"]
+RUN dotnet restore "Fanex.Athena.BetListAPI.Host/Fanex.Athena.BetListAPI.Host.csproj" -v n
 
 COPY "/src" .
 
-WORKDIR "/src/Fanex.Athena.BetListAPI.Site"
-RUN dotnet build "Fanex.Athena.BetListAPI.Site.csproj" -c Release -o /app/build
+WORKDIR "/src/Fanex.Athena.BetListAPI.Host"
+RUN dotnet build "Fanex.Athena.BetListAPI.Host.csproj" -c Release -o /app/build
 
-RUN dotnet publish "Fanex.Athena.BetListAPI.Site.csproj" -c Release -o /app/publish
+RUN dotnet publish "Fanex.Athena.BetListAPI.Host.csproj" -c Release -o /app/publish
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:6.0-alpine
 
@@ -87,4 +87,4 @@ WORKDIR "/app"
 COPY --from=builder /app/publish .
 ENV TZ="America/La_Paz"
 
-ENTRYPOINT ["dotnet", "Fanex.Athena.BetListAPI.Site.dll"]
+ENTRYPOINT ["dotnet", "Fanex.Athena.BetListAPI.Host.dll"]
