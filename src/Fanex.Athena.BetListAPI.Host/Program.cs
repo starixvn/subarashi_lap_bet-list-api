@@ -74,7 +74,7 @@ var app = builder.Build();
 
 RefDataTypeContainer
     .ConnectTo(new Uri(configuration.GetSection("AppSettings")["Fanex.RemotingRef.Service.Url"]))
-    .FromApplication("Fanex.Athena.BetListAPI.Site");
+    .FromApplication("Fanex.Athena.BetListAPI.Host");
 BetListManager.RegisterRemotingRef(new CacheRef());
 
 DbSettingProviderManager.StartNewSession()
