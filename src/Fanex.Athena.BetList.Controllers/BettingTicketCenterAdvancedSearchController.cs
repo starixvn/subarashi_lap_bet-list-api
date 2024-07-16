@@ -15,7 +15,6 @@ using Fanex.Athena.Resources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace Fanex.Athena.BetList.Controllers
 {
     [ApiController]
@@ -62,7 +61,7 @@ namespace Fanex.Athena.BetList.Controllers
         [BearerAuthorize(Roles.BtcAdvancedSearch)]
         [RequestValidation(validateCurrencyList: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness:  true, bindShowingBetFromIP: true, bindProductCodeList: true)]
-        public async Task<dynamic> GetData(AdvancedSearchBetListMetaModel metaModel)
+        public async Task<IActionResult> GetData(AdvancedSearchBetListMetaModel metaModel)
         {
             var isHideSaba = SabaHelper.IsHideSaba(_contextService.SpecialPlatform);
             var sabaSport = _sportService.GetSabaSport(metaModel.SportId, isHideSaba);
@@ -76,18 +75,18 @@ namespace Fanex.Athena.BetList.Controllers
                 _appSettings.IsDisableExportLargeBetList
                 && _appSettings.LicenseesWithLargeData.Contains(_contextService.SiteName))
             {
-                return new
+                return new JsonResult(new
                 {
                     ErrorCode = ServerBusyErrorCode,
                     ErrorMsg = ViewResources.ServerBusyMessage
-                };
+                });
             }
 
             metaModel.HasPlayerCom = _contextService.IsAllowedCustomerComm;
             metaModel.SpecialPlatform = _contextService.SpecialPlatform;
             metaModel.FullCustomerClass = string.Join(",", await _customerClassService.GetAllCustomerClassId());
 
-            return GetOrExportData(metaModel);
+            return await GetOrExportData(metaModel);
         }
 
         private async Task<IActionResult> GetOrExportData(AdvancedSearchBetListMetaModel metaModel)

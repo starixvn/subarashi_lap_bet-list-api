@@ -36,7 +36,7 @@ services.AddHealthChecks()
 
 services.AddDistributedMemoryCache();
 services.AddAuthentication(OAuth2IntrospectionDefaults.AuthenticationScheme)
-    .AddOAuth2Introspection(options => 
+    .AddOAuth2Introspection(options =>
     {
         options.Authority = identityServer.Host;
         options.ClientId = identityServer.ClientId;
@@ -46,7 +46,7 @@ services.AddAuthentication(OAuth2IntrospectionDefaults.AuthenticationScheme)
         options.EnableCaching = true;
         options.SkipTokensWithDots = true;
     })
-    .AddBasicAuthentication(options => 
+    .AddBasicAuthentication(options =>
     {
         options.Clients = configuration.GetSection("ServiceClients").Get<List<ServiceClient>>();
     });
@@ -141,6 +141,7 @@ app.UseRequestLocalization(options =>
                 };
 
 });
+app.UseDoubleSlashHandler();
 app.UseRouting();
 app.UseServiceTokenValidator();
 app.UseAuthorization();

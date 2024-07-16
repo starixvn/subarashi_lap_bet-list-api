@@ -9,9 +9,10 @@
     using Fanex.Athena.BetList.Service.Interfaces;
     using Fanex.Athena.Common.Constant;
     using Fanex.Athena.Resources;
+    using Microsoft.AspNetCore.Mvc;
     using System;
 
-    public class BettingTicketCenterBaseController
+    public class BettingTicketCenterBaseController : ControllerBase
     {
         private readonly IBettingTicketCenterExcel _bettingTicketCenterExcel;
 

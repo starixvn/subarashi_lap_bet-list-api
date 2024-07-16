@@ -1,5 +1,8 @@
-﻿using Fanex.Athena.BetList.DataAccess;
+﻿using Fanex.Athena.BetList.Controllers.Utility;
+using Fanex.Athena.BetList.DataAccess;
 using Fanex.Athena.BetList.DataAccess.Interfaces;
+using Fanex.Athena.BetList.Excel;
+using Fanex.Athena.BetList.Excel.Builders;
 using Fanex.Athena.BetList.Service;
 using Fanex.Athena.BetList.Service.Interfaces;
 using Fanex.Athena.Common.DataAccess;
@@ -12,6 +15,7 @@ using Fanex.Athena.Common.Utility.Services.Internal;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.TicketHelper;
+using Fanex.Core.Utils;
 using Fanex.RemotingRef;
 using RazorEngineCore;
 
@@ -44,6 +48,8 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
                 var config = provider.GetService<IConfiguration>();
                 return config.GetSection("AppSettings").Get<AppSettings>();
             });
+            services.AddScoped<IMetaModelBindingService, BaseMetaModelBindingService>();
+            services.AddScoped<ICurrencyValidation, CurrencyValidation>();  
             services.AddScoped<ICustomMemoryCache, CustomMemoryCache>();
             services.AddScoped<IMemoryCacheService, MemoryCacheService>();
             services.AddScoped<IFileSystem, FileSystem>();
@@ -52,6 +58,9 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
             services.AddSingleton<IContextService, ContextService>();
             services.AddScoped<ICacheRefAdapter, CacheRefAdapter>();
             services.AddScoped<ITemplateBuilder, TemplateBuilder>();
+            services.AddScoped<ICustomerClassService, CustomerClassService>();
+            services.AddScoped<ISportService, SportService>();
+            services.AddScoped<ISubsidiaryService, SubsidiaryService>();
             services.AddScoped<IRazorEngine, RazorEngineCore.RazorEngine>();
             return services;
         }
@@ -84,6 +93,10 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
             services.AddScoped<ISystemParlayDetailService, SystemParlayDetailService>();
             services.AddScoped<ITicketBuilderService, TicketBuilderService>();
             services.AddScoped<IBetListHTMLBuilder, BetListHTMLBuilder>();
+            services.AddScoped<IBetListExcelBuilder, BetListExcelBuilder>();
+            services.AddScoped<IBettingTicketCenterExcelBuilder, BettingTicketCenterExcelBuilder>();
+            services.AddScoped<IBettingTicketCenterExcel, BettingTicketCenterExcel>();
+            services.AddScoped<IBettingTicketCenterZipBuilder, BettingTicketCenterZipBuilder>();
             services.AddScoped<ITicketHelper, TicketHelper>();
             services.AddSingleton<IRemotingRefService, RemotingRefService>();
             return services;

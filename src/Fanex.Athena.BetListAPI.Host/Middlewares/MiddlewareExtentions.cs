@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.PlayerAdmin.Core.Middlewares;
+﻿using Fanex.Athena.BetListAPI.Host.Middlewares;
+using Fanex.Athena.PlayerAdmin.Core.Middlewares;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Text.Json;
 
@@ -45,12 +46,16 @@ namespace Fanex.Athena.BetListAPI.Site.Middlewares
             return app;
         }
 
+        public static IApplicationBuilder UseDoubleSlashHandler(
+            this IApplicationBuilder builder)
+            => builder.UseMiddleware<DoubleSlashMiddleware>();
+
         public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder builder)
             => builder.UseMiddleware<ErrorHandlerMiddleware>();
-        
+
         public static IApplicationBuilder UseServiceTokenValidator(this IApplicationBuilder builder)
             => builder.UseMiddleware<ServiceTokenValidatorMiddleware>();
-        
+
 
     }
 }
