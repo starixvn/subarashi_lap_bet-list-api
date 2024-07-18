@@ -8,6 +8,7 @@ using Fanex.Result.Core.SabaClub;
 using Fanex.Result.Core.SAGaming;
 using Fanex.Result.Core.AllBetCasino;
 using Fanex.Result.Core.SportsLottery;
+using Fanex.Result.Core.SexyGaming;
 
 namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
 {
@@ -32,28 +33,32 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
         {
             services.TryAddScoped<ISerializer, JsonSerializer>();
             services.TryAddScoped<IWebClient, JsonWebClient>();
+            services.AddScoped<IResultService, ResultService>();
             services.AddSingleton<IBetlistResultGetterFactory, BetlistResultGettterFactory>();
-            services.AddAllBetResultService();
+            services.AddAllBetResultService(configuration);
             services.AddLinkGamesResultService(configuration);
             services.AddSabaClubResultService(configuration);
             services.AddSAGamingResultService();
             services.AddSportLotteryResultService(configuration);
-            services.AddScoped<IResultService, ResultService>();
+            services.AddSexyGamingResultService();
             services.AddScoped<IKenoApi, KenoApi>();
             services.AddScoped<IKenoLotteryTGResultFactory, KenoLotteryTGResultApi>();
 
             return services;
         }
 
-        private static IServiceCollection AddAllBetResultService(this IServiceCollection services)
+        private static IServiceCollection AddAllBetResultService(this IServiceCollection services, IConfiguration configuration)
         {
+            var path = configuration.GetSection("AllbetResultImagePath").Get<string>();
+            var isUseOriginalPath = configuration.GetSection("AllbetUseOriginalPath").Get<bool>();
+            services.AddSingleton(new AllbetConfigs { ImagePath = path, UseOriginalPath = isUseOriginalPath});
             services.AddScoped<IAllbetResultBuilder, AllbetResultBuilder>();
             return services;
         }   
 
         private static IServiceCollection AddLinkGamesResultService(this IServiceCollection services, IConfiguration configuration)
         {
-            var happy5Config = configuration.GetSection("ResultConfigs:Soccer5Result").Get<LinkedGamesResult>();
+            var happy5Config = configuration.GetSection("ResultConfigs:Soccer5Result").Get<LinkedGamesConfigs>();
             services.AddSingleton(happy5Config);
             services.AddScoped<ILinkedGamesResult, LinkedGamesResult>();
             return services;
@@ -75,9 +80,15 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
 
         private static IServiceCollection AddSportLotteryResultService(this IServiceCollection services, IConfiguration configuration)
         {
-            var config = configuration.GetSection("ResultConfigs:SportLotteryResult").Get<SportsLotteryConfigs>();
+            var config = configuration.GetSection("ResultConfigs:SportsLotteryResult").Get<SportsLotteryConfigs>();
             services.AddSingleton(config);
             services.AddScoped<ISportsLotteryResult, SportsLotteryResult>();
+            return services;
+        }
+
+        private static IServiceCollection AddSexyGamingResultService(this IServiceCollection services)
+        {
+            services.AddScoped<ISexyGamingResultBuilder, SexyGamingResultBuilder>();
             return services;
         }
     }

@@ -14,6 +14,9 @@ using System.Web;
 
 namespace Fanex.Athena.Result.Controller.ResultReports
 {
+    [ApiController]
+    [Route("api/[controller]/[action]")]
+    [Route("[controller]/[action]")]
     public class ResultReportController : ControllerBase
     {
         private const string ResultExcelTemplateAddress = "App_Data/Fanex.Result/";
@@ -51,11 +54,11 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         }
 
         [HttpPost]
-        public async Task<string> Index(ResultMetaModel metalModel)
+        public async Task<IActionResult> Index(ResultMetaModel metalModel)
         {
             metalModel.IsExportExcel = false;
             await GetData(metalModel);
-            return _htmlResult;
+            return Content(_htmlResult);
         }
 
         [HttpPost]
@@ -116,10 +119,10 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         #region PopUpPage
 
         [HttpPost]
-        public async Task<string> ResultPopup(ResultPopupMetaModel metalModel)
+        public async Task<IActionResult> ResultPopup(ResultPopupMetaModel metalModel)
         {
             await GetPopUpData(metalModel);
-            return _htmlResult;
+            return Content(_htmlResult);
         }
 
         /// <summary>
@@ -129,21 +132,21 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         /// /// <param name="sportType">The sport type.</param>
         /// <returns>The html result.</returns>
         [HttpPost]
-        public async Task<string> ResultDetail(int matchId, int sportType, string languageCode)
+        public async Task<IActionResult> ResultDetail(int matchId, int sportType, string languageCode)
         {
             var detailedData = await _resultService.GetSportsbookGameDetailAsync(matchId);
             if (detailedData != null && detailedData.MatchId > 0)
             {
-                return _resultService.HtmlGameDetailParser(
+                return Content(_resultService.HtmlGameDetailParser(
                 detailedData,
                 new ResultSetting
                 {
                     SportType = (SportType)sportType,
                     LanguageCode = languageCode
-                });
+                }));
             }
 
-            return string.Empty;
+            return Content(string.Empty);
         }
 
         #endregion PopUpPage

@@ -1,6 +1,4 @@
-﻿using NPOI.SS.Formula.Functions;
-
-namespace Fanex.Athena.Result.Service.Interfaces
+﻿namespace Fanex.Athena.Result.Service.Interfaces
 {
     using System;
     using System.Collections.Generic;

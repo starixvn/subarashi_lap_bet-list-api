@@ -68,7 +68,8 @@ services.AddControllers()
     });
 //services.AddEndpointsApiExplorer();
 
-services.AddLapBetList();
+services.AddLapBetList()
+    .AddLapBetListResult(configuration);
 
 var app = builder.Build();
 
