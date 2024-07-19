@@ -1,16 +1,15 @@
 ﻿using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Common.Utility.Services.Internal;
-using RazorEngineCore;
-//using RazorEngine;
+using RazorEngine.Templating;
 
 namespace Fanex.Athena.Common.Utility.Services
 {
     public class TemplateBuilder : ITemplateBuilder
     {
         private readonly IFileSystem _fileSystem;
-        private readonly IRazorEngine _razorEngine;
+        private readonly IRazorEngineService _razorEngine;
 
-        public TemplateBuilder(IFileSystem fileSystem, IRazorEngine razorEngine)
+        public TemplateBuilder(IFileSystem fileSystem, IRazorEngineService razorEngine)
         {
             _fileSystem = fileSystem;
             _razorEngine = razorEngine;
@@ -19,10 +18,8 @@ namespace Fanex.Athena.Common.Utility.Services
         public string BuildContent(string path, object model)
         {
             var templateContent = _fileSystem.ReadString(path);
-            var template =  _razorEngine.Compile(templateContent);
-            return template.Run(model);
-
-            //return Engine.Razor.RunCompile(templateContent, path, model: model);
+            var template = _razorEngine.RunCompile(path, templateContent, model: model);
+            return template;
         }
     }
 }

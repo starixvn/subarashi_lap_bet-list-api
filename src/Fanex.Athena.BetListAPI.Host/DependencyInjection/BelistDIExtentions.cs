@@ -17,7 +17,6 @@ using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.TicketHelper;
 using Fanex.Core.Utils;
 using Fanex.RemotingRef;
-using RazorEngineCore;
 
 namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
 {
@@ -61,7 +60,7 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
             services.AddScoped<ICustomerClassService, CustomerClassService>();
             services.AddScoped<ISportService, SportService>();
             services.AddScoped<ISubsidiaryService, SubsidiaryService>();
-            services.AddScoped<IRazorEngine, RazorEngineCore.RazorEngine>();
+            services.AddSingleton(RazorEngine.Engine.Razor);
             return services;
         }
 
