@@ -5,6 +5,7 @@ using Fanex.Athena.BetList.Excel;
 using Fanex.Athena.BetList.Excel.Builders;
 using Fanex.Athena.BetList.Service;
 using Fanex.Athena.BetList.Service.Interfaces;
+using Fanex.Athena.BetListAPI.Host.RazorEngines;
 using Fanex.Athena.Common.DataAccess;
 using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Athena.Common.Services;
@@ -17,6 +18,9 @@ using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.TicketHelper;
 using Fanex.Core.Utils;
 using Fanex.RemotingRef;
+using RazorEngine.Configuration;
+using RazorEngine.Templating;
+using RazorEngine.Text;
 
 namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
 {
@@ -40,6 +44,7 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
 
         public static IServiceCollection AddCommonServices(this IServiceCollection services)
         {
+
             services.AddHttpContextAccessor();
 
             services.AddScoped<IAppSettings>(provider => 
@@ -60,7 +65,20 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
             services.AddScoped<ICustomerClassService, CustomerClassService>();
             services.AddScoped<ISportService, SportService>();
             services.AddScoped<ISubsidiaryService, SubsidiaryService>();
+
+            services.AddRazorEngineService();
+            return services;
+        }
+
+        private static IServiceCollection AddRazorEngineService(this IServiceCollection services)
+        {
+            var razorEngineConfig = new TemplateServiceConfiguration();
+            razorEngineConfig.EncodedStringFactory = new HtmlEncodedStringFactory();
+            razorEngineConfig.ReferenceResolver = new MyIReferenceResolver();
+            var razorService = RazorEngineService.Create(razorEngineConfig);
+            RazorEngine.Engine.Razor = razorService;
             services.AddSingleton(RazorEngine.Engine.Razor);
+
             return services;
         }
 

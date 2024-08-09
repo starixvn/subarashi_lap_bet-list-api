@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\SystemParlayDetail\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.OpenIdConnectServer" Version="8.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.2" />
     <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="8.0.1" />
@@ -68,6 +72,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Athena.BetList.Controllers\Fanex.Athena.BetList.Controllers.csproj" />
     <ProjectReference Include="..\Fanex.Athena.Common.Utility\Fanex.Athena.Common.Utility.csproj" />
+    <ProjectReference Include="..\Fanex.Athena.Resources\Fanex.Athena.Resources.csproj" />
     <ProjectReference Include="..\Fanex.Athena.Result.Controller\Fanex.Athena.Result.Controller.csproj" />
   </ItemGroup>
 
@@ -79,6 +84,10 @@
 
   <ItemGroup>
     <Folder Include="App_Data\Fanex.Result\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\SystemParlayDetail\Index.cshtml" />
   </ItemGroup>
 
 </Project>

@@ -15,11 +15,13 @@ namespace Fanex.Athena.Common.Utility.Services
             _razorEngine = razorEngine;
         }
 
-        public string BuildContent(string path, object model)
+        public string BuildContent<T>(string path, T model)
         {
-            var templateContent = _fileSystem.ReadString(path);
-            var template = _razorEngine.RunCompile(path, templateContent, model: model);
+            var templateContent = _fileSystem.ReadString(path).Trim();
+            var template = _razorEngine.RunCompile(templateContent, path, typeof(T), model: model);
             return template;
         }
     }
+
+
 }

@@ -2,12 +2,9 @@
 @using System.Linq;
 @using Fanex.BetList.Core.App_GlobalResources;
 @using Fanex.Athena.Resources;
-@model Fanex.Athena.BetList.Model.ViewModel.SystemParlayDetailViewModel
 @{
     var groupedData = Model.DataList;
-}
-@functions{ 
-    private void RenderFirstRow()
+    void RenderFirstRow()
     {
         <tr style="visibility: hidden; height: auto; border: none">
             <td style="height: 0; padding: 0; border: none" class="date-cell"></td>
