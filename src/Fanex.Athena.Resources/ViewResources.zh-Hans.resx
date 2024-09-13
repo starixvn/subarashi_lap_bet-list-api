@@ -338,7 +338,7 @@
     <value>预约</value>
   </data>
   <data name="SabaCoins" xml:space="preserve">
-    <value>沙巴点数</value>
+    <value>沙巴币</value>
   </data>
   <data name="Viewin" xml:space="preserve">
     <value>以{0}查看</value>
@@ -348,5 +348,26 @@
   </data>
   <data name="BookedBet" xml:space="preserve">
     <value>预约投注</value>
+  </data>
+  <data name="BetID" xml:space="preserve">
+    <value>投注单号</value>
+  </data>
+  <data name="BetPlaced" xml:space="preserve">
+    <value>投注时间</value>
+  </data>
+  <data name="Market" xml:space="preserve">
+    <value>市场</value>
+  </data>
+  <data name="Selection" xml:space="preserve">
+    <value>选项</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="OddsAvg" xml:space="preserve">
+    <value>平均赔率</value>
+  </data>
+  <data name="TotalInWithParam" xml:space="preserve">
+    <value>总计在 {0}</value>
   </data>
 </root>

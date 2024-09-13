@@ -58,6 +58,7 @@
 		<Setting Key="Lrf_BetList_LicenseeBonus_Detail" SpName="Lrf_BetList_LicenseeBonus_Detail" DbName="DBACC.bodb02.wsv_lap" />
 		<Setting Key="Lrf_BetList_Exchange_Mem" SpName="Lrf_BetList_Exchange_Mem" DbName="DBEXT.bodb02.wsv_lap" />
 		<Setting Key="Lrf_BetList_Exchange_Detail" SpName="Lrf_BetList_Exchange_Detail" DbName="DBEXT.bodb02.wsv_lap" />
+    <Setting Key="Lrf_BetList_Exchange_Running" SpName="Lrf_BetList_Exchange_Running_xtest" DbName="DBEXT.bodb02.wsv_lap" />
 		<Setting Key="Lrf_BetList_RefNo_Mem" SpName="Lrf_BetList_RefNo_Mem" DbName="DBACC.bodb02.wsv_lap" />
 		<Setting Key="Shard_Lrf_BetList_Running" SpName="Lrf_BetList_Running" DbName="DBBOF.bodb02.wsv_lap" />
 		<Setting Key="Lrf_BetList_TxID_Mem" SpName="Lrf_BetList_TxID_Mem" DbName="DBACC.bodb02.wsv_lap" />

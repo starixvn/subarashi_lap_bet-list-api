@@ -12,10 +12,12 @@ namespace Fanex.Athena.BetList.Controllers
     public class ExchangeWinLossBetListController
     {
         private readonly IExchangeBetListService _service;
+        private readonly IExchangeExcel _exchangeExcel;
 
-        public ExchangeWinLossBetListController(IExchangeBetListService service)
+        public ExchangeWinLossBetListController(IExchangeBetListService service, IExchangeExcel exchangeExcel)
         {
             _service = service;
+            _exchangeExcel = exchangeExcel;
         }
 
         [HttpPost]
@@ -26,6 +28,23 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpPost]
         public async Task<IEnumerable<ExchangeTicketDetail>> Detail(ExchangeBetListDetailMetaModel metaModel)        
             => await _service.GetTicketDetailListAsync(metaModel);
-        
+
+        [HttpPost]
+        public async Task<JsonResult> GetRunningTickets(ExchangeRunningTicketMetaModel metaModel)
+        {
+            var result = await _service.GetRunningTicketsAsync(metaModel);
+            return new JsonResult(result);
+        }
+
+        [HttpPost]
+        public async Task<FileContentResult> ExportRunningTickets(ExchangeRunningTicketMetaModel metaModel)
+        {
+            var data = await _service.GetRunningTicketsAsync(metaModel);
+            var template = Server.MapPath("~/App_Data/ExchangeRunningTicket.xls");
+            var fileBytes = _exchangeExcel.ExportRunningExcel(template, data, metaModel);
+
+            return new FileContentResult(fileBytes, "application/octet-stream");
+        }
+
     }
 }

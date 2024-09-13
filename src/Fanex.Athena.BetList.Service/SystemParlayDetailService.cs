@@ -49,7 +49,7 @@
                 Total = data.TicketList.Sum(x => x.WinLost)
             };
 
-            var result = _templateBuilder.BuildContent(viewPath, viewModel);
+            var result = await _templateBuilder.BuildContent(viewPath, viewModel);
 
             return result;
         }

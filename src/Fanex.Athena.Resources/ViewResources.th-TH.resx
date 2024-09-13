@@ -351,4 +351,25 @@
   <data name="BookedBet" xml:space="preserve">
     <value>การเดิมพันที่จองไว้</value>
   </data>
+  <data name="BetID" xml:space="preserve">
+    <value>รหัสเดิมพัน</value>
+  </data>
+  <data name="BetPlaced" xml:space="preserve">
+    <value>วางเดิมพันแล้ว</value>
+  </data>
+  <data name="Market" xml:space="preserve">
+    <value>ตลาด</value>
+  </data>
+  <data name="Selection" xml:space="preserve">
+    <value>การเลือก</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>ประเภท</value>
+  </data>
+  <data name="OddsAvg" xml:space="preserve">
+    <value>อัตราต่อรองเฉลี่ย</value>
+  </data>
+  <data name="TotalInWithParam" xml:space="preserve">
+    <value>รวมใน {0}</value>
+  </data>
 </root>

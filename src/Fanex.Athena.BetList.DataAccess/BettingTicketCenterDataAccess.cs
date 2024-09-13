@@ -83,7 +83,7 @@
             return ticketResult;
         }
 
-        public async Task<TicketResult> GetRunningBetListAsync(BaseBettingTicketMetaModel metaModel)
+        public async Task<TicketResult> GetRunningBetListAsync(RunningBetListMetaModel metaModel)
         {
             const string UspKey = "Shard_Lrf_BetList_Running";
 
@@ -99,6 +99,7 @@
                 db.SetParameterValue(DbColumn.UserName, SqlHelper.ToSqlTextSearch(metaModel.UserName));
                 db.SetParameterValue(DbColumn.BaseCurrency, metaModel.BaseCurrency);
                 db.SetParameterValue(DbColumn.ProductList, productList);
+
                 db.SetParameterValue(DbColumn.ShowBA, productCodes.Contains(ProductCodes.BA));
                 db.SetParameterValue(DbColumn.PageSize, metaModel.IsExport ? int.MaxValue - 1 : metaModel.PageSize);
                 db.SetParameterValue(DbColumn.PageIndex, metaModel.IsExport ? 1 : metaModel.PageIndex);

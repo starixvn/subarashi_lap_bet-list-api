@@ -2,6 +2,6 @@
 {
     public interface ITemplateBuilder
     {
-        string BuildContent<T>(string path, T model);
+        Task<string> BuildContent<T>(string path, T model);
     }
 }

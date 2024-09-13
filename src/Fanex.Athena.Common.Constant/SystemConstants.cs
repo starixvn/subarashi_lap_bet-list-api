@@ -11,7 +11,13 @@
 
         public const string DefaultBookedBetRefno = "100000000000";
 
-        public static readonly ReadOnlyCollection<string> BaseCurrencyList = new ReadOnlyCollection<string>(
-            new List<string> { "EUR", "USD", "GBP", "MYR", "CNY", "THB", "IDR", "INH", "BDT", "INR", "PHP", "MP", "NPR", "TRY", "USDT" });
+        public static readonly ReadOnlyCollection<string> BaseCurrencyList = new ReadOnlyCollection<string>(new List<string> {
+            "EUR", "USD", "GBP",
+            "MYR", "CNY", "THB",
+            "IDR", "INH", "BDT",
+            "INR", "PHP", "MP",
+            "NPR", "TRY", "USDT",
+            "JPY", "MXN", "NGN",
+        });
     }
 }

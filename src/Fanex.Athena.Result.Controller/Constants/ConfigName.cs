@@ -54,5 +54,11 @@ namespace Fanex.Athena.Result.Controller.Constants
         public const string VoidbridgeResult = "VoidbridgeResult";
 
         public const string WEResult = "WEResult";
+
+        public const string FACHAIResult = "FACHAIResult";
+
+        public const string FastSpinResult = "FastSpinResult";
+
+        public const string NextspinResult = "NextspinResult";
     }
 }

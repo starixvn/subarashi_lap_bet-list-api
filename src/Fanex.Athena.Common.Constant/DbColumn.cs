@@ -12,6 +12,10 @@
 
         public const string BetType = "BetType";
 
+        public const string BetTypeList = "BetTypeList";
+
+        public const string CashOutMode = "CashOutMode";
+
         public const string ConvertToBaseCur = "ConvertToBaseCur";
 
         public const string CustId = "CustId";
@@ -21,6 +25,8 @@
         public const string DrawFilter = "DrawFilter";
 
         public const string FromDate = "FromDate";
+
+        public const string LeagueList = "LeagueList";
 
         public const string LeagueId = "LeagueId";
 
@@ -55,6 +61,8 @@
         public const string Sort = "Sort";
 
         public const string SportType = "SportType";
+
+        public const string SportTypeList = "SportTypeList";
 
         public const string StatusId = "StatusId";
 

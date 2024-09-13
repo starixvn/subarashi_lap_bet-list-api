@@ -1,26 +1,87 @@
 ﻿using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Internal;
-using RazorEngine.Templating;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace Fanex.Athena.Common.Utility.Services
 {
     public class TemplateBuilder : ITemplateBuilder
     {
-        private readonly IFileSystem _fileSystem;
-        private readonly IRazorEngineService _razorEngine;
+        private readonly IRazorViewEngine _viewEngine;
+        private readonly IServiceProvider _serviceProvider;
+        private readonly ITempDataProvider _tempDataProvider;
 
-        public TemplateBuilder(IFileSystem fileSystem, IRazorEngineService razorEngine)
+        public TemplateBuilder(IRazorViewEngine viewEngine, IServiceProvider serviceProvider, ITempDataProvider tempDataProvider)
         {
-            _fileSystem = fileSystem;
-            _razorEngine = razorEngine;
+            _viewEngine = viewEngine;
+            _serviceProvider = serviceProvider;
+            _tempDataProvider = tempDataProvider;
         }
 
-        public string BuildContent<T>(string path, T model)
+        public async Task<string> BuildContent<T>(string path, T model)
         {
-            var templateContent = _fileSystem.ReadString(path).Trim();
-            var template = _razorEngine.RunCompile(templateContent, path, typeof(T), model: model);
-            return template;
+            var actionContext = GetActionContext();
+            var view = FindView(actionContext, path);
+
+            using (var output = new StringWriter())
+            {
+                var viewContext = new ViewContext(
+                    actionContext,
+                    view,
+                    new ViewDataDictionary<T>(
+                        metadataProvider: new EmptyModelMetadataProvider(),
+                        modelState: new ModelStateDictionary())
+                    {
+                        Model = model
+                    },
+                new TempDataDictionary(
+                        actionContext.HttpContext,
+                        _tempDataProvider),
+                    output,
+                    new HtmlHelperOptions());
+
+                await view.RenderAsync(viewContext);
+
+                return output.ToString();
+            }
         }
+
+
+        private ActionContext GetActionContext()
+        {
+            var httpContext = new DefaultHttpContext();
+            httpContext.RequestServices = _serviceProvider;
+            return new ActionContext(httpContext, new RouteData(), new ActionDescriptor());
+        }
+
+        private IView FindView(ActionContext actionContext, string viewName)
+        {
+            var getViewResult = _viewEngine.GetView(executingFilePath: null, viewPath: viewName, isMainPage: true);
+            if (getViewResult.Success)
+            {
+                return getViewResult.View;
+            }
+
+            var findViewResult = _viewEngine.FindView(actionContext, viewName, isMainPage: true);
+            if (findViewResult.Success)
+            {
+                return findViewResult.View;
+            }
+
+            var searchedLocations = getViewResult.SearchedLocations.Concat(findViewResult.SearchedLocations);
+            var errorMessage = string.Join(
+                Environment.NewLine,
+                new[] { $"Unable to find view '{viewName}'. The following locations were searched:" }.Concat(searchedLocations)); ;
+
+            throw new InvalidOperationException(errorMessage);
+        }
+
     }
 
 

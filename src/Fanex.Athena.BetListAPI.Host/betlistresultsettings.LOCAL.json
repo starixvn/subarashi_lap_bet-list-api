@@ -157,6 +157,18 @@
     "WEResult": {
       "Url": "http://10.40.40.248:7021/api/WorldEntertainmentInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    "FACHAIResult": {
+      "Url": "http://10.40.40.248:7083/api/FaChaiInternal/GetBetHistoryUrl",
+      "Debug": 0
+    },
+    "FastSpinResult": {
+      "Url": "http://10.40.40.248:7078/api/FastSpinInternal/GetBetHistoryUrl",
+      "Debug": 0
+    },
+    "NextspinResult": {
+      "Url": "http://10.40.40.248:7023/api/NextSpinInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   },
   "KenoConfigs": {

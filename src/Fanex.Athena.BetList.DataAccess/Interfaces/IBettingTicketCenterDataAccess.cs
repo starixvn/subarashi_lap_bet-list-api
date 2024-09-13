@@ -10,7 +10,7 @@
 
         Task<TicketResult> GetBetListByRefnoAsync(RefNoBetListMetaModel metaModel);
 
-        Task<TicketResult> GetRunningBetListAsync(BaseBettingTicketMetaModel metaModel);
+        Task<TicketResult> GetRunningBetListAsync(RunningBetListMetaModel metaModel);
 
         Task<TicketResult> GetBetListByTxIDAsync(TxIDBetListMetaModel metaModel);
 

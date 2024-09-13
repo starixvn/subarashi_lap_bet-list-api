@@ -97,11 +97,29 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bet ID.
+        /// </summary>
+        public static string BetID {
+            get {
+                return ResourceManager.GetString("BetID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet List.
         /// </summary>
         public static string BetList {
             get {
                 return ResourceManager.GetString("BetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bet Placed.
+        /// </summary>
+        public static string BetPlaced {
+            get {
+                return ResourceManager.GetString("BetPlaced", resourceCulture);
             }
         }
         
@@ -394,6 +412,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Market.
+        /// </summary>
+        public static string Market {
+            get {
+                return ResourceManager.GetString("Market", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mix Live &amp; Non-Live.
         /// </summary>
         public static string MixLiveAndNoneLive {
@@ -511,6 +538,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Odds Avg.
+        /// </summary>
+        public static string OddsAvg {
+            get {
+                return ResourceManager.GetString("OddsAvg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Odds Lower.
         /// </summary>
         public static string OddsLower {
@@ -619,6 +655,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selection.
+        /// </summary>
+        public static string Selection {
+            get {
+                return ResourceManager.GetString("Selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your request can&apos;t be processed now due to busy server. Please try again later.
         /// </summary>
         public static string ServerBusyMessage {
@@ -709,11 +754,29 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total in {0}.
+        /// </summary>
+        public static string TotalInWithParam {
+            get {
+                return ResourceManager.GetString("TotalInWithParam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Trans.Time.
         /// </summary>
         public static string TransTime {
             get {
                 return ResourceManager.GetString("TransTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
         

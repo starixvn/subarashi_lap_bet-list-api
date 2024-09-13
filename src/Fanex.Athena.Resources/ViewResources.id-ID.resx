@@ -339,4 +339,25 @@
   <data name="BookedBet" xml:space="preserve">
     <value>Taruhan yang Dipesan</value>
   </data>
+  <data name="BetID" xml:space="preserve">
+    <value>ID Taruhan</value>
+  </data>
+  <data name="BetPlaced" xml:space="preserve">
+    <value>Taruhan Ditempatkan</value>
+  </data>
+  <data name="Market" xml:space="preserve">
+    <value>Pasaran</value>
+  </data>
+  <data name="Selection" xml:space="preserve">
+    <value>Pilihan</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Jenis</value>
+  </data>
+  <data name="OddsAvg" xml:space="preserve">
+    <value>Rata-rata Odds</value>
+  </data>
+  <data name="TotalInWithParam" xml:space="preserve">
+    <value>Total dalam {0}</value>
+  </data>
 </root>
