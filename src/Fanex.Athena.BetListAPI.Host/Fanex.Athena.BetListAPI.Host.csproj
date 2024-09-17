@@ -16,7 +16,7 @@
     <PackageReference Include="AspNetCore.HealthChecks.OpenIdConnectServer" Version="8.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.2" />
     <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="8.0.1" />
-    <PackageReference Include="Fanex.BetList.AdvantPlay" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.AdvantPlay" Version="2.0.0.2" />
     <PackageReference Include="Fanex.BetList.AdvantPlayMini" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.AGCasino" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.Allbet" Version="2.0.0.2" />
@@ -28,6 +28,8 @@
     <PackageReference Include="Fanex.BetList.CG" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.Core.RemotingRef" Version="2.0.0.2" />
     <PackageReference Include="Fanex.BetList.ESports" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.FACHAI" Version="1.0.0.1" />
+    <PackageReference Include="Fanex.BetList.FastSpin" Version="1.0.0.1" />
     <PackageReference Include="Fanex.BetList.FGG" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.Habanero" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.Indo4D" Version="2.0.0.2" />
@@ -39,6 +41,7 @@
     <PackageReference Include="Fanex.BetList.Live22" Version="1.0.0.1" />
     <PackageReference Include="Fanex.BetList.MaxGame" Version="2.0.0.2" />
     <PackageReference Include="Fanex.BetList.MGRNGCasino" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.Nextspin" Version="1.0.0" />
     <PackageReference Include="Fanex.BetList.NumberGame" Version="2.0.0.3" />
     <PackageReference Include="Fanex.BetList.PGSoft" Version="2.0.0.1-PromotionPrize-01" />
     <PackageReference Include="Fanex.BetList.PlayerTips" Version="2.0.0" />
@@ -52,7 +55,7 @@
     <PackageReference Include="Fanex.BetList.SportsLottery" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.TableGames" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.UUSlots" Version="1.0.0" />
-    <PackageReference Include="Fanex.BetList.VGaming" Version="2.0.0.6" />
+    <PackageReference Include="Fanex.BetList.VGaming" Version="2.0.0.7" />
     <PackageReference Include="Fanex.BetList.VirtualGames" Version="2.0.0.2" />
     <PackageReference Include="Fanex.BetList.VirtualSports" Version="2.0.0.9" />
     <PackageReference Include="Fanex.BetList.Voidbridge" Version="2.0.0" />
@@ -61,7 +64,7 @@
     <PackageReference Include="Fanex.BetList.YeeBet" Version="1.0.0" />
     <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.4" />
     <PackageReference Include="Fanex.Result.Core.ConfigurationHelper" Version="1.0.0" />
-    <PackageReference Include="Fanex.Result.Core.RemotingRef" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.Result.Core.RemotingRef" Version="2.0.0.3" />
     <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.29" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />

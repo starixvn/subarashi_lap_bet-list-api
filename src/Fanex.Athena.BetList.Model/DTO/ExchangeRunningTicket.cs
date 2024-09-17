@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace Fanex.Athena.BetList.Model.DTO
 {
     public class ExchangeRunningTicket

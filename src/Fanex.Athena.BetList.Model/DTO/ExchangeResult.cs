@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-
+﻿
 namespace Fanex.Athena.BetList.Model.DTO
 {
     public class ExchangeResult<T> where T : class

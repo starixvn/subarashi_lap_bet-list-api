@@ -9,6 +9,7 @@
     using Fanex.Athena.Common.Constant;
     using Fanex.Common;
     using Fanex.Common.Extensions;
+    using Fanex.Data;
     using Interfaces;
     using Model.DTO;
     using Model.MetaModel;
@@ -59,6 +60,38 @@
                     return ReadTicketDetailData(reader, metaModel.Type);
                 }
             }
+        }
+
+        public Task<ExchangeResult<ExchangeRunningTicket>> GetRunningTicketsAsync(ExchangeRunningTicketMetaModel metaModel)
+        {
+            const string spName = "Lrf_BetList_Exchange_Running";
+            using (var objectDb = GetObjectDb(spName))
+            {
+                AddCommonParameter(objectDb, metaModel);
+                return ReadDataAsync(objectDb);
+            }
+        }
+
+        private static async Task<ExchangeResult<ExchangeRunningTicket>> ReadDataAsync(IObjectDb objectDb)
+        {
+            var result = new ExchangeResult<ExchangeRunningTicket>();
+            result.DataList = await objectDb.QueryAsync<ExchangeRunningTicket>();
+            result.SumStake = Convert.ToDecimal(objectDb.GetOutputParams()["SumStake"]);
+            result.TotalRows = Convert.ToInt32(objectDb.GetOutputParams()["TotalRows"]);
+            return result;
+        }
+
+        private static void AddCommonParameter(IObjectDb objectDb, ExchangeRunningTicketMetaModel metaModel)
+        {
+            objectDb.SetParameterValue("AgentList", metaModel.AgentListXml);
+            objectDb.SetParameterValue("BaseCurrency", metaModel.BaseCurrency);
+            objectDb.SetParameterValue("Username", metaModel.Username ?? string.Empty);
+            objectDb.SetParameterValue("PageSize", metaModel.PageSize);
+            objectDb.SetParameterValue("PageIndex", metaModel.PageIndex);
+            objectDb.SetParameterValue("Sort", metaModel.Sort);
+            objectDb.SetParameterValue("ConvertToBaseCur", metaModel.IsConvertAllToBaseCurrency);
+            objectDb.SetParameterValue("SumStake", 0);
+            objectDb.SetParameterValue("TotalRows", 0);
         }
 
         private IEnumerable<ExchangeTicketDetail> ReadTicketDetailData(IDataReader reader, string type)

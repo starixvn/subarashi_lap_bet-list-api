@@ -5,7 +5,6 @@ using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.BetList.Service.Interfaces;
 using Fanex.Athena.Resources;
 using Microsoft.AspNetCore.Mvc;
-using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Site.Attributes;
 
 namespace Fanex.Athena.BetList.Controllers
@@ -14,17 +13,15 @@ namespace Fanex.Athena.BetList.Controllers
     [BearerAuthorize()]
     [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]
-    public class PlayerAdminBetListController : BettingTicketCenterController
+    public class PlayerAdminBetListController : BettingTicketCenterBaseController
     {
         private readonly IPlayerAdminBetListDataAccess _dataAccess;
 
         public PlayerAdminBetListController(
-            IContextService contextService,
             IPlayerAdminBetListDataAccess dataAccess,
-            IBettingTicketCenterDataAccess bettingTicketDataAccess,
             ITicketBuilderService ticketBuilderService,
             IBettingTicketCenterExcel excel)
-            : base(contextService, bettingTicketDataAccess, ticketBuilderService, excel)
+            : base(ticketBuilderService, excel)
         {
             _dataAccess = dataAccess;
         }

@@ -1,7 +1,9 @@
-﻿using Fanex.Athena.BetList.Model.DTO;
+﻿using Fanex.Athena.BetList.Excel;
+using Fanex.Athena.BetList.Model.DTO;
 using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.BetList.Model.ViewModel;
 using Fanex.Athena.BetList.Service.Interfaces;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Athena.BetList.Controllers
@@ -12,12 +14,14 @@ namespace Fanex.Athena.BetList.Controllers
     public class ExchangeWinLossBetListController
     {
         private readonly IExchangeBetListService _service;
-        private readonly IExchangeExcel _exchangeExcel;
+        private readonly IExchangeRunningExcel _exchangeExcel;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ExchangeWinLossBetListController(IExchangeBetListService service, IExchangeExcel exchangeExcel)
+        public ExchangeWinLossBetListController(IExchangeBetListService service, IExchangeRunningExcel exchangeExcel, IWebHostEnvironment webHostEnvironment)
         {
             _service = service;
             _exchangeExcel = exchangeExcel;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpPost]
@@ -40,7 +44,7 @@ namespace Fanex.Athena.BetList.Controllers
         public async Task<FileContentResult> ExportRunningTickets(ExchangeRunningTicketMetaModel metaModel)
         {
             var data = await _service.GetRunningTicketsAsync(metaModel);
-            var template = Server.MapPath("~/App_Data/ExchangeRunningTicket.xls");
+            var template = Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data/ExchangeRunningTicket.xls");
             var fileBytes = _exchangeExcel.ExportRunningExcel(template, data, metaModel);
 
             return new FileContentResult(fileBytes, "application/octet-stream");
