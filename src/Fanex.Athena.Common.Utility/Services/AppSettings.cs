@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Fanex.Athena.Common.Model.DTO;
+    using Fanex.Athena.Model.Core.DTO.Configuration;
     using Interfaces;
 
     /// <summary>
@@ -28,5 +30,12 @@
 
         public string CustomerClassCategoryApiUrl { get; set; }
 
+        public IEnumerable<ReportSetting> ReportSettings { get; set; }
+
+        public IEnumerable<FakeLicenseeSetting> FakeLicenseeSettings { get; set; }
+
+        public DateTime HistoryDate { get; set; }
+
+        public DateTime? MaxDate { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.BetList.Controllers.Utility;
+﻿using BetListNPOI.HSSF.Record.Chart;
+using Fanex.Athena.BetList.Controllers.Utility;
 using Fanex.Athena.BetList.DataAccess;
 using Fanex.Athena.BetList.DataAccess.Interfaces;
 using Fanex.Athena.BetList.Excel;
@@ -35,6 +36,7 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
         {
             services.AddScoped<IBalanceUpDataAccess, BalanceUpDataAccess>();
             services.AddScoped<ICurrencyDataAccess, CurrencyDataAccess>();
+            services.AddScoped<IAuthorizationDataAccess, AuthorizationDataAccess>();
             return services;
         }
 
@@ -46,7 +48,9 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
             services.AddScoped<IAppSettings>(provider => 
             {
                 var config = provider.GetService<IConfiguration>();
-                return config.GetSection("AppSettings").Get<AppSettings>();
+                var settings = config.GetSection("AppSettings").Get<AppSettings>();
+                settings.MaxDate ??= DateTime.Now;
+                return settings;
             });
             services.AddScoped<IMetaModelBindingService, BaseMetaModelBindingService>();
             services.AddScoped<ICurrencyValidation, CurrencyValidation>();  
@@ -61,6 +65,7 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
             services.AddScoped<ICustomerClassService, CustomerClassService>();
             services.AddScoped<ISportService, SportService>();
             services.AddScoped<ISubsidiaryService, SubsidiaryService>();
+            services.AddScoped<IAuthorizationService, AuthoriztionService>();
 
             return services;
         }
@@ -92,6 +97,7 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
             services.AddScoped<ILastBetsMonitoringBetListService, LastBetsMonitoringBetListService>();
             services.AddScoped<ISystemParlayDetailService, SystemParlayDetailService>();
             services.AddScoped<ITicketBuilderService, TicketBuilderService>();
+            services.AddScoped<IExcelBuilder, ExcelBuilder>();
             services.AddScoped<IBetListHTMLBuilder, BetListHTMLBuilder>();
             services.AddScoped<IBetListExcelBuilder, BetListExcelBuilder>();
             services.AddScoped<IBettingTicketCenterExcelBuilder, BettingTicketCenterExcelBuilder>();
@@ -99,6 +105,7 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
             services.AddScoped<IBettingTicketCenterZipBuilder, BettingTicketCenterZipBuilder>();
             services.AddScoped<ITicketHelper, TicketHelper>();
             services.AddSingleton<IRemotingRefService, RemotingRefService>();
+            services.AddScoped<IExchangeRunningExcel, ExchangeRunningExcel>();
             return services;
         }
     }

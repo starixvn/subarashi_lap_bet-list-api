@@ -4,39 +4,72 @@ using Fanex.Athena.BetList.Service.Extensions;
 using Fanex.Athena.BetList.Service.Helpers;
 using Fanex.Athena.BetList.Service.Interfaces;
 using Fanex.Athena.Common.Constant;
+using Fanex.Athena.Common.Services;
+using Fanex.Athena.Common.Services.Interfaces;
+using Fanex.Athena.Common.Site.Attributes;
+using Fanex.Athena.Common.Utility.Helpers;
 using Fanex.Athena.Resources;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
 
 namespace Fanex.Athena.BetList.Controllers
 {
     [ApiController]
     [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]
+    [BearerAuthorize(Roles.ReportLastBetsMonitoring)]
     public class LastBetMonitoringBetListController
     {
+        private const string ALL = "All";
+
         private static readonly IEnumerable<int> ConvertingDecimalOddsBetType = new[] { 1, 2, 3, 7, 8, 12, 20 };
 
         private readonly ILastBetsMonitoringBetListService _lastBetsMonitoringBetListService;
-
         private readonly ITicketHelper _ticketHelper;
-
         private readonly IIPService _ipService;
+        private readonly ICustomerClassService _customerClassService;
+        private readonly IContextService _contextService;
+        private readonly ISportService _sportService;
 
         public LastBetMonitoringBetListController(
             ILastBetsMonitoringBetListService lastBetsMonitoringBetListService,
             ITicketHelper ticketHelper,
-            IIPService ipService)
+            IIPService ipService,
+            ICustomerClassService customerClassService,
+            IContextService contextService,
+            ISportService sportService)
         {
             _lastBetsMonitoringBetListService = lastBetsMonitoringBetListService;
             _ticketHelper = ticketHelper;
             _ipService = ipService;
+            _customerClassService = customerClassService;
+            _contextService = contextService;
+            _sportService = sportService;
         }
 
+
         [HttpPost]
+        [RequestValidation]
+        [AutoBindMetaModel(bindProductCodeList: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
         public async Task<object> GetData(LastBetsMonitoringMetaModel metaModel)
         {
+            var riskLevels = await _customerClassService.GetAllRiskLevel();
+            var agentList = _contextService.AgentList.ToDictionary(_ => _.Key, _ => _.Value);
+
+            if (string.IsNullOrWhiteSpace(metaModel.Currency))
+            {
+                metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(agentList);
+            }
+            else
+            {
+                var currencyIdList = metaModel.Currency.Split(',').Select(int.Parse);
+                metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(agentList, currencyIdList);
+            }
+            metaModel.SportTypeList = BuildSportTypeList(metaModel.SportIds);
+            metaModel.RiskLevels = riskLevels.ToList();
+
             var ticketResult = await _lastBetsMonitoringBetListService.GetLastBetsMonitoringData(metaModel);
             var transLogIdSportType = new List<int> { (int)SportType.SportsLottery };
 
@@ -150,6 +183,52 @@ namespace Fanex.Athena.BetList.Controllers
                         ticket.Odds < 0 ? "negative" : string.Empty,
                         metaModel.OddsType));
             }
+        }
+
+        private string BuildSportTypeList(string sportIds)
+        {
+            if (string.IsNullOrWhiteSpace(sportIds))
+            {
+                return string.Empty;
+            }
+
+            if (string.Equals(sportIds, ALL, StringComparison.OrdinalIgnoreCase))
+            {
+                return ALL;
+            }
+
+            var listSportId = sportIds.Split(',').Select(int.Parse);
+            XDocument x = new XDocument(new XElement("ROOT"));
+            var root = x.Root;
+            foreach (var id in listSportId)
+            {
+                var elem = BuildSportTypeElement(id);
+                root.Add(elem);
+            }
+            return x.ToString();
+        }
+
+        private XElement BuildSportTypeElement(int id)
+        {
+            const string _sport_tag = "Sport";
+            const string _sport_type_attr = "SportType";
+            const string _league_group_id_attr = "LeagueGroupIds";
+            const int _default_league_group_id = 0;
+
+            var elem = new XElement(_sport_tag);
+            if (id > 0)
+            {
+                elem.SetAttributeValue(_sport_type_attr, id);
+                elem.SetAttributeValue(_league_group_id_attr, _default_league_group_id);
+            }
+            else
+            {
+                var sabaSport = _sportService.GetSabaSport(id);
+                var leagueGroupIds = string.Join(",", sabaSport.LeagueGroupIds);
+                elem.SetAttributeValue(_sport_type_attr, sabaSport.SportTypeId);
+                elem.SetAttributeValue(_league_group_id_attr, leagueGroupIds);
+            }
+            return elem;
         }
     }
 }

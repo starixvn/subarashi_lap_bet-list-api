@@ -1,4 +1,6 @@
-﻿using Fanex.Athena.Common.Model.MetaModel;
+﻿using Fanex.Athena.Common.DataAccess;
+using Fanex.Athena.Common.DataAccess.Interfaces;
+using Fanex.Athena.Common.Model.MetaModel;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Utility.Extensions;
 using Fanex.Core.Utils;
@@ -16,10 +18,11 @@ namespace Fanex.Athena.Common.Site.Attributes
             bool bindProductCodeList = false,
             bool applySubsidiaryBusiness = false,
             bool bindShowingBetFromIP = false,
-            bool bindSpecialPlatform = false)
+            bool bindSpecialPlatform = false,
+            bool bindBanlanceUpAndMoveBet = false)
             : base(typeof(AutoBindMetaModelImplAttribute))
         {
-            Arguments = new object[] { bindAgent, bindPlayerCom, bindProductCodeList, applySubsidiaryBusiness, bindShowingBetFromIP, bindSpecialPlatform };
+            Arguments = new object[] { bindAgent, bindPlayerCom, bindProductCodeList, applySubsidiaryBusiness, bindShowingBetFromIP, bindSpecialPlatform, bindBanlanceUpAndMoveBet };
         }
     }
 
@@ -28,6 +31,7 @@ namespace Fanex.Athena.Common.Site.Attributes
         private readonly IMetaModelBindingService _bindingService;
         private readonly IContextService _contextService;
         private readonly ISubsidiaryService _subsidiaryService;
+        private readonly IBalanceUpDataAccess _balanceUpDataAccess;
 
         private bool IsBindAgent { get; init; }
         private bool IsBindPlayerCom { get; init; }
@@ -35,6 +39,7 @@ namespace Fanex.Athena.Common.Site.Attributes
         private bool IsApplySubsidiaryBusiness { get; init; }
         private bool IsBindShowingBetFromIP { get; init; }
         private bool IsBindSpecialPlatform { get; init; }
+        private bool IsBindBanlanceUpAndMoveBet { get; init; }
 
         private const string ProductSB = "SB";
 
@@ -42,16 +47,19 @@ namespace Fanex.Athena.Common.Site.Attributes
             IMetaModelBindingService bindingService,
             IContextService contextService,
             ISubsidiaryService subsidiaryService,
+            IBalanceUpDataAccess banlanceUpDataAccess,
             bool bindAgent,
             bool bindPlayerCom,
             bool bindProductCodeList,
             bool applySubsidiaryBusiness,
             bool bindShowingBetFromIP,
-            bool isBindSpecialPlatform)
+            bool isBindSpecialPlatform,
+            bool isBindBanlanceUpAndMoveBet)
         {
             _bindingService = bindingService;
             _contextService = contextService;
             _subsidiaryService = subsidiaryService;
+            _balanceUpDataAccess = banlanceUpDataAccess;
 
             IsBindAgent = bindAgent;
             IsBindPlayerCom = bindPlayerCom;
@@ -59,6 +67,7 @@ namespace Fanex.Athena.Common.Site.Attributes
             IsApplySubsidiaryBusiness = applySubsidiaryBusiness;
             IsBindShowingBetFromIP = bindShowingBetFromIP;
             IsBindSpecialPlatform = isBindSpecialPlatform;
+            IsBindBanlanceUpAndMoveBet = isBindBanlanceUpAndMoveBet;
         }
 
         public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
@@ -88,8 +97,14 @@ namespace Fanex.Athena.Common.Site.Attributes
                 BindSpecialPlatform(context);
             }
 
+            if(IsBindBanlanceUpAndMoveBet)
+            {
+                BindBalanceUpAndMoveBet(context);
+            }    
+
             await next();
         }
+
 
         private void BindShowingBetFromIP(ActionExecutingContext context)
         {
@@ -145,7 +160,15 @@ namespace Fanex.Athena.Common.Site.Attributes
             return productCodes + "," + string.Join(",", offeredSubProductList);
         }
 
-
+        private void BindBalanceUpAndMoveBet(ActionExecutingContext context)
+        {
+            if (MetaModelHelper.IsMetaModel(context.ActionArguments, out IBalanceUpMetaModel value))
+            {
+                var temp = _balanceUpDataAccess.GetBalanceUp();
+                value.BalanceUpDay = temp.BalanceUpDay;
+                value.MoveBetsDay = temp.MoveBetsDay;
+            }
+        }
     }
 
 

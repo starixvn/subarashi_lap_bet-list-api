@@ -8,10 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Fanex.Result.Core-Bitcoin" Version="2.0.0.1" />
-    <PackageReference Include="Fanex.Result.Core-NPOI.2.0.6" Version="3.0.0.9-baseball-p2-02" />
+    <PackageReference Include="Fanex.Result.Core-NPOI.2.0.6" Version="3.0.0.6-upgrade-03" />
     <PackageReference Include="Fanex.Result.Core-NumberGame" Version="2.0.0" />
     <PackageReference Include="Fanex.Result.Core-Racing" Version="2.0.0" />
-    <PackageReference Include="Fanex.Result.Core-Sportsbook" Version="2.0.1.2-baseball-p2-03" />
+    <PackageReference Include="Fanex.Result.Core-Sportsbook" Version="2.0.0.9-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.Happy5" Version="2.0.0.2-upgrade-02" />
   </ItemGroup>
 

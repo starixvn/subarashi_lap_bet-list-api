@@ -372,4 +372,28 @@
   <data name="TotalInWithParam" xml:space="preserve">
     <value>รวมใน {0}</value>
   </data>
+  <data name="VIP" xml:space="preserve">
+    <value>วีไอพี</value>
+  </data>
+  <data name="Healthy" xml:space="preserve">
+    <value>ดีมาก</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>ใหม่</value>
+  </data>
+  <data name="Moderate" xml:space="preserve">
+    <value>ปานกลาง</value>
+  </data>
+  <data name="Suspicious" xml:space="preserve">
+    <value>น่าสงสัย</value>
+  </data>
+  <data name="Dangerous" xml:space="preserve">
+    <value>อันตราย</value>
+  </data>
+  <data name="Problems" xml:space="preserve">
+    <value>ปัญหา</value>
+  </data>
+  <data name="Robot" xml:space="preserve">
+    <value>หุ่นยนต์</value>
+  </data>
 </root>

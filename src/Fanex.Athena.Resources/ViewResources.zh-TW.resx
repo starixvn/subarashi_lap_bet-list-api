@@ -301,4 +301,28 @@
   <data name="TotalInWithParam" xml:space="preserve">
     <value>总计在 {0}</value>
   </data>
+  <data name="VIP" xml:space="preserve">
+    <value>VIP玩家</value>
+  </data>
+  <data name="Healthy" xml:space="preserve">
+    <value>健康</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>新玩家</value>
+  </data>
+  <data name="Moderate" xml:space="preserve">
+    <value>中等</value>
+  </data>
+  <data name="Suspicious" xml:space="preserve">
+    <value>可疑</value>
+  </data>
+  <data name="Dangerous" xml:space="preserve">
+    <value>危險</value>
+  </data>
+  <data name="Problems" xml:space="preserve">
+    <value>問題</value>
+  </data>
+  <data name="Robot" xml:space="preserve">
+    <value>機械</value>
+  </data>
 </root>

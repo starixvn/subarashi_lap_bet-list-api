@@ -28,11 +28,15 @@ namespace Fanex.Athena.Common.Services
 
         public string SiteName => GetClaimValue("SiteName");
 
+        public int LicenseeId => GetClaimValue<int>("LicenseeId");
+
         public int SpecialPlatform => GetClaimValue<int>("SpecialPlatform");
 
         public int SpecialPlatformType => GetClaimValue<int>("SpecialPlatformType");
 
         public string UserName => GetClaimValue("UserID");
+
+        public int UserId => GetClaimValue<int>("UserSEQ");
 
         public bool IsFakeLicensee => GetClaimValue<bool>("IsFakeLicensee");
 

@@ -19,5 +19,14 @@
 
         // Role for Statement Service
         public const string StatementServiceRoleUser = "Ext_User_Role";
+
+        //Total Bet
+        public const string TotalBetCorrectScore = "CorrectScore10";
+
+        //Report
+        public const string ReportExchangeWinLoss = "ExchangeWinloss77";
+        public const string ReportLastBetsMonitoring = "LastBetsMonitoring26";
+        public const string ReportLiveReport = "LiveReport38";
+        public const string ReportMatchWinLoss = "MatchWinLoss31";
     }
 }

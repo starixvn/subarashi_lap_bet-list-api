@@ -360,4 +360,28 @@
   <data name="TotalInWithParam" xml:space="preserve">
     <value>Total dalam {0}</value>
   </data>
+  <data name="VIP" xml:space="preserve">
+    <value>VIP</value>
+  </data>
+  <data name="Healthy" xml:space="preserve">
+    <value>Sehat</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Baru</value>
+  </data>
+  <data name="Moderate" xml:space="preserve">
+    <value>Sedang</value>
+  </data>
+  <data name="Suspicious" xml:space="preserve">
+    <value>Mencurigakan</value>
+  </data>
+  <data name="Dangerous" xml:space="preserve">
+    <value>Berbahaya</value>
+  </data>
+  <data name="Problems" xml:space="preserve">
+    <value>Masalah</value>
+  </data>
+  <data name="Robot" xml:space="preserve">
+    <value>Robot</value>
+  </data>
 </root>

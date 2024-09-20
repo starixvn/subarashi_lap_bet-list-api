@@ -372,4 +372,28 @@
   <data name="TotalInWithParam" xml:space="preserve">
     <value>Tổng số trên {0}</value>
   </data>
+  <data name="VIP" xml:space="preserve">
+    <value>VIP</value>
+  </data>
+  <data name="Healthy" xml:space="preserve">
+    <value>Tốt</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Mới</value>
+  </data>
+  <data name="Moderate" xml:space="preserve">
+    <value>Trung bình</value>
+  </data>
+  <data name="Suspicious" xml:space="preserve">
+    <value>Đáng ngờ</value>
+  </data>
+  <data name="Dangerous" xml:space="preserve">
+    <value>Nguy hiểm</value>
+  </data>
+  <data name="Problems" xml:space="preserve">
+    <value>Vấn đề</value>
+  </data>
+  <data name="Robot" xml:space="preserve">
+    <value>Robot</value>
+  </data>
 </root>

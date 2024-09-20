@@ -4,7 +4,11 @@
     {
         string SiteName { get; }
 
+        int LicenseeId { get; }
+
         string UserName { get; }
+
+        int UserID { get; }
 
         string SiteDBServer { get; }
 

@@ -3,6 +3,7 @@ using Fanex.Athena.Common.Model.DTO;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Utility.Helpers;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
+using Fanex.Athena.Resources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -40,6 +41,30 @@ namespace Fanex.Athena.Common.Services
                 .Select(_ => _.CustomerClass.ToString())
                 );
             return result.Distinct();
+        }
+
+        public async Task<IEnumerable<RiskLevel>> GetAllRiskLevel()
+        {
+            var customerClassCategories = await GetCustomerClassCategories();
+
+            customerClassCategories.Add(
+                new CustomerClassCategoryModel
+                {
+                    CustomerClass = 0,
+                    CustomerClassName = RiskLevel.Uncategorized,
+                    SabaRiskLevel = RiskLevel.Uncategorized
+                }
+            );
+
+            var riskLevelList = customerClassCategories.GroupBy(_ => _.SabaRiskLevel).Select((_, index) => new RiskLevel
+            {
+                Id = index.ToString(),
+                Key = _.Key,
+                Name = ViewResources.ResourceManager.GetString(_.Key) ?? _.Key,
+                CustomerClassList = _.OrderBy(cc => cc.CustomerClass).Select(cc => cc.CustomerClass.ToString()).Distinct()
+            }).OrderBy(_ => _, new RiskLevelComparer());
+
+            return riskLevelList;
         }
 
         private async Task<List<CustomerClassCategoryModel>> GetCustomerClassCategories()

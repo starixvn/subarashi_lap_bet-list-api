@@ -1,9 +1,10 @@
 ﻿using Fanex.Athena.BetList.Constants;
+using Fanex.Core.Utils;
 
 
 namespace Fanex.Athena.BetList.Model.MetaModel
 {
-    public class ExchangeRunningTicketMetaModel
+    public class ExchangeRunningTicketMetaModel : IAgentMetaModel, ICurrencyIdListMetaModel
     {
         public string AgentListXml { get; set; }
 

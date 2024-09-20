@@ -392,4 +392,28 @@
   <data name="TotalInWithParam" xml:space="preserve">
     <value>Total in {0}</value>
   </data>
+  <data name="VIP" xml:space="preserve">
+    <value>VIP</value>
+  </data>
+  <data name="Healthy" xml:space="preserve">
+    <value>Healthy</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Moderate" xml:space="preserve">
+    <value>Moderate</value>
+  </data>
+  <data name="Suspicious" xml:space="preserve">
+    <value>Suspicious</value>
+  </data>
+  <data name="Dangerous" xml:space="preserve">
+    <value>Dangerous</value>
+  </data>
+  <data name="Problems" xml:space="preserve">
+    <value>Problems</value>
+  </data>
+  <data name="Robot" xml:space="preserve">
+    <value>Robot</value>
+  </data>
 </root>

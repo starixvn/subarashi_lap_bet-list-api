@@ -2,10 +2,20 @@
 {
     using Fanex.Athena.Common.Model.MetaModel;
     using Fanex.Athena.Common.Utility.Helpers;
+    using Fanex.Core.Utils;
     using System;
-    using System.Text.Json.Serialization;
 
-    public class BetListMetaModel : BaseMetaModel, ICommonValueMetaModel, IBalanceUpMetaModel, IShardDBMetaModel
+    public class BetListMetaModel : BaseMetaModel, 
+        ICommonValueMetaModel, 
+        IBalanceUpMetaModel, 
+        IShardDBMetaModel, 
+        ICurrencyIdMetaModel, 
+        IMetaModelProductCodeList, 
+        ISpecialPlatformMetaModel, 
+        IMetaModelShowBetFromIP,
+        IMetaModelSubsidiarySearch,
+        IPlayerComMetaModel,
+        IAgentMetaModel
     {
         public BetListMetaModel()
         {
@@ -25,6 +35,8 @@
         public string UspKey { get; set; }
 
         public string ProductCodeList { get; set; } = string.Empty;
+
+        public string OriginalProductCodeList { get; set; }
 
         public bool IsShowSumStake { get; set; }
 
@@ -95,6 +107,10 @@
         public bool UseShardDB { get; set; }
 
         public int SpecialPlatform { get; set; }
+
+        public string SubsidiaryList { get; set; }
+
+        public bool SubsidiarySearch { get; set; }
 
         public bool IsHideSaba => SabaHelper.IsHideSaba(SpecialPlatform);
 

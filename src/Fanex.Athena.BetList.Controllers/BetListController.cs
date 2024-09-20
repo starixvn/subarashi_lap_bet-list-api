@@ -11,6 +11,8 @@ namespace Fanex.Athena.BetList.Controllers
     using Fanex.Athena.BetList.Model.DTO;
     using Fanex.Athena.BetList.Model.MetaModel;
     using Fanex.Athena.BetList.Service.Interfaces;
+    using Fanex.Athena.Common.DataAccess.Interfaces;
+    using Fanex.Athena.Common.Services.Interfaces;
     using Microsoft.AspNetCore.Mvc;
     using Model.ViewModel;
     using Service.Helpers;
@@ -18,7 +20,7 @@ namespace Fanex.Athena.BetList.Controllers
     [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class BetListController 
+    public class BetListController : BetListBaseController
     {
         protected const int PageSizeExcel = 63000;
 
@@ -26,17 +28,20 @@ namespace Fanex.Athena.BetList.Controllers
 
         private readonly ICacheRefAdapter _cacheRefAdapter;
 
-        private readonly IBetListService _betListService;
-
-        private readonly ITicketBuilderService _ticketBuilderService;
-
         private readonly IIPService _ipService;
 
-        public BetListController(ICacheRefAdapter cacheRefAdapter, IBetListService betListService, ITicketBuilderService ticketBuilderService, IIPService ipService)
+        public BetListController(
+            IContextService contextService,
+            ICacheRefAdapter cacheRefAdapter, 
+            IBetListService betListService, 
+            ITicketBuilderService ticketBuilderService, 
+            IIPService ipService,
+            IBalanceUpDataAccess balanceUpDataAccess,
+            IAuthorizationService authorizationService,
+            ISubsidiaryService subsidiaryService)
+            : base(contextService, authorizationService, betListService, ticketBuilderService, subsidiaryService, balanceUpDataAccess)
         {
             _cacheRefAdapter = cacheRefAdapter;
-            _betListService = betListService;
-            _ticketBuilderService = ticketBuilderService;
             _ipService = ipService;
         }
 
@@ -47,75 +52,13 @@ namespace Fanex.Athena.BetList.Controllers
         }
 
         [HttpPost]
-        public async Task<BetListResultViewModel> GetBetList(BetListMetaModel metaModel)
-        {
-            var ticketResult = await _betListService.GetBetListData(metaModel);
-            
-            var leagueName = string.Empty;
-            var firstOrDefault = ticketResult.MainTicketList.FirstOrDefault();
-            if (firstOrDefault != null)
-            {
-                leagueName = _betListService.GetLeagueName(firstOrDefault.LeagueId);
-            }
-
-            var main = _ticketBuilderService.BuildTicketText(
-                ticketResult,
-                metaModel,
-                isAllowedCustomerComm: metaModel.HasPlayerCom,
-                isMobileView: metaModel.IsMobileView);
-
-            var result = new BetListResultViewModel
-            {
-                Main = main,
-                Total = new BetListTotalData
-                {
-                    SumWinLoss = ticketResult.SumWinLoss + ticketResult.SumPlayerComm,
-                    SumLicenseeWl = ticketResult.SumLicenseeWL + ticketResult.SumComm,
-                    SumBetEffective = ticketResult.SumBetEffective,
-                    SumStake = ticketResult.MainTicketList.Sum(x => Math.Round(x.Stake, 2))
-                },
-                LeagueName = leagueName,
-            };
-
-            BetListHelper.ClearData(ticketResult);
-            return result;
-        }
+        public Task<BetListResultViewModel> GetBetList(BetListMetaModel metaModel)       
+            => GetBelistResultAsync(metaModel);
+        
 
         [HttpPost]
-        public async Task<object> GetBetListPaging(BetListMetaModel metaModel)
-        {
-            metaModel.IsServerPaging = true;
-
-            var ticketResult = await _betListService.GetBetListData(metaModel);
-
-            var totalPage = (int)Math.Ceiling((double)ticketResult.TotalRows / metaModel.PageSize);
-            var pageIndex = metaModel.PageIndex > totalPage ? totalPage : metaModel.PageIndex;
-
-            var startIndex = ((pageIndex - 1) * metaModel.PageSize) + 1;
-
-            var sumLicenseeWl = ticketResult.SumLicenseeWL + ticketResult.SumComm;
-            var sumWinLossText = NumberHelper.DecFormat(ticketResult.SumWinLoss + ticketResult.SumPlayerComm, 2);
-            var sumLicenseeWlText = NumberHelper.DecFormat(sumLicenseeWl, 2);
-            sumLicenseeWlText = sumLicenseeWl < 0
-                ? string.Format("<span class='negative-number'>{0}</span>", sumLicenseeWlText)
-                : sumLicenseeWlText;
-
-            var result = new
-            {
-                page = pageIndex,
-                total = totalPage,
-                records = ticketResult.TotalRows,
-                rows = _ticketBuilderService.BuildTicketText(ticketResult, metaModel, startIndex, isAllowedCustomerComm: metaModel.HasPlayerCom, isHideSaba: metaModel.IsHideSaba),
-                userdata = new
-                {
-                    WinLoss = sumWinLossText,
-                    LicenseeWL = sumLicenseeWlText
-                }
-            };
-
-            BetListHelper.ClearData(ticketResult);
-            return result;
-        }
+        public Task<object> GetBetListPaging(BetListMetaModel metaModel)
+            => GetBetListPagingResultAsync(metaModel);
 
         [HttpPost]
         public async Task<ExcelResult> ExportExcel(BetListExcelMetaModel metaModel)

@@ -2,10 +2,13 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using Fanex.Athena.Common.Constant;
     using Fanex.Athena.Common.Model.DTO;
+    using Fanex.Athena.Common.Model.MetaModel;
     using Fanex.Athena.Common.Utility.Helpers;
+    using Fanex.Core.Utils;
 
-    public class LastBetsMonitoringMetaModel
+    public class LastBetsMonitoringMetaModel : IValidationMetaModel, IMetaModelShowBetFromIP, IMetaModelProductCodeList, ISpecialPlatformMetaModel
     {
         private const int DefaultPageSize = 10;
 
@@ -59,12 +62,18 @@
 
         public bool IsShowIp { get; set; }
 
-        public string ProductCodeList { get; set; }
+        public string ProductCodeList { get; set; } = ProductCodes.SB;
 
         public int SpecialPlatform { get; set; }
 
         public bool IsHideSaba => SabaHelper.IsHideSaba(SpecialPlatform);
 
         public IEnumerable<RiskLevel> RiskLevels { get; set; } = new List<RiskLevel>();
+
+        public string OriginalProductCodeList { get; set; }
+
+        public string SportIds { get; set; }
+
+        public bool IsValid => ValidateHelper.ValidateBaseCurrency(BasedCurrency);
     }
 }
