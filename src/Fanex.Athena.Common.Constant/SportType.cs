@@ -337,5 +337,7 @@ namespace Fanex.Athena.Common.Constant
         SabaKabaddi = -10,
 
         Kabaddi = 47,
+
+        Parlay = 999
     }
 }

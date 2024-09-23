@@ -66,6 +66,7 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
             services.AddScoped<ISportService, SportService>();
             services.AddScoped<ISubsidiaryService, SubsidiaryService>();
             services.AddScoped<IAuthorizationService, AuthoriztionService>();
+            services.AddScoped<ILicenseeSettingService, LicenseeSettingService>();
 
             return services;
         }
@@ -106,6 +107,7 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
             services.AddScoped<ITicketHelper, TicketHelper>();
             services.AddSingleton<IRemotingRefService, RemotingRefService>();
             services.AddScoped<IExchangeRunningExcel, ExchangeRunningExcel>();
+            services.AddScoped<IBettingTicketCenterSportService, BettingTicketCenterSportService>();
             return services;
         }
     }

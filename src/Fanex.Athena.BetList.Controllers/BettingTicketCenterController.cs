@@ -3,7 +3,6 @@ using Fanex.Athena.BetList.Excel;
 using Fanex.Athena.BetList.Excel.Model;
 using Fanex.Athena.BetList.Model.DTO;
 using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service;
 using Fanex.Athena.BetList.Service.Interfaces;
 using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Common.Services.Interfaces;
@@ -22,18 +21,24 @@ namespace Fanex.Athena.BetList.Controllers
         private readonly IContextService _contextService;
         private readonly IBettingTicketCenterDataAccess _dataAccess;
         private readonly IIPService _ipService;
+        private readonly ICustomerClassService _customerClassService;
+        private readonly IBettingTicketCenterSportService _bettingTicketCenterSportService;
 
         public BettingTicketCenterController(
             IContextService contextService,
             IBettingTicketCenterDataAccess dataAccess,
             ITicketBuilderService ticketBuilderService,
             IBettingTicketCenterExcel bettingTicketCenterExcel,
-            IIPService ipService)
+            IIPService ipService,
+            ICustomerClassService customerClassService,
+            IBettingTicketCenterSportService bettingTicketCenterSportService)
             : base(ticketBuilderService, bettingTicketCenterExcel)
         {
             _contextService = contextService;
             _dataAccess = dataAccess;
             _ipService = ipService;
+            _customerClassService = customerClassService;
+            _bettingTicketCenterSportService = bettingTicketCenterSportService;
         }
 
         [HttpPost]
@@ -91,6 +96,10 @@ namespace Fanex.Athena.BetList.Controllers
         }
 
         [HttpPost]
+        [BearerAuthorize(Roles.BettingTicketCenter)]
+        [BearerAuthorize(Roles.BtcBookedBet)]
+        [RequestValidation(validateCurrencyList: true)]
+        [AutoBindMetaModel(bindAgent: true, bindShowingBetFromIP: true, bindSpecialPlatform: true, bindPlayerCom: true)]
         public async Task<IActionResult> GetByBookedBet(BookedBetBetListMetaModel metaModel)
         {
             var ticketResult = await _dataAccess.GetBetListForBookedBetAsync(metaModel);
@@ -116,6 +125,7 @@ namespace Fanex.Athena.BetList.Controllers
 
         private async Task<IActionResult> GetBySingleCustomerResult(SingleCustomersBetListMetaModel metaModel)
         {
+            metaModel.SportListXML = _bettingTicketCenterSportService.BuildSportTypeXML(metaModel.SportIds);
             var ticketResult = await _dataAccess.GetBetListForSingleCustomerAsync(metaModel);
 
             var option = new BettingTicketCenterOption
@@ -170,8 +180,11 @@ namespace Fanex.Athena.BetList.Controllers
 
         private async Task<IActionResult> GetByRunningResult(RunningBetListMetaModel metaModel)
         {
+            metaModel.FullCustomerClass = string.Join(",", await _customerClassService.GetAllCustomerClassId());
+            metaModel.SportListXML = _bettingTicketCenterSportService.BuildSportTypeXML(metaModel.SportIds);
+
             var ticketResult = ShouldReturnEmptyResult(metaModel)
-                ? new TicketResult() : await _dataAccess.GetRunningBetListAsync(metaModel).ConfigureAwait(false);
+                ? new TicketResult() : await _dataAccess.GetRunningBetListAsync(metaModel);
 
             var option = new BettingTicketCenterOption
             {

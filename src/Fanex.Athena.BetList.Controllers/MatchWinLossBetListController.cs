@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Fanex.Athena.BetList.Controllers
 {
     [BearerAuthorize(Roles.ReportMatchWinLoss)]
+    [ApiController]
+    [Route("api/[controller]/[action]")]
     public class MatchWinLossBetListController : BetListBaseController
     {
         private readonly string STR_SP_BETLIST_MATCHWL_OLD = "Lrf_BetList_MatchWL_Old";

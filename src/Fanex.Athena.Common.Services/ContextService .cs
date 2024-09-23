@@ -36,7 +36,7 @@ namespace Fanex.Athena.Common.Services
 
         public string UserName => GetClaimValue("UserID");
 
-        public int UserId => GetClaimValue<int>("UserSEQ");
+        public int UserID => GetClaimValue<int>("UserSEQ");
 
         public bool IsFakeLicensee => GetClaimValue<bool>("IsFakeLicensee");
 

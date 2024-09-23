@@ -11,6 +11,7 @@
         public const string BtcSingleCustomer = "BTC_SingleCustomer";
         public const string BtcRefNo = "BTC_RefNo";
         public const string BtcRunning = "BTC_Running";
+        public const string BtcBookedBet = "BTC_BookedBet";
 
         public const string Subsidiary = "SUBSIDIARY";
 
@@ -22,11 +23,20 @@
 
         //Total Bet
         public const string TotalBetCorrectScore = "CorrectScore10";
+        public const string TotalBetCleanSheet = "CleanSheet16";
+        public const string TotalBetToWinToNil = "Towintonil20";
+        public const string TotalBet3WayHandicap = "3-WayHandicap21";
+        public const string TotalBetMixParlay = "MixParlay12";
+        public const string TotalBetDoubleChance = "DoubleChance17";
+        public const string TotalBetBONTeamToScore = "BONteamtoscore19";
 
         //Report
         public const string ReportExchangeWinLoss = "ExchangeWinloss77";
         public const string ReportLastBetsMonitoring = "LastBetsMonitoring26";
         public const string ReportLiveReport = "LiveReport38";
         public const string ReportMatchWinLoss = "MatchWinLoss31";
+        public const string ReportCustomerPendingFunds = "CustomerPendingFunds30";
+        public const string ReportSabaVirtualSportsWinLoss = "SabaVirtualSportsWinLoss";
+        public const string ReportLicenseeWinLoss = "LicenseeWinLoss27";
     }
 }

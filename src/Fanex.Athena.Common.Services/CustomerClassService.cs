@@ -39,7 +39,7 @@ namespace Fanex.Athena.Common.Services
             result.AddRange(listCategory
                 .OrderBy(_ => _.CustomerClass)
                 .Select(_ => _.CustomerClass.ToString())
-                );
+            );
             return result.Distinct();
         }
 
