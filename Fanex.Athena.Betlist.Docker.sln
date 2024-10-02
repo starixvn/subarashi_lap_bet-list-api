@@ -48,6 +48,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Result.Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.BetListAPI.Host", "src\Fanex.Athena.BetListAPI.Host\Fanex.Athena.BetListAPI.Host.csproj", "{14C82EB7-3057-45D6-AB12-361036639906}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BetList", "BetList", "{E5F1134C-04A2-4E26-B022-5AD6AFA3FDFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.BetList.Controllers.UnitTests", "tests\Fanex.Athena.BetList.Controllers.UnitTests\Fanex.Athena.BetList.Controllers.UnitTests.csproj", "{86E3A601-9757-4010-B449-F20FA4956B7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -122,6 +126,10 @@ Global
 		{14C82EB7-3057-45D6-AB12-361036639906}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14C82EB7-3057-45D6-AB12-361036639906}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14C82EB7-3057-45D6-AB12-361036639906}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86E3A601-9757-4010-B449-F20FA4956B7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86E3A601-9757-4010-B449-F20FA4956B7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86E3A601-9757-4010-B449-F20FA4956B7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86E3A601-9757-4010-B449-F20FA4956B7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,6 +156,8 @@ Global
 		{6C0113C3-327A-4B7E-83CE-4B7BFB470EA4} = {DFA3F3C9-D49D-4108-B69E-69610655E5F5}
 		{70433D08-D88C-45EB-BB79-38C1A7EC2478} = {DFA3F3C9-D49D-4108-B69E-69610655E5F5}
 		{14C82EB7-3057-45D6-AB12-361036639906} = {CDC531B6-4C2D-49F6-A00D-DFCFB722AF2E}
+		{E5F1134C-04A2-4E26-B022-5AD6AFA3FDFC} = {58840102-77F1-487D-A816-70EC51828737}
+		{86E3A601-9757-4010-B449-F20FA4956B7D} = {E5F1134C-04A2-4E26-B022-5AD6AFA3FDFC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C284B560-5312-4A13-B93D-B01FE1162964}
