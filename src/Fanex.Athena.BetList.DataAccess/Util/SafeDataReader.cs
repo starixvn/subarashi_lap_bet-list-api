@@ -1,10 +1,10 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess.Util
 {
+    using Common.DataAccess.Extensions;
+    using Fanex.Common.Extensions;
     using System;
     using System.Collections.Generic;
     using System.Data;
-    using Common.DataAccess.Extensions;
-    using Fanex.Common.Extensions;
 
     public class SafeDataReader : ISafeDataReader
     {

@@ -6,7 +6,6 @@
 
 namespace Fanex.Athena.BetList.Excel
 {
-    using System.Globalization;
     using BetList.Model.DTO;
     using BetListNPOI.HSSF.UserModel;
     using BetListNPOI.SS.UserModel;
@@ -16,6 +15,7 @@ namespace Fanex.Athena.BetList.Excel
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Resources;
+    using System.Globalization;
 
     public static class BetListExcelBuilderExtension
     {

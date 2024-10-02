@@ -5,13 +5,13 @@
     using Fanex.Core.Utils;
     using System;
 
-    public class BetListMetaModel : BaseMetaModel, 
-        ICommonValueMetaModel, 
-        IBalanceUpMetaModel, 
-        IShardDBMetaModel, 
-        ICurrencyIdMetaModel, 
-        IMetaModelProductCodeList, 
-        ISpecialPlatformMetaModel, 
+    public class BetListMetaModel : BaseMetaModel,
+        ICommonValueMetaModel,
+        IBalanceUpMetaModel,
+        IShardDBMetaModel,
+        ICurrencyIdMetaModel,
+        IMetaModelProductCodeList,
+        ISpecialPlatformMetaModel,
         IMetaModelShowBetFromIP,
         IMetaModelSubsidiarySearch,
         IPlayerComMetaModel,

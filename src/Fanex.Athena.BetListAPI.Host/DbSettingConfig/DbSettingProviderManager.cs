@@ -1,7 +1,7 @@
 ﻿using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Data;
 
-namespace Fanex.Athena.BetListAPI.Site.DbSettingConfig
+namespace Fanex.Athena.BetListAPI.Host.DbSettingConfig
 {
     public static class DbSettingProviderManagerExtension
     {

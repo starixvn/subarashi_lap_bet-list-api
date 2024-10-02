@@ -23,13 +23,13 @@ namespace Fanex.Athena.BetList.Controllers
 
         private readonly ICurrencyValidation _currencyValidation;
 
-        public MatchWinLossBetListController(IContextService contextService, 
-            IAuthorizationService authoriztionService, 
-            IBetListService betListService, 
-            ITicketBuilderService ticketBuilderService, 
-            ISubsidiaryService subsidiaryService, 
+        public MatchWinLossBetListController(IContextService contextService,
+            IAuthorizationService authoriztionService,
+            IBetListService betListService,
+            ITicketBuilderService ticketBuilderService,
+            ISubsidiaryService subsidiaryService,
             IBalanceUpDataAccess balanceUpDataAccess,
-            ICurrencyValidation currencyValidation) 
+            ICurrencyValidation currencyValidation)
             : base(contextService, authoriztionService, betListService, ticketBuilderService, subsidiaryService, balanceUpDataAccess)
         {
             _currencyValidation = currencyValidation;

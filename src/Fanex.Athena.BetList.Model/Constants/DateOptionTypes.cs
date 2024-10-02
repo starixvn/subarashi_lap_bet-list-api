@@ -1,5 +1,4 @@
-﻿
-namespace Fanex.Athena.BetList.Model
+﻿namespace Fanex.Athena.BetList.Model.Constants
 {
     public static class DateOptionTypes
     {

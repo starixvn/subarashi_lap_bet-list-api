@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Athena.BetList.Excel
 {
-    using System;
-    using System.Linq;
     using BetListNPOI.SS.UserModel;
     using Builders;
     using Common.Constant;
@@ -9,6 +7,8 @@
     using Fanex.Athena.BetList.Service.Interfaces;
     using Model;
     using Resources;
+    using System;
+    using System.Linq;
 
     public class BettingTicketCenterExcel : IBettingTicketCenterExcel
     {

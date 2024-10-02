@@ -1,4 +1,4 @@
-﻿namespace Fanex.Athena.BetListAPI.Site.Settings
+﻿namespace Fanex.Athena.BetListAPI.Host.Settings
 {
     public class IdentityServerSetting
     {

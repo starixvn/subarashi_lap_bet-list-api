@@ -1,9 +1,8 @@
 ﻿namespace Fanex.Athena.BetList.Service.Interfaces
 {
-    using System.Collections.Generic;
-
     using Fanex.Athena.BetList.Model.DTO;
     using Fanex.Athena.BetList.Model.MetaModel;
+    using System.Collections.Generic;
 
     public interface ITicketBuilderService
     {

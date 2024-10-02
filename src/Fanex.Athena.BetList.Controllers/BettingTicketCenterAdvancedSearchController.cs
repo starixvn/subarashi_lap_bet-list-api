@@ -22,7 +22,7 @@ namespace Fanex.Athena.BetList.Controllers
     [Route("api/[controller]/[action]")]
     [BearerAuthorize(Roles.BtcAdvancedSearch)]
     public class BettingTicketCenterAdvancedSearchController : BettingTicketCenterBaseController
-    {       
+    {
         private const int RowsExceedLimitErrorCode = 1001;
         private const int ServerBusyErrorCode = 1002;
 
@@ -60,7 +60,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpPost]
         [BearerAuthorize(Roles.BtcAdvancedSearch)]
         [RequestValidation(validateCurrencyList: true)]
-        [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness:  true, bindShowingBetFromIP: true, bindProductCodeList: true)]
+        [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindShowingBetFromIP: true, bindProductCodeList: true)]
         public async Task<IActionResult> GetData(AdvancedSearchBetListMetaModel metaModel)
         {
             var isHideSaba = SabaHelper.IsHideSaba(_contextService.SpecialPlatform);

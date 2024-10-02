@@ -1,11 +1,10 @@
 ﻿namespace Fanex.Athena.Common.Utility.Services
 {
+    using Fanex.Athena.Common.Model.DTO;
+    using Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Fanex.Athena.Common.Model.DTO;
-    using Fanex.Athena.Model.Core.DTO.Configuration;
-    using Interfaces;
 
     /// <summary>
     /// Setting class.

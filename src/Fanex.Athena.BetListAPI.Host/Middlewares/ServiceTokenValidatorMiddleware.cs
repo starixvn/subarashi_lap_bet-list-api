@@ -2,7 +2,7 @@
 using Fanex.Athena.Common.Site.Authentications;
 using System.Security.Claims;
 
-namespace Fanex.Athena.BetListAPI.Site.Middlewares
+namespace Fanex.Athena.BetListAPI.Host.Middlewares
 {
     public class ServiceTokenValidatorMiddleware
     {
@@ -26,7 +26,7 @@ namespace Fanex.Athena.BetListAPI.Site.Middlewares
             {
                 context.User?.Claims.Append(new Claim(Claims.APIToken, token));
                 context.User?.Claims.Append(new Claim(Claims.IsValidClient, true.ToString()));
-            }    
+            }
 
             await _next.Invoke(context);
         }

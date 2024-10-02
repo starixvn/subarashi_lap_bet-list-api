@@ -12,12 +12,12 @@ namespace Fanex.Athena.BetList.Controllers
     [Route("api/[controller]/[action]")]
     public class RunningBetListController : BetListBaseController
     {
-        public RunningBetListController(IContextService contextService, 
-            IAuthorizationService authoriztionService, 
-            IBetListService betListService, 
+        public RunningBetListController(IContextService contextService,
+            IAuthorizationService authoriztionService,
+            IBetListService betListService,
             ITicketBuilderService ticketBuilderService,
-            ISubsidiaryService subsidiaryService, 
-            IBalanceUpDataAccess balanceUpDataAccess) 
+            ISubsidiaryService subsidiaryService,
+            IBalanceUpDataAccess balanceUpDataAccess)
             : base(contextService, authoriztionService, betListService, ticketBuilderService, subsidiaryService, balanceUpDataAccess)
         {
         }
@@ -57,6 +57,6 @@ namespace Fanex.Athena.BetList.Controllers
             await CheckPermissionAndAssignCommonValueToMetaModel(metaModel, uspKey);
             return await GetBelistResultAsync(metaModel);
         }
-        
+
     }
 }

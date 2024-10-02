@@ -13,8 +13,8 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         private readonly IActionContextAccessor _actionContextAccessor;
         private readonly IUrlHelperFactory _urlHelperFactory;
 
-        public ResultKenoReportController(IKenoLotteryTGResultFactory resultApi, 
-            IUrlHelperFactory urlHelperFactory, 
+        public ResultKenoReportController(IKenoLotteryTGResultFactory resultApi,
+            IUrlHelperFactory urlHelperFactory,
             IActionContextAccessor actionContextAccessor)
         {
             _resultApi = resultApi;

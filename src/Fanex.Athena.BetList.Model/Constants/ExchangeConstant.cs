@@ -1,4 +1,4 @@
-﻿namespace Fanex.Athena.BetList.Constants
+﻿namespace Fanex.Athena.BetList.Model.Constants
 {
     public static class ExchangeConstant
     {

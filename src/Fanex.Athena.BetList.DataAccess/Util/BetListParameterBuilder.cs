@@ -1,12 +1,12 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess.Util
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Common.Constant;
     using Data;
     using Fanex.Athena.Common.Model.MetaModel;
     using Model.MetaModel;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public static class BetListParameterBuilder
     {

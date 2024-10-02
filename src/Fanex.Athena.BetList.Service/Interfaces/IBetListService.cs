@@ -6,9 +6,9 @@
 
 namespace Fanex.Athena.BetList.Service.Interfaces
 {
-    using System.Threading.Tasks;
     using Fanex.Athena.BetList.Model.DTO;
     using Fanex.Athena.BetList.Model.MetaModel;
+    using System.Threading.Tasks;
 
     public interface IBetListService
     {

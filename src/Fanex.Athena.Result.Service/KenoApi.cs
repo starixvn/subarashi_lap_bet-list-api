@@ -1,14 +1,14 @@
 ﻿namespace Fanex.Athena.Result.Service
 {
-    using System;
-    using System.Net;
-    using System.Text;
-    using System.Web;
     using Interfaces;
     using Model.Const;
     using Model.DTO.Keno;
     using Model.MetaModel.Keno;
     using Newtonsoft.Json;
+    using System;
+    using System.Net;
+    using System.Text;
+    using System.Web;
 
     public class KenoApi : IKenoApi
     {

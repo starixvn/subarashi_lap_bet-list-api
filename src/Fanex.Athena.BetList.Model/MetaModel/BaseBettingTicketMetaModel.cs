@@ -4,12 +4,12 @@
     using Fanex.Core.Utils;
     using System;
 
-    public class BaseBettingTicketMetaModel : ICommonValueMetaModel, 
-        IValidationMetaModel, 
-        IAgentMetaModel, 
-        IDataTestableMetaModel, 
-        ICurrencyIdListMetaModel, 
-        IMetaModelProductCodeList, 
+    public class BaseBettingTicketMetaModel : ICommonValueMetaModel,
+        IValidationMetaModel,
+        IAgentMetaModel,
+        IDataTestableMetaModel,
+        ICurrencyIdListMetaModel,
+        IMetaModelProductCodeList,
         IMetaModelSubsidiarySearch,
         IPlayerComMetaModel,
         ISpecialPlatformMetaModel

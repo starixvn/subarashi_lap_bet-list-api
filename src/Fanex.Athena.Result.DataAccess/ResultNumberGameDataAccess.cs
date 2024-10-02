@@ -1,17 +1,17 @@
 ﻿
 namespace Fanex.Athena.Result.DataAccess
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Common.DataAccess;
     using Common.DataAccess.Extensions;
     using Fanex.Common.Extensions;
     using Fanex.Result.Core.Happy5.DTO;
     using Fanex.Result.Core.NumberGame.DTO;
     using Model.MetaModel;
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class ResultNumberGameDataAccess : BaseDataAccess, IResultNumberGameDataAccess
     {

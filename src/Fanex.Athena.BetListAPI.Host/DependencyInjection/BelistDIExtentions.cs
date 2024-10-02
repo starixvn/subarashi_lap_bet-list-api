@@ -1,5 +1,4 @@
-﻿using BetListNPOI.HSSF.Record.Chart;
-using Fanex.Athena.BetList.Controllers.Utility;
+﻿using Fanex.Athena.BetList.Controllers.Utility;
 using Fanex.Athena.BetList.DataAccess;
 using Fanex.Athena.BetList.DataAccess.Interfaces;
 using Fanex.Athena.BetList.Excel;
@@ -19,7 +18,7 @@ using Fanex.BetList.Core.TicketHelper;
 using Fanex.Core.Utils;
 using Fanex.RemotingRef;
 
-namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
+namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
 {
     public static class BelistDIExtentions
     {
@@ -45,7 +44,7 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
 
             services.AddHttpContextAccessor();
 
-            services.AddScoped<IAppSettings>(provider => 
+            services.AddScoped<IAppSettings>(provider =>
             {
                 var config = provider.GetService<IConfiguration>();
                 var settings = config.GetSection("AppSettings").Get<AppSettings>();
@@ -53,7 +52,7 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
                 return settings;
             });
             services.AddScoped<IMetaModelBindingService, BaseMetaModelBindingService>();
-            services.AddScoped<ICurrencyValidation, CurrencyValidation>();  
+            services.AddScoped<ICurrencyValidation, CurrencyValidation>();
             services.AddScoped<ICustomMemoryCache, CustomMemoryCache>();
             services.AddScoped<IMemoryCacheService, MemoryCacheService>();
             services.AddScoped<IFileSystem, FileSystem>();

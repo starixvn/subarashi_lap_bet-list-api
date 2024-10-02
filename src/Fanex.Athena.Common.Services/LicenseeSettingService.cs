@@ -1,6 +1,6 @@
-﻿using Fanex.Athena.Common.Services.Interfaces;
+﻿using Fanex.Athena.Common.Model.DTO;
+using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Model.Core.DTO.Configuration;
 
 
 namespace Fanex.Athena.Common.Services

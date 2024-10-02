@@ -1,9 +1,5 @@
 ﻿namespace Fanex.Athena.Result.Service.Interfaces
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Threading.Tasks;
     using Common.Model.DTO;
     using Fanex.Result.Core.Base;
     using Fanex.Result.Core.Bitcoin.DTO;
@@ -12,6 +8,10 @@
     using Fanex.Result.Core.Racing.DTO;
     using Fanex.Result.Core.Sportsbook.DTO;
     using Model.MetaModel;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Threading.Tasks;
 
     public interface IResultService
     {

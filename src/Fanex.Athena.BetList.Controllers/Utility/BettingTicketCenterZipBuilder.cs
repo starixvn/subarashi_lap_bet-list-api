@@ -1,15 +1,15 @@
 ﻿using BetListNPOI.SS.UserModel;
-using Fanex.Athena.BetList.Excel.Model;
 using Fanex.Athena.BetList.Excel;
+using Fanex.Athena.BetList.Excel.Model;
 using Fanex.Athena.BetList.Model.DTO;
 using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.BetList.Service.Helpers;
 using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Common.Utility.Services;
-using Newtonsoft.Json;
-using Microsoft.AspNetCore.Http;
+using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Ionic.Zip;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace Fanex.Athena.BetList.Controllers.Utility
 {

@@ -1,6 +1,4 @@
-﻿using Fanex.Athena.Result.Controller.Constants;
-
-namespace Fanex.Athena.Result.Controller.Utils
+﻿namespace Fanex.Athena.Result.Controller.Utils
 {
     internal static class ConfigHelpers
     {

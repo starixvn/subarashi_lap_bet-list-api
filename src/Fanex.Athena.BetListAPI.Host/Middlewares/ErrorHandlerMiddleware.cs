@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Diagnostics;
 using System.Net;
 
-namespace Fanex.Athena.PlayerAdmin.Core.Middlewares
+namespace Fanex.Athena.BetListAPI.Host.Middlewares
 {
     public class ErrorHandlerMiddleware
     {

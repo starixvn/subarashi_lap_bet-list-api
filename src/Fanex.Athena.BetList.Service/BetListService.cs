@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Athena.BetList.Service
 {
-    using System;
-    using System.Threading.Tasks;
     using Common.DataAccess.Interfaces;
     using Common.Utility.Services.Interfaces;
     using Fanex.Athena.BetList.DataAccess.Interfaces;
@@ -10,6 +8,7 @@
     using Fanex.Athena.BetList.Service.Interfaces;
     using Fanex.Athena.Common.Model.MetaModel;
     using Fanex.Athena.Common.Services.Interfaces;
+    using System.Threading.Tasks;
 
     public class BetListService : IBetListService
     {

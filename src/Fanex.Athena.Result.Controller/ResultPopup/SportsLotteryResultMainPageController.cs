@@ -12,7 +12,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
         public SportsLotteryResultMainPageController(ISportsLotteryResult resultApi)
 
             => _resultApi = resultApi;
-        
+
 
         [HttpPost]
         public string ResultPage(string platform, string languageCode)

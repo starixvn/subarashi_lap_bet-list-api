@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.Result.Controller.MetaModel;
+﻿using Fanex.Athena.Result.Model.MetaModel;
+using Fanex.Athena.Result.Service.Interfaces;
 using Fanex.Result.Core.ThirdParty.Models;
 using Microsoft.AspNetCore.Mvc;
-using Fanex.Athena.Result.Service.Interfaces;
 
 namespace Fanex.Athena.Result.Controller.ResultPopup
 {
@@ -17,7 +17,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
         [HttpPost]
         public string Index(ThirdPartyMetaModel metaModel)
         {
-            var resultApi = _factory.CreateThirdPartyResultGetter(ConfigHelpers.GetConfigKey(ConfigName.JiliResult));   
+            var resultApi = _factory.CreateThirdPartyResultGetter(ConfigHelpers.GetConfigKey(ConfigName.JiliResult));
 
             var request = new ResultRequest(metaModel.CustId, metaModel.TransId3rd, metaModel.GameId3rd, metaModel.CurrencyId, metaModel.SiteId, metaModel.LanguageCode)
             {

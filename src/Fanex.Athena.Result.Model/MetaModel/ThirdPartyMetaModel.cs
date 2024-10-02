@@ -1,4 +1,4 @@
-﻿namespace Fanex.Athena.Result.Controller.MetaModel
+﻿namespace Fanex.Athena.Result.Model.MetaModel
 {
     public class ThirdPartyMetaModel
     {

@@ -4,7 +4,7 @@ using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Site.Attributes;
-using Fanex.Athena.Extension.Helper;
+using Fanex.Athena.Common.Utility.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Athena.BetList.Controllers
@@ -17,13 +17,13 @@ namespace Fanex.Athena.BetList.Controllers
     {
         private readonly IReportSettingService _reportSettingService;
 
-        public SabaVirtualSportsWinLossBetListController(IContextService contextService, 
-            IAuthorizationService authoriztionService, 
+        public SabaVirtualSportsWinLossBetListController(IContextService contextService,
+            IAuthorizationService authoriztionService,
             IBetListService betListService,
-            ITicketBuilderService ticketBuilderService, 
-            ISubsidiaryService subsidiaryService, 
+            ITicketBuilderService ticketBuilderService,
+            ISubsidiaryService subsidiaryService,
             IBalanceUpDataAccess balanceUpDataAccess,
-            IReportSettingService reportSettingService) 
+            IReportSettingService reportSettingService)
             : base(contextService, authoriztionService, betListService, ticketBuilderService, subsidiaryService, balanceUpDataAccess)
         {
             _reportSettingService = reportSettingService;

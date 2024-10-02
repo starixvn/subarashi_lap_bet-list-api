@@ -6,9 +6,9 @@
 
 namespace Fanex.Athena.BetList.Model.DTO
 {
-    using System.Collections.Generic;
     using Common.Utility.Collections;
     using Fanex.BetList.Core.Entities;
+    using System.Collections.Generic;
 
     /// <summary>
     /// TicketResult class.

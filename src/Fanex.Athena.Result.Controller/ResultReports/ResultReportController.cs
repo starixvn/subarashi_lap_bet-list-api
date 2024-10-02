@@ -67,8 +67,8 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             if (ModelState.IsValid)
             {
                 metalModel.IsExportExcel = true;
-                metalModel.SportId = metalModel.SportId == 0 
-                    ? await GetSportId(metalModel.FromDate, metalModel.LicenseeId) 
+                metalModel.SportId = metalModel.SportId == 0
+                    ? await GetSportId(metalModel.FromDate, metalModel.LicenseeId)
                     : metalModel.SportId;
 
                 if (metalModel.SportId > 0)

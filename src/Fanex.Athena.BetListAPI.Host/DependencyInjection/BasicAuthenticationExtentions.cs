@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 
-namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
+namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
 {
     public static class BasicAuthenticationExtentions
     {

@@ -1,5 +1,4 @@
-﻿using Fanex.Athena.Common.DataAccess;
-using Fanex.Athena.Common.DataAccess.Interfaces;
+﻿using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Athena.Common.Model.MetaModel;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Utility.Extensions;
@@ -92,15 +91,15 @@ namespace Fanex.Athena.Common.Site.Attributes
                 BindProductCodeList(context.ActionArguments, _contextService.OfferedSubProductList);
             }
 
-            if(IsBindSpecialPlatform)
+            if (IsBindSpecialPlatform)
             {
                 BindSpecialPlatform(context);
             }
 
-            if(IsBindBanlanceUpAndMoveBet)
+            if (IsBindBanlanceUpAndMoveBet)
             {
                 BindBalanceUpAndMoveBet(context);
-            }    
+            }
 
             await next();
         }

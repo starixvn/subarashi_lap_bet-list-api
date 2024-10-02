@@ -1,4 +1,4 @@
-﻿using Fanex.Athena.BetList.Constants;
+﻿using Fanex.Athena.BetList.Model.Constants;
 using Fanex.Core.Utils;
 
 

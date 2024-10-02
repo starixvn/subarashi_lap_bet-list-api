@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Athena.BetList.Model.MetaModel
 {
+    using Fanex.Athena.BetList.Model.Constants;
     using System;
 
     public class ExchangeBetListMetaModel : BaseExchangeBetListMetaModel

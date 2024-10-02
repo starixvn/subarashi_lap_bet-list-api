@@ -1,23 +1,23 @@
-using IdentityModel.AspNetCore.OAuth2Introspection;
-using Fanex.Athena.BetListAPI.Site.Settings;
-using Microsoft.AspNetCore.Authorization;
-using Aff.YB.DataSync.Service.Host.Middleware;
-using Fanex.Athena.BetListAPI.Site.DependencyInjection;
-using Fanex.Athena.BetListAPI.Site.Middlewares;
-using System.Globalization;
-using Microsoft.AspNetCore.Localization;
+using Fanex.Athena.BetListAPI.Host.DbSettingConfig;
+using Fanex.Athena.BetListAPI.Host.DependencyInjection;
+using Fanex.Athena.BetListAPI.Host.HealthChecks;
+using Fanex.Athena.BetListAPI.Host.Middlewares;
+using Fanex.Athena.BetListAPI.Host.Settings;
+using Fanex.Athena.Common.Services.Interfaces;
+using Fanex.Athena.Common.Site.Authentications;
 using Fanex.Athena.Common.Utility;
-using Fanex.RemotingRef;
 using Fanex.BetList.Core;
 using Fanex.BetList.Core.RemotingRef;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
-using Fanex.Athena.BetListAPI.Site.DbSettingConfig;
-using Newtonsoft.Json.Serialization;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Site.Authentications;
+using Fanex.RemotingRef;
 using Fanex.Result.Core.Base;
 using Fanex.Result.Core.RemotingRef;
+using IdentityModel.AspNetCore.OAuth2Introspection;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Localization;
+using Newtonsoft.Json.Serialization;
+using System.Globalization;
 
 
 var builder = WebApplication.CreateBuilder(args);

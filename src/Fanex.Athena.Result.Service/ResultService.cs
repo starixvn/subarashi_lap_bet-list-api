@@ -1,9 +1,5 @@
 ﻿namespace Fanex.Athena.Result.Service
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Threading.Tasks;
     using Common.Model.DTO;
     using DataAccess;
     using Fanex.Result.Core;
@@ -15,6 +11,10 @@
     using Fanex.Result.Core.Sportsbook.DTO;
     using Interfaces;
     using Model.MetaModel;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Threading.Tasks;
 
     public class ResultService : IResultService
     {

@@ -1,11 +1,11 @@
 ﻿using Fanex.Athena.BetList.DataAccess.Interfaces;
-using Fanex.Athena.BetList.Excel.Model;
 using Fanex.Athena.BetList.Excel;
+using Fanex.Athena.BetList.Excel.Model;
 using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.BetList.Service.Interfaces;
+using Fanex.Athena.Common.Site.Attributes;
 using Fanex.Athena.Resources;
 using Microsoft.AspNetCore.Mvc;
-using Fanex.Athena.Common.Site.Attributes;
 
 namespace Fanex.Athena.BetList.Controllers
 {

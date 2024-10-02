@@ -1,9 +1,9 @@
-﻿using Fanex.Athena.Result.Controller.MetaModel;
-using Fanex.Result.Core.ThirdParty.Models;
-using Microsoft.AspNetCore.Mvc;
-using Fanex.Athena.BetList.Service.Interfaces;
+﻿using Fanex.Athena.BetList.Service.Interfaces;
+using Fanex.Athena.Result.Model.MetaModel;
 using Fanex.Athena.Result.Service.Interfaces;
+using Fanex.Result.Core.ThirdParty.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Athena.Result.Controller.ResultPopup
 {

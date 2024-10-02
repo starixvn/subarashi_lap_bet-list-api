@@ -1,16 +1,16 @@
 ﻿using Fanex.Athena.Result.DataAccess;
-using Fanex.Athena.Result.Service.Interfaces;
 using Fanex.Athena.Result.Service;
-using Fanex.Result.Core.LinkedGames;
+using Fanex.Athena.Result.Service.Interfaces;
+using Fanex.Result.Core.AllBetCasino;
 using Fanex.Result.Core.Base.Utilities;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+using Fanex.Result.Core.LinkedGames;
 using Fanex.Result.Core.SabaClub;
 using Fanex.Result.Core.SAGaming;
-using Fanex.Result.Core.AllBetCasino;
-using Fanex.Result.Core.SportsLottery;
 using Fanex.Result.Core.SexyGaming;
+using Fanex.Result.Core.SportsLottery;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
+namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
 {
     public static class BelistResultDIExtentions
     {
@@ -51,10 +51,10 @@ namespace Fanex.Athena.BetListAPI.Site.DependencyInjection
         {
             var path = configuration.GetSection("AllbetResultImagePath").Get<string>();
             var isUseOriginalPath = configuration.GetSection("AllbetUseOriginalPath").Get<bool>();
-            services.AddSingleton(new AllbetConfigs { ImagePath = path, UseOriginalPath = isUseOriginalPath});
+            services.AddSingleton(new AllbetConfigs { ImagePath = path, UseOriginalPath = isUseOriginalPath });
             services.AddScoped<IAllbetResultBuilder, AllbetResultBuilder>();
             return services;
-        }   
+        }
 
         private static IServiceCollection AddLinkGamesResultService(this IServiceCollection services, IConfiguration configuration)
         {

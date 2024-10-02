@@ -6,9 +6,6 @@
 
 namespace Fanex.Athena.BetList.Service
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Common.Constant;
     using Common.Utility.Helpers;
     using Common.Utility.Services.Interfaces;
@@ -16,6 +13,9 @@ namespace Fanex.Athena.BetList.Service
     using Fanex.Athena.BetList.Model.DTO;
     using Fanex.Athena.BetList.Model.MetaModel;
     using Interfaces;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class LastBetsMonitoringBetListService : ILastBetsMonitoringBetListService
     {

@@ -1,10 +1,10 @@
 ﻿namespace Fanex.Athena.BetList.Service.Helpers
 {
-    using System;
     using Common.Constant;
     using Fanex.BetList.Core.Entities;
     using Model.DTO;
     using Resources;
+    using System;
 
     public static class BetListHelper
     {

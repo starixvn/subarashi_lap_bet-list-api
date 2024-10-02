@@ -1,5 +1,4 @@
-﻿using System;
-using BetListNPOI.SS.UserModel;
+﻿using BetListNPOI.SS.UserModel;
 using Fanex.Athena.BetList.Excel.Model;
 
 namespace Fanex.Athena.BetList.Excel

@@ -1,11 +1,5 @@
 ﻿namespace Fanex.Athena.Result.DataAccess
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Globalization;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Common.DataAccess;
     using Common.DataAccess.Extensions;
     using Common.DataAccess.Interfaces;
@@ -17,6 +11,12 @@
     using Fanex.Result.Core.Racing.DTO;
     using Fanex.Result.Core.Sportsbook.DTO;
     using Model.MetaModel;
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class ResultDataAccess : BaseDataAccess, IResultDataAccess
     {

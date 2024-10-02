@@ -9,13 +9,13 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
     {
         private readonly IAllbetResultBuilder _resultApi;
 
-        public AllBetResultPopupController(IAllbetResultBuilder resultApi)        
+        public AllBetResultPopupController(IAllbetResultBuilder resultApi)
             => _resultApi = resultApi;
-        
+
 
         [HttpPost]
         public string Index(string transDesc, string betCheck, string betType, string languageCode)
             => _resultApi.Render(transDesc, betCheck, betType, languageCode);
-        
+
     }
 }

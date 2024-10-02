@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace Fanex.Athena.Common.Utility.Services.Internal
+﻿namespace Fanex.Athena.Common.Utility.Services.Internal
 {
     public class FileSystem : IFileSystem
     {

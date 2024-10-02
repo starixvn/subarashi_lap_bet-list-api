@@ -148,9 +148,9 @@ namespace Fanex.Athena.Common.Services
 
         public bool IsShowIP => GetClaimValue<bool>("IsShowIP");
 
-        public bool IsShowIpvn => IsShowIP 
-            && (IsAdministrator 
-            || IsInRoles(Roles.BetlistViewIpvn, Roles.PortalSuperAdmin) 
+        public bool IsShowIpvn => IsShowIP
+            && (IsAdministrator
+            || IsInRoles(Roles.BetlistViewIpvn, Roles.PortalSuperAdmin)
             || (User.IsInRole(Roles.StatementServiceRoleUser) && GetClaimValue<bool>("IShowIPVN")));
 
         private T GetClaimValue<T>(string claimType)

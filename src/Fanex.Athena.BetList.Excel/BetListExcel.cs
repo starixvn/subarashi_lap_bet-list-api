@@ -6,9 +6,6 @@
 
 namespace Fanex.Athena.BetList.Excel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Athena.BetList.Model.DTO;
     using Athena.BetList.Model.MetaModel;
     using BetListNPOI.HSSF.UserModel;
@@ -25,6 +22,9 @@ namespace Fanex.Athena.BetList.Excel
     using Helpers;
     using Resources;
     using Service.Extensions;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class BetListExcel
     {

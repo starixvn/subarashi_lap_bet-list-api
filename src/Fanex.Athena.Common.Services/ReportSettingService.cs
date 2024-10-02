@@ -1,10 +1,8 @@
 ﻿using Fanex.Athena.Common.Model.DTO;
 using Fanex.Athena.Common.Services.Interfaces;
+using Fanex.Athena.Common.Utility.Helpers;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Extension.Helper;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting.Internal;
-using Newtonsoft.Json;
 
 namespace Fanex.Athena.Common.Services
 {
@@ -19,7 +17,7 @@ namespace Fanex.Athena.Common.Services
         public ReportSettingService(
             IMemoryCacheService cache,
             IAppSettings appSettings,
-            IWebHostEnvironment hostEnviroment)           
+            IWebHostEnvironment hostEnviroment)
         {
             _cache = cache;
             _appSettings = appSettings;
@@ -109,6 +107,6 @@ namespace Fanex.Athena.Common.Services
 
         private IEnumerable<ReportSetting> GetSettingList()
             => _appSettings.ReportSettings;
-    
+
     }
 }

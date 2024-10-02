@@ -1,4 +1,4 @@
-﻿namespace Fanex.Athena.Model.Core.DTO.Configuration
+﻿namespace Fanex.Athena.Common.Model.DTO
 {
     public class FakeLicenseeSetting
     {

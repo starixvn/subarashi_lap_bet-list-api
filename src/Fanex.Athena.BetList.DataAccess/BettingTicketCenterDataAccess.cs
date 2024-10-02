@@ -1,8 +1,5 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
     using BetList.Model.DTO;
     using BetList.Model.MetaModel;
     using Common.Constant;
@@ -12,6 +9,9 @@
     using Fanex.Athena.Common.Utility.Helpers;
     using Fanex.Common;
     using Interfaces;
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class BettingTicketCenterDataAccess : BaseBetListDataAccess, IBettingTicketCenterDataAccess
     {

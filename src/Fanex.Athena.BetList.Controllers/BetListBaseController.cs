@@ -21,10 +21,10 @@ namespace Fanex.Athena.BetList.Controllers
         protected readonly ITicketBuilderService _ticketBuilderService;
         private readonly ISubsidiaryService _subsidiaryService;
 
-        protected BetListBaseController(IContextService contextService, 
-            IAuthorizationService authoriztionService, 
+        protected BetListBaseController(IContextService contextService,
+            IAuthorizationService authoriztionService,
             IBetListService betListService,
-            ITicketBuilderService ticketBuilderService, 
+            ITicketBuilderService ticketBuilderService,
             ISubsidiaryService subsidiaryService,
             IBalanceUpDataAccess balanceUpDataAccess
             )
@@ -143,7 +143,7 @@ namespace Fanex.Athena.BetList.Controllers
             => _balanceUpDataAccess.GetBalanceUp();
 
         private async Task<IDictionary<int, int[]>> CurrencyAgentListBySubsidiaryBusiness(IMetaModelSubsidiarySearch metaModel)
-            => _subsidiaryService.IsIgnoredSubsidiarySearch(metaModel.SubsidiarySearch, metaModel.SubsidiaryList) ? _contextService.AgentList.ToDictionary(x => x.Key,x => x.Value)
+            => _subsidiaryService.IsIgnoredSubsidiarySearch(metaModel.SubsidiarySearch, metaModel.SubsidiaryList) ? _contextService.AgentList.ToDictionary(x => x.Key, x => x.Value)
             : await _subsidiaryService.GetAgentList(metaModel.SubsidiaryList);
 
     }

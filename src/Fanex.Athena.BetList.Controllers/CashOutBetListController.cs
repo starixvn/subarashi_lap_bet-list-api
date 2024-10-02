@@ -39,7 +39,7 @@ namespace Fanex.Athena.BetList.Controllers
         }
 
         [HttpPost]
-        [AutoBindMetaModel(bindAgent:true, bindPlayerCom: true)]
+        [AutoBindMetaModel(bindAgent: true, bindPlayerCom: true)]
         public async Task<CashOutBetListDetailViewModel> Detail(CashOutBetListDetailMetaModel metaModel)
         {
             var viewModel = await _cashOutBetListDataAccess.GetDetail(metaModel);

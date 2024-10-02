@@ -1,8 +1,8 @@
 ﻿namespace Fanex.Athena.Common.DataAccess.Extensions
 {
+    using Fanex.Common.Extensions;
     using System;
     using System.Data;
-    using Fanex.Common.Extensions;
 
     public static class DataReaderExtensions
     {

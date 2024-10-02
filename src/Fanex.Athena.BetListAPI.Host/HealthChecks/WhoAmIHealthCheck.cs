@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Net.Sockets;
 using System.Net;
+using System.Net.Sockets;
 
-namespace Aff.YB.DataSync.Service.Host.Middleware
+namespace Fanex.Athena.BetListAPI.Host.HealthChecks
 {
     public class WhoAmIHealthCheck : IHealthCheck
     {

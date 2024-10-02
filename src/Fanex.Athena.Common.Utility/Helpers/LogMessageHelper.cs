@@ -10,7 +10,7 @@
 
     public static class LogMessageHelper
     {
-        public static string GenerateMessage(HttpContext context , Exception exception)
+        public static string GenerateMessage(HttpContext context, Exception exception)
         {
             var messageBuilder = new StringBuilder();
 

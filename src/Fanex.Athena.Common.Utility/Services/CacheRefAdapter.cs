@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
+﻿using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.RemotingRef;
 
 namespace Fanex.Athena.Common.Utility.Services

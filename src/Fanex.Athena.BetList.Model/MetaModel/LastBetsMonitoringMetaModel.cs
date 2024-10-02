@@ -1,12 +1,12 @@
 ﻿namespace Fanex.Athena.BetList.Model.MetaModel
 {
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using Fanex.Athena.Common.Constant;
     using Fanex.Athena.Common.Model.DTO;
     using Fanex.Athena.Common.Model.MetaModel;
     using Fanex.Athena.Common.Utility.Helpers;
     using Fanex.Core.Utils;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public class LastBetsMonitoringMetaModel : IValidationMetaModel, IMetaModelShowBetFromIP, IMetaModelProductCodeList, ISpecialPlatformMetaModel
     {

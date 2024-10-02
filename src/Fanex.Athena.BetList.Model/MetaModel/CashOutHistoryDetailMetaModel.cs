@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Fanex.Athena.BetList.Model.MetaModel
+﻿namespace Fanex.Athena.BetList.Model.MetaModel
 {
     public class CashOutHistoryDetailMetaModel : CashOutBetListDetailMetaModel
     {

@@ -1,4 +1,4 @@
-﻿namespace Fanex.Athena.Extension.Helper
+﻿namespace Fanex.Athena.Common.Utility.Helpers
 {
     using System;
 
@@ -56,7 +56,7 @@
         {
             const int MonthsInAYear = 12;
 
-            return (MonthsInAYear * (toDate.Year - fromDate.Year)) + toDate.Month - fromDate.Month + 1;
+            return MonthsInAYear * (toDate.Year - fromDate.Year) + toDate.Month - fromDate.Month + 1;
         }
 
         public static DateTime ToBeginOfTheDay(DateTime datetime)

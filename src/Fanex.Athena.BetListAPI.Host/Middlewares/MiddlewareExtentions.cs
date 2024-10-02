@@ -1,9 +1,7 @@
-﻿using Fanex.Athena.BetListAPI.Host.Middlewares;
-using Fanex.Athena.PlayerAdmin.Core.Middlewares;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
+﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Text.Json;
 
-namespace Fanex.Athena.BetListAPI.Site.Middlewares
+namespace Fanex.Athena.BetListAPI.Host.Middlewares
 {
     public static class MiddlewareExtentions
     {

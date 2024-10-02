@@ -1,17 +1,17 @@
-﻿using Fanex.Result.Core.ThirdParty.Models;
-using Microsoft.AspNetCore.Mvc;
-using Fanex.Athena.Result.Controller.MetaModel;
+﻿using Fanex.Athena.Result.Model.MetaModel;
 using Fanex.Athena.Result.Service.Interfaces;
+using Fanex.Result.Core.ThirdParty.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Athena.Result.Controller.ResultPopup
 {
     public class AdvantPlayMiniResultPopupController : ControllerBase
-    {      
+    {
         private readonly IBetlistResultGetterFactory _factory;
 
-        public AdvantPlayMiniResultPopupController(IBetlistResultGetterFactory factory)        
+        public AdvantPlayMiniResultPopupController(IBetlistResultGetterFactory factory)
             => _factory = factory;
-        
+
 
         [HttpPost]
         public string Index(ThirdPartyMetaModel metaModel)

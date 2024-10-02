@@ -1,13 +1,13 @@
 ﻿namespace Fanex.Athena.BetList.Service
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using DataAccess.Interfaces;
     using Interfaces;
     using Model.DTO;
     using Model.MetaModel;
     using Model.ViewModel;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class ExchangeBetListService : IExchangeBetListService
     {
@@ -40,9 +40,9 @@
             return new ExchangeBetListViewModel();
         }
 
-        public Task<IEnumerable<ExchangeTicketDetail>> GetTicketDetailListAsync(ExchangeBetListDetailMetaModel metaModel)       
-             =>  _dataAccess.GetTicketDetailListAsync(metaModel);
-        
+        public Task<IEnumerable<ExchangeTicketDetail>> GetTicketDetailListAsync(ExchangeBetListDetailMetaModel metaModel)
+             => _dataAccess.GetTicketDetailListAsync(metaModel);
+
 
         public Task<ExchangeResult<ExchangeRunningTicket>> GetRunningTicketsAsync(ExchangeRunningTicketMetaModel metaModel)
             => _dataAccess.GetRunningTicketsAsync(metaModel);

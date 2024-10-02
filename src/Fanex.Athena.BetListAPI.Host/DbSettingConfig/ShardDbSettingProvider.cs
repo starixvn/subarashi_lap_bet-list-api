@@ -2,7 +2,7 @@
 using Fanex.Data;
 using Microsoft.Data.SqlClient;
 
-namespace Fanex.Athena.BetListAPI.Site.DbSettingConfig
+namespace Fanex.Athena.BetListAPI.Host.DbSettingConfig
 {
     public class ShardDbSettingProvider : XmlDbSettingProvider
     {

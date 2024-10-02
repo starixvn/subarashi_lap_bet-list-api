@@ -22,12 +22,12 @@ namespace Fanex.Athena.BetList.Controllers
             IBalanceUpDataAccess balanceUpDataAccess,
             IAuthorizationService authorizationService,
             ISubsidiaryService subsidiaryService)
-            : base(contextService, authorizationService, betListService, ticketBuilderService, subsidiaryService, balanceUpDataAccess) 
+            : base(contextService, authorizationService, betListService, ticketBuilderService, subsidiaryService, balanceUpDataAccess)
         { }
 
         [HttpPost]
         [RequestValidation(validateCurrency: true)]
-        [AutoBindMetaModel(bindProductCodeList:true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
+        [AutoBindMetaModel(bindProductCodeList: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
         public async Task<BetListResultViewModel> GetData(BetListMetaModel metaModel)
         {
             const string UspKey = "Lrf_TotalBets_Sel430";

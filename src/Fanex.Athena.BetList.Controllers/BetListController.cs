@@ -1,10 +1,6 @@
 ﻿
 namespace Fanex.Athena.BetList.Controllers
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Common.Utility.Helpers;
     using Common.Utility.Services.Interfaces;
     using Excel;
     using Fanex.Athena.BetList.Controllers.CustomActionResult;
@@ -15,7 +11,8 @@ namespace Fanex.Athena.BetList.Controllers
     using Fanex.Athena.Common.Services.Interfaces;
     using Microsoft.AspNetCore.Mvc;
     using Model.ViewModel;
-    using Service.Helpers;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]
@@ -32,9 +29,9 @@ namespace Fanex.Athena.BetList.Controllers
 
         public BetListController(
             IContextService contextService,
-            ICacheRefAdapter cacheRefAdapter, 
-            IBetListService betListService, 
-            ITicketBuilderService ticketBuilderService, 
+            ICacheRefAdapter cacheRefAdapter,
+            IBetListService betListService,
+            ITicketBuilderService ticketBuilderService,
             IIPService ipService,
             IBalanceUpDataAccess balanceUpDataAccess,
             IAuthorizationService authorizationService,
@@ -52,9 +49,9 @@ namespace Fanex.Athena.BetList.Controllers
         }
 
         [HttpPost]
-        public Task<BetListResultViewModel> GetBetList(BetListMetaModel metaModel)       
+        public Task<BetListResultViewModel> GetBetList(BetListMetaModel metaModel)
             => GetBelistResultAsync(metaModel);
-        
+
 
         [HttpPost]
         public Task<object> GetBetListPaging(BetListMetaModel metaModel)

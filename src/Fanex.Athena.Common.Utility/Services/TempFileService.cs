@@ -12,8 +12,8 @@ namespace Fanex.Athena.Common.Utility.Services
 
         private readonly IHostEnvironment _enviroment;
 
-        private string RootPath => Path.IsPathFullyQualified(_appSettings.TempFilePath) 
-            ? _appSettings.TempFilePath 
+        private string RootPath => Path.IsPathFullyQualified(_appSettings.TempFilePath)
+            ? _appSettings.TempFilePath
             : Path.Combine(_enviroment.ContentRootPath, _appSettings.TempFilePath);
 
         public TempFileService(IAppSettings appSetting, IFileSystem fileSystem, IHostEnvironment environment)
@@ -25,7 +25,7 @@ namespace Fanex.Athena.Common.Utility.Services
 
         public void Delete(string path)
         {
-            
+
             try
             {
                 var realPath = Path.Combine(RootPath, path);

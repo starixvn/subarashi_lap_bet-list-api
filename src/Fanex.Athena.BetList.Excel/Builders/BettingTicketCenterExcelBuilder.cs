@@ -339,7 +339,7 @@ namespace Fanex.Athena.BetList.Excel.Builders
             _builder.AddOddsType(ticket, ticketResult.TicketDataList, _ticketHelper.GetValidOddsTypeNameById);
         }
 
-        private static int GetActualCols(BettingTicketCenterOption option)        
+        private static int GetActualCols(BettingTicketCenterOption option)
             => NumberOfColumns - (!option.ShowWinLoss).ToInt() - (!option.ShowLicenseeWl || option.ViewSabaCoins).ToInt() - (!option.ShowExternalId).ToInt() -
                 (!option.ShowSystemId).ToInt() - (!option.ShowTxId).ToInt() - (!option.IsBookedBet).ToInt();
 

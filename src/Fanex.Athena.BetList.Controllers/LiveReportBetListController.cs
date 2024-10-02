@@ -29,7 +29,7 @@ namespace Fanex.Athena.BetList.Controllers
 
         [HttpPost]
         [RequestValidation(validateCurrency: true)]
-        [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom:true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
+        [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
         public Task<dynamic> Match(LiveReportBetListMetaModel metaModel)
         {
             const string UspKey = "Lrf_BetList_LiveReport_SelWinlossByMatch";
