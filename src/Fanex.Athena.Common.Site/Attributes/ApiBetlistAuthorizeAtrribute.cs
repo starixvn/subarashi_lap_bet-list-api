@@ -9,10 +9,6 @@ namespace Fanex.Athena.Common.Site.Attributes
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
     public class ApiBetlistAuthorizeAttribute : ActionFilterAttribute, IAuthorizationFilter
     {
-        public ApiBetlistAuthorizeAttribute()
-        {
-        }
-
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             var licenseeSettingService = context.HttpContext.RequestServices.GetService<ILicenseeSettingService>();
@@ -22,7 +18,6 @@ namespace Fanex.Athena.Common.Site.Attributes
             if (!licenseeSettingService.IsAuthorizedOnBetList(lincenseeName))
             {
                 UnauthorizeAccessHandlerAsync(context);
-                return;
             }
         }
 

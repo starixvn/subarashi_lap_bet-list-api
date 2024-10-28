@@ -6,12 +6,12 @@ namespace Fanex.Athena.Common.Utility.Services.Interfaces
     {
         string UploadString(Uri address, string parameters);
 
-        string DownloadString(string address);
-
-        byte[] DownloadData(string address);
+        TOut UploadString<TIn, TOut>(string address, TIn requestData);
 
         string UploadString(Uri address, string parameters, IDictionary<HttpRequestHeader, string> headers);
 
-        TOut UploadString<TIn, TOut>(string address, TIn requestData);
+        string DownloadString(string address);
+
+        byte[] DownloadData(string address);
     }
 }

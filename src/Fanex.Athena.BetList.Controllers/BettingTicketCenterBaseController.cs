@@ -33,7 +33,7 @@
                 return $"{ViewResources.BettingTicketCenter} {string.Format(ViewResources.Viewin, ViewResources.SabaCoins)}";
             }
 
-            var date = metaModel.FromDate == DateTime.MinValue
+            var date = metaModel.FromDate == DateTimeOffset.MinValue.DateTime
                 ? string.Empty
                 : $", {metaModel.FromDate.ToString(FormatKey.DateFormat)}-->{metaModel.ToDate.ToString(FormatKey.DateFormat)}";
 

@@ -75,7 +75,7 @@ namespace Fanex.Athena.Common.Services
         private void AssignDateRange(ReportSetting reportSetting)
         {
             reportSetting.MinDate = ConvertToDate(reportSetting.MinDateString, reportSetting.TimeZone, _appSettings.HistoryDate);
-            reportSetting.MaxDate = ConvertToDate(reportSetting.MaxDateString, reportSetting.TimeZone, _appSettings.MaxDate ?? DateTime.Now);
+            reportSetting.MaxDate = ConvertToDate(reportSetting.MaxDateString, reportSetting.TimeZone, _appSettings.MaxDate ?? DateTimeOffset.Now.DateTime);
 
             if (reportSetting.LimitRecentMonths > 0)
             {

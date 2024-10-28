@@ -73,7 +73,7 @@ namespace Fanex.Athena.BetList.Controllers
                 {
                     // System Parlay.
                     var ticket = tickets.FirstOrDefault();
-                    texts[0] = string.Format(TextRenderPattern, texts[0], ticket.Currency, ticket.Stake.ToString("N0"));
+                    texts[0] = string.Format(TextRenderPattern, texts[0], ticket?.Currency, ticket?.Stake.ToString("N0"));
                 }
                 else
                 {
@@ -84,7 +84,7 @@ namespace Fanex.Athena.BetList.Controllers
                     {
                         var text = texts[i];
                         var ticket = tickets[i];
-                        texts[i] = string.Format(TextRenderPattern, text, ticket.Currency, ticket.Stake.ToString("N0"));
+                        texts[i] = string.Format(TextRenderPattern, text, ticket?.Currency, ticket?.Stake.ToString("N0"));
                     }
                 }
             }

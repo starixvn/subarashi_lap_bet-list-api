@@ -71,7 +71,11 @@ namespace Fanex.Athena.BetList.Controllers
 
         protected internal virtual ExcelResult Export(BetListExcelMetaModel metaModel, TicketResult ticketResult)
         {
-            var excel = new BetListExcel(metaModel.ShowingOption, metaModel.LicenseeId, metaModel.HiddenColumns, metaModel.IsHideSaba, metaModel.IsShowSumStake, metaModel.IsShowIpvn, metaModel.IsShowIp, _ipService);
+            metaModel.ShowingOption.IsHideSaba = metaModel.IsHideSaba;
+            metaModel.ShowingOption.IsShowSumStake = metaModel.IsShowSumStake;
+            metaModel.ShowingOption.IsShowIpvn = metaModel.IsShowIpvn;
+            metaModel.ShowingOption.IsShowIp = metaModel.IsShowIp;
+            var excel = new BetListExcel(metaModel.ShowingOption, metaModel.LicenseeId, metaModel.HiddenColumns, _ipService);
 
             var workbook = excel.Export(ticketResult, metaModel.Title, metaModel.StartIndex);
 

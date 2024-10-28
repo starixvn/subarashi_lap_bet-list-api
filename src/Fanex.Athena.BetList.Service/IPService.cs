@@ -10,6 +10,8 @@ namespace Fanex.Athena.BetList.Service
 {
     public class IPService : IIPService
     {
+        private const int TIME_OUT = 10;
+
         private static double IP32Bits = 16_777_216.0;
         private static double IPMaxRange = 65536.0;
         private static double IPMaxBytes = 256.0;
@@ -67,7 +69,7 @@ namespace Fanex.Athena.BetList.Service
             double num = 0.0;
             if (IsValidIpV4(ip))
             {
-                string[] strArray = ip.Split(new[] { '.' });
+                string[] strArray = ip.Split('.');
                 num = double.Parse(strArray[0]) * IP32Bits + double.Parse(strArray[1]) * IPMaxRange + double.Parse(strArray[IpIndex2]) * IPMaxBytes + double.Parse(strArray[IpIndex3]);
             }
 
@@ -104,7 +106,7 @@ namespace Fanex.Athena.BetList.Service
 
             const string regexCharacters =
                 @"(?<First>2[0-4]\d|25[0-5]|[01]?\d\d?)\.(?<Second>2[0-4]\d|25[0-5]|[01]?\d\d?)\.(?<Third>2[0-4]\d|25[0-5]|[01]?\d\d?)\.(?<Fourth>2[0-4]\d|25[0-5]|[01]?\d\d?)";
-            Regex regex = new Regex(regexCharacters);
+            Regex regex = new Regex(regexCharacters, RegexOptions.None, TimeSpan.FromSeconds(TIME_OUT));
 
             return regex.IsMatch(ip, 0);
         }

@@ -12,16 +12,15 @@
         ICurrencyIdMetaModel,
         IMetaModelProductCodeList,
         ISpecialPlatformMetaModel,
-        IMetaModelShowBetFromIP,
         IMetaModelSubsidiarySearch,
         IPlayerComMetaModel,
         IAgentMetaModel
     {
         public BetListMetaModel()
         {
-            FromDate = DateTime.Today;
-            Date = DateTime.Today;
-            ToDate = DateTime.Today;
+            FromDate = DateTimeHelper.Today;
+            Date = DateTimeHelper.Today;
+            ToDate = DateTimeHelper.Today;
             PageIndex = 1;
             PageSize = int.MaxValue - 1;
         }

@@ -132,7 +132,7 @@ namespace Fanex.Athena.BetList.Service.Extensions
             return licenseeWl < 0
                 ? string.Join(
                     null,
-                    new[] { "<span class='negative-number'>", string.Format("{0:#,##0.00}", licenseeWl), "</span>" })
+                    "<span class='negative-number'>", string.Format("{0:#,##0.00}", licenseeWl), "</span>")
                 : string.Format("{0:#,##0.00}", licenseeWl);
         }
 

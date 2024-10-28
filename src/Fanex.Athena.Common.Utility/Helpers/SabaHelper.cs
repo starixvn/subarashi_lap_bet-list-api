@@ -5,6 +5,8 @@ namespace Fanex.Athena.Common.Utility.Helpers
 {
     public static class SabaHelper
     {
+        private const int TIME_OUT = 10;
+
         public static bool IsHideSaba(int specialPlatform)
         {
             if (specialPlatform == SpecialPlatform.Jollysports || specialPlatform == SpecialPlatform.JollysportsCV)
@@ -17,9 +19,9 @@ namespace Fanex.Athena.Common.Utility.Helpers
         public static string RemoveSabaText(string text)
         {
             var sabaText = ViewResources.Saba.Trim();
-            var result = System.Text.RegularExpressions.Regex.Replace(text, sabaText, string.Empty, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            var result = System.Text.RegularExpressions.Regex.Replace(text, sabaText, string.Empty, System.Text.RegularExpressions.RegexOptions.IgnoreCase, TimeSpan.FromSeconds(TIME_OUT));
             // remove duplicate space
-            return System.Text.RegularExpressions.Regex.Replace(result, "  ", " ", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            return System.Text.RegularExpressions.Regex.Replace(result, "  ", " ", System.Text.RegularExpressions.RegexOptions.IgnoreCase, TimeSpan.FromSeconds(TIME_OUT));
         }
     }
 }

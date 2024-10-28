@@ -13,19 +13,17 @@ using Microsoft.AspNetCore.Mvc;
 namespace Fanex.Athena.BetList.Controllers
 {
     [ApiController]
-    [BearerAuthorize()]
+    [BearerAuthorize]
     [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]
     public class BettingTicketCenterController : BettingTicketCenterBaseController
     {
-        private readonly IContextService _contextService;
         private readonly IBettingTicketCenterDataAccess _dataAccess;
         private readonly IIPService _ipService;
         private readonly ICustomerClassService _customerClassService;
         private readonly IBettingTicketCenterSportService _bettingTicketCenterSportService;
 
         public BettingTicketCenterController(
-            IContextService contextService,
             IBettingTicketCenterDataAccess dataAccess,
             ITicketBuilderService ticketBuilderService,
             IBettingTicketCenterExcel bettingTicketCenterExcel,
@@ -34,7 +32,6 @@ namespace Fanex.Athena.BetList.Controllers
             IBettingTicketCenterSportService bettingTicketCenterSportService)
             : base(ticketBuilderService, bettingTicketCenterExcel)
         {
-            _contextService = contextService;
             _dataAccess = dataAccess;
             _ipService = ipService;
             _customerClassService = customerClassService;

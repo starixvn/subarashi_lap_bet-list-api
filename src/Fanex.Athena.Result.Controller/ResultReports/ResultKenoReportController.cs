@@ -28,7 +28,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             var result = _resultApi.CreateResultApi(vendorProductId);
             var request = _actionContextAccessor.ActionContext.HttpContext.Request;
             var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext);
-            return result.GetResult(custId, isDesktop, DateTime.Now, urlHelper.Action("AccessDenied", "Utility", null, request.Scheme), languageCode);
+            return result.GetResult(custId, isDesktop, DateTimeOffset.Now.DateTime, urlHelper.Action("AccessDenied", "Utility", null, request.Scheme), languageCode);
         }
     }
 }

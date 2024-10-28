@@ -146,7 +146,7 @@ namespace Fanex.Athena.BetList.Service
             _ticketHelper.IsVnIp = _ipService.IsAlwaysIpvn;
 
             // If show ip check ipvn
-            if ((metaModel != null) && metaModel.IsShowIp || isShowIp)
+            if (IsShowIp(metaModel, isShowIp))
             {
                 _ticketHelper.IsVnIp = _ipService.IsVNIP;
             }
@@ -171,7 +171,7 @@ namespace Fanex.Athena.BetList.Service
                     ExternalId = ticket.ExternalId,
                     SystemId = ticket.UserName,
                     TransTime = BuildTransTimeText(ticket, isMobileView),
-                    Status = _betlistHtmlBuilder.BuildStatus(ticket, _ticketHelper, ticketResult.TicketDataList, (metaModel != null) && metaModel.IsShowIpvn || isShowIpvn),
+                    Status = _betlistHtmlBuilder.BuildStatus(ticket, _ticketHelper, ticketResult.TicketDataList, IsShowIpVn(metaModel, isShowIpvn)),
                     Choice = _betlistHtmlBuilder.BuildChoice(ticket, _ticketHelper, ticketResult.TicketDataList, false),
                     Odds = odds,
                     OddsType = oddsTypeName,
@@ -191,6 +191,14 @@ namespace Fanex.Athena.BetList.Service
             }
 
             return ticketTextList;
+
+
+            static bool IsShowIp(BetListMetaModel metaModel, bool configShow)
+                => (metaModel != null) && metaModel.IsShowIp || configShow;
+
+            static bool IsShowIpVn(BetListMetaModel metaModel, bool configShow)          
+                => (metaModel != null) && metaModel.IsShowIpvn || configShow;
+            
         }
 
         public string BuildSumWinLoss(TicketResult ticketResult, bool isAllowedCustomerComm)

@@ -18,7 +18,6 @@
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -26,5 +25,16 @@
         {
             return reader[fieldName] != DBNull.Value ? reader.ToInt(fieldName) : defaultValue;
         }
+
+        public static T GetVal<T>(this IDataReader reader, string fieldName, T defaultValue = default)
+        {
+            if (reader.HasColumn(fieldName) 
+                && !reader.IsDBNull(fieldName))
+            {
+                return reader.GetValue<T>(fieldName);
+            }
+            
+            return defaultValue;
+        }    
     }
 }

@@ -48,7 +48,7 @@
 
             if (!Equals(value, default(T)))
             {
-                _cache.Set(key, value, DateTime.Now.AddSeconds(seconds), REGIONNAME);
+                _cache.Set(key, value, DateTimeOffset.Now.AddSeconds(seconds), REGIONNAME);
             }
         }
 

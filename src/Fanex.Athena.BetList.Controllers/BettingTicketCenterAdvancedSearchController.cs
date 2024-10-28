@@ -28,7 +28,6 @@ namespace Fanex.Athena.BetList.Controllers
 
         private readonly IAppSettings _appSettings;
         private readonly IContextService _contextService;
-        private readonly ISportService _sportService;
         private readonly IBettingTicketCenterAdvancedSearchDataAccess _dataAccess;
         private readonly IBettingTicketCenterZipBuilder _zipBuilder;
         private readonly IIPService _ipService;
@@ -43,7 +42,6 @@ namespace Fanex.Athena.BetList.Controllers
             IBettingTicketCenterZipBuilder zipBuilder,
             IBettingTicketCenterExcel bettingTicketCenterExcel,
             IContextService contextService,
-            ISportService sportService,
             ICustomerClassService customerClassService,
             IHttpContextAccessor httpContextAccessor) : base(ticketBuilderService, bettingTicketCenterExcel)
         {
@@ -52,7 +50,6 @@ namespace Fanex.Athena.BetList.Controllers
             _ipService = ipService;
             _zipBuilder = zipBuilder ?? new BettingTicketCenterZipBuilder(_appSettings, null, bettingTicketCenterExcel, ipService);
             _contextService = contextService;
-            _sportService = sportService;
             _customerClassService = customerClassService;
             _httpContextAccessor = httpContextAccessor;
         }
@@ -61,10 +58,10 @@ namespace Fanex.Athena.BetList.Controllers
         [BearerAuthorize(Roles.BtcAdvancedSearch)]
         [RequestValidation(validateCurrencyList: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindShowingBetFromIP: true, bindProductCodeList: true)]
-        public async Task<IActionResult> GetData(AdvancedSearchBetListMetaModel metaModel)
+        public async Task<IActionResult> GetData(AdvancedSearchBetListMetaModel metaModel, [FromServices] ISportService sportService)
         {
             var isHideSaba = SabaHelper.IsHideSaba(_contextService.SpecialPlatform);
-            var sabaSport = _sportService.GetSabaSport(metaModel.SportId, isHideSaba);
+            var sabaSport = sportService.GetSabaSport(metaModel.SportId, isHideSaba);
             if (sabaSport != null)
             {
                 metaModel.LeagueGroupIds = string.Join(",", sabaSport.LeagueGroupIds);

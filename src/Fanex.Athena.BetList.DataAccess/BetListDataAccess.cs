@@ -38,10 +38,10 @@
 
         public async Task<TicketResult> GetBetListData(BetListMetaModel metaModel)
         {
-            var shardUspKey = string.Empty;
+            var shardUspKey = $"SiteDB_{metaModel.UspKey}";
             var result = await GetBetListDataAsync(metaModel.UseShardDB
                 && metaModel.InBettransRange
-                && BetListParameterBuilder.IsExistedSpActionMap(shardUspKey = $"SiteDB_{metaModel.UspKey}")
+                && BetListParameterBuilder.IsExistedSpActionMap(shardUspKey)
                 ? metaModel.ShallowCloneWith(_ => _.UspKey = shardUspKey) : metaModel);
             return result;
         }

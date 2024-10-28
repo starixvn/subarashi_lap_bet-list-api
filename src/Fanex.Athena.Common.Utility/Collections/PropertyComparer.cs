@@ -89,7 +89,7 @@
         {
             var property = value?.GetType().GetProperty(propertyName);
 
-            return property.GetValue(value, null);
+            return property?.GetValue(value, null);
         }
 
         protected static int CompareValues(object x, object y, ListSortDirection direction)

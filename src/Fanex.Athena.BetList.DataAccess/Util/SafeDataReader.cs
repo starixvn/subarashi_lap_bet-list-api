@@ -15,15 +15,7 @@
         public SafeDataReader(IDataReader reader, IEnumerable<string> columns)
         {
             _reader = reader;
-            _existingColumns = new HashSet<string>();
-
-            foreach (var item in columns)
-            {
-                if (reader.HasColumn(item))
-                {
-                    _existingColumns.Add(item);
-                }
-            }
+            _existingColumns = [..columns.Where(i => reader.HasColumn(i))];
         }
 
         public bool Read()

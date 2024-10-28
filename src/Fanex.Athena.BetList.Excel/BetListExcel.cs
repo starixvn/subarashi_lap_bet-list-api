@@ -46,13 +46,6 @@ namespace Fanex.Athena.BetList.Excel
 
         private readonly IIPService _ipService;
 
-        private readonly bool _isShowSumStake;
-
-        private readonly bool _isShowIpvn;
-
-        private readonly bool _isShowIp;
-
-        private readonly bool _isHideSaba;
 
         private readonly BetListShowingOption _showingOption;
 
@@ -65,19 +58,14 @@ namespace Fanex.Athena.BetList.Excel
 
         private IFont _winLossFont;
 
-        public BetListExcel(BetListShowingOption showingOption, int licenseeId, IEnumerable<int> hiddenColumnIndexes, bool isHideSaba, bool isShowSumStake = false,
-           bool isShowIpvn = false, bool isShowIp = false, IIPService ipService = null)
+        public BetListExcel(BetListShowingOption showingOption, int licenseeId, IEnumerable<int> hiddenColumnIndexes, IIPService ipService = null)
         {
             _appSettings = new AppSettings();
             _licenseeId = licenseeId;
             _ticketHelper = new TicketHelper();
-            _isShowSumStake = isShowSumStake;
             _showingOption = showingOption;
             _hiddenColumnIndexes = hiddenColumnIndexes;
-            _isShowIpvn = isShowIpvn;
-            _isShowIp = isShowIp;
             _ipService = ipService;
-            _isHideSaba = isHideSaba;
         }
 
         protected internal BetListExcel(
@@ -86,14 +74,12 @@ namespace Fanex.Athena.BetList.Excel
             IIPService ipService,
             BetListShowingOption showingOption,
             int licenseeId,
-            IEnumerable<int> hiddenColumnIndexes,
-            bool isShowSumStake = false)
+            IEnumerable<int> hiddenColumnIndexes)
         {
             _appSettings = appSettings;
             _licenseeId = licenseeId;
             _ticketHelper = ticketHelper;
             _ipService = ipService;
-            _isShowSumStake = isShowSumStake;
             _showingOption = showingOption;
             _hiddenColumnIndexes = hiddenColumnIndexes;
         }
@@ -157,9 +143,9 @@ namespace Fanex.Athena.BetList.Excel
 
         protected internal virtual void AssignSheetsData(IBetListExcelBuilder builder, TicketResult ticketResult, string title, int startIndex)
         {
-            var sumStake = _isShowSumStake ? ticketResult.MainTicketList.Sum(x => x.Stake) : 0;
+            var sumStake = _showingOption.IsShowSumStake ? ticketResult.MainTicketList.Sum(x => x.Stake) : 0;
 
-            var isShowWinLoss = !_isShowSumStake && _showingOption.GrandTotalVisible && !_hiddenColumnIndexes.Contains(ColumnWinlossIndex);
+            var isShowWinLoss = !_showingOption.IsShowSumStake && _showingOption.GrandTotalVisible && !_hiddenColumnIndexes.Contains(ColumnWinlossIndex);
             decimal sumCustomerWl = 0;
             decimal sumLicenseeWl = 0;
             decimal sumBetEffective = 0;
@@ -173,9 +159,9 @@ namespace Fanex.Athena.BetList.Excel
 
             _ticketHelper.Index = startIndex;
             _ticketHelper.IsVnIp = _ipService.IsAlwaysIpvn;
-            _ticketHelper.HideSabaText = _isHideSaba;
+            _ticketHelper.HideSabaText = _showingOption.IsHideSaba;
 
-            if (_isShowIp)
+            if (_showingOption.IsShowIp)
             {
                 _ticketHelper.IsVnIp = _ipService.IsVNIP;
             }
@@ -195,7 +181,7 @@ namespace Fanex.Athena.BetList.Excel
                     _ticketHelper.Index++;
                 }
 
-                if (_isShowSumStake)
+                if (_showingOption.IsShowSumStake)
                 {
                     builder.AddFooterForSumStake(sumStake);
                 }
@@ -229,7 +215,7 @@ namespace Fanex.Athena.BetList.Excel
             builder.AddCustomerWL(ticket, _showingOption.CustomerCommVisible, _winLossFont);
             builder.AddBetEffective(ticket, _winLossFont);
             builder.AddLicenseeWL(ticket, _licenseeId == LicenseeIdentity.OneTwoBet, _negativeWinLossFont, _winLossFont);
-            builder.AddStatus(ticket, _ticketHelper, ticketResult.TicketDataList, _isShowIpvn);
+            builder.AddStatus(ticket, _ticketHelper, ticketResult.TicketDataList, _showingOption.IsShowIpvn);
         }
 
         private void InitializeCellStyles(IBetListExcelBuilder builder)
@@ -268,7 +254,7 @@ namespace Fanex.Athena.BetList.Excel
                 var columns = _hiddenColumnIndexes;
                 if (_appSettings.FakeLicenseeList.Contains(_licenseeId) && !_hiddenColumnIndexes.Contains(ColumnSystemIdIndex))
                 {
-                    columns = columns.Concat(new[] { ColumnSystemIdIndex });
+                    columns = columns.Concat([ColumnSystemIdIndex]);
                 }
 
                 for (int i = 0; i < workbook.NumberOfSheets; i++)

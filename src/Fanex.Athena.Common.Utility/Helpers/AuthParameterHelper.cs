@@ -1,5 +1,6 @@
 ﻿using Fanex.Athena.Common.Constant;
 using System.Text;
+using System.Linq;
 
 namespace Fanex.Athena.Common.Utility.Helpers
 {
@@ -29,13 +30,10 @@ namespace Fanex.Athena.Common.Utility.Helpers
             }
             else
             {
-                foreach (var currencyId in currencyIdList)
+                foreach (var currencyId in currencyIdList.Where(currencyId => currencyAgentList.ContainsKey(currencyId)))
                 {
-                    if (currencyAgentList.ContainsKey(currencyId))
-                    {
-                        var agentList = currencyAgentList.Single(x => x.Key == currencyId).Value;
-                        result.Append(GenerateAgentXmlBody(currencyId, agentList));
-                    }
+                    var agentList = currencyAgentList.Single(x => x.Key == currencyId).Value;
+                    result.Append(GenerateAgentXmlBody(currencyId, agentList));
                 }
             }
 

@@ -26,5 +26,13 @@
         public bool BTVisible { get; set; }
 
         public bool ABVisible { get; set; }
+
+        public bool IsHideSaba { get; set; }
+
+        public bool IsShowSumStake { get; set; }
+
+        public bool IsShowIpvn { get; set; }
+
+        public bool IsShowIp { get; set; }
     }
 }

@@ -70,7 +70,7 @@
                         {
                             data.Add(new Outright
                             {
-                                EventDate = DateTime.Parse(reader.ToString(EventDateColumn)),
+                                EventDate = reader.ToDateTime(EventDateColumn),
                                 SportType = reader.ToInt(SportTypeColumn),
                                 LeagueId = leagueId,
                                 TeamId = reader.ToInt("teamid"),
@@ -391,33 +391,32 @@
             {
                 AwayId = reader.ToInt("awayID"),
                 HomeId = reader.ToInt("homeID"),
-                BetStatus = reader[BetstatusColumn] != DBNull.Value ? reader.ToString(BetstatusColumn) : string.Empty,
+                BetStatus = reader.ToString(BetstatusColumn),
                 LeagueId = leagueId ?? reader.ToInt(LeagueIdColumn),
-                LeagueGroupId = reader.HasColumn(LeagueGroupIdColumn) ? reader.ToInt(LeagueGroupIdColumn) : 0,
+                LeagueGroupId = reader.GetVal<int>(LeagueGroupIdColumn, 0),
                 MatchId = reader.ToInt(MatchidColumn),
                 EventStatus = reader.ToString("eventstatus"),
                 FinalAwayScore = reader.ToNullableInt("finalawayscore"),
                 HtAwayScore = reader.ToNullableInt("htawayscore"),
-                Color = reader.HasColumn(LcolorColumn) && reader[LcolorColumn] != DBNull.Value ? reader.ToString(LcolorColumn) : string.Empty,
+                Color = reader.GetVal(LcolorColumn, string.Empty),
                 FinalHomeScore = reader.ToNullableInt("finalhomescore"),
                 HtHomeScore = reader.ToNullableInt("hthomescore"),
-                EventDate = DateTime.Parse(reader.ToString(EventDateColumn)),
+                EventDate = reader.ToDateTime(EventDateColumn),
                 IsNeutral = reader.ToBool("IsNeutral"),
-                KickOffTime = DateTime.Parse(reader.ToString(KickOffTimeColumn)),
+                KickOffTime = reader.ToDateTime(KickOffTimeColumn),
                 MatchCode = reader.ToString("matchcode"),
                 GoalRecord = reader.ToString("goalrecord"),
                 IsHTCal = reader.ToBool("IsHTCal"),
                 Calculate = reader.ToBool("Calculate"),
                 RefNo = refNo,
-                LiveAwayScore = reader.HasColumn("LiveAwayScore") ? reader.ToNullableInt("LiveAwayScore") : null,
-                LiveHomeScore = reader.HasColumn("LiveHomeScore") ? reader.ToNullableInt("LiveHomeScore") : null,
+                LiveAwayScore = reader.GetVal<int?>("LiveAwayScore"),
+                LiveHomeScore = reader.GetVal<int?>("LiveHomeScore"),
                 SettlementStatus = reader.ToByte("SettlementStatus"),
-                Bettype = reader.HasColumn("bettype") ? reader.ToInt("bettype") : 0,
-                BetID = reader.HasColumn("betcheck") ? reader.ToString("betcheck") : string.Empty,
+                Bettype = reader.GetVal("bettype", 0),
+                BetID = reader.GetVal("betcheck", string.Empty),
                 NoHTScore = reader.HasColumn("NoHTScore") && reader.ToBool("NoHTScore"),
-                MainType = reader.HasColumn("MainType") ? reader.ToByte("MainType") : byte.MinValue,
-                SubType = reader.HasColumn("SubType") ? reader.ToInt("SubType") : 0,
-
+                MainType = reader.GetVal<byte>("MainType", byte.MinValue),
+                SubType = reader.GetVal<int>("SubType", 0)
             };
         }
 
@@ -546,7 +545,7 @@
                                     PlaceOdds = reader.ToDecimal("placeodds"),
                                     WinOdds = reader.ToDecimal("odds"),
                                     RaceName = (int)reader.ToNullableInt("racename", 0),
-                                    KickOffTime = reader[KickOffTimeColumn] != DBNull.Value ? DateTime.Parse(reader.ToString(KickOffTimeColumn)) : DateTime.MinValue,
+                                    KickOffTime = reader.ToDateTime(KickOffTimeColumn),
                                     Favourite = reader[IsFavorColumn] != DBNull.Value ? reader.ToString(IsFavorColumn) : string.Empty,
                                     RowCount = reader.ToInt("rowcount"),
                                     SCROfMatch = reader.ToString("SCR"),
@@ -597,7 +596,7 @@
                             Match3rdId = reader.ToInt("Match3rdId"),
                             BetStatus = reader[BetstatusColumn] != DBNull.Value ? reader.ToString(BetstatusColumn) : string.Empty,
                             EventStatus = reader.ToString("EventStatus"),
-                            EventDate = DateTime.Parse(reader.ToString("EventDate"))
+                            EventDate = reader.ToDateTime("EventDate")
                         });
             }
 

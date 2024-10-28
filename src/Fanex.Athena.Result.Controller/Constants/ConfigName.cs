@@ -1,7 +1,7 @@
 ﻿
 namespace Fanex.Athena.Result.Controller.Constants
 {
-    internal static class ConfigName
+    public static class ConfigName
     {
         public const string ConfigPrefix = "ResultConfigs";
 

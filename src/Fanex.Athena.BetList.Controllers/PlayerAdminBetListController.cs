@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Fanex.Athena.BetList.Controllers
 {
     [ApiController]
-    [BearerAuthorize()]
+    [BearerAuthorize]
     [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]
     public class PlayerAdminBetListController : BettingTicketCenterBaseController

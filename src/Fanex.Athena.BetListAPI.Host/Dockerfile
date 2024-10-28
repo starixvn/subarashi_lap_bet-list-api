@@ -1,7 +1,7 @@
 ARG TRANSFORM_CONFIG \
     CI_REGISTRY_IMAGE
 
-FROM $CI_REGISTRY_IMAGE:builder as deps
+FROM $CI_REGISTRY_IMAGE:builder AS deps
 
 RUN mkdir -p /src/packages
 

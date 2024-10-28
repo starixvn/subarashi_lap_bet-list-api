@@ -114,9 +114,9 @@ namespace Fanex.Athena.Result.DataAccess
                             LeagueId = reader.ToInt("leagueid"),
                             MatchId = matchId,
                             EventStatus = reader.ToString("eventstatus"),
-                            EventDate = DateTime.Parse(reader.ToString("eventdate")),
+                            EventDate = reader.ToDateTime("eventdate"),
                             IsPending = reader.HasColumn(IsRefundColumn) && reader.ToString(IsRefundColumn) != "0",
-                            KickOffTime = DateTime.Parse(reader.ToString("kickofftime")),
+                            KickOffTime = reader.ToDateTime("kickofftime"),
                             MatchCode = reader.ToString("matchcode"),
                             Seg = new List<int> { seq },
                             Ball = new List<int> { number }
@@ -152,9 +152,9 @@ namespace Fanex.Athena.Result.DataAccess
                             LeagueId = reader.ToInt("leagueid"),
                             MatchId = matchId,
                             EventStatus = reader.ToString("eventstatus"),
-                            EventDate = DateTime.Parse(reader.ToString("eventdate")),
+                            EventDate = reader.ToDateTime("eventdate"),
                             IsPending = reader.HasColumn(IsRefundColumn) && reader.ToString(IsRefundColumn) != "0",
-                            KickOffTime = DateTime.Parse(reader.ToString("kickofftime")),
+                            KickOffTime = reader.ToDateTime("kickofftime"),
                             MatchCode = reader.ToString("matchcode"),
                             Seq = new List<int> { seq },
                             Ball = new List<int> { number }

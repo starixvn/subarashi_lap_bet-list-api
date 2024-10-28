@@ -9,6 +9,7 @@ using Fanex.Athena.Common.DataAccess;
 using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Athena.Common.Services;
 using Fanex.Athena.Common.Services.Interfaces;
+using Fanex.Athena.Common.Utility.Helpers;
 using Fanex.Athena.Common.Utility.Services;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Common.Utility.Services.Internal;
@@ -48,7 +49,7 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
             {
                 var config = provider.GetService<IConfiguration>();
                 var settings = config.GetSection("AppSettings").Get<AppSettings>();
-                settings.MaxDate ??= DateTime.Now;
+                settings.MaxDate ??= DateTimeHelper.Now;
                 return settings;
             });
             services.AddScoped<IMetaModelBindingService, BaseMetaModelBindingService>();

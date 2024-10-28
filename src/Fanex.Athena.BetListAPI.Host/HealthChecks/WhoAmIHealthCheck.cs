@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
+﻿using Fanex.Athena.Common.Utility.Helpers;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Net;
@@ -50,7 +51,7 @@ namespace Fanex.Athena.BetListAPI.Host.HealthChecks
             result.Add("Local Ip", context.Connection.LocalIpAddress.ToString());
             result.Add("Local Port", context.Connection.LocalPort);
             result.Add("Client Ip", context.Connection.RemoteIpAddress.ToString());
-            result.Add("Server Time", DateTime.Now.ToString(CultureInfo.InvariantCulture));
+            result.Add("Server Time", DateTimeHelper.Now.ToString(CultureInfo.InvariantCulture));
             result.Add("Last Updated", File.GetCreationTime(typeof(WhoAmIHealthCheck).Assembly.Location).ToString(CultureInfo.InvariantCulture));
             result.Add("Host", context.Request.Host);
             result.Add("Schema", context.Request.Scheme);

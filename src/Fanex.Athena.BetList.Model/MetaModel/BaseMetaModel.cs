@@ -3,8 +3,6 @@
     using System;
     using System.ComponentModel;
 
-    //using System.Web.Script.Serialization;
-
     [Serializable]
     public class BaseMetaModel
     {

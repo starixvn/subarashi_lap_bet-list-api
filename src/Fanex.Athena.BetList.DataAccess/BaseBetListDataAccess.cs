@@ -210,9 +210,9 @@
 
         private static void ReadDateTimeData(LrfTicket ticket, ISafeDataReader reader)
         {
-            ticket.WinlostDate = reader.GetDateTime("winlostdate", DateTime.Now);
-            ticket.TransDate = reader.GetDateTime("transdate", DateTime.Now);
-            ticket.EventDate = reader.GetDateTime("eventdate", DateTime.MinValue);
+            ticket.WinlostDate = reader.GetDateTime("winlostdate", DateTimeOffset.Now.DateTime);
+            ticket.TransDate = reader.GetDateTime("transdate", DateTimeOffset.Now.DateTime);
+            ticket.EventDate = reader.GetDateTime("eventdate", DateTimeOffset.MinValue.DateTime);
         }
 
         private static void ReadNumbericData(LrfTicket ticket, ISafeDataReader reader, IDictionary<string, string> columns)

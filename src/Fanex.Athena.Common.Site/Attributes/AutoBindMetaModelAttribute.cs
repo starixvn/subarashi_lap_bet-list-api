@@ -18,13 +18,14 @@ namespace Fanex.Athena.Common.Site.Attributes
             bool applySubsidiaryBusiness = false,
             bool bindShowingBetFromIP = false,
             bool bindSpecialPlatform = false,
-            bool bindBanlanceUpAndMoveBet = false)
+            bool bindBalanceUpAndMoveBet = false)
             : base(typeof(AutoBindMetaModelImplAttribute))
         {
-            Arguments = new object[] { bindAgent, bindPlayerCom, bindProductCodeList, applySubsidiaryBusiness, bindShowingBetFromIP, bindSpecialPlatform, bindBanlanceUpAndMoveBet };
+            Arguments = new object[] { bindAgent, bindPlayerCom, bindProductCodeList, applySubsidiaryBusiness, bindShowingBetFromIP, bindSpecialPlatform, bindBalanceUpAndMoveBet };
         }
     }
 
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class AutoBindMetaModelImplAttribute : ActionFilterAttribute
     {
         private readonly IMetaModelBindingService _bindingService;
@@ -38,7 +39,7 @@ namespace Fanex.Athena.Common.Site.Attributes
         private bool IsApplySubsidiaryBusiness { get; init; }
         private bool IsBindShowingBetFromIP { get; init; }
         private bool IsBindSpecialPlatform { get; init; }
-        private bool IsBindBanlanceUpAndMoveBet { get; init; }
+        private bool IsBindBalanceUpAndMoveBet { get; init; }
 
         private const string ProductSB = "SB";
 
@@ -53,7 +54,7 @@ namespace Fanex.Athena.Common.Site.Attributes
             bool applySubsidiaryBusiness,
             bool bindShowingBetFromIP,
             bool isBindSpecialPlatform,
-            bool isBindBanlanceUpAndMoveBet)
+            bool isBindBalanceUpAndMoveBet)
         {
             _bindingService = bindingService;
             _contextService = contextService;
@@ -66,7 +67,7 @@ namespace Fanex.Athena.Common.Site.Attributes
             IsApplySubsidiaryBusiness = applySubsidiaryBusiness;
             IsBindShowingBetFromIP = bindShowingBetFromIP;
             IsBindSpecialPlatform = isBindSpecialPlatform;
-            IsBindBanlanceUpAndMoveBet = isBindBanlanceUpAndMoveBet;
+            IsBindBalanceUpAndMoveBet = isBindBalanceUpAndMoveBet;
         }
 
         public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
@@ -96,7 +97,7 @@ namespace Fanex.Athena.Common.Site.Attributes
                 BindSpecialPlatform(context);
             }
 
-            if (IsBindBanlanceUpAndMoveBet)
+            if (IsBindBalanceUpAndMoveBet)
             {
                 BindBalanceUpAndMoveBet(context);
             }

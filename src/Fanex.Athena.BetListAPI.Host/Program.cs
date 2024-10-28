@@ -4,7 +4,6 @@ using Fanex.Athena.BetListAPI.Host.HealthChecks;
 using Fanex.Athena.BetListAPI.Host.Middlewares;
 using Fanex.Athena.BetListAPI.Host.Settings;
 using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Site.Authentications;
 using Fanex.Athena.Common.Utility;
 using Fanex.BetList.Core;
 using Fanex.BetList.Core.RemotingRef;
@@ -50,15 +49,10 @@ services.AddAuthentication(OAuth2IntrospectionDefaults.AuthenticationScheme)
         options.CacheKeyPrefix = "BETLIST_CACHE_TOKEN.";
         options.EnableCaching = true;
         options.SkipTokensWithDots = true;
-    })
-    .AddBasicAuthentication(options =>
-    {
-        options.Clients = configuration.GetSection("ServiceClients").Get<List<ServiceClient>>();
     });
 
 services.AddAuthorization(option =>
 {
-
     var defaultPolicy = new AuthorizationPolicyBuilder()
         .RequireAuthenticatedUser();
     defaultPolicy.AuthenticationSchemes.Add(OAuth2IntrospectionDefaults.AuthenticationScheme);
@@ -72,7 +66,6 @@ services.AddControllers()
         options.SerializerSettings.ContractResolver = new DefaultContractResolver();
     });
 services.AddRazorPages();
-//services.AddEndpointsApiExplorer();
 
 services.AddLapBetList()
     .AddLapBetListResult(configuration);
@@ -95,13 +88,13 @@ ResultCoreManager.RegisterRefDataHelper(new RefDataHelper());
 //Middlewares
 app.UsePing();
 
-if (string.Equals(configuration["UseErrorHandler"], "1"))
+if (app.Environment.IsDevelopment() || string.Equals(configuration["UseErrorHandler"], "0"))
 {
-    app.UseErrorHandler();
+    app.UseDeveloperExceptionPage();
 }
 else
 {
-    app.UseDeveloperExceptionPage();
+    app.UseErrorHandler();
 }
 
 app.UseForwardedHeaders();
@@ -150,7 +143,6 @@ app.UseRequestLocalization(options =>
 });
 app.UseDoubleSlashHandler();
 app.UseRouting();
-app.UseServiceTokenValidator();
 app.UseAuthorization();
 app.UseEndpoints(config =>
 {

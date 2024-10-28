@@ -55,7 +55,7 @@ namespace Fanex.Athena.Common.Services
             }
         }
 
-        public bool IsInRoles(params string[] roles) => roles?.Any(_ => User.IsInRole(_)) ?? false;
+        public bool IsInRoles(params string[] roles) => roles?.Any(User.IsInRole) ?? false;
 
         public string ClientIP => Context.Connection.RemoteIpAddress.ToString();
 
@@ -151,7 +151,9 @@ namespace Fanex.Athena.Common.Services
         public bool IsShowIpvn => IsShowIP
             && (IsAdministrator
             || IsInRoles(Roles.BetlistViewIpvn, Roles.PortalSuperAdmin)
-            || (User.IsInRole(Roles.StatementServiceRoleUser) && GetClaimValue<bool>("IShowIPVN")));
+            || IsHaveConfigShowIpVnInStatementService);
+
+        private bool IsHaveConfigShowIpVnInStatementService => (User.IsInRole(Roles.StatementServiceRoleUser) && GetClaimValue<bool>("IShowIPVN"));
 
         private T GetClaimValue<T>(string claimType)
         {

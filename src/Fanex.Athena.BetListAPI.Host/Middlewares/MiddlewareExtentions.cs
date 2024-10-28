@@ -51,9 +51,6 @@ namespace Fanex.Athena.BetListAPI.Host.Middlewares
         public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder builder)
             => builder.UseMiddleware<ErrorHandlerMiddleware>();
 
-        public static IApplicationBuilder UseServiceTokenValidator(this IApplicationBuilder builder)
-            => builder.UseMiddleware<ServiceTokenValidatorMiddleware>();
-
 
     }
 }

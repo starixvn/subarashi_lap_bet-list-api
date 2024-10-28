@@ -76,7 +76,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
                     await GetData(metalModel);
                 }
 
-                _excelStream = _excelStream ?? ExportNoneData(metalModel);
+                _excelStream ??= ExportNoneData(metalModel);
                 return File(_excelStream, "application/vnd.ms-excel", "Result.xls");
             }
             else
