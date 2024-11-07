@@ -15,7 +15,7 @@
         public SafeDataReader(IDataReader reader, IEnumerable<string> columns)
         {
             _reader = reader;
-            _existingColumns = [..columns.Where(i => reader.HasColumn(i))];
+            _existingColumns = [.. columns.Where(i => reader.HasColumn(i))];
         }
 
         public bool Read()

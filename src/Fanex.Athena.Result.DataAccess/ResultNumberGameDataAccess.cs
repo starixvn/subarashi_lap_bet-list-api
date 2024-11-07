@@ -7,7 +7,6 @@ namespace Fanex.Athena.Result.DataAccess
     using Fanex.Result.Core.Happy5.DTO;
     using Fanex.Result.Core.NumberGame.DTO;
     using Model.MetaModel;
-    using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;

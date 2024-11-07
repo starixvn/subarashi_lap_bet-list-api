@@ -426,7 +426,7 @@ namespace Fanex.Athena.BetList.Excel.Builders
             if (condition())
             {
                 action();
-            }    
+            }
         }
 
         public void Dispose()

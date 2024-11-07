@@ -196,9 +196,9 @@ namespace Fanex.Athena.BetList.Service
             static bool IsShowIp(BetListMetaModel metaModel, bool configShow)
                 => (metaModel != null) && metaModel.IsShowIp || configShow;
 
-            static bool IsShowIpVn(BetListMetaModel metaModel, bool configShow)          
+            static bool IsShowIpVn(BetListMetaModel metaModel, bool configShow)
                 => (metaModel != null) && metaModel.IsShowIpvn || configShow;
-            
+
         }
 
         public string BuildSumWinLoss(TicketResult ticketResult, bool isAllowedCustomerComm)

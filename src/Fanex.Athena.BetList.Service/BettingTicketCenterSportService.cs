@@ -54,7 +54,7 @@ namespace Fanex.Athena.BetList.Service
 
                 if (SabaVirtualSports.Any(_ => _.Id == sportId))
                 {
-                    var (_, SportTypeId, LeagueGroupIds) = SabaVirtualSports.FirstOrDefault(_ => _.Id == sportId);                   
+                    var (_, SportTypeId, LeagueGroupIds) = SabaVirtualSports.FirstOrDefault(_ => _.Id == sportId);
                     leagueGroupIds = string.Join(",", LeagueGroupIds);
                     sportId = SportTypeId;
                 }

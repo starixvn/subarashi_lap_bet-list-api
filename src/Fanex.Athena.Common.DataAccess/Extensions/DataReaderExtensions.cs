@@ -28,13 +28,13 @@
 
         public static T GetVal<T>(this IDataReader reader, string fieldName, T defaultValue = default)
         {
-            if (reader.HasColumn(fieldName) 
+            if (reader.HasColumn(fieldName)
                 && !reader.IsDBNull(fieldName))
             {
                 return reader.GetValue<T>(fieldName);
             }
-            
+
             return defaultValue;
-        }    
+        }
     }
 }
