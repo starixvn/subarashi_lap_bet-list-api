@@ -65,7 +65,7 @@
     <PackageReference Include="Fanex.BetList.YeeBet" Version="1.0.0" />
     <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.4" />
     <PackageReference Include="Fanex.Result.Core.ConfigurationHelper" Version="1.0.0" />
-    <PackageReference Include="Fanex.Result.Core.RemotingRef" Version="2.0.0.3" />
+    <PackageReference Include="Fanex.Result.Core.RemotingRef" Version="2.0.0.4" />
     <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.29" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />

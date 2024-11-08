@@ -4,6 +4,7 @@
     using Fanex.Athena.Result.Model.MetaModel;
     using Fanex.Result.Core.Racing.DTO;
     using Fanex.Result.Core.Sportsbook.DTO;
+    using Fanex.Result.Core.VirtualRacing.DTO;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -28,6 +29,8 @@
 
         Task<IList<Racing>> GetVirtualSportMatchesAsync(ResultMetaModel metalModel);
 
+        Task<IList<VirtualRacing>> GetBetradarSportMatchesAsync(ResultMetaModel metalModel);
+
         #endregion Report
 
         #region Popup
@@ -41,6 +44,8 @@
         Task<IList<T>> GetPopUpMatches3rdAsync<T>(int matchId);
 
         Task<Sportsbook> GetPopUpSingleMatchParlayAsync(int matchId, string marketId);
+
+        Task<IList<VirtualRacing>> GetPopUpBetradarAsync(int eventId, DateTime eventDate);
 
         #endregion Popup
     }

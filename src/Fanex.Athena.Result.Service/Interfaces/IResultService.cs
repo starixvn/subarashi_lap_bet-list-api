@@ -7,6 +7,7 @@
     using Fanex.Result.Core.NumberGame.DTO;
     using Fanex.Result.Core.Racing.DTO;
     using Fanex.Result.Core.Sportsbook.DTO;
+    using Fanex.Result.Core.VirtualRacing.DTO;
     using Model.MetaModel;
     using System;
     using System.Collections.Generic;
@@ -45,6 +46,8 @@
 
         Task<IList<Racing>> GetVirtualSportMatchesAsync(ResultMetaModel metalModel);
 
+        Task<IList<VirtualRacing>> GetBetradarSportMatchesAsync(ResultMetaModel metalModel);
+
         Task<IList<Bitcoin>> GetBitcoinMatchesAsync(ResultMetaModel metalModel);
 
         #endregion Report
@@ -75,6 +78,8 @@
         Task<IList<Happy5>> GetPopUpHappy5MatchesAsync(int matchId);
 
         Task<IList<Bitcoin>> GetPopUpBitcoinMatchesAsync(int matchId);
+
+        Task<IList<VirtualRacing>> GetPopUpBetradarMatchesAsync(int eventId, DateTime eventDate);
 
         Task<Sportsbook> GetPopUpSingleMatchParlayAsync(int matchId, string marketId);
 

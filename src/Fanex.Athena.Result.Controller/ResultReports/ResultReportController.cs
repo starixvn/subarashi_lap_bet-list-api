@@ -187,7 +187,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
 
         private static bool IsVirtualSport(SportType type)
         {
-            var isVirtualRacing = type == SportType.VirtualMotorRacing || type == SportType.VirtualHorseRacing;
+            var isVirtualRacing = type == SportType.VirtualMotorRacing;
 
             return isVirtualRacing
                 || type == SportType.VirtualGreyhounds
@@ -280,6 +280,16 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             }
         }
 
+        private async Task GetBetradarPopUpData(ResultPopupMetaModel metalModel, ResultSetting setting)
+        {
+            var eventDate = metalModel.WinLossDate.HasValue ? metalModel.WinLossDate.Value : DateTime.Now;
+            var dataBetradar = await _resultService.GetPopUpBetradarMatchesAsync(metalModel.MatchId, eventDate).ConfigureAwait(false);
+            if (dataBetradar != null)
+            {
+                _htmlResult = _resultService.HtmlParser(dataBetradar, setting);
+            }
+        }
+
         private async Task GetOtherNormalPopUpData(ResultPopupMetaModel metalModel, ResultSetting setting)
         {
             var data = await _resultService.GetPopUpMatchAsync(metalModel);
@@ -318,6 +328,12 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             if (sportType == SportType.Bitcoin)
             {
                 await GetBitcoinPopUpData(metalModel, setting);
+                return;
+            }
+
+            if (sportType == SportType.VirtualDogRacing || sportType == SportType.VirtualHorseRacing)
+            {
+                await GetBetradarPopUpData(metalModel, setting).ConfigureAwait(false);
                 return;
             }
 
@@ -439,7 +455,6 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             var setting = GetNormalResultSetting(metalModel);
             switch (setting.SportType)
             {
-                case SportType.VirtualHorseRacing:
                 case SportType.VirtualGreyhounds:
                 case SportType.VirtualMotorRacing:
                 case SportType.VirtualCycling:

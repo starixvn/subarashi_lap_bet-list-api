@@ -14,12 +14,14 @@
 		<Setting Key="Lrf_Result_Outright" SpName="Lrf_Result_Outright" DbName="DBEXT.bodb02.wsv_lap" />
 		<Setting Key="Lrf_Result_SportSelByDate" SpName="Lrf_Result_SportSelByDate" DbName="DBEXT.bodb02.wsv_lap" />
 		<Setting Key="Lrf_Result_RaceSelByMeeting" SpName="Lrf_Result_RaceSelByMeeting" DbName="DBEXT.bodb02.wsv_lap" />
+    <Setting Key="Lrf_Result_RaceSelByLeague" SpName="Lrf_Result_RaceSelByLeague" DbName="DBEXT.bodb02.wsv_lap" />
 		<Setting Key="Lrf_Result_MatchSelByLeague" SpName="Lrf_Result_MatchSelByLeague" DbName="DBEXT.bodb02.wsv_lap" />
 		<Setting Key="Lrf_Result_Match3rdSelByLeague" SpName="Lrf_Result_Match3rdSelByLeague" DbName="DBEXT.bodb02.wsv_lap" />
 		<Setting Key="Lrf_Result_MatchSelByLeague_Detail" SpName="Lrf_Result_MatchSelByLeague_Detail" DbName="DBEXT.bodb02.wsv_lap" />
 		<Setting Key="Lrf_Result_MatchSelNumberGameByLeague" SpName="Lrf_Result_MatchSelNumberGameByLeague" DbName="DBEXT.bodb02.wsv_lap" />
 		<Setting Key="Lrf_Result_LeagueSelByDate" SpName="Lrf_Result_LeagueSelByDate" DbName="DBEXT.bodb02.wsv_lap" />
 		<Setting Key="Lrf_TicketResult_BetBuilder" SpName="Lrf_TicketResult_BetBuilder" DbName="DBACC.bodb02.wsv_lap" />
+    <Setting Key="Lrf_TicketResult_Race" SpName="Lrf_TicketResult_Race" DbName="DBACC.bodb02.wsv_lap" />
 	</Function>
 	<Function Name="BetList">
 		<Setting Key="Lrf_BetList_SelMatchResult" SpName="Lrf_BetList_SelMatchResult" DbName="DBEXT.bodb02.wsv_lap" />
@@ -59,7 +61,7 @@
 		<Setting Key="Lrf_BetList_LicenseeBonus_Detail" SpName="Lrf_BetList_LicenseeBonus_Detail" DbName="DBACC.bodb02.wsv_lap" />
 		<Setting Key="Lrf_BetList_Exchange_Mem" SpName="Lrf_BetList_Exchange_Mem" DbName="DBEXT.bodb02.wsv_lap" />
 		<Setting Key="Lrf_BetList_Exchange_Detail" SpName="Lrf_BetList_Exchange_Detail" DbName="DBEXT.bodb02.wsv_lap" />
-    <Setting Key="Lrf_BetList_Exchange_Running" SpName="Lrf_BetList_Exchange_Running_xtest" DbName="DBEXT.bodb02.wsv_lap" />
+    <Setting Key="Lrf_BetList_Exchange_Running" SpName="Lrf_BetList_Exchange_Running" DbName="DBEXT.bodb02.wsv_lap" />
 		<Setting Key="Lrf_BetList_RefNo_Mem" SpName="Lrf_BetList_RefNo_Mem" DbName="DBACC.bodb02.wsv_lap" />
 		<Setting Key="Shard_Lrf_BetList_Running" SpName="Lrf_BetList_Running" DbName="DBBOF.bodb02.wsv_lap" />
 		<Setting Key="Lrf_BetList_TxID_Mem" SpName="Lrf_BetList_TxID_Mem" DbName="DBACC.bodb02.wsv_lap" />

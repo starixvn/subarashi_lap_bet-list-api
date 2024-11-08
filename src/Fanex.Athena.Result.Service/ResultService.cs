@@ -9,6 +9,7 @@
     using Fanex.Result.Core.NumberGame.DTO;
     using Fanex.Result.Core.Racing.DTO;
     using Fanex.Result.Core.Sportsbook.DTO;
+    using Fanex.Result.Core.VirtualRacing.DTO;
     using Interfaces;
     using Model.MetaModel;
     using System;
@@ -84,6 +85,9 @@
             return await _dataAccess.GetVirtualSportMatchesAsync(metalModel);
         }
 
+        public Task<IList<VirtualRacing>> GetBetradarSportMatchesAsync(ResultMetaModel metalModel)       
+            =>  _dataAccess.GetBetradarSportMatchesAsync(metalModel);
+
         #endregion Report
 
         #region Popup
@@ -128,6 +132,9 @@
         {
             return await _dataAccess.GetPopUpMatches3rdAsync<Bitcoin>(matchId);
         }
+
+        public Task<IList<VirtualRacing>> GetPopUpBetradarMatchesAsync(int eventId, DateTime eventDate)
+            => _dataAccess.GetPopUpBetradarAsync(eventId, eventDate);
 
         public async Task<IList<Bitcoin>> GetBitcoinMatchesAsync(ResultMetaModel metalModel)
         {
