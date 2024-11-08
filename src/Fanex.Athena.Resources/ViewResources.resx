@@ -416,4 +416,10 @@
   <data name="Robot" xml:space="preserve">
     <value>Robot</value>
   </data>
+  <data name="PlayerBetList" xml:space="preserve">
+    <value>Player Bet List</value>
+  </data>
+  <data name="WL" xml:space="preserve">
+    <value>WL</value>
+  </data>
 </root>

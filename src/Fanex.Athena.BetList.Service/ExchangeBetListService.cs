@@ -28,7 +28,9 @@
                     betList.TicketList,
                     m => new { m.UserId, m.EventId, m.MarketId },
                     d => new { d.UserId, d.EventId, d.MarketId },
-                   (main, detailList) => new ExchangeBetList { Ticket = main, Details = detailList }).Where(x => x.Details.Any());
+                    (main, detailList) => new ExchangeBetList { Ticket = main, Details = detailList.OrderBy(d => d.BetId) })
+                        .Where(x => x.Details.Any())
+                        .OrderBy(x => x.Ticket.MarketId);
 
                 return new ExchangeBetListViewModel
                 {

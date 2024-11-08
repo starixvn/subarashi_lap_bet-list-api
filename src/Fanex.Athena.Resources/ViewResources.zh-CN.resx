@@ -403,4 +403,10 @@
   <data name="Robot" xml:space="preserve">
     <value>機械</value>
   </data>
+  <data name="PlayerBetList" xml:space="preserve">
+    <value>玩家注单</value>
+  </data>
+  <data name="WL" xml:space="preserve">
+    <value>输赢</value>
+  </data>
 </root>

@@ -396,4 +396,10 @@
   <data name="Robot" xml:space="preserve">
     <value>หุ่นยนต์</value>
   </data>
+  <data name="PlayerBetList" xml:space="preserve">
+    <value>รายการเดิมพันของผู้เล่น</value>
+  </data>
+  <data name="WL" xml:space="preserve">
+    <value>แพ้ชนะ</value>
+  </data>
 </root>

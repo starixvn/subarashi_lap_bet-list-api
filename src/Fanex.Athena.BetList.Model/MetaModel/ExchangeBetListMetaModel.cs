@@ -9,6 +9,12 @@
 
         public DateTime ToDate { get; set; }
 
+        public string SystemId { get; set; }
+
+        public string ExternalId { get; set; }
+
+        public string CurrencyName { get; set; }
+
         public byte DateOptionType { get; set; } = DateOptionTypes.SettledAndResettledReport;
 
         public bool IsViewResettledTicketOnly { get; set; }

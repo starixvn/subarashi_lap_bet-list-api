@@ -396,4 +396,10 @@
   <data name="Robot" xml:space="preserve">
     <value>Robot</value>
   </data>
+  <data name="PlayerBetList" xml:space="preserve">
+    <value>Danh sách cược của Người Chơi</value>
+  </data>
+  <data name="WL" xml:space="preserve">
+    <value>Thắng Thua</value>
+  </data>
 </root>

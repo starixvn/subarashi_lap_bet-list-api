@@ -13,43 +13,51 @@ using Microsoft.AspNetCore.Mvc;
 namespace Fanex.Athena.BetList.Controllers
 {
     [ApiController]
-
     [Route("api/[controller]/[action]")]
     public class ExchangeWinLossBetListController
     {
         private readonly IExchangeBetListService _service;
-        private readonly IExchangeRunningExcel _exchangeExcel;
+        private readonly IExchangeRunningExcel _exchangeRunningExcel;
+        private readonly IExchangeWinLossExcel _exchangeWinLossExcel;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IAuthorizationService _authorizationService;
         private readonly IContextService _contextService;
 
         public ExchangeWinLossBetListController(IExchangeBetListService service,
-            IExchangeRunningExcel exchangeExcel,
+            IExchangeRunningExcel exchangeRunningExcel,
+            IExchangeWinLossExcel exchangeWinLossExcel,
             IWebHostEnvironment webHostEnvironment,
             IAuthorizationService authorizationService,
             IContextService contextService)
         {
             _service = service;
-            _exchangeExcel = exchangeExcel;
+            _exchangeRunningExcel = exchangeRunningExcel;
             _webHostEnvironment = webHostEnvironment;
             _authorizationService = authorizationService;
             _contextService = contextService;
+            _exchangeWinLossExcel = exchangeWinLossExcel;
         }
 
         [HttpPost]
         [BearerAuthorize(Roles.ReportExchangeWinLoss)]
         [RequestValidation(validateCurrency: true)]
-        public async Task<ExchangeBetListViewModel> GetData(ExchangeBetListMetaModel metaModel)
+        public async Task<IActionResult> GetData(ExchangeBetListMetaModel metaModel)
         {
             if (!IsValidRequest(metaModel))
             {
-                return new ExchangeBetListViewModel
+                return new JsonResult( new ExchangeBetListViewModel
                 {
                     MainData = null
-                };
+                });
             }
             metaModel.AgentListXml = AuthParameterHelper.GenerateAgentListXml(_contextService.AgentList.ToDictionary(x => x.Key, x => x.Value), metaModel.CurrencyId, metaModel.ExcludeTestData);
-            return await _service.GetBetListDataAsync(metaModel);
+
+            if (metaModel.IsExportExcel)
+            {
+                return await ExportExchangeWinLossExcelAsync(metaModel);
+            }
+
+            return new JsonResult(await _service.GetBetListDataAsync(metaModel));
         }
 
 
@@ -82,8 +90,17 @@ namespace Fanex.Athena.BetList.Controllers
         public async Task<FileContentResult> ExportRunningTickets(ExchangeRunningTicketMetaModel metaModel)
         {
             var data = await _service.GetRunningTicketsAsync(metaModel);
-            var template = Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data/ExchangeRunningTicket.xls");
-            var fileBytes = _exchangeExcel.ExportRunningExcel(template, data, metaModel);
+            var template = Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data/Excel/ExchangeRunningTicket.xls");
+            var fileBytes = _exchangeRunningExcel.ExportRunningExcel(template, data, metaModel);
+
+            return new FileContentResult(fileBytes, "application/octet-stream");
+        }
+
+        public async Task<FileContentResult> ExportExchangeWinLossExcelAsync(ExchangeBetListMetaModel metaModel)
+        {
+            var data = await _service.GetBetListDataAsync(metaModel);
+            var template = Path.Combine(_webHostEnvironment.ContentRootPath, "App_Data/Excel/ExchangeWinLossTicket.xls");
+            var fileBytes = _exchangeWinLossExcel.ExportExcel(template, data, metaModel);
 
             return new FileContentResult(fileBytes, "application/octet-stream");
         }

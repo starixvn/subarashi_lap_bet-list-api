@@ -12,6 +12,8 @@
 
         public bool ExcludeTestData { get; set; }
 
+        public bool IsExportExcel { get; set; }
+
         public string BaseCurrency
         {
             get
