@@ -23,7 +23,7 @@
 
         public async Task<SystemParlayDetailData> GetData(SystemParlayDetailMetaModel metaModel)
         {
-            const string UspName = "Shard_Lrf_BetList_SelCombinationParlayDetail";
+            const string UspName = "Lrf_BetList_SelCombinationParlayDetail";
             using (var db = GetObjectDb(UspName))
             {
                 SetSystemParlayDetailParameter(db, metaModel);

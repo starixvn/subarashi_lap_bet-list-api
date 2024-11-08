@@ -47,7 +47,7 @@
 		<Setting Key="Lrf_Monitor_Match3rdSel" SpName="Lrf_Monitor_Match3rdSel" DbName="DBBOF.bodb02.wsv_lap" />
 		<Setting Key="Lrf_Monitor_OutrightSel" SpName="Lrf_Monitor_OutrightSel" DbName="DBBOF.bodb02.wsv_lap" />
 		<Setting Key="Lrf_Monitor_MatchSelById" SpName="Lrf_Monitor_MatchSelById" DbName="DBBOF.bodb02.wsv_lap" />
-		<Setting Key="Shard_Lrf_BetList_SelCombinationParlayDetail" SpName="Lrf_BetList_SelCombinationParlayDetail" DbName="DBACC.bodb02.wsv_lap" />
+    <Setting Key="Lrf_BetList_SelCombinationParlayDetail" SpName="Lrf_BetList_SelCombinationParlayDetail" DbName="DBACC.bodb02.wsv_lap" />
 		<Setting Key="Lrf_BetList_SelParlayDetail" SpName="Lrf_BetList_SelParlayDetail" DbName="DBACC.bodb02.wsv_lap" />
 		<Setting Key="Shard_Lrf_BetList_LastBetsMonitoring" SpName="Lrf_Monitor_BetlistSel_New" DbName="DBBOF.bodb02.wsv_lap" />
 		<Setting Key="Lrf_BetList_PlatformWinLoss_Mem" SpName="Lrf_BetList_PlatformWinLoss_Mem" DbName="DBACC.bodb02.wsv_lap" />
@@ -83,8 +83,6 @@
 		<Setting Key="SiteDB_Lrf_BetList_Forecast_SelByMatch" SpName="SiteDB_Lrf_BetList_Forecast_SelByMatch" DbName="DBSID.bodb02.wsv_lap" />
 		<Setting Key="SiteDB_Lrf_BetList_SelRunningByBettypeMatch" SpName="SiteDB_Lrf_BetList_SelRunningByBettypeMatch" DbName="DBSID.bodb02.wsv_lap" />
 		<Setting Key="SiteDB_Lrf_BetList_SelRunningByDate_Mem" SpName="SiteDB_Lrf_BetList_SelRunningByDate_Mem" DbName="DBSID.bodb02.wsv_lap" />
-		<Setting Key="SiteDB_Lrf_BetList_SelCombinationParlayDetail" SpName="SiteDB_Lrf_BetList_SelCombinationParlayDetail" DbName="DBSID.bodb02.wsv_lap" />
-		<Setting Key="SiteDB_Lrf_BetList_SelParlayDetail" SpName="SiteDB_Lrf_BetList_SelParlayDetail" DbName="DBSID.bodb02.wsv_lap" />
 		<Setting Key="SiteDB_Lrf_BetList_RNG_Detail" SpName="SiteDB_Lrf_BetList_RNG_Detail" DbName="DBSID.bodb02.wsv_lap" />
 		<Setting Key="SiteDB_Lrf_BetList_LC_Detail" SpName="SiteDB_Lrf_BetList_LC_Detail" DbName="DBSID.bodb02.wsv_lap" />
 		<Setting Key="SiteDB_Lrf_BetList_RefNo_Mem" SpName="SiteDB_Lrf_BetList_RefNo_Mem" DbName="DBSID.bodb02.wsv_lap" />

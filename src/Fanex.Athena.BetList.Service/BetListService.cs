@@ -37,7 +37,6 @@
         public Task<TicketResult> GetMixParlayDetailTicket(MixParlayDetailMetaModel metaModel)
         {
             AssignBalanceUpDates(metaModel);
-            AssignShardDB(metaModel);
             return _betlistDataAccess.GetMixParlayDetailTicket(metaModel);
         }
 
