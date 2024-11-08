@@ -25,7 +25,7 @@ namespace Fanex.Athena.Common.DataAccess.UnitTests
             _dataReaderMock = Substitute.For<IDataReader>();
             _objectDbMock = Substitute.For<IObjectDb>();
             TestHelper.SetUpDBObjects(_objectDbMock);
-            _objectDbMock.ExecuteReaderAsync().Returns(_dataReaderMock);   
+            _objectDbMock.ExecuteReaderAsync().Returns(_dataReaderMock);
         }
 
         [TearDown]
