@@ -7,7 +7,6 @@ using Fanex.Athena.Common.Site.Attributes;
 using Fanex.Athena.Common.Utility.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace Fanex.Athena.BetList.Controllers
 {
     [ApiController]
@@ -107,6 +106,16 @@ namespace Fanex.Athena.BetList.Controllers
             const string UspName = "Lrf_BetList_LiveReport";
 
             return GetPagingData(metaModel, UspName, page, rows);
+        }
+
+        [HttpGet]
+        [RequestValidation(validateCurrency: true)]
+        [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
+        public async Task<dynamic> Betradar([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows)
+        {
+            const string UspName = "Lrf_BetList_LiveReport";
+
+            return await GetPagingData(metaModel, UspName, page, rows);
         }
 
         public async Task<object> GetData(LiveReportBetListMetaModel metaModel, string uspKey)
