@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="LrfBetListExcelBuilder.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.BetList.Excel
+﻿namespace Fanex.Athena.BetList.Excel
 {
     using BetList.Model.DTO;
     using BetListNPOI.HSSF.UserModel;

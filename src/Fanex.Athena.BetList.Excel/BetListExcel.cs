@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="BaseBetList.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.BetList.Excel
+﻿namespace Fanex.Athena.BetList.Excel
 {
     using Athena.BetList.Model.DTO;
     using Athena.BetList.Model.MetaModel;

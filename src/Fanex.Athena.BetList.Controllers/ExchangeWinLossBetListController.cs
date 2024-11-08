@@ -45,7 +45,7 @@ namespace Fanex.Athena.BetList.Controllers
         {
             if (!IsValidRequest(metaModel))
             {
-                return new JsonResult( new ExchangeBetListViewModel
+                return new JsonResult(new ExchangeBetListViewModel
                 {
                     MainData = null
                 });

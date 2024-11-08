@@ -1,5 +1,4 @@
-﻿
-namespace Fanex.Athena.Common.Model.MetaModel
+﻿namespace Fanex.Athena.Common.Model.MetaModel
 {
     public interface IShardDBMetaModel
     {

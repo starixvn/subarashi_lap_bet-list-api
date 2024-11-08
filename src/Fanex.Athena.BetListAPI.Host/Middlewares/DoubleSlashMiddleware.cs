@@ -19,7 +19,6 @@ namespace Fanex.Athena.BetListAPI.Host.Middlewares
 
             context.Request.Path = context.Request.Path.FixDoubleSlashes();
 
-            // Call the next delegate/middleware in the pipeline.
             await _next(context);
         }
     }

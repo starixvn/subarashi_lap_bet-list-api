@@ -1,6 +1,4 @@
-﻿
-
-namespace Fanex.Athena.Common.Services.Interfaces
+﻿namespace Fanex.Athena.Common.Services.Interfaces
 {
     public interface IAuthorizationService
     {

@@ -1,5 +1,4 @@
-﻿
-using Fanex.Athena.Common.DataAccess.Interfaces;
+﻿using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Common.Extensions;
 

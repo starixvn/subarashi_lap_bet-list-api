@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="LrfBetListHtmlBuilder.cs" company="">
-// Copyright (c) . All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.Athena.BetList.Service.Extensions
+﻿namespace Fanex.Athena.BetList.Service.Extensions
 {
     using Common.Constant;
     using Fanex.Athena.BetList.Model.DTO;
@@ -16,7 +10,6 @@ namespace Fanex.Athena.BetList.Service.Extensions
 
     public static class LrfBetListHtmlBuilder
     {
-        // when updating this, remember to update Fanex.Athena.Excel.BetList.LrfBetListExcelBuilder as well
         public static string BuildLicenseeWL(this IBetListHTMLBuilder builder, LrfTicket ticket)
         {
             var isRunning = BetListHelper.IsRunning(ticket.Status);
@@ -122,11 +115,6 @@ namespace Fanex.Athena.BetList.Service.Extensions
 
         #region Private Utility
 
-        /// <summary>
-        /// Format licensee win lost, show red text if the licensee win lost is negative.
-        /// </summary>
-        /// <param name="licenseeWl">Licensee win loss value.</param>
-        /// <returns>Licensee win loss text.</returns>
         private static string FormatLicenseeWl(decimal licenseeWl)
         {
             return licenseeWl < 0
@@ -136,11 +124,6 @@ namespace Fanex.Athena.BetList.Service.Extensions
                 : string.Format("{0:#,##0.00}", licenseeWl);
         }
 
-        /// <summary>
-        /// Get status text by status id.
-        /// </summary>
-        /// <param name="ticketStatus">LRF ticket status.</param>
-        /// <returns>Status text.</returns>
         private static string GetStatusText(string ticketStatus)
         {
             switch (ticketStatus.ToLowerInvariant())

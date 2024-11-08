@@ -1,5 +1,4 @@
-﻿// -----------------------------------------------------------------------
-namespace Fanex.Athena.Result.Model.MetaModel.Keno
+﻿namespace Fanex.Athena.Result.Model.MetaModel.Keno
 {
     public class KenoResultMetaModel
     {

@@ -1,6 +1,4 @@
-﻿
-
-using Fanex.Athena.Common.Model.DTO;
+﻿using Fanex.Athena.Common.Model.DTO;
 
 namespace Fanex.Athena.Common.Services.Interfaces
 {

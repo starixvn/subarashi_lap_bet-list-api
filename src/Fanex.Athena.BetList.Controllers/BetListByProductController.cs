@@ -11,7 +11,6 @@ namespace Fanex.Athena.BetList.Controllers
     public class BetListByProductController
     {
         private readonly IBetListByProductService _service;
-
         private readonly ITicketBuilderService _ticketBuilderService;
 
         public BetListByProductController(IBetListByProductService betListByProductService, ITicketBuilderService ticketBuilderService)

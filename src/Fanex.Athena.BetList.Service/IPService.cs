@@ -89,9 +89,8 @@ namespace Fanex.Athena.BetList.Service
                     byteList.Reverse();
                     numArray = byteList.ToArray();
                 }
-#pragma warning disable S109 // Magic numbers should not be used
+
                 bigInteger = numArray.Length <= 8 ? BitConverter.ToUInt32(numArray, 0) : ((BigInteger)BitConverter.ToUInt64(numArray, 8) << 64) + BitConverter.ToUInt64(numArray, 0);
-#pragma warning restore S109 // Magic numbers should not be used
             }
 
             return bigInteger;

@@ -125,12 +125,6 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             return Content(_htmlResult);
         }
 
-        /// <summary>
-        /// Generate tennis detailed result.
-        /// </summary>
-        /// <param name="matchId">The match ID.</param>
-        /// /// <param name="sportType">The sport type.</param>
-        /// <returns>The html result.</returns>
         [HttpPost]
         public async Task<IActionResult> ResultDetail(int matchId, int sportType, string languageCode)
         {
@@ -195,10 +189,6 @@ namespace Fanex.Athena.Result.Controller.ResultReports
                 || type == SportType.VirtualSpeedway;
         }
 
-        /// <summary>
-        /// Get data for pop-up page.
-        /// </summary>
-        /// <param name="metalModel">The metal model.</param>
         private async Task GetPopUpData(ResultPopupMetaModel metalModel)
         {
             var sportType = (SportType)metalModel.SportType;
@@ -282,7 +272,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
 
         private async Task GetBetradarPopUpData(ResultPopupMetaModel metalModel, ResultSetting setting)
         {
-            var eventDate = metalModel.WinLossDate.HasValue ? metalModel.WinLossDate.Value : DateTime.Now;
+            var eventDate = metalModel.WinLossDate.HasValue ? metalModel.WinLossDate.Value : DateTimeHelper.Now;
             var dataBetradar = await _resultService.GetPopUpBetradarMatchesAsync(metalModel.MatchId, eventDate).ConfigureAwait(false);
             if (dataBetradar != null)
             {
@@ -550,10 +540,6 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             };
         }
 
-        /// <summary>
-        /// Get data from service layer.
-        /// </summary>
-        /// <param name="metalModel">The metal model.</param>
         private async Task GetData(ResultMetaModel metalModel)
         {
             if (metalModel.IsOutRight)

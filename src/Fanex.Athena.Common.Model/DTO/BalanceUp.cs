@@ -1,5 +1,4 @@
-﻿
-namespace Fanex.Athena.Common.Model.DTO
+﻿namespace Fanex.Athena.Common.Model.DTO
 {
     public class BalanceUp
     {

@@ -85,8 +85,8 @@
             return await _dataAccess.GetVirtualSportMatchesAsync(metalModel);
         }
 
-        public Task<IList<VirtualRacing>> GetBetradarSportMatchesAsync(ResultMetaModel metalModel)       
-            =>  _dataAccess.GetBetradarSportMatchesAsync(metalModel);
+        public Task<IList<VirtualRacing>> GetBetradarSportMatchesAsync(ResultMetaModel metalModel)
+            => _dataAccess.GetBetradarSportMatchesAsync(metalModel);
 
         #endregion Report
 

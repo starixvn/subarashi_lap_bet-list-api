@@ -10,7 +10,6 @@
 
         IList<TicketText> BuildTicketText(TicketResult ticketResult, ICommonValueMetaModel metaModel, bool isAllowedCustomerComm);
 
-#pragma warning disable S107 // Methods should not have too many parameters
 
         List<TicketText> BuildTicketText(
             TicketResult ticketResult,
@@ -23,7 +22,6 @@
             bool isShowIp = true,
             bool isHideSaba = false);
 
-#pragma warning restore S107 // Methods should not have too many parameters
 
         string BuildSumWinLoss(TicketResult ticketResult, bool isAllowedCustomerComm);
     }

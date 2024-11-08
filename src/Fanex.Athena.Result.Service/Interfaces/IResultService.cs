@@ -60,19 +60,8 @@
 
         Task<IList<Racing>> GetPopUpVirtualSportMatchAsync(ResultPopupMetaModel metalModel);
 
-        /// <summary>
-        /// Select matches from BetTransM by reference no.
-        /// For view MixParlay result.
-        /// </summary>
-        /// <param name="refNo">The reference no.</param>
-        /// <returns>The parlay list.</returns>
         Task<IList<Parlay>> GetPopUpParlayMatchAsync(long refNo);
 
-        /// <summary>
-        ///  Get match result of number game.
-        /// </summary>
-        /// <param name="matchId">The match id.</param>
-        /// <returns>The match info.</returns>
         Task<IList<NumberGame>> GetPopUpNumberGameMatchsAsync(int matchId);
 
         Task<IList<Happy5>> GetPopUpHappy5MatchesAsync(int matchId);

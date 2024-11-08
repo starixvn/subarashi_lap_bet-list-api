@@ -124,7 +124,7 @@ namespace Fanex.Athena.BetList.Controllers
             ErrorMsg = ViewResources.ServerBusyMessage
         });
 
-        private async void UpdateMetaModel(AdvancedSearchBetListMetaModel metaModel)
+        private async Task UpdateMetaModel(AdvancedSearchBetListMetaModel metaModel)
         {
             var isHideSaba = SabaHelper.IsHideSaba(_contextService.SpecialPlatform);
             var sabaSport = _sportService.GetSabaSport(metaModel.SportId, isHideSaba);

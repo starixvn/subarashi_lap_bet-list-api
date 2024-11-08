@@ -57,7 +57,6 @@
 
         protected internal virtual object ReturnData(TicketResult ticket, BettingTicketCenterOption option, ICommonValueMetaModel metaModel)
         {
-#pragma warning disable S1067 // Expressions should not be too complex
             var result = new
             {
                 Data = option.IsBookedBet
@@ -71,7 +70,6 @@
                 },
                 ticket.TotalRows
             };
-#pragma warning restore S1067 // Expressions should not be too complex
 
             BetListHelper.ClearData(ticket);
             return result;

@@ -1,6 +1,4 @@
-﻿
-
-namespace Fanex.Athena.Common.Utility.Extensions
+﻿namespace Fanex.Athena.Common.Utility.Extensions
 {
     public static class EnumerableExtension
     {

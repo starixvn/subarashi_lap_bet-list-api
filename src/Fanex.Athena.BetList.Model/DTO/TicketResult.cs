@@ -1,18 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="TicketResult.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.BetList.Model.DTO
+﻿namespace Fanex.Athena.BetList.Model.DTO
 {
     using Common.Utility.Collections;
     using Fanex.BetList.Core.Entities;
     using System.Collections.Generic;
 
-    /// <summary>
-    /// TicketResult class.
-    /// </summary>
     public class TicketResult
     {
         public SortableList<LrfTicket> MainTicketList { get; set; } = new SortableList<LrfTicket>();

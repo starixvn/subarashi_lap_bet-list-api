@@ -1,9 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="CashOutBetListDetailMetaModel.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-using Fanex.Core.Utils;
+﻿using Fanex.Core.Utils;
 
 namespace Fanex.Athena.BetList.Model.MetaModel
 {

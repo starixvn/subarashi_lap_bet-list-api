@@ -124,10 +124,7 @@ namespace Fanex.Athena.BetList.Service
             return ticketTextList;
         }
 
-#pragma warning disable S1541 // Methods and properties should not be too complex
-
         public List<TicketText> BuildTicketText(
-#pragma warning restore S1541 // Methods and properties should not be too complex
             TicketResult ticketResult,
             BetListMetaModel metaModel = null,
             int startIndex = 1,

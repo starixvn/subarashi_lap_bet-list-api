@@ -24,7 +24,6 @@ namespace Fanex.Athena.BetList.Controllers
         private const string DefaultPage = "Betlist Api default page";
 
         private readonly ICacheRefAdapter _cacheRefAdapter;
-
         private readonly IIPService _ipService;
 
         public BetListController(

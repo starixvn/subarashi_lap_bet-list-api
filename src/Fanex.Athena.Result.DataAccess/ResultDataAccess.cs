@@ -151,9 +151,9 @@
             }
         }
 
-        private static Boolean IsLeagues3rd(int sportType)      
+        private static Boolean IsLeagues3rd(int sportType)
             => sportType == (int)SportType.Bitcoin || sportType == (int)SportType.VirtualDogRacing || sportType == (int)SportType.VirtualHorseRacing;
-        
+
 
         public async Task<IList<Racing>> GetVirtualSportMatchesAsync(ResultMetaModel metalModel)
         {

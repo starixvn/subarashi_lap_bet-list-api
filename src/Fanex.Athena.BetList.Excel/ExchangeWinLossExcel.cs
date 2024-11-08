@@ -1,9 +1,5 @@
 ﻿namespace Fanex.Athena.BetList.Excel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
     using Fanex.Athena.BetList.Excel.Builders;
     using Fanex.Athena.BetList.Model.DTO;
     using Fanex.Athena.BetList.Model.MetaModel;
@@ -11,6 +7,10 @@
     using Fanex.Athena.Common.Constant;
     using Fanex.Athena.Resources;
     using NPOI.SS.UserModel;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
 
     public class ExchangeWinLossExcel : IExchangeWinLossExcel
     {
