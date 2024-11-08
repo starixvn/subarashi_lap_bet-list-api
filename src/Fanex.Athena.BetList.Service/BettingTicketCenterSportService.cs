@@ -44,7 +44,7 @@ namespace Fanex.Athena.BetList.Service
 
             foreach (var sport in sportIds.Split(','))
             {
-                Int32.TryParse(sport, out int sportId);
+                int.TryParse(sport, out int sportId);
                 var leagueGroupIds = "0";
 
                 if (sportId == Parlay)

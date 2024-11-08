@@ -76,19 +76,6 @@ namespace Fanex.Athena.BetList.Controllers
 
         [HttpGet]
         public async Task<dynamic> MixParlay(MixParlayMetaModel metaModel)
-        //int page,
-        //int rows,
-        //int currencyId,
-        //string baseCurrency,
-        //int betType,
-        //DateTime fromDate,
-        //DateTime toDate,
-        //string productCodeList,
-        //bool? subsidiarySearch = false,
-        //string subsidiaryList = null,
-        //string sortBy = null,
-        //string sortOrder = null)
-#pragma warning restore S107 // Methods should not have too many parameters
         {
             if (_currencyValidation.IsValidBaseCurrency(metaModel.BaseCurrency)
                 && _currencyValidation.IsValidCurrency(metaModel.CurrencyId, _contextService.CurrencyList.ToDictionary(_ => _.Key, _ => _.Value)))

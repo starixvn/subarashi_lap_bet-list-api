@@ -415,8 +415,9 @@
                 Bettype = reader.GetVal("bettype", 0),
                 BetID = reader.GetVal("betcheck", string.Empty),
                 NoHTScore = reader.HasColumn("NoHTScore") && reader.ToBool("NoHTScore"),
-                MainType = reader.GetVal<byte>("MainType", byte.MinValue),
-                SubType = reader.GetVal<int>("SubType", 0)
+                MainType = reader.GetVal("MainType", byte.MinValue),
+                SubType = reader.GetVal("SubType", 0),
+                SessionTime = reader.GetVal("SessionTime", 0)
             };
         }
 

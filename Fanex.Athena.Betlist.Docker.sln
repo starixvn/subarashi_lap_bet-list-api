@@ -58,6 +58,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Common.DataAcc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanext.Athena.TestHelper", "tests\Fanext.Athena.TestHelper\Fanext.Athena.TestHelper.csproj", "{19CBFE2E-6A06-4159-B3C0-B8B6223F4F3E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Common.Service.UnitTests", "tests\Fanex.Athena.Common.Service.UnitTests\Fanex.Athena.Common.Service.UnitTests.csproj", "{2B62C0CC-3617-49F4-A776-1FD0F58D10E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -144,6 +146,10 @@ Global
 		{19CBFE2E-6A06-4159-B3C0-B8B6223F4F3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19CBFE2E-6A06-4159-B3C0-B8B6223F4F3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19CBFE2E-6A06-4159-B3C0-B8B6223F4F3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B62C0CC-3617-49F4-A776-1FD0F58D10E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B62C0CC-3617-49F4-A776-1FD0F58D10E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B62C0CC-3617-49F4-A776-1FD0F58D10E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B62C0CC-3617-49F4-A776-1FD0F58D10E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -175,6 +181,7 @@ Global
 		{27112957-1699-4F61-9A95-CCFB273DB85C} = {58840102-77F1-487D-A816-70EC51828737}
 		{9DB597C1-216A-4980-9AB7-81887265018C} = {27112957-1699-4F61-9A95-CCFB273DB85C}
 		{19CBFE2E-6A06-4159-B3C0-B8B6223F4F3E} = {58840102-77F1-487D-A816-70EC51828737}
+		{2B62C0CC-3617-49F4-A776-1FD0F58D10E5} = {27112957-1699-4F61-9A95-CCFB273DB85C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C284B560-5312-4A13-B93D-B01FE1162964}

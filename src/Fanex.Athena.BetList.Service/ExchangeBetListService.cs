@@ -43,7 +43,6 @@
         public Task<IEnumerable<ExchangeTicketDetail>> GetTicketDetailListAsync(ExchangeBetListDetailMetaModel metaModel)
              => _dataAccess.GetTicketDetailListAsync(metaModel);
 
-
         public Task<ExchangeResult<ExchangeRunningTicket>> GetRunningTicketsAsync(ExchangeRunningTicketMetaModel metaModel)
             => _dataAccess.GetRunningTicketsAsync(metaModel);
     }

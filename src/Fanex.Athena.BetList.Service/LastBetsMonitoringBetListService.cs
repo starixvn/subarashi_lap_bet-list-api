@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="LastBetsMonitoringBetListService.cs" company="Microsoft">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.BetList.Service
+﻿namespace Fanex.Athena.BetList.Service
 {
     using Common.Constant;
     using Common.Utility.Helpers;

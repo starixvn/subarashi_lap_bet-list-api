@@ -1,10 +1,10 @@
 ﻿namespace Fanex.Athena.BetList.Excel
 {
-    using NPOI.SS.UserModel;
     using Fanex.Athena.BetList.Excel.Builders;
     using Fanex.Athena.BetList.Model.DTO;
     using Fanex.Athena.BetList.Model.MetaModel;
     using Fanex.Athena.Resources;
+    using NPOI.SS.UserModel;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;

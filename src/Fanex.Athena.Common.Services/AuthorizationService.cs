@@ -3,11 +3,11 @@ using Fanex.Athena.Common.Services.Interfaces;
 
 namespace Fanex.Athena.Common.Services
 {
-    public class AuthoriztionService : IAuthorizationService
+    public class AuthorizationService : IAuthorizationService
     {
         private readonly IAuthorizationDataAccess _authorizationDataAccess;
 
-        public AuthoriztionService(IAuthorizationDataAccess authorizationDataAccess)
+        public AuthorizationService(IAuthorizationDataAccess authorizationDataAccess)
         {
             _authorizationDataAccess = authorizationDataAccess;
         }

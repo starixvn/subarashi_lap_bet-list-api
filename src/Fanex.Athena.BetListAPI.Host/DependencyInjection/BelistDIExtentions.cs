@@ -65,7 +65,7 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
             services.AddScoped<ICustomerClassService, CustomerClassService>();
             services.AddScoped<ISportService, SportService>();
             services.AddScoped<ISubsidiaryService, SubsidiaryService>();
-            services.AddScoped<IAuthorizationService, AuthoriztionService>();
+            services.AddScoped<IAuthorizationService, AuthorizationService>();
             services.AddScoped<ILicenseeSettingService, LicenseeSettingService>();
 
             return services;
