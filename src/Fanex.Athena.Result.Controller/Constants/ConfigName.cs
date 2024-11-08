@@ -60,5 +60,7 @@ namespace Fanex.Athena.Result.Controller.Constants
         public const string FastSpinResult = "FastSpinResult";
 
         public const string NextspinResult = "NextspinResult";
+
+        public const string ONCasinoResult = "ONCasinoResult";
     }
 }

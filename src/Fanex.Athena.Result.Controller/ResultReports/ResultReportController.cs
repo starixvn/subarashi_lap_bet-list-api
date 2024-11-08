@@ -478,6 +478,12 @@ namespace Fanex.Athena.Result.Controller.ResultReports
                     ParseResult(dataBitcoin, setting, metalModel.IsExportExcel);
                     break;
 
+                case SportType.VirtualHorseRacing:
+                case SportType.VirtualDogRacing:
+                    var dataDRc = await _resultService.GetBetradarSportMatchesAsync(metalModel).ConfigureAwait(false);
+                    ParseResult(dataDRc, setting, metalModel.IsExportExcel);
+                    break;
+
                 default:
                     var data = await _resultService.GetMatchesAsync(metalModel);
                     ParseResult(data, setting, metalModel.IsExportExcel);

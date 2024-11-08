@@ -12,6 +12,8 @@
 
         public string SiteId { get; set; }
 
+        public string Site { get; set; }
+
         public string LanguageCode { get; set; }
 
         public int BetTypeId { get; set; }

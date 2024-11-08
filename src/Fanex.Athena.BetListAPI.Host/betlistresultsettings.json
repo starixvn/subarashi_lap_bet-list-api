@@ -5,9 +5,6 @@
   "SAGamingResultImagePath": "/bundles/images/results/sagaming/template/public/game_result/",
   "SAGamingUseOriginalPath": true,
 
-  "SexyGamingResultImagePath": "/bundles/images/results/sexygaming/template/public/game_result/",
-  "SexyGamingUseOriginalPath": true,
-
   "WMResultImagePath": "/bundles/images/results/WM/template/public/game_result/",
   "WMUseOriginalPath": true,
 
@@ -160,6 +157,11 @@
     "ONCasinoResult": {
       "Url": "http://10.40.40.248:7090/api/OnGamingInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    "SexyGamingResult": {
+      "Url": "http://10.40.40.248:7075/api/SexyCasinoInternal/GetBetHistoryUrl",
+      "Debug": 0,
+      "VendorId": 45
     }
   },
   "KenoConfigs": {

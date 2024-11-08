@@ -1,4 +1,6 @@
-﻿using Fanex.Result.Core.SexyGaming;
+﻿using Fanex.Athena.Result.Model.MetaModel;
+using Fanex.Athena.Result.Service.Interfaces;
+using Fanex.Result.Core.ThirdParty.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Athena.Result.Controller.ResultPopup
@@ -7,15 +9,24 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
     [Route("[controller]/[action]")]
     public class SexyGamingResultPopupController
     {
-        private readonly ISexyGamingResultBuilder _resultApi;
+        private readonly IBetlistResultGetterFactory _factory;
 
-        public SexyGamingResultPopupController(ISexyGamingResultBuilder resultApi)
-            => _resultApi = resultApi;
-
+        public SexyGamingResultPopupController(IBetlistResultGetterFactory factory)
+             => _factory = factory;
 
         [HttpPost]
-        public string Index(string transDesc, string matchCode, int betType, string languageCode)
-            => _resultApi.Render(transDesc, matchCode, betType, languageCode);
+        public string Index(ThirdPartyMetaModel metaModel)
+        {
+            var _resultApi = _factory.CreateThirdPartyResultGetter(ConfigHelpers.GetConfigKey(ConfigName.SexyGamingResult));
+
+            var request = new ResultRequest(metaModel.CustId, metaModel.TransId3rd, metaModel.GameId3rd, metaModel.CurrencyId, metaModel.SiteId, metaModel.LanguageCode)
+            {
+                BetTypeId = metaModel.BetTypeId,
+                Site = metaModel.Site
+            };
+
+            return _resultApi.GetResultGET(request);
+        }
 
     }
 }
