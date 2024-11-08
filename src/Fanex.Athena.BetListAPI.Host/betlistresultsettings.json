@@ -156,6 +156,10 @@
     "NextspinResult": {
       "Url": "http://10.40.40.248:7023/api/NextSpinInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    "ONCasinoResult": {
+      "Url": "http://10.40.40.248:7090/api/OnGamingInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   },
   "KenoConfigs": {

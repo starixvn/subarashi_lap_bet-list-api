@@ -43,6 +43,7 @@
     <PackageReference Include="Fanex.BetList.MGRNGCasino" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.Nextspin" Version="1.0.0" />
     <PackageReference Include="Fanex.BetList.NumberGame" Version="2.0.0.3" />
+    <PackageReference Include="Fanex.BetList.ONCasino" Version="1.0.0" />
     <PackageReference Include="Fanex.BetList.PGSoft" Version="2.0.0.1-PromotionPrize-01" />
     <PackageReference Include="Fanex.BetList.PlayerTips" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.PP" Version="2.0.0.3" />
