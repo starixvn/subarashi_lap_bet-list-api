@@ -10,12 +10,12 @@ using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Site.Attributes;
 using Fanex.Athena.Common.Utility.Helpers;
-using Fanex.Athena.Common.Utility.Services;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Resources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Net;
 
 namespace Fanex.Athena.BetList.Controllers
 {
@@ -28,6 +28,9 @@ namespace Fanex.Athena.BetList.Controllers
         private const int RowsExceedLimitErrorCode = 1001;
         private const int ServerBusyErrorCode = 1002;
 
+        private const int ExportMultipleFile = 1002;
+        private const int ExportSingleFile = 1003;
+
         private readonly IAppSettings _appSettings;
         private readonly IContextService _contextService;
         private readonly IBettingTicketCenterAdvancedSearchDataAccess _dataAccess;
@@ -36,6 +39,7 @@ namespace Fanex.Athena.BetList.Controllers
         private readonly ICustomerClassService _customerClassService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ITempFileService _tempFileService;
+        private readonly ISportService _sportService;
 
         public BettingTicketCenterAdvancedSearchController(
             IAppSettings appSettings,
@@ -44,10 +48,12 @@ namespace Fanex.Athena.BetList.Controllers
             ITicketBuilderService ticketBuilderService,
             IBettingTicketCenterZipBuilder zipBuilder,
             IBettingTicketCenterExcel bettingTicketCenterExcel,
+            ISportService sportService,
             IContextService contextService,
             ICustomerClassService customerClassService,
             IHttpContextAccessor httpContextAccessor,
-            ITempFileService tempFileService) : base(ticketBuilderService, bettingTicketCenterExcel)
+            ITempFileService tempFileService)
+            : base(ticketBuilderService, bettingTicketCenterExcel)
         {
             _appSettings = appSettings;
             _dataAccess = dataAccess;
@@ -57,54 +63,88 @@ namespace Fanex.Athena.BetList.Controllers
             _customerClassService = customerClassService;
             _httpContextAccessor = httpContextAccessor;
             _tempFileService = tempFileService;
+            _sportService = sportService;
         }
 
         [HttpPost]
         [BearerAuthorize(Roles.BtcAdvancedSearch)]
         [RequestValidation(validateCurrencyList: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindShowingBetFromIP: true, bindProductCodeList: true)]
-        public async Task<IActionResult> GetData(AdvancedSearchBetListMetaModel metaModel, [FromServices] ISportService sportService)
+        public async Task<IActionResult> GetData(AdvancedSearchBetListMetaModel metaModel)
+        {
+            if (metaModel.IsExport && IsAllowExportLargeBetList())
+            {
+                return ServerBusy();
+            }
+
+            UpdateMetaModel(metaModel);
+
+            return await GetOrExportData(metaModel);
+        }
+
+        [HttpPost]
+        [BearerAuthorize(Roles.BtcAdvancedSearch)]
+        [RequestValidation(validateCurrencyList: true)]
+        [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindShowingBetFromIP: true, bindProductCodeList: true)]
+        public async Task<IActionResult> GetExportStatus(AdvancedSearchBetListMetaModel metaModel)
+        {
+            if (IsAllowExportLargeBetList())
+            {
+                return ServerBusy();
+            }
+            UpdateMetaModel(metaModel);
+            var totalRow = await _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel);
+            if (totalRow <= _appSettings.MaxRowSupportExportExcel)
+            {
+                return new JsonResult(new
+                {
+                    StatusCode = ExportSingleFile
+                });
+            }
+            else if (_appSettings.LicenseesExportedExceedMaxRow.Contains(metaModel.LicenseeName, StringComparer.InvariantCultureIgnoreCase))
+            {
+                return new JsonResult(new
+                {
+                    StatusCode = ExportMultipleFile,
+                    PageSize = _appSettings.MaxRowForMultipleExcelFiles
+                });
+            }
+            else
+            {
+                return new JsonResult(new
+                {
+                    StatusCode = RowsExceedLimitErrorCode
+                });
+            }
+        }
+
+        private IActionResult ServerBusy() => new JsonResult(new
+        {
+            ErrorCode = ServerBusyErrorCode,
+            ErrorMsg = ViewResources.ServerBusyMessage
+        });
+
+        private async void UpdateMetaModel(AdvancedSearchBetListMetaModel metaModel)
         {
             var isHideSaba = SabaHelper.IsHideSaba(_contextService.SpecialPlatform);
-            var sabaSport = sportService.GetSabaSport(metaModel.SportId, isHideSaba);
+            var sabaSport = _sportService.GetSabaSport(metaModel.SportId, isHideSaba);
             if (sabaSport != null)
             {
                 metaModel.LeagueGroupIds = string.Join(",", sabaSport.LeagueGroupIds);
                 metaModel.SportId = sabaSport.SportTypeId;
             }
 
-            if (metaModel.IsExport &&
-                _appSettings.IsDisableExportLargeBetList
-                && _appSettings.LicenseesWithLargeData.Contains(_contextService.SiteName))
-            {
-                return new JsonResult(new
-                {
-                    ErrorCode = ServerBusyErrorCode,
-                    ErrorMsg = ViewResources.ServerBusyMessage
-                });
-            }
-
             metaModel.HasPlayerCom = _contextService.IsAllowedCustomerComm;
             metaModel.SpecialPlatform = _contextService.SpecialPlatform;
             metaModel.FullCustomerClass = string.Join(",", await _customerClassService.GetAllCustomerClassId());
-
-            return await GetOrExportData(metaModel);
+            metaModel.LicenseeName = _contextService.SiteName;
         }
 
         private async Task<IActionResult> GetOrExportData(AdvancedSearchBetListMetaModel metaModel)
         {
             if (metaModel.IsExport)
             {
-                var totalRow = await _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel);
-                if (totalRow > _appSettings.MaxRowSupportExportExcel)
-                {
-                    return new JsonResult(new
-                    {
-                        ErrorCode = RowsExceedLimitErrorCode
-                    });
-                }
-
-                return await Export(metaModel, totalRow);
+                return await Export(metaModel);
             }
 
             var ticketResult = ShouldReturnEmptyResult(metaModel)
@@ -114,29 +154,38 @@ namespace Fanex.Athena.BetList.Controllers
             return new JsonResult(ReturnData(ticketResult, GetBetListOption(metaModel), metaModel));
         }
 
-        private async Task<IActionResult> Export(AdvancedSearchBetListMetaModel metaModel,
-            int totalRow)
+        private async Task<IActionResult> Export(AdvancedSearchBetListMetaModel metaModel)
         {
             var title = GetTitle(metaModel);
             var totalText = $"{ViewResources.Totalin} {metaModel.BaseCurrencyName}";
 
             var ticketResult = await _dataAccess.GetBetListForMultipleCustomersAsync(metaModel, _appSettings.MaxRowPerExcelFile);
 
+            if (!ticketResult.DataPath.Any())
+            {
+                return NoContent();
+            }
+
             if (ticketResult.TotalRows <= _appSettings.MaxRowPerExcelFile)
             {
                 if (ticketResult.TotalRows == 0 || ShouldReturnEmptyResult(metaModel))
                 {
-                    return new NoContentResult();
+                    return NoContent();
                 }
 
-                var tickets = GetTicketFromFile(ticketResult.DataPath[0]);
+                var tickets = GetTicketFromFile(ticketResult);
                 return ExportXls(tickets, title, metaModel, totalText);
+            }
+
+            if (ShouldExportNextPage(metaModel.PageSize, ticketResult.CurrentPageRowCount))
+            {
+                Response.StatusCode = (int)HttpStatusCode.PartialContent;
             }
 
             var zipFile = _zipBuilder.BuildZip(_httpContextAccessor.HttpContext.Response,
                 ticketResult, title, metaModel, totalText);
 
-            return zipFile == null ? null : ZipContentResult(zipFile);
+            return zipFile == null ? null : ZipContentResult(zipFile, metaModel);
         }
 
         private ExcelResult ExportXls(TicketResult ticketResult, string title, AdvancedSearchBetListMetaModel metaModel, string totalText)
@@ -152,10 +201,11 @@ namespace Fanex.Athena.BetList.Controllers
             return ExportExcel(excelModel);
         }
 
-        protected FileContentResult ZipContentResult(MemoryStream stream)
+        protected FileContentResult ZipContentResult(MemoryStream stream, AdvancedSearchBetListMetaModel metaModel)
         {
             var bytes = stream?.ToArray();
             var fileResult = new FileContentResult(bytes, "application/zip");
+            Response.Headers.Append("X-File-Name", $"BettingTicketsCenter_AdvancedSearch{metaModel.PageIndex}");
             fileResult.FileDownloadName = "BettingTicketsCenter_AdvancedSearch.zip";
             return fileResult;
         }
@@ -178,11 +228,25 @@ namespace Fanex.Athena.BetList.Controllers
         private bool ShouldReturnEmptyResult(AdvancedSearchBetListMetaModel metaModel)
             => !string.IsNullOrWhiteSpace(metaModel.Ip) && !metaModel.IsShowIpvn && _ipService.IsVNIP(metaModel.Ip);
 
-        private TicketResult GetTicketFromFile(string filePath)
+        private bool ShouldExportNextPage(int pageSize, int currentPageRowCount)
+            => pageSize == _appSettings.MaxRowForMultipleExcelFiles && currentPageRowCount == _appSettings.MaxRowForMultipleExcelFiles;
+
+        private TicketResult GetTicketFromFile(GroupTicketResult groupTicket)
         {
-            var contentData = _tempFileService.ReadString(filePath);
-            _tempFileService.Delete(filePath);
-            return JsonConvert.DeserializeObject<TicketResult>(contentData);
+            var contentData = _tempFileService.ReadString(groupTicket.DataPath[0]);
+            _tempFileService.Delete(groupTicket.DataPath[0]);
+            var ticketResult = JsonConvert.DeserializeObject<TicketResult>(contentData);
+
+            ticketResult.SumStake = groupTicket.SumStake;
+            ticketResult.SumWinLoss = groupTicket.SumWinLoss;
+            ticketResult.SumLicenseeWL = groupTicket.SumLicenseeWL;
+            ticketResult.SumComm = groupTicket.SumComm;
+            ticketResult.SumPlayerComm = groupTicket.SumPlayerComm;
+            ticketResult.TotalRows = groupTicket.TotalRows;
+            return ticketResult;
         }
+
+        private bool IsAllowExportLargeBetList()
+            => _appSettings.IsDisableExportLargeBetList && _appSettings.LicenseesWithLargeData.Contains(_contextService.SiteName);
     }
 }

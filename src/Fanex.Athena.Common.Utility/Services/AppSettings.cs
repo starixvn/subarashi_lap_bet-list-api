@@ -27,6 +27,10 @@
 
         public IEnumerable<string> LicenseesWithLargeData { get; set; }
 
+        public IEnumerable<string> LicenseesExportedExceedMaxRow { get; set; }
+
+        public int MaxRowForMultipleExcelFiles { get; set; }
+
         public string CustomerClassCategoryApiUrl { get; set; }
 
         public IEnumerable<ReportSetting> ReportSettings { get; set; }

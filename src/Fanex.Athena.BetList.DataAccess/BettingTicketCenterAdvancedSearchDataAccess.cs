@@ -32,13 +32,15 @@
             int rowPerGroup)
         {
             const string UspKey = "Lrf_BetList_Licensee";
+            const int timeOut = 180;
+
             var groupData = new GroupTicketResult
             {
                 RowPerGroup = rowPerGroup
             };
             var currencyList = await GetCurrencyListAsync();
 
-            using (var db = GetObjectDb(UspKey))
+            using (var db = GetObjectDb(UspKey, timeOut))
             {
                 AddAdvancedSearchParameters(db, metaModel);
 
@@ -46,6 +48,7 @@
                 {
                     var count = 0;
                     var ticket = new TicketResult();
+                    var currentPageRowCount = 0;
 
                     var columns = GetColumns();
                     var safeReader = GetSafeDataReader(reader, columns.Select(x => x.Value).ToList());
@@ -55,6 +58,7 @@
                         if (count == rowPerGroup)
                         {
                             SaveDataToFile(groupData, ticket);
+                            currentPageRowCount += rowPerGroup;
                             count = 0;
                             ticket = new TicketResult();
                         }
@@ -66,7 +70,9 @@
                     if (ticket.MainTicketList.Any())
                     {
                         SaveDataToFile(groupData, ticket);
+                        currentPageRowCount += count;
                     }
+                    groupData.CurrentPageRowCount = currentPageRowCount;
                 }
 
                 var outSqlParams = db.GetOutputParams();
@@ -181,8 +187,8 @@
             db.SetParameterValue(DbColumn.StatusIdList, metaModel.Status);
             db.SetParameterValue(DbColumn.LiveIndicator, metaModel.LiveStatus);
             db.SetParameterValue(DbColumn.UserName, SqlHelper.ToSqlTextSearch(metaModel.UserName));
-            db.SetParameterValue(DbColumn.PageSize, metaModel.IsExport ? int.MaxValue - 1 : metaModel.PageSize);
-            db.SetParameterValue(DbColumn.PageIndex, metaModel.IsExport ? 1 : metaModel.PageIndex);
+            db.SetParameterValue(DbColumn.PageSize, metaModel.PageSize);
+            db.SetParameterValue(DbColumn.PageIndex, metaModel.PageIndex);
             db.SetParameterValue(DbColumn.Product, metaModel.ProductCodeList);
             db.SetParameterValue(DbColumn.ConvertToBaseCur, metaModel.IsConvertAll);
             db.SetParameterValue(DbColumn.Ip, metaModel.Ip);

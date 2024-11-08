@@ -8,7 +8,7 @@
 
         public int RowPerGroup { get; set; }
 
-        public int TotalRow { get; set; }
+        public int CurrentPageRowCount { get; set; }
 
         public int TotalRows { get; set; }
 

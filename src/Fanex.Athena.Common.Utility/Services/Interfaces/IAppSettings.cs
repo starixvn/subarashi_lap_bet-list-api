@@ -25,6 +25,10 @@
 
         int MaxRowPerExcelFile { get; }
 
+        IEnumerable<string> LicenseesExportedExceedMaxRow { get; }
+
+        int MaxRowForMultipleExcelFiles { get; }
+
         DateTime HistoryDate { get; }
 
         DateTime? MaxDate { get; }
