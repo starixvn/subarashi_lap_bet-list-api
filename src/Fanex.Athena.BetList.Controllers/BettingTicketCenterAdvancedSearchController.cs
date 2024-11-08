@@ -10,10 +10,12 @@ using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Site.Attributes;
 using Fanex.Athena.Common.Utility.Helpers;
+using Fanex.Athena.Common.Utility.Services;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Resources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Fanex.Athena.BetList.Controllers
 {
@@ -33,6 +35,7 @@ namespace Fanex.Athena.BetList.Controllers
         private readonly IIPService _ipService;
         private readonly ICustomerClassService _customerClassService;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ITempFileService _tempFileService;
 
         public BettingTicketCenterAdvancedSearchController(
             IAppSettings appSettings,
@@ -43,7 +46,8 @@ namespace Fanex.Athena.BetList.Controllers
             IBettingTicketCenterExcel bettingTicketCenterExcel,
             IContextService contextService,
             ICustomerClassService customerClassService,
-            IHttpContextAccessor httpContextAccessor) : base(ticketBuilderService, bettingTicketCenterExcel)
+            IHttpContextAccessor httpContextAccessor,
+            ITempFileService tempFileService) : base(ticketBuilderService, bettingTicketCenterExcel)
         {
             _appSettings = appSettings;
             _dataAccess = dataAccess;
@@ -52,6 +56,7 @@ namespace Fanex.Athena.BetList.Controllers
             _contextService = contextService;
             _customerClassService = customerClassService;
             _httpContextAccessor = httpContextAccessor;
+            _tempFileService = tempFileService;
         }
 
         [HttpPost]
@@ -115,18 +120,18 @@ namespace Fanex.Athena.BetList.Controllers
             var title = GetTitle(metaModel);
             var totalText = $"{ViewResources.Totalin} {metaModel.BaseCurrencyName}";
 
-            if (totalRow <= _appSettings.MaxRowPerExcelFile)
+            var ticketResult = await _dataAccess.GetBetListForMultipleCustomersAsync(metaModel, _appSettings.MaxRowPerExcelFile);
+
+            if (ticketResult.TotalRows <= _appSettings.MaxRowPerExcelFile)
             {
-                var normalTicketResult = await _dataAccess.GetBetListForMultipleCustomersAsync(metaModel);
-                if (normalTicketResult.MainTicketList.Count == 0 || ShouldReturnEmptyResult(metaModel))
+                if (ticketResult.TotalRows == 0 || ShouldReturnEmptyResult(metaModel))
                 {
                     return new NoContentResult();
                 }
 
-                return ExportXls(normalTicketResult, title, metaModel, totalText);
+                var tickets = GetTicketFromFile(ticketResult.DataPath[0]);
+                return ExportXls(tickets, title, metaModel, totalText);
             }
-
-            var ticketResult = await _dataAccess.GetBetListForMultipleCustomersAsync(metaModel, _appSettings.MaxRowPerExcelFile);
 
             var zipFile = _zipBuilder.BuildZip(_httpContextAccessor.HttpContext.Response,
                 ticketResult, title, metaModel, totalText);
@@ -173,6 +178,11 @@ namespace Fanex.Athena.BetList.Controllers
         private bool ShouldReturnEmptyResult(AdvancedSearchBetListMetaModel metaModel)
             => !string.IsNullOrWhiteSpace(metaModel.Ip) && !metaModel.IsShowIpvn && _ipService.IsVNIP(metaModel.Ip);
 
-
+        private TicketResult GetTicketFromFile(string filePath)
+        {
+            var contentData = _tempFileService.ReadString(filePath);
+            _tempFileService.Delete(filePath);
+            return JsonConvert.DeserializeObject<TicketResult>(contentData);
+        }
     }
 }
