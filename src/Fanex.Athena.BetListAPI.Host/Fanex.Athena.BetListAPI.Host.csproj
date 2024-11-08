@@ -48,7 +48,7 @@
     <PackageReference Include="Fanex.BetList.PlayerTips" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.PP" Version="2.0.0.3" />
     <PackageReference Include="Fanex.BetList.RnGCasino" Version="2.0.0.2" />
-    <PackageReference Include="Fanex.BetList.SabaClub" Version="2.0.0.3" />
+    <PackageReference Include="Fanex.BetList.SabaClub" Version="2.0.0.4" />
     <PackageReference Include="Fanex.BetList.SAGaming" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.SealEntertainment" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.SexyGaming" Version="2.0.0.2" />
@@ -56,7 +56,7 @@
     <PackageReference Include="Fanex.BetList.SportsLottery" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.TableGames" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.UUSlots" Version="1.0.0" />
-    <PackageReference Include="Fanex.BetList.VGaming" Version="2.0.0.7" />
+    <PackageReference Include="Fanex.BetList.VGaming" Version="2.0.0.8" />
     <PackageReference Include="Fanex.BetList.VirtualGames" Version="2.0.0.2" />
     <PackageReference Include="Fanex.BetList.VirtualSports" Version="2.0.0.9" />
     <PackageReference Include="Fanex.BetList.Voidbridge" Version="2.0.0" />
