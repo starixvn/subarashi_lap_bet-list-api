@@ -21,7 +21,8 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
 
             var request = new ResultRequest(metaModel.CustId, metaModel.TransId3rd, metaModel.GameId3rd, metaModel.CurrencyId, metaModel.SiteId, metaModel.LanguageCode)
             {
-                BetTypeId = metaModel.BetTypeId
+                BetTypeId = metaModel.BetTypeId,
+                TransDesc = metaModel.Transdesc
             };
 
             return resultApi.GetResultGET(request);

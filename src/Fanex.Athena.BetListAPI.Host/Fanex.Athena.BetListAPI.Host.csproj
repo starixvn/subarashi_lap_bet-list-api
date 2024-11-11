@@ -33,7 +33,7 @@
     <PackageReference Include="Fanex.BetList.FGG" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.Habanero" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.Indo4D" Version="2.0.0.2" />
-    <PackageReference Include="Fanex.Betlist.Jili" Version="1.0.0.2" />
+    <PackageReference Include="Fanex.Betlist.Jili" Version="1.0.0.3" />
     <PackageReference Include="Fanex.BetList.Joker" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.Keno" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.KenoLottery" Version="2.0.0" />

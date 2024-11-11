@@ -21,5 +21,7 @@
         public string ClientIp { get; set; }
 
         public string WinLostDate { get; set; }
+
+        public string Transdesc { get; set; }
     }
 }
