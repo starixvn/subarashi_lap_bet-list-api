@@ -4,6 +4,7 @@ using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.BetList.Service.Extensions;
 using Fanex.Athena.BetList.Service.Helpers;
 using Fanex.Athena.BetList.Service.Interfaces;
+using Fanex.Athena.BetList.Service.Optiions;
 using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Common.Utility.Helpers;
 using Fanex.BetList.Core.Builder;
@@ -128,13 +129,10 @@ namespace Fanex.Athena.BetList.Service
             TicketResult ticketResult,
             BetListMetaModel metaModel = null,
             int startIndex = 1,
-            bool showOdds = false,
-            bool isAllowedCustomerComm = false,
-            bool isMobileView = false,
-            bool isShowIpvn = false,
-            bool isShowIp = true,
-            bool isHideSaba = false)
+            BuildTicketOption buildTicketOption = default)
         {
+            buildTicketOption ??= new BuildTicketOption();
+            var (isAllowedCustomerComm, isHideSaba, isMobileView, isShowIp, isShowIpvn, showOdds) = buildTicketOption;
             var baseCurrency = metaModel == null ? string.Empty : metaModel.BaseCurrency;
             var ticketTextList = new List<TicketText>();
 

@@ -6,9 +6,6 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    /// <summary>
-    /// Setting class.
-    /// </summary>
     public class AppSettings : IAppSettings
     {
         public string Environment { get; set; }

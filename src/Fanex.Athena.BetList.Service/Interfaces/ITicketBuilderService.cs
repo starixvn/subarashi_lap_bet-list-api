@@ -2,6 +2,7 @@
 {
     using Fanex.Athena.BetList.Model.DTO;
     using Fanex.Athena.BetList.Model.MetaModel;
+    using Fanex.Athena.BetList.Service.Optiions;
     using System.Collections.Generic;
 
     public interface ITicketBuilderService
@@ -10,18 +11,11 @@
 
         IList<TicketText> BuildTicketText(TicketResult ticketResult, ICommonValueMetaModel metaModel, bool isAllowedCustomerComm);
 
-
         List<TicketText> BuildTicketText(
             TicketResult ticketResult,
             BetListMetaModel metaModel = null,
             int startIndex = 1,
-            bool showOdds = false,
-            bool isAllowedCustomerComm = false,
-            bool isMobileView = false,
-            bool isShowIpvn = false,
-            bool isShowIp = true,
-            bool isHideSaba = false);
-
+            BuildTicketOption buildTicketOption = default);
 
         string BuildSumWinLoss(TicketResult ticketResult, bool isAllowedCustomerComm);
     }

@@ -2,7 +2,6 @@
 {
     using BetListNPOI.SS.UserModel;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Primitives;
 
     public class ExcelResult : ActionResult
     {
@@ -21,7 +20,7 @@
             response.ContentType = "application/vnd.ms-excel";
             if (!string.IsNullOrWhiteSpace(_fileName))
             {
-                var _ = response.Headers.Append(new KeyValuePair<string, StringValues>("Content-disposition", "attachment; filename=" + _fileName + ".xls"));
+                response.Headers.TryAdd("Content-disposition", "attachment; filename=" + _fileName + ".xls");
             }
             _hssfWorkBook.Write(response.Body, true);
         }

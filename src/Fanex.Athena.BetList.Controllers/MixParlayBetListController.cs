@@ -2,6 +2,7 @@
 using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.BetList.Service.Helpers;
 using Fanex.Athena.BetList.Service.Interfaces;
+using Fanex.Athena.BetList.Service.Optiions;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
@@ -45,7 +46,13 @@ namespace Fanex.Athena.BetList.Controllers
         public async Task<object> Detail(MixParlayDetailMetaModel metaModel)
         {
             var ticketResult = await _betListService.GetMixParlayDetailTicket(metaModel);
-            var result = _ticketBuilderService.BuildTicketText(ticketResult: ticketResult, showOdds: true, isShowIpvn: metaModel.IsShowIpvn, isHideSaba: metaModel.IsHideSaba);
+            var result = _ticketBuilderService.BuildTicketText(ticketResult: ticketResult,
+                buildTicketOption: new BuildTicketOption
+                {
+                    ShowOdds = true,
+                    IsShowIpvn = metaModel.IsShowIpvn,
+                    IsHideSaba = metaModel.IsHideSaba
+                });
             BetListHelper.ClearData(ticketResult);
             return result;
         }

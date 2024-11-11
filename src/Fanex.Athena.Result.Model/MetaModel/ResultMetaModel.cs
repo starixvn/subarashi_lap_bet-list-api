@@ -1,19 +1,10 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ResultMetalModel.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.Athena.Result.Model.MetaModel
+﻿namespace Fanex.Athena.Result.Model.MetaModel
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
-    /// <summary>
-    /// ResultMetalModel class.
-    /// </summary>
     [Serializable]
     public class ResultMetaModel
     {

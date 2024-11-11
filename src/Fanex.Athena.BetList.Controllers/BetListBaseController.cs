@@ -3,6 +3,7 @@ using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.BetList.Model.ViewModel;
 using Fanex.Athena.BetList.Service.Helpers;
 using Fanex.Athena.BetList.Service.Interfaces;
+using Fanex.Athena.BetList.Service.Optiions;
 using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Athena.Common.Model.DTO;
 using Fanex.Athena.Common.Model.MetaModel;
@@ -84,8 +85,7 @@ namespace Fanex.Athena.BetList.Controllers
             var main = _ticketBuilderService.BuildTicketText(
                 ticketResult,
                 metaModel,
-                isAllowedCustomerComm: metaModel.HasPlayerCom,
-                isMobileView: metaModel.IsMobileView);
+                buildTicketOption: new BuildTicketOption { IsAllowedCustomerComm = metaModel.HasPlayerCom, IsMobileView = metaModel.IsMobileView });
 
             var result = new BetListResultViewModel
             {
@@ -127,7 +127,14 @@ namespace Fanex.Athena.BetList.Controllers
                 page = pageIndex,
                 total = totalPage,
                 records = ticketResult.TotalRows,
-                rows = _ticketBuilderService.BuildTicketText(ticketResult, metaModel, startIndex, isAllowedCustomerComm: metaModel.HasPlayerCom, isHideSaba: metaModel.IsHideSaba),
+                rows = _ticketBuilderService.BuildTicketText(ticketResult,
+                    metaModel,
+                    startIndex,
+                    new BuildTicketOption
+                    {
+                        IsAllowedCustomerComm = metaModel.HasPlayerCom,
+                        IsHideSaba = metaModel.IsHideSaba
+                    }),
                 userdata = new
                 {
                     WinLoss = sumWinLossText,

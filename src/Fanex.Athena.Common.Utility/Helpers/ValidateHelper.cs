@@ -4,6 +4,6 @@
     {
         public static bool ValidateBaseCurrency(string baseCurrency, bool isAllowEmpty = true)
             => isAllowEmpty || !string.IsNullOrEmpty(baseCurrency);
-        
+
     }
 }
