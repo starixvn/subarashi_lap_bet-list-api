@@ -6,7 +6,6 @@
 
     public interface ILastBetsMonitoringBetListService
     {
-        Task<TicketResult> GetLastBetsMonitoringData(LastBetsMonitoringMetaModel metaModel
-           );
+        Task<TicketResult> GetLastBetsMonitoringData(LastBetsMonitoringMetaModel metaModel);
     }
 }

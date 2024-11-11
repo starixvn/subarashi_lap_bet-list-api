@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
 {
-    public static class BelistResultDIExtentions
+    public static class BetlistResultDIExtentions
     {
         public static IServiceCollection AddLapBetListResult(this IServiceCollection services, IConfiguration configuration)
         {

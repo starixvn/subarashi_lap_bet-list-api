@@ -187,7 +187,7 @@
                     db.SetParameterValue(DbColumn.SumStake, null);
                     AddSortParameter(db, metaModel.SortBy, metaModel.SortOrder);
 
-                    using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                    using (var reader = await db.ExecuteReaderAsync())
                     {
                         ticketResult.MainTicketList.AddRange(ReadBetListTicket(reader, currencyList));
                     }

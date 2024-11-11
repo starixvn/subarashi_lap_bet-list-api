@@ -21,7 +21,7 @@ using Fanex.RemotingRef;
 
 namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
 {
-    public static class BelistDIExtentions
+    public static class BetlistDIExtentions
     {
         public static IServiceCollection AddLapBetList(this IServiceCollection services)
         {

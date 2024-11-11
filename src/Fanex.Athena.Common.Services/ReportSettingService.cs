@@ -2,7 +2,6 @@
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Utility.Helpers;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Microsoft.AspNetCore.Hosting;
 
 namespace Fanex.Athena.Common.Services
 {
@@ -16,8 +15,7 @@ namespace Fanex.Athena.Common.Services
 
         public ReportSettingService(
             IMemoryCacheService cache,
-            IAppSettings appSettings,
-            IWebHostEnvironment hostEnviroment)
+            IAppSettings appSettings)
         {
             _cache = cache;
             _appSettings = appSettings;

@@ -42,10 +42,15 @@ namespace Fanex.Athena.Common.Services
 
         public bool IsAdministrator => GetClaimValue<bool>("Administrator");
 
-        public string SiteDBServer => string.IsNullOrWhiteSpace(GetClaimValue("SiteDBServer"))
+        public string SiteDBServer => !string.IsNullOrWhiteSpace(GetClaimValue("SiteDBServer"))
             ? GetClaimValue("SiteDBServer")
-            : _httpContextAccessor.HttpContext.Request.Headers["X-SiteDBServer"];
+            : GetSiteDBFromHeader();
 
+        private string GetSiteDBFromHeader()
+            => !string.IsNullOrWhiteSpace(_httpContextAccessor.HttpContext?.Request?.Headers["X-SiteDBServer"]) 
+            ? _httpContextAccessor.HttpContext.Request.Headers["X-SiteDBServer"] 
+            : string.Empty;
+        
         public IEnumerable<string> OfferedSubProductList
         {
             get
@@ -172,6 +177,7 @@ namespace Fanex.Athena.Common.Services
 
             public string Currency { get; set; }
         }
+
     }
 
 }

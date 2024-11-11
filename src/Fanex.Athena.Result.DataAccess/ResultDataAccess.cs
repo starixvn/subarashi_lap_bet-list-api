@@ -188,7 +188,7 @@
 
             using (var db = this.GetObjectDb(UspName))
             {
-                using (var reader = await db.ExecuteReaderAsync(uspParams).ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync(uspParams))
                 {
                     return ReadBetradarSportMatches(reader);
                 }
@@ -304,7 +304,7 @@
                 db.SetParameterValue("MoveBetsDay", balanceUp.MoveBetsDay);
                 db.SetParameterValue("BalanceUpDay", balanceUp.BalanceUpDay);
 
-                using (var reader = await db.ExecuteReaderAsync().ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync())
                 {
                     while (reader.Read())
                     {
