@@ -357,6 +357,7 @@
             AddLiveReportPagingParams(db, metaModel);
             CreateBetListSortingParameters(db, metaModel);
             db.SetParameterValue(DbColumn.ProductList, metaModel.ProductCodeList);
+            db.SetParameterValue(DbColumn.MatchId, metaModel.MatchId);
         }
 
         private static void CreateExcludeBettransParam(IObjectDb db, IShardDBMetaModel metaModel)
