@@ -35,7 +35,7 @@ namespace Fanex.Athena.Common.DataAccess.UnitTests.Extensions
             var result = _dataReader.HasColumn("TestColumn");
 
             // Assert
-            Assert.IsTrue(result);
+            Assert.That(result, Is.True);
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace Fanex.Athena.Common.DataAccess.UnitTests.Extensions
             var result = _dataReader.HasColumn("NonExistentColumn");
 
             // Assert
-            Assert.IsFalse(result);
+            Assert.That(result, Is.False);
         }
 
         [Test]

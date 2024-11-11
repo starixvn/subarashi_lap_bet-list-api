@@ -29,7 +29,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             var result = _authorizationService.HasPermissionOnData(currencyAgents, custId, transId);
 
             // Assert
-            Assert.IsTrue(result);
+            Assert.That(result, Is.True);
         }
 
         [Test]
@@ -62,7 +62,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             var result = _authorizationService.HasPermissionOnData(currencyAgents, custId, transId);
 
             // Assert
-            Assert.IsTrue(result);
+            Assert.That(result, Is.True);
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             var result = _authorizationService.HasPermissionOnData(currencyAgents, custId, transId);
 
             // Assert
-            Assert.IsFalse(result);
+            Assert.That(result, Is.False);
         }
     }
 }
