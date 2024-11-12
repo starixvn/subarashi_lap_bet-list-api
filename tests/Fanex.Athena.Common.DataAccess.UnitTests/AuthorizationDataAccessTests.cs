@@ -1,8 +1,8 @@
 using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Data;
-using Fanext.Athena.TestHelper;
 using NSubstitute;
 using System.Data;
+using Fanex.Athena.TestHelper;
 
 namespace Fanex.Athena.Common.DataAccess.UnitTests
 {
@@ -20,7 +20,7 @@ namespace Fanex.Athena.Common.DataAccess.UnitTests
             _authorizationDataAccess = new AuthorizationDataAccess();
             _objectDb = Substitute.For<IObjectDb>();
             _dataReader = Substitute.For<IDataReader>();
-            TestHelper.SetUpDBObjects(_objectDb);
+            DBTestHelper.SetUpDBObjects(_objectDb);
         }
 
         [TearDown]

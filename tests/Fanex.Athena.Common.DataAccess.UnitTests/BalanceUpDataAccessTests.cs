@@ -1,7 +1,7 @@
 using Fanex.Athena.Common.Model.DTO;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
+using Fanex.Athena.TestHelper;
 using Fanex.Data;
-using Fanext.Athena.TestHelper;
 using NSubstitute;
 using System.Data;
 
@@ -23,7 +23,7 @@ namespace Fanex.Athena.Common.DataAccess.UnitTests
             _balanceUpDataAccess = new BalanceUpDataAccess(_cacheServiceMock);
             _dataReaderMock = Substitute.For<IDataReader>();
             _objectDbMock = Substitute.For<IObjectDb>();
-            TestHelper.SetUpDBObjects(_objectDbMock);
+            DBTestHelper.SetUpDBObjects(_objectDbMock);
         }
 
         [TearDown]

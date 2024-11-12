@@ -1,8 +1,8 @@
 using Fanex.Data;
 
-namespace Fanext.Athena.TestHelper
+namespace Fanex.Athena.TestHelper
 {
-    public static class TestHelper
+    public static class DBTestHelper
     {
         public static void SetUpDBObjects(IObjectDb objectDb)
         {

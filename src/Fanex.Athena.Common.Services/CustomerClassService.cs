@@ -85,11 +85,11 @@ namespace Fanex.Athena.Common.Services
                 if (result.Any())
                 {
                     _cache.Set(CacheKey.MemorycacheCustomerClassCategories, result);
-                    _cache.SetWithoutExpired(CacheKey.MemorycacheCustomerClassCategories + "_backup", result);
+                    _cache.SetWithoutExpired($"{CacheKey.MemorycacheCustomerClassCategories}_backup", result);
                     return result;
                 }
 
-                customerClassCategory = _cache.Get<List<CustomerClassCategoryModel>>(CacheKey.MemorycacheCustomerClassCategories + "_backup");
+                customerClassCategory = _cache.Get<List<CustomerClassCategoryModel>>($"{CacheKey.MemorycacheCustomerClassCategories}_backup");
 
                 return customerClassCategory ?? new List<CustomerClassCategoryModel>();
             }

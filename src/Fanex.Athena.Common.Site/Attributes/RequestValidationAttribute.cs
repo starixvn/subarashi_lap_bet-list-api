@@ -14,7 +14,7 @@ namespace Fanex.Athena.Common.Site.Attributes
             bool validateCurrencyList = false)
             : base(typeof(DataValidationImplAttribute))
         {
-            Arguments = new object[] { validateCurrency, validateCurrencyList };
+            Arguments = [validateCurrency, validateCurrencyList];
         }
     }
 

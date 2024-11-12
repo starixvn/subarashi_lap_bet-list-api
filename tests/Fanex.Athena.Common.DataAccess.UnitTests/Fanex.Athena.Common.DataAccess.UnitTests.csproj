@@ -34,7 +34,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Fanex.Athena.Common.DataAccess\Fanex.Athena.Common.DataAccess.csproj" />
-    <ProjectReference Include="..\Fanext.Athena.TestHelper\Fanext.Athena.TestHelper.csproj" />
+    <ProjectReference Include="..\Fanext.Athena.TestHelper\Fanex.Athena.TestHelper.csproj" />
   </ItemGroup>
 
 </Project>

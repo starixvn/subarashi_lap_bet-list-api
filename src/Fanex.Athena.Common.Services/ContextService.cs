@@ -47,10 +47,10 @@ namespace Fanex.Athena.Common.Services
             : GetSiteDBFromHeader();
 
         private string GetSiteDBFromHeader()
-            => !string.IsNullOrWhiteSpace(_httpContextAccessor.HttpContext?.Request?.Headers["X-SiteDBServer"]) 
-            ? _httpContextAccessor.HttpContext.Request.Headers["X-SiteDBServer"] 
+            => !string.IsNullOrWhiteSpace(_httpContextAccessor.HttpContext?.Request?.Headers["X-SiteDBServer"])
+            ? _httpContextAccessor.HttpContext.Request.Headers["X-SiteDBServer"]
             : string.Empty;
-        
+
         public IEnumerable<string> OfferedSubProductList
         {
             get

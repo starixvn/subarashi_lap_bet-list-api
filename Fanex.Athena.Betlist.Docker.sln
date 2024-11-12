@@ -56,7 +56,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{271129
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Common.DataAccess.UnitTests", "tests\Fanex.Athena.Common.DataAccess.UnitTests\Fanex.Athena.Common.DataAccess.UnitTests.csproj", "{9DB597C1-216A-4980-9AB7-81887265018C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanext.Athena.TestHelper", "tests\Fanext.Athena.TestHelper\Fanext.Athena.TestHelper.csproj", "{19CBFE2E-6A06-4159-B3C0-B8B6223F4F3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.TestHelper", "tests\Fanext.Athena.TestHelper\Fanex.Athena.TestHelper.csproj", "{19CBFE2E-6A06-4159-B3C0-B8B6223F4F3E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Common.Service.UnitTests", "tests\Fanex.Athena.Common.Service.UnitTests\Fanex.Athena.Common.Service.UnitTests.csproj", "{2B62C0CC-3617-49F4-A776-1FD0F58D10E5}"
 EndProject

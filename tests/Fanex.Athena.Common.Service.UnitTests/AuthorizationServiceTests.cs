@@ -54,7 +54,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             var currencyAgents = new List<KeyValuePair<int, int[]>>();
             int custId = 1;
             long transId = 2;
-            var customerBelonging = new KeyValuePair<int, int[]>(3, new int[] { 4, 5 });
+            var customerBelonging = new KeyValuePair<int, int[]>(3, [4, 5]);
             currencyAgents.Add(customerBelonging);
             _authorizationDataAccessMock.IsCustomerBelonging(custId, transId).Returns((3, 4));
 
@@ -72,7 +72,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             var currencyAgents = new List<KeyValuePair<int, int[]>>();
             int custId = 1;
             long transId = 2;
-            var customerBelonging = new KeyValuePair<int, int[]>(3, new int[] { 4, 5 });
+            var customerBelonging = new KeyValuePair<int, int[]>(3, [4, 5]);
             currencyAgents.Add(customerBelonging);
             _authorizationDataAccessMock.IsCustomerBelonging(custId, transId).Returns((7, 8));
 
