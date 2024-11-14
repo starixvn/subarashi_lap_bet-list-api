@@ -1,0 +1,78 @@
+﻿
+using Fanex.Athena.Common.Services.Interfaces;
+using Fanex.Athena.Common.Site.Attributes;
+using Fanex.Core.Utils;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Routing;
+using NSubstitute;
+using System.Net;
+
+namespace Fanex.Athena.Common.Site.Tests.Attributes
+{
+    public class RequestValidationAttributeTests
+    {
+        private IContextService _contextService;
+        private ICurrencyValidation _currencyValidation;
+        private ActionExecutingContext _actionExecutingContext;
+        private ActionExecutionDelegate _nextDelegate;
+
+        [SetUp]
+        public void Setup()
+        {
+            _contextService = Substitute.For<IContextService>();
+            _currencyValidation = Substitute.For<ICurrencyValidation>();
+            _actionExecutingContext = CreateExecutingContext();
+            _nextDelegate = Substitute.For<ActionExecutionDelegate>();
+        }
+
+        [Test]
+        public async Task OnActionExecutionAsync_InvalidParams_ReturnsBadRequest()
+        {
+            // Arrange
+            var attribute = new DataValidationImplAttribute(_contextService, _currencyValidation, false, false);
+            var model = Substitute.For<IValidationMetaModel>();
+            model.IsValid.Returns(false);
+            _actionExecutingContext.ActionArguments.Add("model", model);
+
+            // Act
+            await attribute.OnActionExecutionAsync(_actionExecutingContext, CreateDelegate());
+
+            // Assert
+            Assert.That(_actionExecutingContext.Result, Is.InstanceOf<JsonResult>());
+            var jsonResult = _actionExecutingContext.Result as JsonResult;
+            Assert.That(jsonResult.StatusCode, Is.EqualTo((int)HttpStatusCode.BadRequest));
+        }
+
+        [Test]
+        public async Task OnActionExecutionAsync_ValidParams_CallsNextDelegate()
+        {
+            // Arrange
+            var attribute = new DataValidationImplAttribute(_contextService, _currencyValidation, false, false);
+            var model = Substitute.For<IValidationMetaModel>();
+            model.IsValid.Returns(true);
+            _actionExecutingContext.ActionArguments.Add("model", model);
+
+            // Act
+            await attribute.OnActionExecutionAsync(_actionExecutingContext, _nextDelegate);
+
+            // Assert
+            await _nextDelegate.Received(1).Invoke();
+        }
+
+        private ActionExecutionDelegate CreateDelegate() => () => Task.FromResult(new ActionExecutedContext(
+           new ActionContext(new DefaultHttpContext(), new RouteData(), new ActionDescriptor()),
+           Array.Empty<IFilterMetadata>(),
+           new object())
+            );
+
+        private ActionExecutingContext CreateExecutingContext() => new ActionExecutingContext(
+            new ActionContext(new DefaultHttpContext(), new RouteData(), new ActionDescriptor()),
+            Array.Empty<IFilterMetadata>(),
+            new Dictionary<string, object>(),
+            Substitute.For<Controller>()
+            );
+    }
+}

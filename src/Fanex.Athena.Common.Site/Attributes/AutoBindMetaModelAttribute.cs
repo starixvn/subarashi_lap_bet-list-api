@@ -21,7 +21,7 @@ namespace Fanex.Athena.Common.Site.Attributes
             bool bindBalanceUpAndMoveBet = false)
             : base(typeof(AutoBindMetaModelImplAttribute))
         {
-            Arguments = new object[] { bindAgent, bindPlayerCom, bindProductCodeList, applySubsidiaryBusiness, bindShowingBetFromIP, bindSpecialPlatform, bindBalanceUpAndMoveBet };
+            Arguments = [bindAgent, bindPlayerCom, bindProductCodeList, applySubsidiaryBusiness, bindShowingBetFromIP, bindSpecialPlatform, bindBalanceUpAndMoveBet];
         }
     }
 
@@ -104,7 +104,6 @@ namespace Fanex.Athena.Common.Site.Attributes
 
             await next();
         }
-
 
         private void BindShowingBetFromIP(ActionExecutingContext context)
         {

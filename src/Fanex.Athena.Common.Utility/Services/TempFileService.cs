@@ -7,9 +7,7 @@ namespace Fanex.Athena.Common.Utility.Services
     public class TempFileService : ITempFileService
     {
         private readonly IAppSettings _appSettings;
-
         private readonly IFileSystem _fileSystem;
-
         private readonly IHostEnvironment _enviroment;
 
         private string RootPath => Path.IsPathFullyQualified(_appSettings.TempFilePath)
