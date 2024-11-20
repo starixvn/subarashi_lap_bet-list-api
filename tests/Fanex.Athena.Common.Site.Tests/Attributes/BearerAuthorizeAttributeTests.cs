@@ -1,6 +1,4 @@
-﻿
-
-using Fanex.Athena.Common.Site.Attributes;
+﻿using Fanex.Athena.Common.Site.Attributes;
 
 namespace Fanex.Athena.Common.Site.Tests.Attributes
 {

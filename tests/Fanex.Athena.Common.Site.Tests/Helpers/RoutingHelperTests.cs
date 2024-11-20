@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Fanex.Athena.Common.Site.Helpers;
 
 namespace Fanex.Athena.Common.Site.Tests.Helpers
@@ -17,7 +15,7 @@ namespace Fanex.Athena.Common.Site.Tests.Helpers
             PathString result = path.FixDoubleSlashes();
 
             // Assert
-            Assert.AreEqual("", result.Value);
+            Assert.That(result.Value, Is.EqualTo(""));
         }
 
         [Test]
@@ -30,7 +28,7 @@ namespace Fanex.Athena.Common.Site.Tests.Helpers
             PathString result = path.FixDoubleSlashes();
 
             // Assert
-            Assert.AreEqual("/", result.Value);
+            Assert.That(result.Value, Is.EqualTo("/"));
         }
 
         [Test]
@@ -43,7 +41,7 @@ namespace Fanex.Athena.Common.Site.Tests.Helpers
             PathString result = path.FixDoubleSlashes();
 
             // Assert
-            Assert.AreEqual("/", result.Value);
+            Assert.That(result.Value, Is.EqualTo("/"));
         }
 
         [Test]
@@ -56,7 +54,7 @@ namespace Fanex.Athena.Common.Site.Tests.Helpers
             PathString result = path.FixDoubleSlashes();
 
             // Assert
-            Assert.AreEqual("/test/path", result.Value);
+            Assert.That(result.Value, Is.EqualTo("/test/path"));
         }
     }
 }

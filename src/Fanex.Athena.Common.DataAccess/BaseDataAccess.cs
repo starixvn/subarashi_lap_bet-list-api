@@ -4,7 +4,7 @@
 
     public class BaseDataAccess
     {
-        protected internal virtual IObjectDb GetObjectDb(string spname, int timeout = 120)
+        protected virtual IObjectDb GetObjectDb(string spname, int timeout = 120)
         {
             return ObjectDbFactory.CreateInstance(spname, timeout);
         }

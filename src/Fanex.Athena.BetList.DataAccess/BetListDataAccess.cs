@@ -15,7 +15,6 @@
 
     public class BetListDataAccess : BaseBetListDataAccess, IBetListDataAccess
     {
-
         public BetListDataAccess(ICurrencyDataAccess currencyDataAccess) : base(currencyDataAccess)
         {
         }

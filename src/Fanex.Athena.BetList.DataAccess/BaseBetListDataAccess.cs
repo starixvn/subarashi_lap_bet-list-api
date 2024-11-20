@@ -55,7 +55,7 @@
             return ticket;
         }
 
-        protected internal virtual SortableList<LrfTicket> ReadBetListTicket(
+        protected virtual SortableList<LrfTicket> ReadBetListTicket(
             IDataReader dataReader,
             IDictionary<int, string> currencyList,
             long custId = 0)
@@ -72,12 +72,12 @@
             return tickets;
         }
 
-        protected internal virtual ISafeDataReader GetSafeDataReader(IDataReader reader, IEnumerable<string> columns)
+        protected virtual ISafeDataReader GetSafeDataReader(IDataReader reader, IEnumerable<string> columns)
         {
             return new SafeDataReader(reader, columns);
         }
 
-        protected internal virtual async Task<TicketResult> GetMainTicketListBasedRangeAsync<TMetaModel>(TMetaModel metaModel, string uspKey,
+        protected virtual async Task<TicketResult> GetMainTicketListBasedRangeAsync<TMetaModel>(TMetaModel metaModel, string uspKey,
           Action<IObjectDb> assignCommonParamters,
           bool getInOneRange = false,
           Action<IObjectDb> assignShardSpecificParamters = null,
