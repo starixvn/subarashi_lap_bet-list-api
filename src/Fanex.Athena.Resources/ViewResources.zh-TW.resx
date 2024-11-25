@@ -325,4 +325,7 @@
   <data name="Robot" xml:space="preserve">
     <value>機械</value>
   </data>
+  <data name="Sportsbook" xml:space="preserve">
+    <value>体育博彩</value>
+  </data>
 </root>

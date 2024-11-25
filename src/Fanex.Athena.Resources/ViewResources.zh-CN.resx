@@ -409,4 +409,7 @@
   <data name="WL" xml:space="preserve">
     <value>输赢</value>
   </data>
+  <data name="Sportsbook" xml:space="preserve">
+    <value>体育博彩</value>
+  </data>
 </root>

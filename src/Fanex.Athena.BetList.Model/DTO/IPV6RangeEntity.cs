@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace Fanex.Athena.BetList.Model.DTO
 {
-    public class IPV6RangeEntity
+    public record IPV6RangeEntity
     {
         public string IPFrom { get; set; }
 

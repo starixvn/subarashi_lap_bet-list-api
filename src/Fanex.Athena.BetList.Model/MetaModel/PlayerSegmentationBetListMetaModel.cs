@@ -1,7 +1,9 @@
 ﻿
+using Fanex.Core.Utils;
+
 namespace Fanex.Athena.BetList.Model.MetaModel
 {
-    public class PlayerSegmentationBetListMetaModel : ICommonValueMetaModel
+    public class PlayerSegmentationBetListMetaModel : ICommonValueMetaModel, IPlayerComMetaModel, IAgentMetaModel
     {
         public int CustId { get; set; }
 
@@ -26,5 +28,7 @@ namespace Fanex.Athena.BetList.Model.MetaModel
         public bool IsShowIp { get; set; }
 
         public int SpecialPlatform { get; set; }
+
+        public bool HasPlayerCom { get; set; }
     }
 }

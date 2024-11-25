@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Athena.BetList.Model.DTO
 {
-    public class IPV4RangeEntity
+    public record IPV4RangeEntity
     {
         public long IPFrom { get; set; }
 

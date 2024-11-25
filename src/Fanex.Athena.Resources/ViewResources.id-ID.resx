@@ -387,4 +387,7 @@
   <data name="PlayerBetList" xml:space="preserve">
     <value>Daftar Taruhan Pemain</value>
   </data>
+  <data name="Sportsbook" xml:space="preserve">
+    <value>Sportsbook</value>
+  </data>
 </root>

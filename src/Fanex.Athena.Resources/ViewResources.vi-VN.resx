@@ -402,4 +402,7 @@
   <data name="WL" xml:space="preserve">
     <value>Thắng Thua</value>
   </data>
+  <data name="Sportsbook" xml:space="preserve">
+    <value>Sportsbook</value>
+  </data>
 </root>
