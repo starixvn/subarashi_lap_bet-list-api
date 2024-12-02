@@ -49,7 +49,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             foreach (var sabaVirtualSport in sabaVirtualSports)
             {
                 var sabaSport = result.FirstOrDefault(s => s.Id == sabaVirtualSport.Id);
-                if (!SportNameDic.TryGetValue(sabaVirtualSport.Id, out var sportName)) 
+                if (!SportNameDic.TryGetValue(sabaVirtualSport.Id, out var sportName))
                 {
                     sportName = "TestSportName";
                 };

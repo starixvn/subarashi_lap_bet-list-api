@@ -1,7 +1,7 @@
-﻿using System.Linq.Expressions;
-using AutoFixture;
+﻿using AutoFixture;
+using System.Linq.Expressions;
 
-namespace Fanex.Athena.UnitTest.Common.Helpers
+namespace Fanex.Athena.TestHelper
 {
     public static class FakeHelper
     {

@@ -1,0 +1,128 @@
+﻿using Fanex.Athena.BetList.Model.DTO;
+using Fanex.Athena.BetList.Service.Helpers;
+using Fanex.Athena.Common.Constant;
+using Fanex.BetList.Core.Entities;
+using NSubstitute;
+
+namespace Fanex.Athena.BetList.Service.Tests.Helpers
+{
+    public class BetListHelperTests
+    {
+        [TestCase(BetType.BetTradeBought)]
+        [TestCase(BetType.CashOutBought)]
+        public void IsBoughtTicket_IsBoughtBetType_ReturnTrue(BetType betType)
+        {
+            // Action
+            var result = BetListHelper.IsBoughtTicket((int)betType);
+
+            // Assert
+            Assert.That(result, Is.True);
+        }
+
+        [TestCase(BetType.Handicap)]
+        [TestCase(BetType.Outright)]
+        public void IsBoughtTicket_IsNotBoughtBetType_ReturnFalse(BetType betType)
+        {
+            // Action
+            var result = BetListHelper.IsBoughtTicket((int)betType);
+
+            // Assert
+            Assert.That(result, Is.False);
+        }
+
+        [TestCase("waiting")]
+        [TestCase("WAITING")]
+        [TestCase("running")]
+        [TestCase("RUNNING")]
+        [TestCase("pending")]
+        [TestCase("PEnDINg")]
+        public void IsRunning_IsWaitingTicket_ReturnTrue(string status)
+        {
+            // Action
+            var result = BetListHelper.IsRunning(status);
+
+            // Assert
+            Assert.That(result, Is.True);
+        }
+
+        [TestCase("Won")]
+        [TestCase("Lose")]
+        [TestCase("")]
+        [TestCase(null)]
+        [TestCase(" ")]
+        public void IsRunning_IsNotRunningTicket_ReturnFalse(string status)
+        {
+            // Action
+            var result = BetListHelper.IsRunning(status);
+
+            // Assert
+            Assert.That(result, Is.False);
+        }
+
+        [TestCase("Combo", "BetTeam", "BetTeam - Combo")]
+        [TestCase("", "BetTeam", "BetTeam")]
+        public void GenerateClientDetailSystemParlayFunction_WhenCall_ReturnCorrectResult(string comboName, string betTeam, string expectedBetTeam)
+        {
+            // Arrange
+            var tickerHelper = Substitute.For<ITicketHelper>();
+            tickerHelper.GetCombinationMPOfferName(Arg.Any<string>()).Returns(comboName);
+            tickerHelper.GetBetTypeNameById(Arg.Any<int>()).Returns(betTeam);
+
+            var ticket = new LrfTicket
+            {
+                TransId = 1,
+                RefNo = "RefNoTest",
+                BetId = 2,
+            };
+            const long Custid = 3;
+            const string BaseCurrency = "USD";
+
+            var expected = $"showCombMPDetail(&quot;1&quot;,&quot;RefNoTest&quot;,2,3,&quot;{expectedBetTeam}&quot;,&quot;USD&quot;)";
+
+            // Action
+            var result = BetListHelper.GenerateClientDetailSystemParlayFunction(tickerHelper, BaseCurrency, ticket, Custid);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void GenerateClientDetailSystemParlayFunction_MixParlay_ReturnCorrectResult()
+        {
+            // Arrange
+            var tickerHelper = Substitute.For<ITicketHelper>();
+
+            var ticket = new LrfTicket
+            {
+                TransId = 1,
+                RefNo = "RefNoTest",
+                BetId = 2,
+                BetTypeId = 29,
+                BetTeam = "1"
+            };
+            const long Custid = 3;
+            const string BaseCurrency = "USD";
+
+            var expected = $"showCombMPDetail(&quot;1&quot;,&quot;RefNoTest&quot;,2,3,&quot;Mix Parlay&quot;,&quot;USD&quot;)";
+
+            // Action
+            var result = BetListHelper.GenerateClientDetailSystemParlayFunction(tickerHelper, BaseCurrency, ticket, Custid);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [TestCase(null, false)]
+        [TestCase(" ", false)]
+        [TestCase("void", true)]
+        [TestCase("running", false)]
+        public void IsVoid_WhenCall_ReturnCorrectResult(string status, bool expected)
+        {
+            // Action
+            var result = BetListHelper.IsVoid(status);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(expected));
+        }
+    }
+}

@@ -1,7 +1,6 @@
 ﻿using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.TestHelper;
 using Fanex.Athena.TestHelper.Extensions;
-using Fanex.Athena.UnitTest.Common.Helpers;
 using Fanex.BetList.Core.Entities;
 using NSubstitute;
 using System.Collections;

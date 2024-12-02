@@ -1,10 +1,10 @@
-﻿using System.Runtime.Caching;
-using Fanex.Athena.Common.Utility.Services;
+﻿using Fanex.Athena.Common.Utility.Services;
 using Fanex.Athena.Common.Utility.Services.Internal;
 using Fanex.Athena.TestHelper;
 using NSubstitute;
+using System.Runtime.Caching;
 
-namespace Fanex.Athena.Common.Utility.UnitTests.Helpers
+namespace Fanex.Athena.Common.Utility.Tests.Services
 {
     public class MemoryCacheServiceTest
     {
@@ -88,7 +88,7 @@ namespace Fanex.Athena.Common.Utility.UnitTests.Helpers
             Func<object> action = () => expectedData;
 
             // Action
-            var result = _memoryCacheService.Get<object>(Key, action);
+            var result = _memoryCacheService.Get(Key, action);
 
             // Assert
             Assert.Multiple(() =>

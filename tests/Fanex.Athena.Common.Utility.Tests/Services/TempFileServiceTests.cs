@@ -1,4 +1,4 @@
-﻿namespace Fanex.Athena.Common.Utility.UnitTests.Helpers
+﻿namespace Fanex.Athena.Common.Utility.Tests.Services
 {
     using Fanex.Athena.Common.Utility.Services;
     using Fanex.Athena.Common.Utility.Services.Interfaces;

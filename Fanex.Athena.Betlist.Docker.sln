@@ -62,9 +62,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Common.Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Common.Utility.Tests", "tests\Fanex.Athena.Common.Utility.Tests\Fanex.Athena.Common.Utility.Tests.csproj", "{6B03326E-FA20-460B-A3B5-07CC1BF8B027}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.Common.Site.Tests", "tests\Fanex.Athena.Common.Site.Tests\Fanex.Athena.Common.Site.Tests.csproj", "{764D657D-3B44-40A2-9858-0D1689E1ECF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.Common.Site.Tests", "tests\Fanex.Athena.Common.Site.Tests\Fanex.Athena.Common.Site.Tests.csproj", "{764D657D-3B44-40A2-9858-0D1689E1ECF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.BetList.DataAccess.Tests", "tests\Fanex.Athena.BetList.DataAccess.Tests\Fanex.Athena.BetList.DataAccess.Tests.csproj", "{49EDD844-D4E0-462E-A4E5-E807530D7AC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.BetList.DataAccess.Tests", "tests\Fanex.Athena.BetList.DataAccess.Tests\Fanex.Athena.BetList.DataAccess.Tests.csproj", "{49EDD844-D4E0-462E-A4E5-E807530D7AC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.BetList.Service.Tests", "tests\Fanex.Athena.BetList.Service.Tests\Fanex.Athena.BetList.Service.Tests.csproj", "{44B5702A-67FB-44A1-8AF6-D6DF821141B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.BetList.Excel.Tests", "tests\Fanex.Athena.BetList.Excel.Tests\Fanex.Athena.BetList.Excel.Tests.csproj", "{8835CD81-2879-441F-B1DD-27C4C3C34168}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -168,6 +172,14 @@ Global
 		{49EDD844-D4E0-462E-A4E5-E807530D7AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49EDD844-D4E0-462E-A4E5-E807530D7AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49EDD844-D4E0-462E-A4E5-E807530D7AC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44B5702A-67FB-44A1-8AF6-D6DF821141B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44B5702A-67FB-44A1-8AF6-D6DF821141B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44B5702A-67FB-44A1-8AF6-D6DF821141B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44B5702A-67FB-44A1-8AF6-D6DF821141B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8835CD81-2879-441F-B1DD-27C4C3C34168}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8835CD81-2879-441F-B1DD-27C4C3C34168}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8835CD81-2879-441F-B1DD-27C4C3C34168}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8835CD81-2879-441F-B1DD-27C4C3C34168}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -203,6 +215,8 @@ Global
 		{6B03326E-FA20-460B-A3B5-07CC1BF8B027} = {27112957-1699-4F61-9A95-CCFB273DB85C}
 		{764D657D-3B44-40A2-9858-0D1689E1ECF2} = {27112957-1699-4F61-9A95-CCFB273DB85C}
 		{49EDD844-D4E0-462E-A4E5-E807530D7AC6} = {E5F1134C-04A2-4E26-B022-5AD6AFA3FDFC}
+		{44B5702A-67FB-44A1-8AF6-D6DF821141B7} = {E5F1134C-04A2-4E26-B022-5AD6AFA3FDFC}
+		{8835CD81-2879-441F-B1DD-27C4C3C34168} = {E5F1134C-04A2-4E26-B022-5AD6AFA3FDFC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C284B560-5312-4A13-B93D-B01FE1162964}

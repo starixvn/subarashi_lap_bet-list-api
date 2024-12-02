@@ -1,8 +1,8 @@
 using Fanex.Athena.Common.DataAccess.Interfaces;
+using Fanex.Athena.TestHelper;
 using Fanex.Data;
 using NSubstitute;
 using System.Data;
-using Fanex.Athena.TestHelper;
 
 namespace Fanex.Athena.Common.DataAccess.UnitTests
 {

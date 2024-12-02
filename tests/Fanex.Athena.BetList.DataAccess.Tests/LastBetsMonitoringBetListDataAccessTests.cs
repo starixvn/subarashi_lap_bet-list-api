@@ -1,7 +1,6 @@
 ﻿using Fanex.Athena.BetList.Model.DTO;
 using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.TestHelper;
-using Fanex.Athena.UnitTest.Common.Helpers;
 using NSubstitute;
 
 namespace Fanex.Athena.BetList.DataAccess.Tests

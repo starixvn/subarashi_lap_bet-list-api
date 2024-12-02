@@ -1,7 +1,6 @@
-﻿using Fanex.Athena.UnitTest.Common.Utility;
-using NUnit.Framework.Constraints;
+﻿using NUnit.Framework.Constraints;
 
-namespace Fanex.Athena.UnitTest.Common.Constraints
+namespace Fanex.Athena.TestHelper.Constraints
 {
     public class SamePropertiesConstraint : Constraint
     {
@@ -19,13 +18,13 @@ namespace Fanex.Athena.UnitTest.Common.Constraints
         {
             get
             {
-                return "same as " + this.expected;
+                return "same as " + expected;
             }
         }
 
         public override ConstraintResult ApplyTo<TActual>(TActual actual)
         {
-            bool isSuccess = ObjectDumper.Dump(this.expected) == ObjectDumper.Dump(actual);
+            bool isSuccess = ObjectDumper.Dump(expected) == ObjectDumper.Dump(actual);
             return new ConstraintResult(this, actual, isSuccess);
         }
     }

@@ -2,7 +2,6 @@
 using Fanex.Athena.TestHelper;
 using Fanex.Data;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Data.SqlClient;
 
 namespace Fanex.Athena.Common.Utility.Tests.Helpers
 {
@@ -59,12 +58,12 @@ namespace Fanex.Athena.Common.Utility.Tests.Helpers
             var context = new DefaultHttpContext();
             var sqlException = DBTestHelper.MakeSqlException();
 
-            var dbException = new ObjectDbException(sqlException, 
+            var dbException = new ObjectDbException(sqlException,
                 "Test Setting Key",
                 "Test SpName",
                 "Test DbName",
-                "Data Source=localhost;Initial Catalog=GUARENTEE_FALSE;integrated security=false; User Id=user;Password=password;TrustServerCertificate=True;", 
-                1, new Dictionary<string,string> { { "key1", "value1" }, { "key2", "value2"}});
+                "Data Source=localhost;Initial Catalog=GUARENTEE_FALSE;integrated security=false; User Id=user;Password=password;TrustServerCertificate=True;",
+                1, new Dictionary<string, string> { { "key1", "value1" }, { "key2", "value2" } });
 
             // Act
             var result = LogMessageHelper.GenerateMessage(context, dbException);

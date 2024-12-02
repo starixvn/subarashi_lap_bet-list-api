@@ -4,7 +4,6 @@ using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Athena.Common.Model.DTO;
 using Fanex.Athena.TestHelper;
 using Fanex.Athena.TestHelper.Extensions;
-using Fanex.Athena.UnitTest.Common.Helpers;
 using NSubstitute;
 using System.Data;
 

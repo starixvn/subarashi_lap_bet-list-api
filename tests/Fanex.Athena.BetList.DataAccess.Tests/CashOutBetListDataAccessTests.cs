@@ -1,14 +1,14 @@
 ﻿
+using AutoFixture;
 using Fanex.Athena.BetList.DataAccess.Util;
 using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Athena.Common.Model.DTO;
 using Fanex.Athena.Common.Services.Interfaces;
+using Fanex.Athena.TestHelper;
 using Fanex.Athena.TestHelper.Extensions;
 using NSubstitute;
 using System.Data;
-using Fanex.Athena.TestHelper;
-using AutoFixture;
 
 namespace Fanex.Athena.BetList.DataAccess.Tests
 {
@@ -21,7 +21,7 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
 
         private Fixture _fixture => new Fixture();
 
-        private BalanceUp _balanceUp; 
+        private BalanceUp _balanceUp;
 
         protected override void SetUpDataAccess()
         {

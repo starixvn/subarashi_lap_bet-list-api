@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Fanex.Athena.Common.Site.Helpers;
+﻿using Fanex.Athena.Common.Site.Helpers;
+using Microsoft.AspNetCore.Http;
 
 namespace Fanex.Athena.Common.Site.Tests.Helpers
 {

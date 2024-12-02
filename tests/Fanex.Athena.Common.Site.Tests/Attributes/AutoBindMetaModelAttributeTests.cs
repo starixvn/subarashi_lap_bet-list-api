@@ -2,7 +2,6 @@
 using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Athena.Common.Model.DTO;
 using Fanex.Athena.Common.Model.MetaModel;
-using Fanex.Athena.Common.Services;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Site.Attributes;
 using Fanex.Core.Utils;
@@ -26,7 +25,7 @@ namespace Fanex.Athena.Common.Site.Tests.Attributes
         [SetUp]
         public void SetUp()
         {
-            _context =  CreateExecutingContext();
+            _context = CreateExecutingContext();
 
             _bindingServiceMock = Substitute.For<IMetaModelBindingService>();
             _contextServiceMock = Substitute.For<IContextService>();
@@ -340,7 +339,7 @@ namespace Fanex.Athena.Common.Site.Tests.Attributes
             var model = Substitute.For<IBalanceUpMetaModel>();
             _context.ActionArguments.Add("model", model);
 
-            var balanceUp = new BalanceUp { BalanceUpDay= DateTime.Today, MoveBetsDay = DateTime.Today };
+            var balanceUp = new BalanceUp { BalanceUpDay = DateTime.Today, MoveBetsDay = DateTime.Today };
             _balanceUpDataAccessMock.GetBalanceUp().ReturnsForAnyArgs(balanceUp);
 
             // Act
@@ -353,7 +352,7 @@ namespace Fanex.Athena.Common.Site.Tests.Attributes
 
         private ActionExecutionDelegate CreateDelegate() => () => Task.FromResult(new ActionExecutedContext(
            new ActionContext(new DefaultHttpContext(), new RouteData(), new ActionDescriptor()),
-           Array.Empty<IFilterMetadata>(), 
+           Array.Empty<IFilterMetadata>(),
            new object())
             );
 
@@ -365,4 +364,4 @@ namespace Fanex.Athena.Common.Site.Tests.Attributes
             );
 
     }
-}   
+}

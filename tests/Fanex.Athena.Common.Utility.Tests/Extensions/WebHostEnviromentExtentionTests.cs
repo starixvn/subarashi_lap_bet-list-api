@@ -1,8 +1,8 @@
 ﻿
 
+using Fanex.Athena.Common.Utility.Extensions;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using Fanex.Athena.Common.Utility.Extensions;
 
 namespace Fanex.Athena.Common.Utility.Tests.Extensions
 {

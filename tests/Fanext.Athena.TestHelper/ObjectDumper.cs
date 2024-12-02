@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Text;
 
-namespace Fanex.Athena.UnitTest.Common.Utility
+namespace Fanex.Athena.TestHelper
 {
     internal static class ObjectDumper
     {

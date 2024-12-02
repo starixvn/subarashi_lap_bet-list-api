@@ -14,7 +14,7 @@ namespace Fanex.Athena.Common.Site.Tests.Attributes
         private ILicenseeSettingService _licenseeSettingServiceMock;
         private IContextService _contextServiceMock;
         private ApiBetlistAuthorizeAttribute _attribute;
-        private AuthorizationFilterContext _filterContext; 
+        private AuthorizationFilterContext _filterContext;
 
         [SetUp]
         public void Setup()
