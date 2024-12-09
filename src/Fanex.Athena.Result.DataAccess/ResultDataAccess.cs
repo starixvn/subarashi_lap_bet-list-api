@@ -1,24 +1,20 @@
-﻿namespace Fanex.Athena.Result.DataAccess
-{
-    using Common.DataAccess;
-    using Common.DataAccess.Extensions;
-    using Common.DataAccess.Interfaces;
-    using Common.Model.DTO;
-    using Common.Utility.Services.Interfaces;
-    using Fanex.Common.Extensions;
-    using Fanex.Result.Core.Base;
-    using Fanex.Result.Core.Bitcoin.DTO;
-    using Fanex.Result.Core.Racing.DTO;
-    using Fanex.Result.Core.Sportsbook.DTO;
-    using Fanex.Result.Core.VirtualRacing.DTO;
-    using Model.MetaModel;
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Globalization;
-    using System.Linq;
-    using System.Threading.Tasks;
+﻿using Fanex.Common.Extensions;
+using Fanex.Result.Core.Base;
+using Fanex.Result.Core.Bitcoin.DTO;
+using Fanex.Result.Core.Racing.DTO;
+using Fanex.Result.Core.Sportsbook.DTO;
+using Fanex.Result.Core.VirtualRacing.DTO;
+using System.Data;
+using System.Globalization;
+using Fanex.Athena.Common.DataAccess;
+using Fanex.Athena.Common.DataAccess.Extensions;
+using Fanex.Athena.Common.DataAccess.Interfaces;
+using Fanex.Athena.Common.Model.DTO;
+using Fanex.Athena.Common.Utility.Services.Interfaces;
+using Fanex.Athena.Result.Model.MetaModel;
 
+namespace Fanex.Athena.Result.DataAccess
+{
     public class ResultDataAccess : BaseDataAccess, IResultDataAccess
     {
         private const string MatchidColumn = "matchid";
@@ -447,7 +443,7 @@
                 HomeId = reader.ToInt("homeID"),
                 BetStatus = reader.ToString(BetstatusColumn),
                 LeagueId = leagueId ?? reader.ToInt(LeagueIdColumn),
-                LeagueGroupId = reader.GetVal<int>(LeagueGroupIdColumn, 0),
+                LeagueGroupId = reader.GetVal(LeagueGroupIdColumn, 0),
                 MatchId = reader.ToInt(MatchidColumn),
                 EventStatus = reader.ToString("eventstatus"),
                 FinalAwayScore = reader.ToNullableInt("finalawayscore"),

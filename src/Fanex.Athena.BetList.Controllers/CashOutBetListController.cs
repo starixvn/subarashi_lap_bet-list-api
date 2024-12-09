@@ -19,11 +19,8 @@ namespace Fanex.Athena.BetList.Controllers
     public class CashOutBetListController
     {
         private readonly ICashOutBetListDataAccess _cashOutBetListDataAccess;
-
         private readonly ITicketHelper _ticketHelper;
-
         private readonly IBetListHTMLBuilder _betListHTMLBuilder;
-
         private readonly IIPService _ipService;
 
         public CashOutBetListController(

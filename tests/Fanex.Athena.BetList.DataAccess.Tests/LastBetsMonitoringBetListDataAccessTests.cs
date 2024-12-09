@@ -58,5 +58,19 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             // Assert
             Assert.That(result, Is.EqualTo(expected));
         }
+
+        [Test]
+        public async Task GetMatchById_WhenCall_ReturnCorrectResult()
+        {
+            // Arrange
+            var expected = new BetListMatch { MatchId = 1, LeagueId = 2, LeagueGroupId = 1 };
+            ObjectDb.QueryEntityAsync<BetListMatch>().Returns(expected);
+
+            // Action
+            var result = await DataAccess.GetMatchById(1);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(expected));
+        }
     }
 }

@@ -11,13 +11,13 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
     [Route("[controller]/[action]")]
     public class PGSoftResultPopupController
     {
-        private readonly IIpInfoService _IpInfoService;
+        private readonly IIpInfoService _ipInfoService;
         private readonly IBetlistResultGetterFactory _factory;
         private readonly IHttpContextAccessor _contextAccessor;
 
         public PGSoftResultPopupController(IIpInfoService IpInfoService, IBetlistResultGetterFactory factory, IHttpContextAccessor httpContextAccessor)
         {
-            _IpInfoService = IpInfoService;
+            _ipInfoService = IpInfoService;
             _factory = factory;
             _contextAccessor = httpContextAccessor;
         }
@@ -31,7 +31,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
             var request = new ResultRequest(metaModel.CustId, metaModel.TransId3rd, metaModel.GameId3rd, metaModel.CurrencyId, metaModel.SiteId, metaModel.LanguageCode)
             {
                 BetTypeId = metaModel.BetTypeId,
-                Location = _IpInfoService.GetIpLocation(clientIp)
+                Location = _ipInfoService.GetIpLocation(clientIp)
             };
 
             return resultAPI.GetResultGET(request);

@@ -77,7 +77,7 @@
             return workBook;
         }
 
-        protected void AssignHeader(ISheet sheet, ISheet templateSheet)
+        protected virtual void AssignHeader(ISheet sheet, ISheet templateSheet)
         {
             var row = _builder.CopyRow(sheet, templateSheet, sourceRowIndex: RowHeaderTemplate, destRowIndex: RowHeaderTemplate);
 
@@ -106,12 +106,12 @@
             }
         }
 
-        private void AssignNoInfoRow(ISheet sheet, ISheet templateSheet)
+        protected virtual void AssignNoInfoRow(ISheet sheet, ISheet templateSheet)
         {
             _builder.SetRowValue(sheet, templateSheet, RowNoInfoTemplate, RowContentTemplate, ColumnTemplateCount, ViewResources.NoInfo);
         }
 
-        private void AssignSheetData(ISheet sheet, ISheet templateSheet, ExchangeResult<ExchangeRunningTicket> data, ExchangeRunningTicketMetaModel metaModel)
+        protected virtual void AssignSheetData(ISheet sheet, ISheet templateSheet, ExchangeResult<ExchangeRunningTicket> data, ExchangeRunningTicketMetaModel metaModel)
         {
             int index = 0;
 
@@ -139,7 +139,7 @@
             row.Cells[ColumnStake].SetCellValue((double)item.Stake);
         }
 
-        private void AssignTitle(ISheet sheet, ISheet templateSheet, ExchangeRunningTicketMetaModel metaModel)
+        protected virtual void AssignTitle(ISheet sheet, ISheet templateSheet, ExchangeRunningTicketMetaModel metaModel)
         {
             var baseCurrency = metaModel.BaseCurrency.ToUpperInvariant();
             var baseCurrencyText = metaModel.IsConvertAllToBaseCurrency ? $", {ViewResources.BaseCurrency}: {baseCurrency}" : "";
@@ -158,7 +158,7 @@
             _builder.ClearTemplate(sheet, RowContentTemplate);
         }
 
-        private void AssignTotal(ISheet sheet, ISheet templateSheet, ExchangeResult<ExchangeRunningTicket> data, int index, ExchangeRunningTicketMetaModel metaModel)
+        protected virtual void AssignTotal(ISheet sheet, ISheet templateSheet, ExchangeResult<ExchangeRunningTicket> data, int index, ExchangeRunningTicketMetaModel metaModel)
         {
             var row = _builder.CopyRow(sheet, templateSheet, RowTotalTemplate, index);
             row.Cells[0].SetCellValue(string.Format(ViewResources.TotalInWithParam, metaModel.BaseCurrency));

@@ -7,7 +7,6 @@
     using BetListNPOI.SS.UserModel;
     using BetListNPOI.SS.Util;
     using Common.Constant;
-    using Common.Utility.Services;
     using Common.Utility.Services.Interfaces;
     using Fanex.Athena.BetList.Service.Interfaces;
     using Fanex.BetList.Core.Builder;
@@ -52,30 +51,19 @@
 
         private IFont _winLossFont;
 
-        public BetListExcel(BetListShowingOption showingOption, int licenseeId, IEnumerable<int> hiddenColumnIndexes, IIPService ipService = null)
-        {
-            _appSettings = new AppSettings();
-            _licenseeId = licenseeId;
-            _ticketHelper = new TicketHelper();
-            _showingOption = showingOption;
-            _hiddenColumnIndexes = hiddenColumnIndexes;
-            _ipService = ipService;
-        }
-
-        protected internal BetListExcel(
-            IAppSettings appSettings,
-            ITicketHelper ticketHelper,
-            IIPService ipService,
-            BetListShowingOption showingOption,
-            int licenseeId,
-            IEnumerable<int> hiddenColumnIndexes)
+        public BetListExcel(BetListShowingOption showingOption, 
+            int licenseeId, 
+            IEnumerable<int> hiddenColumnIndexes, 
+            IAppSettings appSettings, 
+            IIPService ipService = null,
+            ITicketHelper ticketHelper = null)
         {
             _appSettings = appSettings;
             _licenseeId = licenseeId;
-            _ticketHelper = ticketHelper;
-            _ipService = ipService;
+            _ticketHelper = ticketHelper ?? new TicketHelper();
             _showingOption = showingOption;
             _hiddenColumnIndexes = hiddenColumnIndexes;
+            _ipService = ipService;
         }
 
         public IWorkbook Export(TicketResult ticketResult, string title, int startIndex = 1)
@@ -88,7 +76,7 @@
             return workbook;
         }
 
-        protected internal virtual IBetListExcelBuilder CreateExcelBuilder()
+        protected virtual IBetListExcelBuilder CreateExcelBuilder()
         {
             return new BetListExcelBuilder();
         }
@@ -116,7 +104,7 @@
             builder.MergeCell(new CellRangeAddress(0, 0, 0, NumberOfColumn - 1));
         }
 
-        protected internal virtual void Build(IBetListExcelBuilder builder, TicketResult ticketResult, string title, int startIndex = 1)
+        protected virtual void Build(IBetListExcelBuilder builder, TicketResult ticketResult, string title, int startIndex = 1)
         {
             InitializeFonts(builder);
             InitializeCellStyles(builder);
@@ -135,7 +123,7 @@
             }
         }
 
-        protected internal virtual void AssignSheetsData(IBetListExcelBuilder builder, TicketResult ticketResult, string title, int startIndex)
+        protected virtual void AssignSheetsData(IBetListExcelBuilder builder, TicketResult ticketResult, string title, int startIndex)
         {
             var sumStake = _showingOption.IsShowSumStake ? ticketResult.MainTicketList.Sum(x => x.Stake) : 0;
 
@@ -197,7 +185,7 @@
             builder.AddHeader(custWlheader);
         }
 
-        protected internal virtual void BuildTicket(IBetListExcelBuilder builder, TicketResult ticketResult, LrfTicket ticket)
+        protected virtual void BuildTicket(IBetListExcelBuilder builder, TicketResult ticketResult, LrfTicket ticket)
         {
             builder.AddIndex(_ticketHelper, _ticketHelper.Index);
             builder.AddExternalId(_ticketHelper, ticket.ExternalId, _oddCellStyleLeftAligned, _evenCellStyleLeftAligned);
@@ -230,7 +218,7 @@
             _evenCellStyleLeftAligned.WrapText = true;
         }
 
-        protected internal virtual void InitializeFonts(IBetListExcelBuilder builder)
+        protected virtual void InitializeFonts(IBetListExcelBuilder builder)
         {
             _negativeWinLossFont = builder.CreateFont();
             _negativeWinLossFont.IsBold = true;
@@ -241,7 +229,7 @@
             _winLossFont.Color = (short)FontColor.None;
         }
 
-        protected internal virtual void ProcessUi(IWorkbook workbook)
+        protected virtual void ProcessUi(IWorkbook workbook)
         {
             if (_hiddenColumnIndexes != null)
             {

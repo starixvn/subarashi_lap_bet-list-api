@@ -1,11 +1,11 @@
-﻿namespace Fanex.Athena.Result.Service
-{
-    using Fanex.Athena.Result.Model.Const;
-    using Fanex.Athena.Result.Service.Interfaces;
-    using Fanex.Result.Core.KenoLotteryTG;
-    using Microsoft.Extensions.Configuration;
+﻿using Fanex.Athena.Result.Model.Const;
+using Fanex.Athena.Result.Service.Interfaces;
+using Fanex.Result.Core.KenoLotteryTG;
+using Microsoft.Extensions.Configuration;
 
-    public class KenoLotteryTGResultApi : IKenoLotteryTGResultFactory
+namespace Fanex.Athena.Result.Service
+{
+    public class KenoLotteryTGResultApi(IConfiguration configuration) : IKenoLotteryTGResultFactory
     {
         private const string PREFIX = "KenoConfigs:";
 
@@ -14,14 +14,9 @@
         private const string TABLEGAME_RESULT_CONFIG = "TableGameResult";
         private const string VIRTUALGAMES_RESULT_CONFIG = "VirtualGamesResult";
 
-        private readonly IConfiguration _configuration;
-
-        public KenoLotteryTGResultApi(IConfiguration configuration)
-            => _configuration = configuration;
-
         public IKenoLotteryTGResult CreateResultApi(int vendorProductId)
         {
-            var config = _configuration.GetSection(PREFIX + GetConfigSetting(vendorProductId)).Get<KenoLotteryTGConfigs>();
+            var config = configuration.GetSection(PREFIX + GetConfigSetting(vendorProductId)).Get<KenoLotteryTGConfigs>();
             var result = new KenoLotteryTGResult(config);
             return result;
         }

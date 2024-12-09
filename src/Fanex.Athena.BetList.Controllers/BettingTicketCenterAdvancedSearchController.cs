@@ -37,7 +37,6 @@ namespace Fanex.Athena.BetList.Controllers
         private readonly IBettingTicketCenterZipBuilder _zipBuilder;
         private readonly IIPService _ipService;
         private readonly ICustomerClassService _customerClassService;
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ITempFileService _tempFileService;
         private readonly ISportService _sportService;
 
@@ -51,7 +50,6 @@ namespace Fanex.Athena.BetList.Controllers
             ISportService sportService,
             IContextService contextService,
             ICustomerClassService customerClassService,
-            IHttpContextAccessor httpContextAccessor,
             ITempFileService tempFileService)
             : base(ticketBuilderService, bettingTicketCenterExcel)
         {
@@ -61,7 +59,6 @@ namespace Fanex.Athena.BetList.Controllers
             _zipBuilder = zipBuilder ?? new BettingTicketCenterZipBuilder(_appSettings, null, bettingTicketCenterExcel, ipService);
             _contextService = contextService;
             _customerClassService = customerClassService;
-            _httpContextAccessor = httpContextAccessor;
             _tempFileService = tempFileService;
             _sportService = sportService;
         }
@@ -77,7 +74,7 @@ namespace Fanex.Athena.BetList.Controllers
                 return ServerBusy();
             }
 
-            UpdateMetaModel(metaModel);
+            await UpdateMetaModel(metaModel);
 
             return await GetOrExportData(metaModel);
         }
@@ -92,7 +89,7 @@ namespace Fanex.Athena.BetList.Controllers
             {
                 return ServerBusy();
             }
-            UpdateMetaModel(metaModel);
+            await UpdateMetaModel(metaModel);
             var totalRow = await _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel);
             if (totalRow <= _appSettings.MaxRowSupportExportExcel)
             {
@@ -182,8 +179,7 @@ namespace Fanex.Athena.BetList.Controllers
                 Response.StatusCode = (int)HttpStatusCode.PartialContent;
             }
 
-            var zipFile = _zipBuilder.BuildZip(_httpContextAccessor.HttpContext.Response,
-                ticketResult, title, metaModel, totalText);
+            var zipFile = _zipBuilder.BuildZip(ticketResult, title, metaModel, totalText);
 
             return zipFile == null ? null : ZipContentResult(zipFile, metaModel);
         }

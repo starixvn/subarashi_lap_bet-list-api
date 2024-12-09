@@ -19,12 +19,11 @@ namespace Fanex.Athena.BetList.Controllers
     [ApiController]
     public class BetListController : BetListBaseController
     {
-        protected const int PageSizeExcel = 63000;
-
         private const string DefaultPage = "Betlist Api default page";
 
         private readonly ICacheRefAdapter _cacheRefAdapter;
         private readonly IIPService _ipService;
+        private readonly IAppSettings _appSettings;
 
         public BetListController(
             IContextService contextService,
@@ -34,11 +33,18 @@ namespace Fanex.Athena.BetList.Controllers
             IIPService ipService,
             IBalanceUpDataAccess balanceUpDataAccess,
             IAuthorizationService authorizationService,
-            ISubsidiaryService subsidiaryService)
-            : base(contextService, authorizationService, betListService, ticketBuilderService, subsidiaryService, balanceUpDataAccess)
+            ISubsidiaryService subsidiaryService,
+            IAppSettings appSettings)
+            : base(contextService,
+                authorizationService, 
+                betListService, 
+                ticketBuilderService, 
+                subsidiaryService, 
+                balanceUpDataAccess)
         {
             _cacheRefAdapter = cacheRefAdapter;
             _ipService = ipService;
+            _appSettings = appSettings;
         }
 
         [HttpGet]
@@ -74,7 +80,7 @@ namespace Fanex.Athena.BetList.Controllers
             metaModel.ShowingOption.IsShowSumStake = metaModel.IsShowSumStake;
             metaModel.ShowingOption.IsShowIpvn = metaModel.IsShowIpvn;
             metaModel.ShowingOption.IsShowIp = metaModel.IsShowIp;
-            var excel = new BetListExcel(metaModel.ShowingOption, metaModel.LicenseeId, metaModel.HiddenColumns, _ipService);
+            var excel = new BetListExcel(metaModel.ShowingOption, metaModel.LicenseeId, metaModel.HiddenColumns, _appSettings, _ipService);
 
             var workbook = excel.Export(ticketResult, metaModel.Title, metaModel.StartIndex);
 

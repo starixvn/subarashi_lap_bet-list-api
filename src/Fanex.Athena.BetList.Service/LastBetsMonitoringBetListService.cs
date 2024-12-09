@@ -1,16 +1,13 @@
-﻿namespace Fanex.Athena.BetList.Service
-{
-    using Common.Constant;
-    using Common.Utility.Helpers;
-    using Common.Utility.Services.Interfaces;
-    using Fanex.Athena.BetList.DataAccess.Interfaces;
-    using Fanex.Athena.BetList.Model.DTO;
-    using Fanex.Athena.BetList.Model.MetaModel;
-    using Interfaces;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
+﻿using Fanex.Athena.Common.Constant;
+using Fanex.Athena.Common.Utility.Helpers;
+using Fanex.Athena.Common.Utility.Services.Interfaces;
+using Fanex.Athena.BetList.DataAccess.Interfaces;
+using Fanex.Athena.BetList.Model.DTO;
+using Fanex.Athena.BetList.Model.MetaModel;
+using Fanex.Athena.BetList.Service.Interfaces;
 
+namespace Fanex.Athena.BetList.Service
+{
     public class LastBetsMonitoringBetListService : ILastBetsMonitoringBetListService
     {
         private const int CacheTimeout = 300;

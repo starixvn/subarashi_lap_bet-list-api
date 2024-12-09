@@ -1,26 +1,16 @@
-﻿namespace Fanex.Athena.BetList.Service
+﻿using Fanex.Athena.BetList.DataAccess.Interfaces;
+using Fanex.Athena.BetList.Service.Interfaces;
+using Fanex.Athena.BetList.Model.DTO;
+using Fanex.Athena.BetList.Model.MetaModel;
+using Fanex.Athena.BetList.Model.ViewModel;
+
+namespace Fanex.Athena.BetList.Service
 {
-    using DataAccess.Interfaces;
-    using Interfaces;
-    using Model.DTO;
-    using Model.MetaModel;
-    using Model.ViewModel;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    public class ExchangeBetListService : IExchangeBetListService
+    public class ExchangeBetListService(IExchangeBetListDataAccess dataAccess) : IExchangeBetListService
     {
-        private readonly IExchangeBetListDataAccess _dataAccess;
-
-        public ExchangeBetListService(IExchangeBetListDataAccess dataAccess)
-        {
-            _dataAccess = dataAccess;
-        }
-
         public async Task<ExchangeBetListViewModel> GetBetListDataAsync(ExchangeBetListMetaModel metaModel)
         {
-            var betList = await _dataAccess.GetBetListDataAsync(metaModel);
+            var betList = await dataAccess.GetBetListDataAsync(metaModel);
 
             if (betList.SumWinLossList.Any() && betList.TicketList.Any())
             {
@@ -43,9 +33,9 @@
         }
 
         public Task<IEnumerable<ExchangeTicketDetail>> GetTicketDetailListAsync(ExchangeBetListDetailMetaModel metaModel)
-             => _dataAccess.GetTicketDetailListAsync(metaModel);
+             => dataAccess.GetTicketDetailListAsync(metaModel);
 
         public Task<ExchangeResult<ExchangeRunningTicket>> GetRunningTicketsAsync(ExchangeRunningTicketMetaModel metaModel)
-            => _dataAccess.GetRunningTicketsAsync(metaModel);
+            => dataAccess.GetRunningTicketsAsync(metaModel);
     }
 }

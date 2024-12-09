@@ -11,7 +11,6 @@ namespace Fanex.Athena.BetList.Service.Tests
 {
     public class LastBetsMonitoringBetListServiceTests
     {
-        private readonly IDictionary<int, string> _currencyList = new Dictionary<int, string> { { 20, "UUS" } };
         private ILastBetsMonitoringBetListDataAccess _lastBetsMonitoringBetListDataAccess;
         private ILastBetsMonitoringBetListService _betListService;
         private IMemoryCacheService _cache;

@@ -8,7 +8,6 @@ using Fanex.Athena.BetList.Service.Interfaces;
 using Fanex.Athena.Common.Utility.Services;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Ionic.Zip;
-using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace Fanex.Athena.BetList.Controllers.Utility
@@ -40,7 +39,7 @@ namespace Fanex.Athena.BetList.Controllers.Utility
             set { _bettingTicketCenterExcel = value; }
         }
 
-        public MemoryStream BuildZip(HttpResponse response, GroupTicketResult ticketResult, string title, AdvancedSearchBetListMetaModel metaModel, string totalText)
+        public MemoryStream BuildZip(GroupTicketResult ticketResult, string title, AdvancedSearchBetListMetaModel metaModel, string totalText)
         {
             var excelFiles = new List<string>();
 
@@ -111,7 +110,7 @@ namespace Fanex.Athena.BetList.Controllers.Utility
             };
         }
 
-        protected internal virtual void SaveFile(IWorkbook workbook, string dataFilePath)
+        protected virtual void SaveFile(IWorkbook workbook, string dataFilePath)
         {
             using (var stream = new FileStream(dataFilePath, FileMode.CreateNew, FileAccess.Write))
             using (var bufferStream = new BufferedStream(stream))

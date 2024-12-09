@@ -27,14 +27,32 @@
         }
 
         public static T GetVal<T>(this IDataReader reader, string fieldName, T defaultValue = default)
+
         {
             if (reader.HasColumn(fieldName)
                 && !reader.IsDBNull(fieldName))
             {
-                return reader.GetValue<T>(fieldName);
+                return GetValue<T>(reader[fieldName]);
             }
 
             return defaultValue;
+        }
+
+        private static T GetValue<T>(object value)
+        {
+            var t = typeof(T);
+
+            if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                if (value == null)
+                {
+                    return default(T);
+                }
+
+                t = Nullable.GetUnderlyingType(t);
+            }
+
+            return (T)Convert.ChangeType(value, t);
         }
     }
 }

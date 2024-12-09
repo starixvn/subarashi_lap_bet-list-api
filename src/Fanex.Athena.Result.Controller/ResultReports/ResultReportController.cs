@@ -10,7 +10,6 @@ using Fanex.Result.Core.LeapGaming.DTO;
 using Fanex.Result.Core.Sportsbook.DTO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using System.Web;
 
 namespace Fanex.Athena.Result.Controller.ResultReports
 {
@@ -145,14 +144,6 @@ namespace Fanex.Athena.Result.Controller.ResultReports
 
         #endregion PopUpPage
 
-        #region Utilities
-
-        private static string GenerateOutRightCacheKey(ResultMetaModel metalModel)
-        {
-            const string PatternKey = "{0}{1}Result.OutRight.Data_{2}_{3}";
-            return string.Format(PatternKey, metalModel.FromDate, metalModel.ToDate, metalModel.UserId, metalModel.LicenseeId);
-        }
-
         #region popup-page
 
         private static bool IsPalayBetType(int betType)
@@ -273,7 +264,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         private async Task GetBetradarPopUpData(ResultPopupMetaModel metalModel, ResultSetting setting)
         {
             var eventDate = metalModel.WinLossDate.HasValue ? metalModel.WinLossDate.Value : DateTimeHelper.Now;
-            var dataBetradar = await _resultService.GetPopUpBetradarMatchesAsync(metalModel.MatchId, eventDate).ConfigureAwait(false);
+            var dataBetradar = await _resultService.GetPopUpBetradarMatchesAsync(metalModel.MatchId, eventDate);
             if (dataBetradar != null)
             {
                 _htmlResult = _resultService.HtmlParser(dataBetradar, setting);
@@ -323,7 +314,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
 
             if (sportType == SportType.VirtualDogRacing || sportType == SportType.VirtualHorseRacing)
             {
-                await GetBetradarPopUpData(metalModel, setting).ConfigureAwait(false);
+                await GetBetradarPopUpData(metalModel, setting);
                 return;
             }
 
@@ -366,8 +357,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
 
         private async Task<JsonResult> GetOutRightSports(ResultMetaModel metalModel)
         {
-            var cacheKey = GenerateOutRightCacheKey(metalModel);
-            var outRightData = (IList<Outright>)HttpRuntime.Cache.Get(cacheKey) ?? await _resultService.GetOutRightAsync(metalModel);
+            var outRightData =  await _resultService.GetOutRightAsync(metalModel);
             if (outRightData != null && outRightData.Count > 0)
             {
                 var sports = outRightData.Where(i => i.SportType == metalModel.SportId || metalModel.SportId == 0)
@@ -419,8 +409,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         private async Task GetOutRightData(ResultMetaModel metalModel)
         {
             var setting = GetOutRightResultSetting(metalModel.LanguageCode, metalModel.IsHideSaba);
-            var cacheKey = GenerateOutRightCacheKey(metalModel);
-            var outRightData = (IList<Outright>)HttpRuntime.Cache.Get(cacheKey) ?? await _resultService.GetOutRightAsync(metalModel);
+            var outRightData = await _resultService.GetOutRightAsync(metalModel);
             if (outRightData != null)
             {
                 var data =
@@ -553,7 +542,5 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         }
 
         #endregion main-page
-
-        #endregion Utilities
     }
 }

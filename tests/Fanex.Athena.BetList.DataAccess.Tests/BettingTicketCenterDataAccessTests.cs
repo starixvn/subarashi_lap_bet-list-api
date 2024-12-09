@@ -1,5 +1,6 @@
 ﻿using AutoFixture;
 using Fanex.Athena.BetList.Model.MetaModel;
+using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Athena.Common.Model.DTO;
 using Fanex.Athena.Common.Services.Interfaces;
@@ -10,7 +11,7 @@ using System.Collections;
 
 namespace Fanex.Athena.BetList.DataAccess.Tests
 {
-    public class BettingTicketsCenterDataAccessTests : BaseDataAccessHelperTest<BettingTicketCenterDataAccess>
+    public class BettingTicketCenterDataAccessTests : BaseDataAccessHelperTest<BettingTicketCenterDataAccess>
     {
         private const string BetListByRefnoUspKey = "Lrf_BetList_RefNo_Mem";
         private const string RunningBetListUspKey = "Shard_Lrf_BetList_Running";
@@ -294,6 +295,92 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
                 ObjectDb.Received(1).SetParameterValue("MoveBetsDay", BalanceUp.MoveBetsDay);
                 ObjectDb.Received(1).SetParameterValue("BalanceUpDay", BalanceUp.BalanceUpDay);
                 ObjectDb.Received(1).SetParameterValue("BaseCurrency", metaModel.BaseCurrency);
+            });
+        }
+
+        [Test]
+        public async Task GetBetListForBookedBetAsync_WhenNotSearchUserNameAndSearchTextNotNumber_NotPassAnyParamToDB()
+        {
+            // Arrange
+            ObjectDb.ExecuteReaderAsync().Returns(Reader);
+            Reader.Read().Returns(false);
+
+            var outPut = new Hashtable
+            {
+                { DbColumn.SumStake, _fixture.Create<decimal>() },
+                { DbColumn.TotalRows, _fixture.Create<int>() },
+            };
+            ObjectDb.GetOutputParams().Returns(outPut);
+            var metaModel = _fixture.Create<BookedBetBetListMetaModel>();
+            metaModel.SearchText = "abc";
+            metaModel.SearchOption = 1;
+
+            // Action
+            var result = await DataAccess.GetBetListForBookedBetAsync(metaModel);
+
+            // Assert
+            Assert.Multiple(() =>
+            {
+                ObjectDb.DidNotReceiveWithAnyArgs().SetParameterValue(Arg.Any<string>(), Arg.Any<object>());
+            });
+        }
+
+
+        [Test]
+        public async Task GetBetListForBookedBetAsync_WhenSearchUserName_ReturnCorrectValue()
+        {
+            // Arrange
+            const int UserNameOption = 3;
+            ObjectDb.ExecuteReaderAsync().Returns(Reader);
+            Reader.Read().Returns(false);
+
+            var outPut = new Hashtable
+            {
+                { DbColumn.SumStake, _fixture.Create<decimal>() },
+                { DbColumn.TotalRows, _fixture.Create<int>() },
+            };
+            ObjectDb.GetOutputParams().Returns(outPut);
+            var metaModel = _fixture.Create<BookedBetBetListMetaModel>();
+            metaModel.SearchText = "abc";
+            metaModel.SearchOption = UserNameOption;
+
+            // Action
+            var result = await DataAccess.GetBetListForBookedBetAsync(metaModel);
+
+            // Assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.SumStake, Is.EqualTo(outPut[DbColumn.SumStake]));
+                Assert.That(result.TotalRows, Is.EqualTo(outPut[DbColumn.TotalRows]));
+            });
+        }
+
+        [Test]
+        public async Task GetBetListForBookedBetAsync_WhenSearchTextIsNumber_ReturnCorrectValue()
+        {
+            // Arrange
+            const int NotUserNameOption = 1;
+            ObjectDb.ExecuteReaderAsync().Returns(Reader);
+            Reader.Read().Returns(false);
+
+            var outPut = new Hashtable
+            {
+                { DbColumn.SumStake, _fixture.Create<decimal>() },
+                { DbColumn.TotalRows, _fixture.Create<int>() },
+            };
+            ObjectDb.GetOutputParams().Returns(outPut);
+            var metaModel = _fixture.Create<BookedBetBetListMetaModel>();
+            metaModel.SearchText = "10000";
+            metaModel.SearchOption = NotUserNameOption;
+
+            // Action
+            var result = await DataAccess.GetBetListForBookedBetAsync(metaModel);
+
+            // Assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.SumStake, Is.EqualTo(outPut[DbColumn.SumStake]));
+                Assert.That(result.TotalRows, Is.EqualTo(outPut[DbColumn.TotalRows]));
             });
         }
     }

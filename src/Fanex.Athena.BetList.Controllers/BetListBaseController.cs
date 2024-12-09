@@ -16,14 +16,14 @@ namespace Fanex.Athena.BetList.Controllers
     public class BetListBaseController
     {
         protected readonly IContextService _contextService;
-        protected readonly IAuthorizationService _authoriztionService;
+        protected readonly IAuthorizationService _authorizationService;
         protected readonly IBetListService _betListService;
         protected readonly IBalanceUpDataAccess _balanceUpDataAccess;
         protected readonly ITicketBuilderService _ticketBuilderService;
         private readonly ISubsidiaryService _subsidiaryService;
 
         protected BetListBaseController(IContextService contextService,
-            IAuthorizationService authoriztionService,
+            IAuthorizationService authorizationService,
             IBetListService betListService,
             ITicketBuilderService ticketBuilderService,
             ISubsidiaryService subsidiaryService,
@@ -31,7 +31,7 @@ namespace Fanex.Athena.BetList.Controllers
             )
         {
             _contextService = contextService;
-            _authoriztionService = authoriztionService;
+            _authorizationService = authorizationService;
             _balanceUpDataAccess = balanceUpDataAccess;
             _betListService = betListService;
             _ticketBuilderService = ticketBuilderService;
@@ -40,7 +40,7 @@ namespace Fanex.Athena.BetList.Controllers
 
         protected void CheckDataPermission(int custId, long transId)
         {
-            if (!_authoriztionService.HasPermissionOnData(
+            if (!_authorizationService.HasPermissionOnData(
                 _contextService.AgentList,
                 custId,
                 transId))
@@ -104,7 +104,7 @@ namespace Fanex.Athena.BetList.Controllers
             return result;
         }
 
-        protected async Task<dynamic> GetBetListPagingResultAsync(BetListMetaModel metaModel)
+        protected async Task<object> GetBetListPagingResultAsync(BetListMetaModel metaModel)
         {
             metaModel.IsServerPaging = true;
 

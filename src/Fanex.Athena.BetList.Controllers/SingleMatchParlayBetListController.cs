@@ -14,9 +14,7 @@ namespace Fanex.Athena.BetList.Controllers
     public class SingleMatchParlayBetListController
     {
         private readonly ICacheRefAdapter _cacheRefAdapter;
-
         private readonly ISingleMatchParlayDetailDataAccess _dataAccess;
-
         private readonly IBetListHTMLBuilder _betlistHtmlBuilder;
 
         public SingleMatchParlayBetListController(
@@ -30,7 +28,7 @@ namespace Fanex.Athena.BetList.Controllers
         }
 
         [HttpPost]
-        public async Task<object> Detail(SingleMatchParlayDetailMetaModel metaModel)
+        public async Task<IEnumerable<string>> Detail(SingleMatchParlayDetailMetaModel metaModel)
         {
             var detail = await _dataAccess.GetSingleMatchParlayDetail(metaModel);
 

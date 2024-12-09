@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Fanex.Athena.BetList.Controllers\Fanex.Athena.BetList.Controllers.csproj" />
+    <ProjectReference Include="..\Fanext.Athena.TestHelper\Fanex.Athena.TestHelper.csproj" />
   </ItemGroup>
 
 </Project>

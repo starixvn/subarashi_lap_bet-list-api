@@ -30,7 +30,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpPost]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-        public Task<dynamic> Match(LiveReportBetListMetaModel metaModel)
+        public Task<object> Match(LiveReportBetListMetaModel metaModel)
         {
             const string UspKey = "Lrf_BetList_LiveReport_SelWinlossByMatch";
             return GetData(metaModel, UspKey);
@@ -39,7 +39,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpPost]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-        public Task<dynamic> Outright(LiveReportBetListMetaModel metaModel)
+        public Task<object> Outright(LiveReportBetListMetaModel metaModel)
         {
             const string UspKey = "Lrf_BetList_LiveReport_SelWinlossOutright";
             return GetData(metaModel, UspKey);
@@ -48,7 +48,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpGet]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-        public Task<dynamic> NumberGame([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows)
+        public Task<object> NumberGame([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows)
         {
             metaModel.IsServerPaging = true;
             const string UspKey = "Lrf_BetList_LiveReport_SelWinlossNumberGame";
@@ -58,7 +58,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpGet]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-        public Task<dynamic> MixParlay([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows)
+        public Task<object> MixParlay([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows)
         {
             const string UspKey = "Lrf_BetList_LiveReport_SelWinlossParlay";
 
@@ -70,7 +70,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpGet]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-        public Task<dynamic> VirtualSports([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows)
+        public Task<object> VirtualSports([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows)
         {
             const string UspName = "Lrf_BetList_LiveReport_SelWinlossVHRacing";
 
@@ -80,7 +80,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpGet]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-        public Task<dynamic> SportsLottery([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows)
+        public Task<object> SportsLottery([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows)
         {
             const string UspName = "Lrf_BetList_LiveReport";
             metaModel.ProductCodeList += $",{ProductCodes.SLT}";
@@ -91,7 +91,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpGet]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-        public Task<dynamic> BitCoin([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows)
+        public Task<object> BitCoin([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows)
         {
             const string UspName = "Lrf_BetList_LiveReport";
             metaModel.ProductCodeList += $",{ProductCodes.BTC}";
@@ -102,7 +102,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpGet]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-        public Task<dynamic> VS3([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows)
+        public Task<object> VS3([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows)
         {
             const string UspName = "Lrf_BetList_LiveReport";
 
@@ -112,14 +112,14 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpGet]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-        public async Task<dynamic> Betradar([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows)
+        public async Task<object> Betradar([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows)
         {
             const string UspName = "Lrf_BetList_LiveReport";
 
             return await GetPagingData(metaModel, UspName, page, rows);
         }
 
-        public async Task<object> GetData(LiveReportBetListMetaModel metaModel, string uspKey)
+        private async Task<object> GetData(LiveReportBetListMetaModel metaModel, string uspKey)
         {
             metaModel.UspKey = uspKey;
             var ticketResult = await _betListService.GetBetListData(metaModel);
@@ -143,8 +143,7 @@ namespace Fanex.Athena.BetList.Controllers
             return result;
         }
 
-        [HttpPost]
-        public async Task<object> GetPagingData(LiveReportBetListMetaModel metaModel, string uspKey, int pageIndex, int pageSize)
+        private async Task<object> GetPagingData(LiveReportBetListMetaModel metaModel, string uspKey, int pageIndex, int pageSize)
         {
             const int DefautlPageSize = 100;
             metaModel.PageIndex = pageIndex < 1 ? 1 : pageIndex;

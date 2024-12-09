@@ -1,21 +1,19 @@
-﻿namespace Fanex.Athena.BetList.Controllers
-{
-    using Fanex.Athena.BetList.Controllers.CustomActionResult;
-    using Fanex.Athena.BetList.Excel;
-    using Fanex.Athena.BetList.Excel.Model;
-    using Fanex.Athena.BetList.Model.DTO;
-    using Fanex.Athena.BetList.Model.MetaModel;
-    using Fanex.Athena.BetList.Service.Helpers;
-    using Fanex.Athena.BetList.Service.Interfaces;
-    using Fanex.Athena.Common.Constant;
-    using Fanex.Athena.Resources;
-    using Microsoft.AspNetCore.Mvc;
-    using System;
+﻿using Fanex.Athena.BetList.Controllers.CustomActionResult;
+using Fanex.Athena.BetList.Excel;
+using Fanex.Athena.BetList.Excel.Model;
+using Fanex.Athena.BetList.Model.DTO;
+using Fanex.Athena.BetList.Model.MetaModel;
+using Fanex.Athena.BetList.Service.Helpers;
+using Fanex.Athena.BetList.Service.Interfaces;
+using Fanex.Athena.Common.Constant;
+using Fanex.Athena.Resources;
+using Microsoft.AspNetCore.Mvc;
 
+namespace Fanex.Athena.BetList.Controllers
+{
     public class BettingTicketCenterBaseController : ControllerBase
     {
         private readonly IBettingTicketCenterExcel _bettingTicketCenterExcel;
-
         private readonly ITicketBuilderService _ticketBuilderService;
 
         public BettingTicketCenterBaseController(
@@ -47,7 +45,7 @@
             return ViewResources.BettingTicketCenter + date + (metaModel.IsConvertAll ? baseCurrency : string.Empty);
         }
 
-        protected internal virtual ExcelResult ExportExcel(BettingTicketCenterExcelModel excelModel)
+        protected virtual ExcelResult ExportExcel(BettingTicketCenterExcelModel excelModel)
         {
             var workbook = _bettingTicketCenterExcel.Export(excelModel);
             BetListHelper.ClearData(excelModel.Data);
@@ -55,7 +53,7 @@
             return new ExcelResult(workbook, "BettingTicketCenter");
         }
 
-        protected internal virtual object ReturnData(TicketResult ticket, BettingTicketCenterOption option, ICommonValueMetaModel metaModel)
+        protected virtual object ReturnData(TicketResult ticket, BettingTicketCenterOption option, ICommonValueMetaModel metaModel)
         {
             var result = new
             {

@@ -4,18 +4,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace Fanex.Athena.Result.Service
 {
-    public class BetlistResultGettterFactory : IBetlistResultGetterFactory
+    public class BetlistResultGettterFactory(IConfiguration configuration) : IBetlistResultGetterFactory
     {
-        private readonly IConfiguration Configuration;
-
-        public BetlistResultGettterFactory(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
         public IThirdPartyResult CreateThirdPartyResultGetter(string configName)
         {
-            var config = Configuration.GetSection(configName).Get<ThirdPartyConfigs>();
+            var config = configuration.GetSection(configName).Get<ThirdPartyConfigs>();
             return new ThirdPartyResult(config);
         }
     }

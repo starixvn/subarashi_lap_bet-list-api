@@ -1,18 +1,14 @@
-﻿namespace Fanex.Athena.BetList.Excel
-{
-    using Fanex.Athena.BetList.Excel.Builders;
-    using Fanex.Athena.BetList.Model.DTO;
-    using Fanex.Athena.BetList.Model.MetaModel;
-    using Fanex.Athena.BetList.Model.ViewModel;
-    using Fanex.Athena.Common.Constant;
-    using Fanex.Athena.Resources;
-    using NPOI.SS.UserModel;
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
+﻿using Fanex.Athena.BetList.Excel.Builders;
+using Fanex.Athena.BetList.Model.DTO;
+using Fanex.Athena.BetList.Model.MetaModel;
+using Fanex.Athena.BetList.Model.ViewModel;
+using Fanex.Athena.Common.Constant;
+using Fanex.Athena.Resources;
+using NPOI.SS.UserModel;
 
-    public class ExchangeWinLossExcel : IExchangeWinLossExcel
+namespace Fanex.Athena.BetList.Excel
+{
+    public class ExchangeWinLossExcel(IExcelBuilder builder) : IExchangeWinLossExcel
     {
         private const string TemplateSheetName = "Template";
         private const string SheetName = "Data";
@@ -36,13 +32,6 @@
         private const int RowContentTemplate = 2;
         private const int RowTotalTemplate = 3;
 
-        private readonly IExcelBuilder _builder;
-
-        public ExchangeWinLossExcel(IExcelBuilder builder)
-        {
-            _builder = builder;
-        }
-
         public byte[] ExportExcel(string template, ExchangeBetListViewModel data, ExchangeBetListMetaModel metaModel)
         {
             var workBook = GetWorkbook(template, data, metaModel);
@@ -58,8 +47,8 @@
 
         public IWorkbook GetWorkbook(string template, ExchangeBetListViewModel data, ExchangeBetListMetaModel metaModel)
         {
-            var workBook = _builder.LoadTemplate(template);
-            var sheet = _builder.CloneSheet(workBook, TemplateSheetName, SheetName);
+            var workBook = builder.LoadTemplate(template);
+            var sheet = builder.CloneSheet(workBook, TemplateSheetName, SheetName);
             var templateSheet = workBook.GetSheet(TemplateSheetName);
 
             AssignHeader(sheet, templateSheet);
@@ -74,14 +63,14 @@
                 AssignNoInfoRow(sheet, templateSheet);
             }
 
-            _builder.RemoveSheet(workBook, TemplateSheetName);
+            builder.RemoveSheet(workBook, TemplateSheetName);
 
             return workBook;
         }
 
-        protected void AssignHeader(ISheet sheet, ISheet templateSheet)
+        protected virtual void AssignHeader(ISheet sheet, ISheet templateSheet)
         {
-            var row = _builder.CopyRow(sheet, templateSheet, sourceRowIndex: RowHeaderTemplate, destRowIndex: RowHeaderTemplate);
+            var row = builder.CopyRow(sheet, templateSheet, sourceRowIndex: RowHeaderTemplate, destRowIndex: RowHeaderTemplate);
 
             var headerTextList = new[]
             {
@@ -100,7 +89,7 @@
             SetTextRowHeader(row, headerTextList);
         }
 
-        private static void SetTextRowHeader(IRow row, IEnumerable<string> headerTextList)
+        protected virtual void SetTextRowHeader(IRow row, IEnumerable<string> headerTextList)
         {
             for (int i = 0; i < headerTextList.Count(); i++)
             {
@@ -108,12 +97,12 @@
             }
         }
 
-        private void AssignNoInfoRow(ISheet sheet, ISheet templateSheet)
+        protected virtual void AssignNoInfoRow(ISheet sheet, ISheet templateSheet)
         {
-            _builder.SetRowValue(sheet, templateSheet, RowNoInfoTemplate, RowContentTemplate, ColumnTemplateCount, ViewResources.NoInfo);
+            builder.SetRowValue(sheet, templateSheet, RowNoInfoTemplate, RowContentTemplate, ColumnTemplateCount, ViewResources.NoInfo);
         }
 
-        private void AssignSheetData(ISheet sheet, ISheet templateSheet, ExchangeBetListViewModel data)
+        protected virtual void AssignSheetData(ISheet sheet, ISheet templateSheet, ExchangeBetListViewModel data)
         {
             const float rowHeight = 25.5F;
             var index = 0;
@@ -125,7 +114,7 @@
 
                 foreach (var detail in item.Details)
                 {
-                    var row = _builder.CopyRow(sheet, templateSheet, RowContentTemplate, RowContentTemplate + index);
+                    var row = builder.CopyRow(sheet, templateSheet, RowContentTemplate, RowContentTemplate + index);
                     row.HeightInPoints = rowHeight;
 
                     if (isFirstRow)
@@ -153,12 +142,12 @@
             var firstRow = RowContentTemplate + index - rowCount;
             var lastRow = RowContentTemplate + index - 1;
 
-            _builder.MergeCells(sheet, firstRow, lastRow, ColumnIndex, ColumnIndex);
-            _builder.MergeCells(sheet, firstRow, lastRow, ColumnMarket, ColumnMarket);
-            _builder.MergeCells(sheet, firstRow, lastRow, ColumnWL_Comm, ColumnWL_Comm);
+            builder.MergeCells(sheet, firstRow, lastRow, ColumnIndex, ColumnIndex);
+            builder.MergeCells(sheet, firstRow, lastRow, ColumnMarket, ColumnMarket);
+            builder.MergeCells(sheet, firstRow, lastRow, ColumnWL_Comm, ColumnWL_Comm);
         }
 
-        private static void AssignCellData(IRow row, ExchangeTicket item)
+        private void AssignCellData(IRow row, ExchangeTicket item)
         {
             var isFancyBet = item.CategoryType == 2;
             var oddsAvgStrings = isFancyBet ? $"{item.FancyBetRuns.ToString("0")}/{item.OddsAvg.ToString("0")}" : item.OddsAvg.ToString("0.00");
@@ -171,7 +160,7 @@
             row.Cells[ColumnWL].SetCellValue((double)item.WinLost);
         }
 
-        private void AssignTitle(ISheet sheet, ISheet templateSheet, ExchangeBetListMetaModel metaModel)
+        protected virtual void AssignTitle(ISheet sheet, ISheet templateSheet, ExchangeBetListMetaModel metaModel)
         {
             var baseCurrency = metaModel.BaseCurrency.ToUpperInvariant();
             var displayedCurrency = !string.IsNullOrEmpty(baseCurrency) ? baseCurrency : metaModel.CurrencyName;
@@ -179,7 +168,7 @@
             var dateText = $"{metaModel.FromDate.ToString(FormatKey.DateFormat)} -> {metaModel.ToDate.ToString(FormatKey.DateFormat)}";
             var reportTitle = $"{ViewResources.PlayerBetList} {dateText} - (GMT+8) - {metaModel.ExternalId}({metaModel.SystemId}) - {baseCurrencyText}";
 
-            _builder.SetRowValue(
+            builder.SetRowValue(
                 sheet,
                 templateSheet,
                 sourceRowIndex: RowTitleTemplate,
@@ -189,16 +178,16 @@
 
             sheet.CreateFreezePane(0, RowContentTemplate);
 
-            _builder.ClearTemplate(sheet, RowContentTemplate);
+            builder.ClearTemplate(sheet, RowContentTemplate);
         }
 
-        private void AssignTotal(ISheet sheet, ISheet templateSheet, ExchangeBetListViewModel data, int index)
+        protected virtual void AssignTotal(ISheet sheet, ISheet templateSheet, ExchangeBetListViewModel data, int index)
         {
-            var row = _builder.CopyRow(sheet, templateSheet, RowTotalTemplate, index);
+            var row = builder.CopyRow(sheet, templateSheet, RowTotalTemplate, index);
             row.Cells[0].SetCellValue(ViewResources.GrandTotal);
             row.Cells[ColumnWL_Comm].SetCellValue((double)data.GrandTotal);
 
-            _builder.MergeCols(sheet, 0, ColumnWL, index);
+            builder.MergeCols(sheet, 0, ColumnWL, index);
         }
     }
 }

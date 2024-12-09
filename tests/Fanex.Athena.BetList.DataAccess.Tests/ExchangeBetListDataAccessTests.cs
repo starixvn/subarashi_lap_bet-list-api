@@ -224,5 +224,20 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             Assert.That(result.ElementAt(0).Liability, Is.EqualTo(expectedLiability));
         }
 
+        [Test]
+        public async Task GetRunningTicketsAsync_WhenCall_ReturnCorrectResult()
+        {
+            // Arrange
+            var metaModel = FakeHelper.Create<ExchangeRunningTicketMetaModel>();
+            var dataList = FakeHelper.CreateMany<ExchangeRunningTicket>();
+            ObjectDb.QueryAsync<ExchangeRunningTicket>().Returns(dataList);
+
+            // Action
+            var result = await DataAccess.GetRunningTicketsAsync(metaModel);
+
+            // Assert
+            Assert.That(result.DataList, Is.EqualTo(dataList));
+        }
+
     }
 }

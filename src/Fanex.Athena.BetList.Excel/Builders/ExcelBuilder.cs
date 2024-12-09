@@ -187,7 +187,7 @@ namespace Fanex.Athena.BetList.Excel.Builders
 
             destCell.CellStyle = sourceCell.CellStyle;
 
-            if (destCell.CellComment != null)
+            if (sourceCell.CellComment != null)
             {
                 destCell.CellComment = sourceCell.CellComment;
             }

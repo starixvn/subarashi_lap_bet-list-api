@@ -5,20 +5,13 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
 {
     [ApiController]
     [Route("[controller]/[action]")]
-    public class SportsLotteryResultMainPageController
+    public class SportsLotteryResultMainPageController(ISportsLotteryResult resultApi)
     {
-        private readonly ISportsLotteryResult _resultApi;
-
-        public SportsLotteryResultMainPageController(ISportsLotteryResult resultApi)
-
-            => _resultApi = resultApi;
-
-
         [HttpPost]
         public string ResultPage(string platform, string languageCode)
         {
             var isDesktop = string.Equals(platform, "d", StringComparison.OrdinalIgnoreCase);
-            return _resultApi.GetResultPage(isDesktop, languageCode);
+            return resultApi.GetResultPage(isDesktop, languageCode);
         }
     }
 }

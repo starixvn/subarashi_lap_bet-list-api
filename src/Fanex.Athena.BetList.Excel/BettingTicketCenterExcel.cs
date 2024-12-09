@@ -42,7 +42,7 @@
             return workbook;
         }
 
-        protected internal virtual void BuildSheets(BettingTicketCenterExcelModel excelModel)
+        protected virtual void BuildSheets(BettingTicketCenterExcelModel excelModel)
         {
             var numOfSheets = (int)Math.Ceiling((double)excelModel.Data.MainTicketList.Count / SystemConstants.SheetSizeExcel);
             for (int sheetIndex = 0; sheetIndex < numOfSheets; sheetIndex++)
@@ -64,7 +64,7 @@
             }
         }
 
-        protected internal virtual void AssignSheetData(BettingTicketCenterExcelModel excelModel, int sheetIndex, int endIndex)
+        protected virtual void AssignSheetData(BettingTicketCenterExcelModel excelModel, int sheetIndex, int endIndex)
         {
             for (var i = sheetIndex * SystemConstants.SheetSizeExcel; i < endIndex; i++)
             {
@@ -76,7 +76,7 @@
             }
         }
 
-        protected internal virtual void AddFooter(BettingTicketCenterExcelModel excelModel)
+        protected virtual void AddFooter(BettingTicketCenterExcelModel excelModel)
         {
             _builder.AddFooter(
                 excelModel.Data.SumStake,
@@ -110,9 +110,9 @@
                 return;
             }
 
-            if (disposing && _builder != null)
+            if (disposing && _builder != null && _builder is IDisposable disposableBuilder)
             {
-                ((IDisposable)_builder)?.Dispose();
+                disposableBuilder?.Dispose();
             }
 
             disposed = true;

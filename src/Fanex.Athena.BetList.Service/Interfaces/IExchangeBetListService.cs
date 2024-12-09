@@ -1,11 +1,9 @@
-﻿namespace Fanex.Athena.BetList.Service.Interfaces
-{
-    using BetList.Model.DTO;
-    using BetList.Model.MetaModel;
-    using BetList.Model.ViewModel;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+﻿using Fanex.Athena.BetList.Model.DTO;
+using Fanex.Athena.BetList.Model.MetaModel;
+using Fanex.Athena.BetList.Model.ViewModel;
 
+namespace Fanex.Athena.BetList.Service.Interfaces
+{
     public interface IExchangeBetListService
     {
         Task<ExchangeBetListViewModel> GetBetListDataAsync(ExchangeBetListMetaModel metaModel);

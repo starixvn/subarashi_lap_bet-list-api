@@ -105,7 +105,7 @@
             return gameName;
         }
 
-        protected internal virtual async Task<KenoAuthorization> Authorize(KenoResultMetaModel setting, string userId)
+        protected virtual async Task<KenoAuthorization> Authorize(KenoResultMetaModel setting, string userId)
         {
             try
             {

@@ -17,5 +17,10 @@ namespace Fanex.Athena.TestHelper
                     .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                     .ToDictionary(prop => prop.Name, prop => prop.GetValue(value, null));
         }
+
+        public static object GetValue(this object item, string property)
+        {
+            return item.GetType().GetProperty(property).GetValue(item, null);
+        }
     }
 }

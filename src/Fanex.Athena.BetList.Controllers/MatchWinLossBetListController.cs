@@ -1,7 +1,4 @@
-﻿
-
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Model.ViewModel;
+﻿using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.BetList.Service.Interfaces;
 using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Common.DataAccess.Interfaces;
@@ -24,13 +21,13 @@ namespace Fanex.Athena.BetList.Controllers
         private readonly ICurrencyValidation _currencyValidation;
 
         public MatchWinLossBetListController(IContextService contextService,
-            IAuthorizationService authoriztionService,
+            IAuthorizationService authorizationService,
             IBetListService betListService,
             ITicketBuilderService ticketBuilderService,
             ISubsidiaryService subsidiaryService,
             IBalanceUpDataAccess balanceUpDataAccess,
             ICurrencyValidation currencyValidation)
-            : base(contextService, authoriztionService, betListService, ticketBuilderService, subsidiaryService, balanceUpDataAccess)
+            : base(contextService, authorizationService, betListService, ticketBuilderService, subsidiaryService, balanceUpDataAccess)
         {
             _currencyValidation = currencyValidation;
         }
@@ -38,7 +35,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpGet]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindProductCodeList: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-        public async Task<BetListResultViewModel> BetTypeWinLoss(int page, int rows, [FromQuery] BetListMetaModel metaModel)
+        public async Task<object> BetTypeWinLoss(int page, int rows, [FromQuery] BetListMetaModel metaModel)
         {
             var balanceUp = GetBalanceUp();
             var UspKey = GetSpNameBasedOnBalanceUpDay(metaModel.FromDate, balanceUp.BalanceUpDay);
@@ -51,7 +48,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpGet]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindProductCodeList: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-        public async Task<dynamic> MatchBetType(int page, int rows, [FromQuery] BetListMetaModel metaModel)
+        public async Task<object> MatchBetType(int page, int rows, [FromQuery] BetListMetaModel metaModel)
         {
             var balanceUp = GetBalanceUp();
             var UspKey = GetSpNameBasedOnBalanceUpDay(metaModel.FromDate, balanceUp.BalanceUpDay);
@@ -75,7 +72,7 @@ namespace Fanex.Athena.BetList.Controllers
         }
 
         [HttpGet]
-        public async Task<dynamic> MixParlay(MixParlayMetaModel metaModel)
+        public async Task<object> MixParlay(MixParlayMetaModel metaModel)
         {
             if (_currencyValidation.IsValidBaseCurrency(metaModel.BaseCurrency)
                 && _currencyValidation.IsValidCurrency(metaModel.CurrencyId, _contextService.CurrencyList.ToDictionary(_ => _.Key, _ => _.Value)))

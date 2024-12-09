@@ -84,19 +84,19 @@ namespace Fanex.Athena.BetList.Service
             var prefixText = isHideSaba ? ViewResources.Virtual : ViewResources.Saba;
             switch (id)
             {
-                case (int)SportType.SabaSoccerPingoal:
+                case (int)BettingTicketCenterSportType.SabaSoccerPingoal:
                     sportName = ViewResources.SoccerPinGoal;
                     break;
 
-                case (int)SportType.SabaBasketballPinGoal:
+                case (int)BettingTicketCenterSportType.SabaBasketballPinGoal:
                     sportName = ViewResources.BasketballPinGoal;
                     break;
 
-                case (int)SportType.SabaESportsPinGoal:
+                case (int)BettingTicketCenterSportType.SabaESportsPinGoal:
                     sportName = ViewResources.ESportsPinGoal;
                     break;
 
-                case (int)SportType.SabaFutsal:
+                case (int)BettingTicketCenterSportType.SabaFutsal:
                     sportName = _cacheRefAdapter.GetSportName((int)SportType.Futsal);
                     break;
 
