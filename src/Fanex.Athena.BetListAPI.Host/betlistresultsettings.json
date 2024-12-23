@@ -166,6 +166,10 @@
     "PlaytechResult": {
       "Url": "http://10.40.40.248:7094/api/PlayTechInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    "GPIResult": {
+      "Url": "http://10.40.40.248:7081/api/GamePlayIntRngInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   },
   "KenoConfigs": {
