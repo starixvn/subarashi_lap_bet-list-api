@@ -162,6 +162,10 @@
       "Url": "http://10.40.40.248:7075/api/SexyCasinoInternal/GetBetHistoryUrl",
       "Debug": 0,
       "VendorId": 45
+    },
+    "PlaytechResult": {
+      "Url": "http://10.40.40.248:7094/api/PlayTechInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   },
   "KenoConfigs": {

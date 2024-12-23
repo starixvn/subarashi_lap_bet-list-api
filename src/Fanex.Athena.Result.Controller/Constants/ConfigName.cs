@@ -64,5 +64,7 @@ namespace Fanex.Athena.Result.Controller.Constants
         public const string ONCasinoResult = "ONCasinoResult";
 
         public const string SexyGamingResult = "SexyGamingResult";
+
+        public const string PlaytechResult = "PlaytechResult";
     }
 }
