@@ -22,14 +22,14 @@ namespace Fanex.Athena.Common.Utility.Services
             return RemotingRefService.GetSportName(sportId.ToString(), GetCurrentIBCLanguageCode(languageCode), string.Empty);
         }
 
-        public string GetLeagueName(object leagueId)
+        public string GetLeagueName(object leagueId, string langCode = null)
         {
             if (!IsValidId(leagueId))
             {
                 return string.Empty;
             }
 
-            return RemotingRefService.GetLeagueName(leagueId.ToString(), GetCurrentIBCLanguageCode(), string.Empty);
+            return RemotingRefService.GetLeagueName(leagueId.ToString(), GetCurrentIBCLanguageCode(langCode), string.Empty);
         }
 
         public string GetLeagueName3rd(object leagueId)
