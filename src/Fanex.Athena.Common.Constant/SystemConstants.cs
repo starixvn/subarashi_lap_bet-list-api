@@ -18,6 +18,7 @@
             "INR", "PHP", "MP",
             "NPR", "TRY", "USDT",
             "JPY", "MXN", "NGN",
+            "BRL"
         });
     }
 }

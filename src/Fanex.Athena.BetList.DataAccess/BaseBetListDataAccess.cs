@@ -20,18 +20,18 @@
 
     public class BaseBetListDataAccess : BaseDataAccess
     {
-        private readonly ICurrencyDataAccess _currencyDataAccess;
         private const string SuffixSabaCoins = "_SabaCoins";
+
+        private readonly ICurrencyDataAccess _currencyDataAccess;
 
         protected BaseBetListDataAccess(ICurrencyDataAccess currenyDataAccess)
         {
             _currencyDataAccess = currenyDataAccess;
         }
 
-        protected async Task<IDictionary<int, string>> GetCurrencyListAsync()
-        {
-            return await _currencyDataAccess.GetCurrencyListAsync();
-        }
+        protected Task<IDictionary<int, string>> GetCurrencyListAsync()  
+            =>  _currencyDataAccess.GetCurrencyListAsync();
+        
 
         protected internal static LrfTicket MapTicket(
                 ISafeDataReader reader,
@@ -81,22 +81,16 @@
           Action<IObjectDb> assignCommonParamters,
           bool getInOneRange = false,
           Action<IObjectDb> assignShardSpecificParamters = null,
-          Action<IObjectDb> assignCentralSpecificParamters = null)
+          Action<IObjectDb> assignCentralSpecificParamters = null,
+          bool viewSabaCoins = false)
           where TMetaModel : IShardDBMetaModel
         {
             var currencyList = await GetCurrencyListAsync();
             var tasks = new List<Task<SortableList<LrfTicket>>>(2);
             if (metaModel.UseShardDB)
             {
-                if (uspKey.EndsWith(SuffixSabaCoins, StringComparison.OrdinalIgnoreCase))
-                {
-                    tasks.Add(GetMainTicketListBasedShardDBAsync(uspKey, currencyList, assignCommonParamters, assignShardSpecificParamters));
-                    uspKey = uspKey.Substring(0, uspKey.Length - SuffixSabaCoins.Length);
-                }
-                else
-                {
-                    tasks.Add(GetMainTicketListBasedShardDBAsync($"SiteDB_{uspKey}", currencyList, assignCommonParamters, assignShardSpecificParamters));
-                }
+                var shardUspKey = viewSabaCoins ? $"{uspKey}{SuffixSabaCoins}" : $"SiteDB_{uspKey}";
+                tasks.Add(GetMainTicketListBasedShardDBAsync(shardUspKey, currencyList, assignCommonParamters, assignShardSpecificParamters));
             }
             tasks.Add(GetMainTicketListBasedShardDBAsync(uspKey, currencyList, assignCommonParamters,
                 db =>

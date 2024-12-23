@@ -64,8 +64,8 @@
 
             if (long.TryParse(metaModel.RefNo, out long refno) || !string.IsNullOrEmpty(metaModel.TxId))
             {
-                ticketResult = await GetMainTicketListBasedRangeAsync(metaModel, metaModel.ViewSabaCoins ? $"{UspKey}_SabaCoins" : UspKey,
-                    assignCommonParamters: db =>
+                ticketResult = await GetMainTicketListBasedRangeAsync(metaModel, UspKey,
+                    db =>
                     {
                         db.SetParameterValue(DbColumn.AgentList, metaModel.AgentListXml);
                         db.SetParameterValue(DbColumn.UserName, SqlHelper.ToSqlTextSearch(metaModel.UserName));
@@ -75,7 +75,7 @@
                         db.SetParameterValue(DbColumn.MoveBetsDay, balanceUp.MoveBetsDay);
                         db.SetParameterValue(DbColumn.BalanceUpDay, balanceUp.BalanceUpDay);
                         db.SetParameterValue(DbColumn.ViewSabaCoins, metaModel.ViewSabaCoins);
-                    }, getInOneRange: true);
+                    }, getInOneRange: true, viewSabaCoins: metaModel.ViewSabaCoins);
 
                 ticketResult.TotalRows = ticketResult.MainTicketList.Count;
             }
