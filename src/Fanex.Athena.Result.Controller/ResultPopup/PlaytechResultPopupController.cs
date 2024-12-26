@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Athena.Result.Controller.ResultPopup
 {
+    [ApiController]
+    [Route("[controller]/[action]")]
     public class PlaytechResultPopupController
     {
         private readonly IBetlistResultGetterFactory _factory;

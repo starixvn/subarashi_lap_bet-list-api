@@ -170,6 +170,10 @@
     "GPIResult": {
       "Url": "http://10.40.40.248:7081/api/GamePlayIntRngInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    "GPILiveCasinoResult": {
+      "Url": "http://10.40.40.248:7106/api/GamePlayIntCasinoInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   },
   "KenoConfigs": {
