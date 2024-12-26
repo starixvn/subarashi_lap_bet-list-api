@@ -40,6 +40,8 @@
 
         Task<IList<Sportsbook>> GetMatchesAsync(ResultMetaModel metalModel);
 
+        Task<IList<Sportsbook>> GetMatches3rdAsync(ResultMetaModel metalModel);
+
         Task<IList<NumberGame>> GetNumberGameMatchesAsync(ResultMetaModel metalModel);
 
         Task<IList<Happy5>> GetHappy5MatchesAsync(ResultMetaModel metalModel);
@@ -57,6 +59,8 @@
         Task<Sportsbook> GetSportsbookGameDetailAsync(int matchId);
 
         Task<IList<Sportsbook>> GetPopUpMatchAsync(ResultPopupMetaModel metalModel);
+
+        Task<IList<Sportsbook>> GetPopUpMatch3rdAsync(int matchId);
 
         Task<IList<Racing>> GetPopUpVirtualSportMatchAsync(ResultPopupMetaModel metalModel);
 

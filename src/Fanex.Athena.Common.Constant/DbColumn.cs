@@ -111,5 +111,7 @@
         public const string SearchOption = "SearchOption";
 
         public const string ViewSabaCoins = "ViewSabaCoins";
+
+        public const string EventType = "EventType";
     }
 }

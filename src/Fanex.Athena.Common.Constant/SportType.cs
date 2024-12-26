@@ -264,34 +264,22 @@
         /// </summary>
         VirtualSport = 180,
 
-        /// <summary>
-        /// VirtualHorseRacing sport, value = 181.
-        /// </summary>
-        VirtualHorseRacing = 181,
+        VirtualHorseRacing = 198,
 
-        /// <summary>
-        /// VirtualGreyhound sport, value = 181.
-        /// </summary>
+        VirtualDogRacing = 177,
+
         VirtualGreyhound = 182,
 
-        /// <summary>
-        /// Value = 183.
-        /// </summary>
         VirtualSpeedway = 183,
 
-        /// <summary>
-        /// VirtualMotoRacing sport, value = 181.
-        /// </summary>
         VirtualMotoRacing = 184,
 
-        /// <summary>
-        /// Value = 185.
-        /// </summary>
         VirtualCycling = 185,
 
-        /// <summary>
-        /// Keno product ,value=202.
-        /// </summary>
+        VirtualCockFighting = 188,
+
+        BetbyBasketball = 134,
+
         Keno = 202,
 
         AllBet = 211,

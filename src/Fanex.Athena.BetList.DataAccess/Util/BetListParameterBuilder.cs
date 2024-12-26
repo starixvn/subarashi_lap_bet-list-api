@@ -142,6 +142,7 @@
             db.SetParameterValue(DbColumn.MatchID, metaModel.MatchId);
             db.SetParameterValue(DbColumn.BetType, metaModel.BetType);
             db.SetParameterValue(DbColumn.LiveIndicator, metaModel.LiveIndicator ?? -1);
+            db.SetParameterValue(DbColumn.EventType, metaModel.EventType);
             CreateBetListSortingParameters(db, metaModel);
             CreateBetListPagingParameters(db, metaModel);
             CreateSummaryOutputParameters(db);
@@ -214,6 +215,7 @@
             db.SetParameterValue(DbColumn.FromDate, metaModel.FromDate);
             db.SetParameterValue(DbColumn.ToDate, metaModel.ToDate);
             db.SetParameterValue(DbColumn.MoveBetsDay, metaModel.MoveBetsDay);
+            db.SetParameterValue(DbColumn.EventType, metaModel.EventType);
             CreateProductListParameters_New(db, metaModel.ProductCodeList);
         }
 

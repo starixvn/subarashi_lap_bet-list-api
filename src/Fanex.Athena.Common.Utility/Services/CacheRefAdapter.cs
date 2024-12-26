@@ -1,4 +1,5 @@
 ﻿using Fanex.Athena.Common.Utility.Services.Interfaces;
+using Fanex.Athena.Report.Common.Helpers;
 using Fanex.RemotingRef;
 
 namespace Fanex.Athena.Common.Utility.Services
@@ -22,11 +23,31 @@ namespace Fanex.Athena.Common.Utility.Services
             return RemotingRefService.GetSportName(sportId.ToString(), GetCurrentIBCLanguageCode(languageCode), string.Empty);
         }
 
-        public string GetLeagueName(object leagueId, string langCode = null)
+        public string GetTeamName(object teamId, int sportId = 0)
+        {
+            if (!IsValidId(teamId))
+            {
+                return string.Empty;
+            }
+
+            if (SportHelper.IsMatch3rdSports(sportId))
+            {
+                return RemotingRefService.GetTeamName3rd(teamId.ToString(), GetCurrentIBCLanguageCode(), string.Empty);
+            }
+
+            return RemotingRefService.GetTeamName(teamId.ToString(), GetCurrentIBCLanguageCode(), string.Empty);
+        }
+
+        public string GetLeagueName(object leagueId, int sportId = 0, string langCode = null)
         {
             if (!IsValidId(leagueId))
             {
                 return string.Empty;
+            }
+
+            if (SportHelper.IsLeague3rdSports(sportId))
+            {
+                return RemotingRefService.GetLeagueName3rd(leagueId.ToString(), GetCurrentIBCLanguageCode(), string.Empty);
             }
 
             return RemotingRefService.GetLeagueName(leagueId.ToString(), GetCurrentIBCLanguageCode(langCode), string.Empty);

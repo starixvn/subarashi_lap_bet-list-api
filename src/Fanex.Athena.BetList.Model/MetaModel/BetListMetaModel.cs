@@ -107,6 +107,8 @@
 
         public int SpecialPlatform { get; set; }
 
+        public int EventType { get; set; }
+
         public string SubsidiaryList { get; set; }
 
         public bool SubsidiarySearch { get; set; }

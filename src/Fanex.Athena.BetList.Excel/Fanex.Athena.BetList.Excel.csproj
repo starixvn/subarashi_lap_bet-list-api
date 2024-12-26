@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fanex.Result.Core-NPOI.2.0.6" Version="4.0.0-upgrade-02" />
+    <PackageReference Include="Fanex.Result.Core-NPOI.2.0.6" Version="4.0.0-upgrade-04" />
   </ItemGroup>
 
   <ItemGroup>
