@@ -390,4 +390,7 @@
   <data name="Sportsbook" xml:space="preserve">
     <value>Sportsbook</value>
   </data>
+  <data name="QuickBetWidget" xml:space="preserve">
+    <value>Widget Taruhan Cepat</value>
+  </data>
 </root>

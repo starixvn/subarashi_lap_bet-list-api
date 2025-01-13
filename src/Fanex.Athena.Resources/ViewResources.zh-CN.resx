@@ -412,4 +412,7 @@
   <data name="Sportsbook" xml:space="preserve">
     <value>体育博彩</value>
   </data>
+  <data name="QuickBetWidget" xml:space="preserve">
+    <value>快捷投注元件</value>
+  </data>
 </root>

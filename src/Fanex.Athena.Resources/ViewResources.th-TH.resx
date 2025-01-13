@@ -405,4 +405,7 @@
   <data name="Sportsbook" xml:space="preserve">
     <value>สปอร์ตบุ๊ค</value>
   </data>
+  <data name="QuickBetWidget" xml:space="preserve">
+    <value>วิดเจ็ตเดิมพันด่วน</value>
+  </data>
 </root>
