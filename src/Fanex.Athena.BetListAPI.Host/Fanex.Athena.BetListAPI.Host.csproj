@@ -65,7 +65,7 @@
     <PackageReference Include="Fanex.BetList.Voidbridge" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.WE" Version="1.0.0.1" />
     <PackageReference Include="Fanex.BetList.WM" Version="2.0.0.1" />
-    <PackageReference Include="Fanex.BetList.YeeBet" Version="1.0.0" />
+    <PackageReference Include="Fanex.BetList.YeeBet" Version="1.0.0.1" />
     <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.4" />
     <PackageReference Include="Fanex.Result.Core.ConfigurationHelper" Version="1.0.0" />
     <PackageReference Include="Fanex.Result.Core.RemotingRef" Version="2.0.0.4" />
