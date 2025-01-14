@@ -162,7 +162,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
 
         }
 
-
         [Test]
         public async Task GetData_WhenExportExcel_RowsExceedMaxRowPerFile_NoMainTicket_ReturnError()
         {

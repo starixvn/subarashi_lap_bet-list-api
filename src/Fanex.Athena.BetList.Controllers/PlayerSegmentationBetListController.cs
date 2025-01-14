@@ -12,7 +12,7 @@ namespace Fanex.Athena.BetList.Controllers
     [ApiController]
     [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]
-    [BearerAuthorize(Roles.PlayerProblemManagement, Roles.PlayerVIPManagement)]
+    [BearerAuthorize(Roles.PlayerVIPManagement)]
     public class PlayerSegmentationBetListController
     {
         private readonly IPlayerSegmentationBetListDataAccess _dataAccess;
