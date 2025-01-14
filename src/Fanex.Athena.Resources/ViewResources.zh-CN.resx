@@ -415,4 +415,19 @@
   <data name="QuickBetWidget" xml:space="preserve">
     <value>快捷投注元件</value>
   </data>
+  <data name="Outright" xml:space="preserve">
+    <value>优胜冠军</value>
+  </data>
+  <data name="ProductNG" xml:space="preserve">
+    <value>百练赛</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>不是</value>
+  </data>
+  <data name="NumberGameNo" xml:space="preserve">
+    <value>百练赛编号</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>项目</value>
+  </data>
 </root>

@@ -18,6 +18,7 @@ using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.TicketHelper;
 using Fanex.Core.Utils;
 using Fanex.RemotingRef;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
 {
@@ -42,8 +43,8 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
 
         public static IServiceCollection AddCommonServices(this IServiceCollection services)
         {
-
             services.AddHttpContextAccessor();
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
             services.AddScoped<IAppSettings>(provider =>
             {
@@ -107,6 +108,7 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
             services.AddScoped<ITicketHelper, TicketHelper>();
             services.AddSingleton<IRemotingRefService, RemotingRefService>();
             services.AddScoped<IExchangeRunningExcel, ExchangeRunningExcel>();
+            services.AddScoped<IExchangeWinLossExcel, ExchangeWinLossExcel>();
             services.AddScoped<IBettingTicketCenterSportService, BettingTicketCenterSportService>();
             return services;
         }

@@ -47,6 +47,8 @@
 
         public bool IsExportExcel { get; set; }
 
+        public virtual bool IsConvert => !string.IsNullOrEmpty(BaseCurrency);
+
         public int PageSize { get; set; }
 
         public int PageIndex { get; set; }
@@ -68,6 +70,10 @@
         public DateTime BalanceUpDay { get; set; }
 
         public int MatchId { get; set; }
+
+        public int HomeId { get; set; }
+
+        public int AwayId { get; set; }
 
         public int LeagueId { get; set; }
 
@@ -97,6 +103,12 @@
 
         public long RefCode { get; set; }
 
+        public string MatchCode { get; set; }
+
+        public string VendorMatchId { get; set; }
+
+        public string Distance { get; set; }
+
         public bool IsMobileView { get; set; }
 
         public bool ExcludeFreeBet { get; set; }
@@ -112,6 +124,8 @@
         public string SubsidiaryList { get; set; }
 
         public bool SubsidiarySearch { get; set; }
+
+        public DateTime KickOffTime { get; set; }
 
         public bool IsHideSaba => SabaHelper.IsHideSaba(SpecialPlatform);
 

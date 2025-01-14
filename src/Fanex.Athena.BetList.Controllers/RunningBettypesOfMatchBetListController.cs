@@ -3,6 +3,7 @@ using Fanex.Athena.BetList.Service.Interfaces;
 using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Site.Attributes;
+using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -17,8 +18,12 @@ namespace Fanex.Athena.BetList.Controllers
              IBetListService betListService,
              ITicketBuilderService ticketBuilderService,
              ISubsidiaryService subsidiaryService,
-             IBalanceUpDataAccess balanceUpDataAccess)
-            : base(contextService, authoriztionService, betListService, ticketBuilderService, subsidiaryService, balanceUpDataAccess)
+             IBalanceUpDataAccess balanceUpDataAccess,
+             ICacheRefAdapter cacheRefAdapter,
+             IAppSettings appSettings,
+             IIPService iPService)
+            : base(contextService, authoriztionService, betListService, ticketBuilderService, subsidiaryService, 
+                  balanceUpDataAccess, cacheRefAdapter, appSettings, iPService)
         {
         }
 
@@ -28,7 +33,7 @@ namespace Fanex.Athena.BetList.Controllers
         public async Task<dynamic> Index(BetListMetaModel metaModel)
         {
             await CheckPermissionAndAssignCommonValueToMetaModel(metaModel, "Lrf_BetList_SelRunningByMultipleBettypeMatch");
-            return await GetBelistResultAsync(metaModel);
+            return await GetBetListResultAsync(metaModel);
         }
     }
 }

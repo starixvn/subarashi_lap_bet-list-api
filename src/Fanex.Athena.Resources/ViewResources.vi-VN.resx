@@ -408,4 +408,19 @@
   <data name="QuickBetWidget" xml:space="preserve">
     <value>Công cụ đặt cược nhanh</value>
   </data>
+  <data name="Outright" xml:space="preserve">
+    <value>Cược thắng</value>
+  </data>
+  <data name="ProductNG" xml:space="preserve">
+    <value>Number Game</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Không</value>
+  </data>
+  <data name="NumberGameNo" xml:space="preserve">
+    <value>Number Game số</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>Sự kiện</value>
+  </data>
 </root>

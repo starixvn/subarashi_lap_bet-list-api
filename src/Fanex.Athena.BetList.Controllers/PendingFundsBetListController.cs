@@ -5,6 +5,7 @@ using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Site.Attributes;
 using Fanex.Athena.Common.Utility.Helpers;
+using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Athena.BetList.Controllers
@@ -15,12 +16,16 @@ namespace Fanex.Athena.BetList.Controllers
     public class PendingFundsBetListController : BetListBaseController
     {
         public PendingFundsBetListController(IContextService contextService,
-            IAuthorizationService authoriztionService,
+            IAuthorizationService authorizationService,
             IBetListService betListService,
             ITicketBuilderService ticketBuilderService,
             ISubsidiaryService subsidiaryService,
-            IBalanceUpDataAccess balanceUpDataAccess)
-            : base(contextService, authoriztionService, betListService, ticketBuilderService, subsidiaryService, balanceUpDataAccess)
+            IBalanceUpDataAccess balanceUpDataAccess,
+            ICacheRefAdapter cacheRefAdapter,
+            IAppSettings appSettings,
+            IIPService iPService)
+            : base(contextService, authorizationService, betListService, ticketBuilderService, subsidiaryService,
+                  balanceUpDataAccess, cacheRefAdapter, appSettings, iPService)
         { }
 
         [RequestValidation(validateCurrency: true)]
@@ -34,7 +39,7 @@ namespace Fanex.Athena.BetList.Controllers
 
             await CheckPermissionAndAssignCommonValueToMetaModel(metaModel, UspKey);
 
-            return await GetBelistResultAsync(metaModel);
+            return await GetBetListResultAsync(metaModel);
         }
     }
 }

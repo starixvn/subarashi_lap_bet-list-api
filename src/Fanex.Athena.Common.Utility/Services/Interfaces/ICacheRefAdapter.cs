@@ -17,5 +17,7 @@
         string GetTeamName(object teamId, int sportId = 0);
 
         string[] GetBetBuilderSelectionNames(int[] selectionIds);
+
+        string GetBettype(object bettypeId);
     }
 }

@@ -408,4 +408,19 @@
   <data name="QuickBetWidget" xml:space="preserve">
     <value>วิดเจ็ตเดิมพันด่วน</value>
   </data>
+  <data name="Outright" xml:space="preserve">
+    <value>แทงบอลทายผลชนะเลิศ</value>
+  </data>
+  <data name="ProductNG" xml:space="preserve">
+    <value>เกมตัวเลข</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>เลขที่</value>
+  </data>
+  <data name="NumberGameNo" xml:space="preserve">
+    <value>เลขเกมตัวเลข</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>กิจกรรม</value>
+  </data>
 </root>

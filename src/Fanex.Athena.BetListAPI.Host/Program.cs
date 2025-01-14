@@ -56,7 +56,6 @@ services.AddAuthorization(option =>
     var defaultPolicy = new AuthorizationPolicyBuilder()
         .RequireAuthenticatedUser();
     defaultPolicy.AuthenticationSchemes.Add(OAuth2IntrospectionDefaults.AuthenticationScheme);
-    defaultPolicy.AuthenticationSchemes.Add("Basic");
     option.DefaultPolicy = defaultPolicy.Build();
 });
 

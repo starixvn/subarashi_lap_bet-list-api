@@ -1,5 +1,6 @@
 ﻿using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Report.Common.Helpers;
+using Fanex.Athena.Resources;
 using Fanex.RemotingRef;
 
 namespace Fanex.Athena.Common.Utility.Services
@@ -36,6 +37,16 @@ namespace Fanex.Athena.Common.Utility.Services
             }
 
             return RemotingRefService.GetTeamName(teamId.ToString(), GetCurrentIBCLanguageCode(), string.Empty);
+        }
+
+        public string GetBettype(object bettypeId)
+        {
+            if (!IsValidId(bettypeId))
+            {
+                return string.Empty;
+            }
+
+            return RemotingRefService.GetBetTypeName(bettypeId.ToString(), GetCurrentIBCLanguageCode());
         }
 
         public string GetLeagueName(object leagueId, int sportId = 0, string langCode = null)

@@ -358,6 +358,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Event.
+        /// </summary>
+        public static string Event {
+            get {
+                return ResourceManager.GetString("Event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to External ID.
         /// </summary>
         public static string ExternalId {
@@ -547,6 +556,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
         public static string NoInfo {
@@ -561,6 +579,15 @@ namespace Fanex.Athena.Resources {
         public static string NoneLive {
             get {
                 return ResourceManager.GetString("NoneLive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number Game No.
+        /// </summary>
+        public static string NumberGameNo {
+            get {
+                return ResourceManager.GetString("NumberGameNo", resourceCulture);
             }
         }
         
@@ -619,6 +646,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Outright.
+        /// </summary>
+        public static string Outright {
+            get {
+                return ResourceManager.GetString("Outright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page.
         /// </summary>
         public static string Page {
@@ -651,6 +687,15 @@ namespace Fanex.Athena.Resources {
         public static string Problems {
             get {
                 return ResourceManager.GetString("Problems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number Game.
+        /// </summary>
+        public static string ProductNG {
+            get {
+                return ResourceManager.GetString("ProductNG", resourceCulture);
             }
         }
         

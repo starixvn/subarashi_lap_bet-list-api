@@ -5,6 +5,7 @@ using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Site.Attributes;
 using Fanex.Athena.Common.Utility.Helpers;
+using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Athena.BetList.Controllers
@@ -23,8 +24,12 @@ namespace Fanex.Athena.BetList.Controllers
             ITicketBuilderService ticketBuilderService,
             ISubsidiaryService subsidiaryService,
             IBalanceUpDataAccess balanceUpDataAccess,
-            IReportSettingService reportSettingService)
-            : base(contextService, authoriztionService, betListService, ticketBuilderService, subsidiaryService, balanceUpDataAccess)
+            IReportSettingService reportSettingService,
+            ICacheRefAdapter cacheRefAdapter,
+            IAppSettings appSettings,
+            IIPService iPService)
+            : base(contextService, authoriztionService, betListService, ticketBuilderService, subsidiaryService, 
+                  balanceUpDataAccess, cacheRefAdapter, appSettings, iPService)
         {
             _reportSettingService = reportSettingService;
         }
@@ -41,7 +46,7 @@ namespace Fanex.Athena.BetList.Controllers
 
             const string UspKey = "Lrf_BetList_SabaVirtualSports_Mem";
             await CheckPermissionAndAssignCommonValueToMetaModel(metaModel, UspKey);
-            return await GetBelistResultAsync(metaModel);
+            return await GetBetListResultAsync(metaModel);
         }
 
         private bool IsValidDateRange(DateTime fromDate, DateTime toDate)

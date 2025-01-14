@@ -5,6 +5,7 @@ using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Site.Attributes;
+using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -21,8 +22,12 @@ namespace Fanex.Athena.BetList.Controllers
             ITicketBuilderService ticketBuilderService,
             IBalanceUpDataAccess balanceUpDataAccess,
             IAuthorizationService authorizationService,
-            ISubsidiaryService subsidiaryService)
-            : base(contextService, authorizationService, betListService, ticketBuilderService, subsidiaryService, balanceUpDataAccess)
+            ISubsidiaryService subsidiaryService,
+            ICacheRefAdapter cacheRefAdapter,
+            IAppSettings appSettings,
+            IIPService ipService)
+            : base(contextService, authorizationService, betListService, ticketBuilderService, 
+                  subsidiaryService, balanceUpDataAccess, cacheRefAdapter, appSettings, ipService)
         { }
 
         [HttpPost]
@@ -33,7 +38,7 @@ namespace Fanex.Athena.BetList.Controllers
             const string UspKey = "Lrf_TotalBets_Sel430";
             await CheckPermissionAndAssignCommonValueToMetaModel(metaModel, UspKey);
 
-            return await GetBelistResultAsync(metaModel);
+            return await GetBetListResultAsync(metaModel);
         }
     }
 }
