@@ -39,5 +39,7 @@
         public const string LG = "LG";
 
         public const string SLT = "SLT";
+
+        public const string PS = "PS";
     }
 }

@@ -47,6 +47,7 @@
     <PackageReference Include="Fanex.BetList.ONCasino" Version="1.0.0" />
     <PackageReference Include="Fanex.BetList.PGSoft" Version="2.0.0.2" />
     <PackageReference Include="Fanex.BetList.PlayerTips" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.PlayStar" Version="1.0.0" />
     <PackageReference Include="Fanex.BetList.Playtech" Version="1.0.0" />
     <PackageReference Include="Fanex.BetList.PP" Version="2.0.0.3" />
     <PackageReference Include="Fanex.BetList.RnGCasino" Version="2.0.0.2" />

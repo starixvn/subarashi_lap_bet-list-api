@@ -70,5 +70,7 @@ namespace Fanex.Athena.Result.Controller.Constants
         public const string GPIResult = "GPIResult";
 
         public const string GPILiveCasinoResult = "GPILiveCasinoResult";
+
+        public const string PlayStarResult = "PlayStarResult";
     }
 }
