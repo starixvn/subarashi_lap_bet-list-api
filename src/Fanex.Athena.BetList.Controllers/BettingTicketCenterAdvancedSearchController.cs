@@ -5,6 +5,7 @@ using Fanex.Athena.BetList.Excel;
 using Fanex.Athena.BetList.Excel.Model;
 using Fanex.Athena.BetList.Model.DTO;
 using Fanex.Athena.BetList.Model.MetaModel;
+using Fanex.Athena.BetList.Service;
 using Fanex.Athena.BetList.Service.Interfaces;
 using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Common.Services.Interfaces;
@@ -38,7 +39,7 @@ namespace Fanex.Athena.BetList.Controllers
         private readonly IIPService _ipService;
         private readonly ICustomerClassService _customerClassService;
         private readonly ITempFileService _tempFileService;
-        private readonly ISportService _sportService;
+        private readonly IBettingTicketCenterSportService _bettingTicketCenterSportService;
 
         public BettingTicketCenterAdvancedSearchController(
             IAppSettings appSettings,
@@ -47,10 +48,10 @@ namespace Fanex.Athena.BetList.Controllers
             ITicketBuilderService ticketBuilderService,
             IBettingTicketCenterZipBuilder zipBuilder,
             IBettingTicketCenterExcel bettingTicketCenterExcel,
-            ISportService sportService,
             IContextService contextService,
             ICustomerClassService customerClassService,
-            ITempFileService tempFileService)
+            ITempFileService tempFileService,
+            IBettingTicketCenterSportService bettingTicketCenterSportService)
             : base(ticketBuilderService, bettingTicketCenterExcel)
         {
             _appSettings = appSettings;
@@ -60,7 +61,7 @@ namespace Fanex.Athena.BetList.Controllers
             _contextService = contextService;
             _customerClassService = customerClassService;
             _tempFileService = tempFileService;
-            _sportService = sportService;
+            _bettingTicketCenterSportService = bettingTicketCenterSportService;
         }
 
         [HttpPost]
@@ -90,29 +91,31 @@ namespace Fanex.Athena.BetList.Controllers
                 return ServerBusy();
             }
             await UpdateMetaModel(metaModel);
-            var totalRow = await _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel);
-            if (totalRow <= _appSettings.MaxRowSupportExportExcel)
+            var totalRow = await _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel, _appSettings.MaxTicketLimit);
+            if (totalRow > _appSettings.MaxTicketLimit)
             {
                 return new JsonResult(new
                 {
-                    StatusCode = ExportSingleFile
+                    StatusCode = RowsExceedLimitErrorCode,
+                    LimitRows = _appSettings.MaxTicketLimit
                 });
             }
-            else if (_appSettings.LicenseesExportedExceedMaxRow.Contains(metaModel.LicenseeName, StringComparer.InvariantCultureIgnoreCase))
+
+            if (totalRow <= _appSettings.MaxRowSupportSingleExportExcel)
             {
                 return new JsonResult(new
                 {
-                    StatusCode = ExportMultipleFile,
-                    PageSize = _appSettings.MaxRowForMultipleExcelFiles
+                    StatusCode = ExportSingleFile,
+                    PageSize = _appSettings.MaxRowSupportSingleExportExcel
                 });
             }
-            else
+
+            return new JsonResult(new
             {
-                return new JsonResult(new
-                {
-                    StatusCode = RowsExceedLimitErrorCode
-                });
-            }
+                StatusCode = ExportMultipleFile,
+                PageSize = _appSettings.MaxRowForMultipleExcelFiles
+            });
+
         }
 
         private IActionResult ServerBusy() => new JsonResult(new
@@ -123,14 +126,7 @@ namespace Fanex.Athena.BetList.Controllers
 
         private async Task UpdateMetaModel(AdvancedSearchBetListMetaModel metaModel)
         {
-            var isHideSaba = SabaHelper.IsHideSaba(_contextService.SpecialPlatform);
-            var sabaSport = _sportService.GetSabaSport(metaModel.SportId, isHideSaba);
-            if (sabaSport != null)
-            {
-                metaModel.LeagueGroupIds = string.Join(",", sabaSport.LeagueGroupIds);
-                metaModel.SportId = sabaSport.SportTypeId;
-            }
-
+            metaModel.SportListXML = _bettingTicketCenterSportService.BuildSportTypeXML(metaModel.SportIds);
             metaModel.HasPlayerCom = _contextService.IsAllowedCustomerComm;
             metaModel.SpecialPlatform = _contextService.SpecialPlatform;
             metaModel.FullCustomerClass = string.Join(",", await _customerClassService.GetAllCustomerClassId());
@@ -142,6 +138,17 @@ namespace Fanex.Athena.BetList.Controllers
             if (metaModel.IsExport)
             {
                 return await Export(metaModel);
+            }
+
+            var totalRow = await _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel, _appSettings.MaxTicketLimit);
+
+            if (totalRow > _appSettings.MaxTicketLimit)
+            {
+                return new JsonResult(new
+                {
+                    StatusCode = RowsExceedLimitErrorCode,
+                    LimitRows = _appSettings.MaxTicketLimit
+                });
             }
 
             var ticketResult = ShouldReturnEmptyResult(metaModel)
@@ -225,7 +232,7 @@ namespace Fanex.Athena.BetList.Controllers
             => !string.IsNullOrWhiteSpace(metaModel.Ip) && !metaModel.IsShowIpvn && _ipService.IsVNIP(metaModel.Ip);
 
         private bool ShouldExportNextPage(int pageSize, int currentPageRowCount)
-            => pageSize == _appSettings.MaxRowForMultipleExcelFiles && currentPageRowCount == _appSettings.MaxRowForMultipleExcelFiles;
+            => pageSize == currentPageRowCount;
 
         private TicketResult GetTicketFromFile(GroupTicketResult groupTicket)
         {

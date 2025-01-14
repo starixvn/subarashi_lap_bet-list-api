@@ -40,7 +40,6 @@
         public const string ReportLicenseeWinLoss = "LicenseeWinLoss27";
 
         //Player Segmentation
-        public const string PlayerProblemManagement = "PlayerSegmentation_ProblemManagement";
         public const string PlayerVIPManagement = "PlayerSegmentation_VIPManagement";
     }
 }

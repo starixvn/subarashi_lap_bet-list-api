@@ -18,15 +18,15 @@
 
         public int MaxRowPerExcelFile { get; set; }
 
-        public int MaxRowSupportExportExcel { get; set; }
-
         public bool IsDisableExportLargeBetList { get; set; }
 
         public IEnumerable<string> LicenseesWithLargeData { get; set; }
 
-        public IEnumerable<string> LicenseesExportedExceedMaxRow { get; set; }
-
         public int MaxRowForMultipleExcelFiles { get; set; }
+
+        public int MaxTicketLimit { get; set; }
+
+        public int MaxRowSupportSingleExportExcel { get; set; }
 
         public string CustomerClassCategoryApiUrl { get; set; }
 

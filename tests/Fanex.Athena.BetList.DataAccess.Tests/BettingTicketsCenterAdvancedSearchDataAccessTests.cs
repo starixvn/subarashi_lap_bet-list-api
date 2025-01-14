@@ -62,8 +62,9 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
                 ObjectDb.Received(1).SetParameterValue("FromDate", metaModel.FromDate);
                 ObjectDb.Received(1).SetParameterValue("ToDate", metaModel.ToDate);
                 ObjectDb.Received(1).SetParameterValue("MoveBetsDay", BalanceUp.MoveBetsDay);
-                ObjectDb.Received(1).SetParameterValue("SportType", metaModel.SportId);
-                ObjectDb.Received(1).SetParameterValue("BetType", metaModel.BetTypeId);
+                ObjectDb.Received(1).SetParameterValue("SportTypeList", metaModel.SportListXML);
+                ObjectDb.Received(1).SetParameterValue("BetTypeList", metaModel.BetTypeIds);
+                ObjectDb.Received(1).SetParameterValue("CashOutMode", metaModel.CashOutMode);
                 ObjectDb.Received(1).SetParameterValue("LeagueId", metaModel.LeagueId);
                 ObjectDb.Received(1).SetParameterValue("MatchId", metaModel.MatchId);
                 ObjectDb.Received(1).SetParameterValue("BaseCurrency", metaModel.BaseCurrency);
@@ -72,7 +73,7 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
                 ObjectDb.Received(1).SetParameterValue("LiveIndicator", metaModel.LiveStatus);
                 ObjectDb.Received(1).SetParameterValue("PageSize", metaModel.PageSize);
                 ObjectDb.Received(1).SetParameterValue("PageIndex", metaModel.PageIndex);
-                ObjectDb.Received(1).SetParameterValue("Product", metaModel.ProductCodeList);
+                ObjectDb.Received(1).SetParameterValue("ProductList", metaModel.ProductCodeList);
 
                 ObjectDb.Received(1).SetParameterValue("TotalRows", null);
                 ObjectDb.Received(1).SetParameterValue("SumStake", null);
@@ -91,9 +92,10 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             ObjectDb.GetOutputParams().Returns(new Hashtable { { "TotalRows", totalRow } });
 
             var metaModel = _fixture.Create<AdvancedSearchBetListMetaModel>();
+            var maxTotalRows = FakeHelper.Create<int>();
 
             // Action
-            var result = await DataAccess.GetTotalRowForMultipleCustomersAsync(metaModel);
+            var result = await DataAccess.GetTotalRowForMultipleCustomersAsync(metaModel, maxTotalRows);
 
             // Assert
             Assert.Multiple(() =>
@@ -102,14 +104,16 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
                 ObjectDb.Received(1).SetParameterValue("FromDate", metaModel.FromDate);
                 ObjectDb.Received(1).SetParameterValue("ToDate", metaModel.ToDate);
                 ObjectDb.Received(1).SetParameterValue("MoveBetsDay", BalanceUp.MoveBetsDay);
-                ObjectDb.Received(1).SetParameterValue("SportType", metaModel.SportId);
-                ObjectDb.Received(1).SetParameterValue("BetType", metaModel.BetTypeId);
+                ObjectDb.Received(1).SetParameterValue("SportTypeList", metaModel.SportListXML);
+                ObjectDb.Received(1).SetParameterValue("BetTypeList", metaModel.BetTypeIds);
+                ObjectDb.Received(1).SetParameterValue("CashOutMode", metaModel.CashOutMode);
                 ObjectDb.Received(1).SetParameterValue("LeagueId", metaModel.LeagueId);
                 ObjectDb.Received(1).SetParameterValue("MatchId", metaModel.MatchId);
                 ObjectDb.Received(1).SetParameterValue("StatusIdList", metaModel.Status);
                 ObjectDb.Received(1).SetParameterValue("UserName", metaModel.UserName);
                 ObjectDb.Received(1).SetParameterValue("LiveIndicator", metaModel.LiveStatus);
-                ObjectDb.Received(1).SetParameterValue("Product", metaModel.ProductCodeList);
+                ObjectDb.Received(1).SetParameterValue("ProductList", metaModel.ProductCodeList);
+                ObjectDb.Received(1).SetParameterValue("MaxTotalRows", maxTotalRows);
 
                 ObjectDb.Received(1).SetParameterValue("TotalRows", null);
 
@@ -141,8 +145,9 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
                 ObjectDb.Received(1).SetParameterValue("FromDate", metaModel.FromDate);
                 ObjectDb.Received(1).SetParameterValue("ToDate", metaModel.ToDate);
                 ObjectDb.Received(1).SetParameterValue("MoveBetsDay", BalanceUp.MoveBetsDay);
-                ObjectDb.Received(1).SetParameterValue("SportType", metaModel.SportId);
-                ObjectDb.Received(1).SetParameterValue("BetType", metaModel.BetTypeId);
+                ObjectDb.Received(1).SetParameterValue("SportTypeList", metaModel.SportListXML);
+                ObjectDb.Received(1).SetParameterValue("BetTypeList", metaModel.BetTypeIds);
+                ObjectDb.Received(1).SetParameterValue("CashOutMode", metaModel.CashOutMode);
                 ObjectDb.Received(1).SetParameterValue("LeagueId", metaModel.LeagueId);
                 ObjectDb.Received(1).SetParameterValue("MatchId", metaModel.MatchId);
                 ObjectDb.Received(1).SetParameterValue("BaseCurrency", metaModel.BaseCurrency);
@@ -151,7 +156,7 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
                 ObjectDb.Received(1).SetParameterValue("LiveIndicator", metaModel.LiveStatus);
                 ObjectDb.Received(1).SetParameterValue("PageSize", metaModel.PageSize);
                 ObjectDb.Received(1).SetParameterValue("PageIndex", metaModel.PageIndex);
-                ObjectDb.Received(1).SetParameterValue("Product", metaModel.ProductCodeList);
+                ObjectDb.Received(1).SetParameterValue("ProductList", metaModel.ProductCodeList);
 
                 ObjectDb.Received(1).SetParameterValue("TotalRows", null);
                 ObjectDb.Received(1).SetParameterValue("SumStake", null);

@@ -4,9 +4,11 @@
     {
         public string LiveStatus { get; set; }
 
-        public int SportId { get; set; }
+        public string SportIds { get; set; }
 
-        public int BetTypeId { get; set; }
+        public string BetTypeIds { get; set; }
+
+        public string SportListXML { get; set; }
 
         public int LeagueId { get; set; }
 
@@ -26,11 +28,13 @@
 
         public string LicenseeName { get; set; }
 
+        public int CashOutMode { get; set; }
+
         public override bool IsValid
         {
             get
             {
-                if (FromDate.Date != ToDate.Date && (BetTypeId == 0 || LeagueId != 0 || MatchId != 0))
+                if (FromDate.Date != ToDate.Date && (LeagueId != 0 || MatchId != 0))
                 {
                     return false;
                 }

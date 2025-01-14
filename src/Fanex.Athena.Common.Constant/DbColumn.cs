@@ -113,5 +113,7 @@
         public const string ViewSabaCoins = "ViewSabaCoins";
 
         public const string EventType = "EventType";
+
+        public const string MaxTotalRows = "MaxTotalRows";
     }
 }

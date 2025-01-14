@@ -21,11 +21,11 @@
 
         string CustomerClassCategoryApiUrl { get; }
 
-        int MaxRowSupportExportExcel { get; }
-
         int MaxRowPerExcelFile { get; }
 
-        IEnumerable<string> LicenseesExportedExceedMaxRow { get; }
+        int MaxTicketLimit { get; }
+
+        int MaxRowSupportSingleExportExcel { get; }
 
         int MaxRowForMultipleExcelFiles { get; }
 

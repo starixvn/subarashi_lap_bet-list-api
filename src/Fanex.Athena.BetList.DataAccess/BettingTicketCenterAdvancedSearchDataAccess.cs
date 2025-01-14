@@ -32,7 +32,7 @@
             int rowPerGroup)
         {
             const string UspKey = "Lrf_BetList_Licensee";
-            const int timeOut = 180;
+            const int TimeOut = 300;
 
             var groupData = new GroupTicketResult
             {
@@ -40,7 +40,7 @@
             };
             var currencyList = await GetCurrencyListAsync();
 
-            using (var db = GetObjectDb(UspKey, timeOut))
+            using (var db = GetObjectDb(UspKey, TimeOut))
             {
                 AddAdvancedSearchParameters(db, metaModel);
 
@@ -85,11 +85,12 @@
         public async Task<TicketResult> GetBetListForMultipleCustomersAsync(AdvancedSearchBetListMetaModel metaModel)
         {
             const string UspKey = "Lrf_BetList_Licensee";
+            const int TimeOut = 300;
 
             var ticketResult = new TicketResult();
             var currencyList = await GetCurrencyListAsync();
 
-            using (var db = GetObjectDb(UspKey))
+            using (var db = GetObjectDb(UspKey, TimeOut))
             {
                 AddAdvancedSearchParameters(db, metaModel);
 
@@ -110,9 +111,10 @@
             return ticketResult;
         }
 
-        public async Task<int> GetTotalRowForMultipleCustomersAsync(AdvancedSearchBetListMetaModel metaModel)
+        public async Task<int> GetTotalRowForMultipleCustomersAsync(AdvancedSearchBetListMetaModel metaModel, int maxTotalRows)
         {
             const string UspKey = "Lrf_BetList_Licensee_TotalRows";
+            const int TimeOut = 300;
 
             using (var db = GetObjectDb(UspKey))
             {
@@ -121,19 +123,21 @@
                 db.SetParameterValue(DbColumn.FromDate, metaModel.FromDate);
                 db.SetParameterValue(DbColumn.ToDate, metaModel.ToDate);
                 db.SetParameterValue(DbColumn.MoveBetsDay, balanceUp.MoveBetsDay);
-                db.SetParameterValue(DbColumn.SportType, metaModel.SportId);
-                db.SetParameterValue(DbColumn.BetType, metaModel.BetTypeId);
+                db.SetParameterValue(DbColumn.SportTypeList, metaModel.SportListXML);
+                db.SetParameterValue(DbColumn.CashOutMode, metaModel.CashOutMode);
+                db.SetParameterValue(DbColumn.BetTypeList, metaModel.BetTypeIds);
                 db.SetParameterValue(DbColumn.LeagueId, metaModel.LeagueId);
                 db.SetParameterValue(DbColumn.MatchId, metaModel.MatchId);
                 db.SetParameterValue(DbColumn.StatusIdList, metaModel.Status);
                 db.SetParameterValue(DbColumn.UserName, SqlHelper.ToSqlTextSearch(metaModel.UserName));
                 db.SetParameterValue(DbColumn.LiveIndicator, metaModel.LiveStatus);
-                db.SetParameterValue(DbColumn.Product, metaModel.ProductCodeList);
+                db.SetParameterValue(DbColumn.ProductList, metaModel.ProductCodeList);
                 db.SetParameterValue(DbColumn.OddsGroup, metaModel.OddsGroup);
                 db.SetParameterValue(DbColumn.PlatformType, metaModel.Platform);
                 db.SetParameterValue(DbColumn.CustomerClass, metaModel.CustomerClass);
                 db.SetParameterValue(DbColumn.FullCustomerClass, metaModel.FullCustomerClass);
                 db.SetParameterValue(DbColumn.LeagueGroupIds, metaModel.LeagueGroupIds);
+                db.SetParameterValue(DbColumn.MaxTotalRows, maxTotalRows);
 
                 db.SetParameterValue(DbColumn.TotalRows, null);
 
@@ -179,8 +183,9 @@
             db.SetParameterValue(DbColumn.FromDate, metaModel.FromDate);
             db.SetParameterValue(DbColumn.ToDate, metaModel.ToDate);
             db.SetParameterValue(DbColumn.MoveBetsDay, balanceUp.MoveBetsDay);
-            db.SetParameterValue(DbColumn.SportType, metaModel.SportId);
-            db.SetParameterValue(DbColumn.BetType, metaModel.BetTypeId);
+            db.SetParameterValue(DbColumn.SportTypeList, metaModel.SportListXML);
+            db.SetParameterValue(DbColumn.CashOutMode, metaModel.CashOutMode);
+            db.SetParameterValue(DbColumn.BetTypeList, metaModel.BetTypeIds);
             db.SetParameterValue(DbColumn.LeagueId, metaModel.LeagueId);
             db.SetParameterValue(DbColumn.MatchId, metaModel.MatchId);
             db.SetParameterValue(DbColumn.BaseCurrency, metaModel.BaseCurrency);
@@ -189,7 +194,7 @@
             db.SetParameterValue(DbColumn.UserName, SqlHelper.ToSqlTextSearch(metaModel.UserName));
             db.SetParameterValue(DbColumn.PageSize, metaModel.PageSize);
             db.SetParameterValue(DbColumn.PageIndex, metaModel.PageIndex);
-            db.SetParameterValue(DbColumn.Product, metaModel.ProductCodeList);
+            db.SetParameterValue(DbColumn.ProductList, metaModel.ProductCodeList);
             db.SetParameterValue(DbColumn.ConvertToBaseCur, metaModel.IsConvertAll);
             db.SetParameterValue(DbColumn.Ip, metaModel.Ip);
             db.SetParameterValue(DbColumn.PlatformType, metaModel.Platform);

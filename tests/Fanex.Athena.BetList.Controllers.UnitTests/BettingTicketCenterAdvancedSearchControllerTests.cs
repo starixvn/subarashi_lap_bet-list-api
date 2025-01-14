@@ -38,9 +38,9 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
         private ITicketBuilderService _ticketBuilderService;
         private ITempFileService _tempFileService;
         private IIPService _ipService;
-        private ISportService _sportService;
         private IContextService _contextService;
         private ICustomerClassService _customerClassService;
+        private IBettingTicketCenterSportService _sportService;
 
         [SetUp]
         public void SetUp()
@@ -52,7 +52,7 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             _bettingTicketCenterExcel = Substitute.For<IBettingTicketCenterExcel>();
             _ipService = Substitute.For<IIPService>();
             _tempFileService = Substitute.For<ITempFileService>();
-            _sportService = Substitute.For<ISportService>();
+            _sportService = Substitute.For<IBettingTicketCenterSportService>();
             _contextService = Substitute.For<IContextService>();
             _customerClassService = Substitute.For<ICustomerClassService>();
         }
@@ -67,6 +67,10 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             _bettingTicketCenterExcel = null;
             _ticketBuilderService = null;
             _tempFileService = null;
+            _ipService = null;
+            _contextService = null;
+            _customerClassService = null;
+            _sportService = null;
         }
 
         [Test]
@@ -75,6 +79,11 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             // Arrange
             var controller = CreateController();
             var metaModel = FakeHelper.Create<AdvancedSearchBetListMetaModel>(x => x.IsExport, false);
+
+            var totalRow = FakeHelper.Create<int>();
+            var maxTotalRows = FakeHelper.Create<int>();
+            _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel, totalRow).Returns(totalRow);
+            _appSettings.MaxTicketLimit.Returns(totalRow);
 
             var ticketResult = new TicketResult();
             _dataAccess.GetBetListForMultipleCustomersAsync(metaModel).Returns(ticketResult);
@@ -96,29 +105,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
                         && x.ShowSystemId
                         && x.IsAllowedCustomerComm == metaModel.HasPlayerCom),
                     metaModel);
-            });
-        }
-
-        [Test]
-        public async Task GetData_WhenHaveSabaSport_UpdateMetaModelCorrectly()
-        {
-            // Arrange
-            var controller = CreateController();
-            var metaModel = FakeHelper.Create<AdvancedSearchBetListMetaModel>(x => x.IsExport, false);
-            var sabaSport = FakeHelper.Create<SabaSport>(x => x.LeagueGroupIds, new List<int>{1, 2});
-
-            var ticketResult = new TicketResult();
-            _dataAccess.GetBetListForMultipleCustomersAsync(metaModel).Returns(ticketResult);
-            _sportService.GetSabaSport(metaModel.SportId, Arg.Any<bool>()).Returns(sabaSport);
-
-            // Action
-            await controller.GetData(metaModel);
-
-            // Assert
-            Assert.Multiple(() =>
-            {
-                Assert.That(metaModel.SportId, Is.EqualTo(sabaSport.SportTypeId));
-                Assert.That(metaModel.LeagueGroupIds, Is.EqualTo("1,2"));
             });
         }
 
@@ -412,7 +398,7 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
         }
 
         [Test]
-        public async Task GetExportStatus_WhenTotalRowNotExceedMaxRowSupportForExcel_ReturnExportForSingleFileStatus()
+        public async Task GetExportStatus_WhenTotalRowExceedMaxTicketLimit_ReturnRowsExceedLimitErrorCode()
         {
             // Arrange
             var controller = CreateController();
@@ -420,8 +406,32 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
 
             var totalRow = FakeHelper.Create<int>();
             _appSettings.IsDisableExportLargeBetList.Returns(false);
-            _appSettings.MaxRowSupportExportExcel.Returns(totalRow + 1);
-            _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel).Returns(totalRow);
+            _appSettings.MaxTicketLimit.Returns(totalRow - 1);
+            _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel, _appSettings.MaxTicketLimit).Returns(totalRow);
+
+            // Action
+            var result = (await controller.GetExportStatus(metaModel) as JsonResult).Value;
+            var code = result.GetValue("StatusCode");
+
+            // Assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(code, Is.EqualTo(RowsExceedLimitErrorCode));
+            });
+        }
+
+        [Test]
+        public async Task GetExportStatus_WhenTotalRowNotExceedMaxRowSupportSingleExportExcel_ReturnExportSingleFile()
+        {
+            // Arrange
+            var controller = CreateController();
+            var metaModel = FakeHelper.Create<AdvancedSearchBetListMetaModel>(x => x.IsExport, true);
+
+            var totalRow = FakeHelper.Create<int>();
+            _appSettings.IsDisableExportLargeBetList.Returns(false);
+            _appSettings.MaxTicketLimit.Returns(totalRow + 1);
+            _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel, _appSettings.MaxTicketLimit).Returns(totalRow);
+            _appSettings.MaxRowSupportSingleExportExcel.Returns(totalRow + 1);
 
             // Action
             var result = (await controller.GetExportStatus(metaModel) as JsonResult).Value;
@@ -435,7 +445,7 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
         }
 
         [Test]
-        public async Task GetExportStatus_WhenLicenseeSupportExportLargeData_ReturnExportMultipleFileStatus()
+        public async Task GetExportStatus__WhenTotalRowNotExceedMaxRowSupportSingleExportExcel_ReturnMaxRowForMultipleExcelFiles()
         {
             // Arrange
             var controller = CreateController();
@@ -443,10 +453,9 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
 
             var totalRow = FakeHelper.Create<int>();
             _appSettings.IsDisableExportLargeBetList.Returns(false);
-            _appSettings.MaxRowSupportExportExcel.Returns(totalRow - 1);
-            _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel).Returns(totalRow);
-            _contextService.SiteName.Returns("12B");
-            _appSettings.LicenseesExportedExceedMaxRow.Returns(new List<string> { "12B" });
+            _appSettings.MaxTicketLimit.Returns(totalRow + 1);
+            _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel, _appSettings.MaxTicketLimit).Returns(totalRow);
+            _appSettings.MaxRowSupportSingleExportExcel.Returns(totalRow - 1);
 
             // Action
             var result = (await controller.GetExportStatus(metaModel) as JsonResult).Value;
@@ -456,30 +465,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             Assert.Multiple(() =>
             {
                 Assert.That(code, Is.EqualTo(ExportMultipleFile));
-            });
-        }
-
-        [Test]
-        public async Task GetExportStatus_WhenLicenseeNotSupportExportLargeData_ReturnRowsExceedLimitErrorCodeStatus()
-        {
-            // Arrange
-            var controller = CreateController();
-            var metaModel = FakeHelper.Create<AdvancedSearchBetListMetaModel>(x => x.IsExport, true);
-
-            var totalRow = FakeHelper.Create<int>();
-            _appSettings.IsDisableExportLargeBetList.Returns(false);
-            _appSettings.MaxRowSupportExportExcel.Returns(totalRow - 1);
-            _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel).Returns(totalRow);
-            _contextService.SiteName.Returns("12B");
-
-            // Action
-            var result = (await controller.GetExportStatus(metaModel) as JsonResult).Value;
-            var code = result.GetValue("StatusCode");
-
-            // Assert
-            Assert.Multiple(() =>
-            {
-                Assert.That(code, Is.EqualTo(RowsExceedLimitErrorCode));
             });
         }
 
@@ -503,10 +488,10 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
                 _ticketBuilderService,
                 _zipBuilder,
                 _bettingTicketCenterExcel,
-                _sportService,
                 _contextService,
                 _customerClassService,
-                _tempFileService);
+                _tempFileService,
+                _sportService);
 
             controller.When(x => x.InvokeProtectedMethod("ReturnData", Arg.Any<TicketResult>(), Arg.Any<BettingTicketCenterOption>(), Arg.Any<ICommonValueMetaModel>())).DoNotCallBase();
             controller.When(x => x.InvokeProtectedMethod("ExportExcel", Arg.Any<BettingTicketCenterExcelModel>())).DoNotCallBase();
