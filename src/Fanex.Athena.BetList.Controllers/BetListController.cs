@@ -48,19 +48,12 @@ namespace Fanex.Athena.BetList.Controllers
         public Task<BetListResultViewModel> GetBetList(BetListMetaModel metaModel)
             => GetBetListResultAsync(metaModel);
 
-
         [HttpPost]
         public Task<object> GetBetListPaging(BetListMetaModel metaModel)
             => GetBetListPagingResultAsync(metaModel);
 
         [HttpPost]
         public async Task<ExcelResult> ExportExcel(BetListExcelMetaModel metaModel)
-        {
-            return await ProcessExportExcel(metaModel);
-        }
-
-        [HttpPost]
-        public async Task<ExcelResult> ExportExcelLiveReport(LiveReportBetListMetaModel metaModel)
         {
             return await ProcessExportExcel(metaModel);
         }
