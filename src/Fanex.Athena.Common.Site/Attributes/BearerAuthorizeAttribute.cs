@@ -9,7 +9,7 @@ namespace Fanex.Athena.Common.Site.Attributes
         {
             if (roles.Any())
             {
-                Roles = string.Join(",", roles);
+                Roles = string.Join(",", roles.Append(Constant.Roles.PortalSuperAdmin));
             }
             AuthenticationSchemes = "Bearer";
         }

@@ -43,6 +43,7 @@ namespace Fanex.Athena.Common.Site.Attributes
 
         private const string ProductSB = "SB";
 
+#pragma warning disable S107 // Methods should not have too many parameters
         public AutoBindMetaModelImplAttribute(
             IMetaModelBindingService bindingService,
             IContextService contextService,
@@ -55,6 +56,7 @@ namespace Fanex.Athena.Common.Site.Attributes
             bool bindShowingBetFromIP,
             bool isBindSpecialPlatform,
             bool isBindBalanceUpAndMoveBet)
+#pragma warning restore S107 // Methods should not have too many parameters
         {
             _bindingService = bindingService;
             _contextService = contextService;

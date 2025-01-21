@@ -489,7 +489,7 @@ namespace Fanex.Athena.Result.DataAccess
                 HtAwayScore = reader.ToNullableInt("htawayscore"),
                 FinalHomeScore = reader.ToNullableInt("finalhomescore"),
                 HtHomeScore = reader.ToNullableInt("hthomescore"),
-                EventDate = DateTime.Parse(reader.ToString(EventDateColumn)),
+                EventDate =reader.ToDateTime(EventDateColumn),
                 MatchCode = reader.ToString("matchcode")
             };
         }

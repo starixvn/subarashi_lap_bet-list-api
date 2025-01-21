@@ -63,7 +63,8 @@
 
             if (exception.InnerException != null && limitedInnerException > 0)
             {
-                AddExceptionInfo(builder, exception.InnerException, --limitedInnerException);
+                limitedInnerException--;
+                AddExceptionInfo(builder, exception.InnerException, limitedInnerException);
             }
         }
 

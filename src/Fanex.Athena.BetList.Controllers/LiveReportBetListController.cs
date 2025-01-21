@@ -6,15 +6,12 @@ using Fanex.Athena.BetList.Service.Interfaces;
 using Fanex.Athena.BetList.Service.Optiions;
 using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Services;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Site.Attributes;
 using Fanex.Athena.Common.Utility.Helpers;
-using Fanex.Athena.Common.Utility.Services;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Resources;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace Fanex.Athena.BetList.Controllers
 {
@@ -301,7 +298,9 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpPost]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
+#pragma warning disable S4144 // Methods should not have identical implementations
         public async Task<IActionResult> BetradarExportExcel([FromBody] LiveReportBetListMetaModel metaModel)
+#pragma warning restore S4144 // Methods should not have identical implementations
         {
             metaModel.UspKey = LiveReportSpKey;
 

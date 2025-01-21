@@ -465,6 +465,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             var expectedValue = true;
             SetupUserClaim("IsShowIP", expectedValue.ToString());
             SetupUserClaim("Administrator", true.ToString());
+            SetupUserClaim("name", "testuser");
 
             // Act
             var actualValue = _contextService.IsShowIpvn;
@@ -479,6 +480,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             // Arrange
             var expectedValue = true;
             SetupUserClaim("IsShowIP", expectedValue.ToString());
+            SetupUserClaim("name", "testuser");
             SetUpRoles([Roles.BetlistViewIpvn]);
 
             // Act
@@ -494,6 +496,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             // Arrange
             var expectedValue = true;
             SetupUserClaim("IsShowIP", expectedValue.ToString());
+            SetupUserClaim("name", "testuser");
             SetUpRoles([Roles.PortalSuperAdmin]);
 
             // Act
@@ -510,6 +513,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             var expectedValue = true;
             SetupUserClaim("IsShowIP", expectedValue.ToString());
             SetupUserClaim("IShowIPVN", true.ToString());
+            SetupUserClaim("name", "testuser");
             SetUpRoles([Roles.StatementServiceRoleUser]);
 
             // Act

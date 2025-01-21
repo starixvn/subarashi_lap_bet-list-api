@@ -3,19 +3,16 @@ using Fanex.Athena.BetList.Excel;
 using Fanex.Athena.BetList.Model.DTO;
 using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.BetList.Model.ViewModel;
-using Fanex.Athena.BetList.Service;
 using Fanex.Athena.BetList.Service.Helpers;
 using Fanex.Athena.BetList.Service.Interfaces;
 using Fanex.Athena.BetList.Service.Optiions;
 using Fanex.Athena.Common.DataAccess.Interfaces;
 using Fanex.Athena.Common.Model.DTO;
 using Fanex.Athena.Common.Model.MetaModel;
-using Fanex.Athena.Common.Services;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Utility.Helpers;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Resources;
-using Microsoft.AspNetCore.Mvc;
 
 
 namespace Fanex.Athena.BetList.Controllers
@@ -34,6 +31,7 @@ namespace Fanex.Athena.BetList.Controllers
         protected readonly IAppSettings _appSettings;
         protected readonly IIPService _ipService;
 
+#pragma warning disable S107 // Methods should not have too many parameters
         protected BetListBaseController(IContextService contextService,
             IAuthorizationService authorizationService,
             IBetListService betListService,
@@ -43,6 +41,7 @@ namespace Fanex.Athena.BetList.Controllers
             ICacheRefAdapter cacheRefAdapter,
             IAppSettings appSettings,
             IIPService ipService)
+#pragma warning restore S107 // Methods should not have too many parameters
         {
             _contextService = contextService;
             _authorizationService = authorizationService;

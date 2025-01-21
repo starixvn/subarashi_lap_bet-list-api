@@ -444,7 +444,9 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             }
         }
 
+#pragma warning disable S1541 // Methods and properties should not be too complex
         private async Task GetNormalData(ResultMetaModel metalModel)
+#pragma warning restore S1541 // Methods and properties should not be too complex
         {
             var setting = GetNormalResultSetting(metalModel);
             switch (setting.SportType)

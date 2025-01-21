@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.Common.Site.Attributes;
+﻿using Fanex.Athena.Common.Constant;
+using Fanex.Athena.Common.Site.Attributes;
 
 namespace Fanex.Athena.Common.Site.Tests.Attributes
 {
@@ -14,7 +15,7 @@ namespace Fanex.Athena.Common.Site.Tests.Attributes
             var attribute = new BearerAuthorizeAttribute(roles);
 
             // Assert
-            Assert.That(attribute.Roles, Is.EqualTo("Admin,User"));
+            Assert.That(attribute.Roles, Is.EqualTo($"Admin,User,{Roles.PortalSuperAdmin}"));
         }
 
         [Test]

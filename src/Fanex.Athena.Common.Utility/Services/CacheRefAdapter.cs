@@ -1,6 +1,5 @@
 ﻿using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Report.Common.Helpers;
-using Fanex.Athena.Resources;
 using Fanex.RemotingRef;
 
 namespace Fanex.Athena.Common.Utility.Services

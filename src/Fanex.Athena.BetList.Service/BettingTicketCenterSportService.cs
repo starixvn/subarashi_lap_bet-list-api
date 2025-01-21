@@ -37,7 +37,7 @@ namespace Fanex.Athena.BetList.Service
 
             if (string.IsNullOrEmpty(sportIds) || string.Equals(sportIds, "All", StringComparison.OrdinalIgnoreCase))
             {
-                return sportIds;
+                return "All";
             }
 
             var result = new StringBuilder("<ROOT>");

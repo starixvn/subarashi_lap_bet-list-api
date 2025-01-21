@@ -116,7 +116,7 @@
             const string UspKey = "Lrf_BetList_Licensee_TotalRows";
             const int TimeOut = 300;
 
-            using (var db = GetObjectDb(UspKey))
+            using (var db = GetObjectDb(UspKey, TimeOut))
             {
                 var balanceUp = _balanceUpDataAccess.GetBalanceUp();
                 db.SetParameterValue(DbColumn.AgentList, metaModel.AgentListXml);

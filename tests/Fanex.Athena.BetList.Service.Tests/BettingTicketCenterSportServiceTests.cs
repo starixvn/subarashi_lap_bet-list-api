@@ -35,7 +35,7 @@ namespace Fanex.Athena.BetList.Service.Tests
             string result = _service.BuildSportTypeXML(sportIds);
 
             // Assert
-            Assert.That(result, Is.EqualTo(""));
+            Assert.That(result, Is.EqualTo("All"));
         }
 
         [Test]

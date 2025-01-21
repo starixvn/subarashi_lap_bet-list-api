@@ -5,12 +5,10 @@ using Fanex.Athena.BetList.Excel;
 using Fanex.Athena.BetList.Excel.Model;
 using Fanex.Athena.BetList.Model.DTO;
 using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service;
 using Fanex.Athena.BetList.Service.Interfaces;
 using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Site.Attributes;
-using Fanex.Athena.Common.Utility.Helpers;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Resources;
 using Microsoft.AspNetCore.Http;
@@ -41,6 +39,7 @@ namespace Fanex.Athena.BetList.Controllers
         private readonly ITempFileService _tempFileService;
         private readonly IBettingTicketCenterSportService _bettingTicketCenterSportService;
 
+#pragma warning disable S107 // Methods should not have too many parameters
         public BettingTicketCenterAdvancedSearchController(
             IAppSettings appSettings,
             IBettingTicketCenterAdvancedSearchDataAccess dataAccess,
@@ -52,6 +51,7 @@ namespace Fanex.Athena.BetList.Controllers
             ICustomerClassService customerClassService,
             ITempFileService tempFileService,
             IBettingTicketCenterSportService bettingTicketCenterSportService)
+#pragma warning restore S107 // Methods should not have too many parameters
             : base(ticketBuilderService, bettingTicketCenterExcel)
         {
             _appSettings = appSettings;
