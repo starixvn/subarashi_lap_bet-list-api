@@ -149,6 +149,11 @@ app.UseEndpoints(config =>
     {
         await context.Response.WriteAsync("This is Bet list API");
     });
+    config.MapGet("/test/exception", async context =>
+    {
+        throw new Exception("Test exception");
+    });
+
     config.MapDefaultControllerRoute()
         .RequireAuthorization();
 });
