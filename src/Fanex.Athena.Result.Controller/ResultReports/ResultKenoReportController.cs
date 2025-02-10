@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.Result.Service.Interfaces;
+﻿using Fanex.Athena.Result.Model.MetaModel;
+using Fanex.Athena.Result.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -23,12 +24,12 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         }
 
         [HttpPost]
-        public string GetResultPage(int vendorProductId, string custId, string languageCode, bool isDesktop = true)
+        public string GetResultPage([FromBody] ResultKenoMetaModel metaModel)
         {
-            var result = _resultApi.CreateResultApi(vendorProductId);
+            var result = _resultApi.CreateResultApi(metaModel.VendorProductId);
             var request = _actionContextAccessor.ActionContext.HttpContext.Request;
             var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext);
-            return result.GetResult(custId, isDesktop, DateTimeOffset.Now.DateTime, urlHelper.Action("AccessDenied", "Utility", null, request.Scheme), languageCode);
+            return result.GetResult(metaModel.CustId, metaModel.IsDesktop, DateTimeOffset.Now.DateTime, urlHelper.Action("AccessDenied", "Utility", null, request.Scheme), metaModel.LanguageCode);
         }
     }
 }

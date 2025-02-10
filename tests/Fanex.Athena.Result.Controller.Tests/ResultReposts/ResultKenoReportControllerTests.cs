@@ -52,7 +52,12 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
             var controller = CreateController();
 
             // Action
-            var result = controller.GetResultPage(VendorProductId, UserId, LanguageCode);
+            var result = controller.GetResultPage(new Model.MetaModel.ResultKenoMetaModel
+            {
+                VendorProductId = VendorProductId,
+                CustId = UserId,
+                LanguageCode = LanguageCode
+            });
 
             // Assert
             Assert.That(result, Is.EqualTo(ExpectedUrl));

@@ -27,6 +27,7 @@ builder.WebHost.UseKestrel(options =>
 builder.WebHost.UseSentry();
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
         .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: false)
+        .AddJsonFile($"appreportsettings.json", optional: true, reloadOnChange: false)
         .AddJsonFile("betlistresultsettings.json", optional: true, reloadOnChange: false)
         .AddJsonFile($"betlistresultsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: false);
 
