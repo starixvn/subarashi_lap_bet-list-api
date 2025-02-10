@@ -91,11 +91,8 @@ if (app.Environment.IsDevelopment() || string.Equals(configuration["UseErrorHand
 {
     app.UseDeveloperExceptionPage();
 }
-else
-{
-    app.UseErrorHandler();
-}
 
+app.UseErrorHandler();
 app.UseForwardedHeaders();
 
 app.UseHealthCheck();
