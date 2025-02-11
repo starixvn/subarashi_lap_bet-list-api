@@ -81,7 +81,7 @@ RUN dotnet build "Fanex.Athena.BetListAPI.Host.csproj" -c Release -o /app/build
 
 RUN dotnet publish "Fanex.Athena.BetListAPI.Host.csproj" -c Release -o /app/publish
 
-FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine
+FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1
 
 ENV DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE=false
 ENV ASPNETCORE_URLS=http://+:5000

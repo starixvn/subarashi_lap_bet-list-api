@@ -25,11 +25,12 @@ builder.WebHost.UseKestrel(options =>
     options.AllowSynchronousIO = true;
 });
 builder.WebHost.UseSentry();
+builder.Configuration.SetBasePath(builder.Environment.ContentRootPath);
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
-        .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: false)
-        .AddJsonFile($"appreportsettings.json", optional: true, reloadOnChange: false)
-        .AddJsonFile("betlistresultsettings.json", optional: true, reloadOnChange: false)
-        .AddJsonFile($"betlistresultsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: false);
+        .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: false);
+var envFromSetting = builder.Configuration.GetValue<string>("AppSettings:Environment");
+builder.Configuration.AddJsonFile($"appreportsettings.json", optional: false, reloadOnChange: false)
+        .AddJsonFile($"betlistresultsettings.{envFromSetting}.json", optional: false, reloadOnChange: false);
 
 var services = builder.Services;
 var configuration = builder.Configuration;
@@ -50,6 +51,7 @@ services.AddAuthentication(OAuth2IntrospectionDefaults.AuthenticationScheme)
         options.CacheKeyPrefix = "BETLIST_CACHE_TOKEN.";
         options.EnableCaching = true;
         options.SkipTokensWithDots = true;
+        options.DiscoveryPolicy.RequireHttps = false;
     });
 
 services.AddAuthorization(option =>
@@ -88,12 +90,11 @@ ResultCoreManager.RegisterRefDataHelper(new RefDataHelper());
 //Middlewares
 app.UsePing();
 
+app.UseErrorHandler();
 if (app.Environment.IsDevelopment() || string.Equals(configuration["UseErrorHandler"], "0"))
 {
     app.UseDeveloperExceptionPage();
 }
-
-app.UseErrorHandler();
 app.UseForwardedHeaders();
 
 app.UseHealthCheck();
@@ -113,7 +114,7 @@ app.UseRequestLocalization(options =>
         }
     };
     var csCulture = new CultureInfo("zh-CN");
-
+     
     options.DefaultRequestCulture = new RequestCulture(EnCultureName);
     options.SupportedCultures = new List<CultureInfo>
                 {

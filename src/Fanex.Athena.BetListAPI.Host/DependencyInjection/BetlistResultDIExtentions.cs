@@ -7,6 +7,7 @@ using Fanex.Result.Core.LinkedGames;
 using Fanex.Result.Core.SabaClub;
 using Fanex.Result.Core.SAGaming;
 using Fanex.Result.Core.SportsLottery;
+using Fanex.Result.Core.WM;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
@@ -40,6 +41,7 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
             services.AddSAGamingResultService();
             services.AddSportLotteryResultService(configuration);
             services.AddScoped<IKenoLotteryTGResultFactory, KenoLotteryTGResultApi>();
+            services.AddScoped<IWMResultBuilder, WMResultBuilder>();
 
             return services;
         }
