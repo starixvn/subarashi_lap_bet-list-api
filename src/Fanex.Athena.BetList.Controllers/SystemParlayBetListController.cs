@@ -22,10 +22,13 @@ namespace Fanex.Athena.BetList.Controllers
         }
 
         [HttpPost]
-        public async Task<string> Detail(SystemParlayDetailMetaModel metaModel)
+        public async Task<IActionResult> Detail(SystemParlayDetailMetaModel metaModel)
         {
-            const string viewPath =  "~/Views/SystemParlayDetail/Index.cshtml";
-            return await _systemParlayDetailService.BuildHtmlContent(metaModel, _ticketHelper, viewPath);
+            const string viewPath =  "/Views/SystemParlayDetail/Index.cshtml";
+            return new ContentResult 
+            {
+                Content = (await _systemParlayDetailService.BuildHtmlContent(metaModel, _ticketHelper, viewPath)),
+            };
         }
     }
 }

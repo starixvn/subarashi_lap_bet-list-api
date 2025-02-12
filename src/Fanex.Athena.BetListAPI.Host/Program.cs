@@ -30,7 +30,8 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
         .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: false);
 var envFromSetting = builder.Configuration.GetValue<string>("AppSettings:Environment");
 builder.Configuration.AddJsonFile($"appreportsettings.json", optional: false, reloadOnChange: false)
-        .AddJsonFile($"betlistresultsettings.{envFromSetting}.json", optional: false, reloadOnChange: false);
+        .AddJsonFile($"betlistresultsettings.json", optional: false, reloadOnChange: false)
+        .AddJsonFile($"betlistresultsettings.{envFromSetting}.json", optional: true, reloadOnChange: false);
 
 var services = builder.Services;
 var configuration = builder.Configuration;
@@ -48,7 +49,7 @@ services.AddAuthentication(OAuth2IntrospectionDefaults.AuthenticationScheme)
         options.ClientId = identityServer.ClientId;
         options.ClientSecret = identityServer.ClientSecret;
         options.CacheDuration = TimeSpan.FromMinutes(identityServer.CacheDuration);
-        options.CacheKeyPrefix = "BETLIST_CACHE_TOKEN.";
+        options.CacheKeyPrefix = "Auth2Introspection:BETLIST_CACHE_TOKEN:";
         options.EnableCaching = true;
         options.SkipTokensWithDots = true;
         options.DiscoveryPolicy.RequireHttps = false;
@@ -114,7 +115,7 @@ app.UseRequestLocalization(options =>
         }
     };
     var csCulture = new CultureInfo("zh-CN");
-     
+
     options.DefaultRequestCulture = new RequestCulture(EnCultureName);
     options.SupportedCultures = new List<CultureInfo>
                 {
@@ -157,4 +158,4 @@ app.UseEndpoints(config =>
         .RequireAuthorization();
 });
 
-app.Run();
+await app.RunAsync();

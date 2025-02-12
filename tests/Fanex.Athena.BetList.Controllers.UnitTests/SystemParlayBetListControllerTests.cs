@@ -2,7 +2,7 @@
 using Fanex.Athena.BetList.Service.Interfaces;
 using Fanex.Athena.TestHelper;
 using Fanex.BetList.Core.Entities;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -15,23 +15,20 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
         {
             var ticketHelper = Substitute.For<ITicketHelper>();
             var systemParlayDetailService = Substitute.For<ISystemParlayDetailService>();
-            var webHostEnv = Substitute.For<IWebHostEnvironment>();
             // Arrange
-            var controller = new SystemParlayBetListController(ticketHelper, systemParlayDetailService, webHostEnv);
-            const string rootPath = "RootPath";
+            var controller = new SystemParlayBetListController(ticketHelper, systemParlayDetailService);
             const string ExpectedResultContent = "System parlay detail result content";
-            var expectedViewPath = Path.Combine(rootPath, "Views/SystemParlayDetail/Index.cshtml");
-            webHostEnv.ContentRootPath.Returns(rootPath);
+            var expectedViewPath = Path.Combine("/Views/SystemParlayDetail/Index.cshtml");
 
             var metaModel = FakeHelper.Create<SystemParlayDetailMetaModel>();
 
             systemParlayDetailService.BuildHtmlContent(metaModel, ticketHelper, expectedViewPath).Returns(ExpectedResultContent);
 
             // Action
-            var result = await controller.Detail(metaModel);
+            var result = await controller.Detail(metaModel) as ContentResult;
 
             // Assert
-            Assert.That(result, Is.EqualTo(ExpectedResultContent));
+            Assert.That(result.Content, Is.EqualTo(ExpectedResultContent));
         }
     }
 }

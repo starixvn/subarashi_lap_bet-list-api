@@ -20,7 +20,7 @@
       "Debug": 0
     },
     "BGResult": {
-      "Url": "http://10.40.40.248:8114/api/BigGamingInternal/GetBetHistoryUrl",
+      "Url": "http://10.40.40.248:7012/api/BigGamingInternal/GetBetHistoryUrl",
       "VendorId": 57,
       "Debug": 0
     },
@@ -44,7 +44,7 @@
       "Debug": 0
     },
     "LinkedGamesResult": {
-      "Url": "http://10.99.99.180:9121/api/LinkedGamesInternal/GetBetHistoryUrl",
+      "Url": "http://10.40.40.248:8121/api/LinkedGamesInternal/GetBetHistoryUrl",
       "VendorId": 63,
       "ProxyIP": "lisasqd.nebula.prod",
       "ProxyPort": 8801,
@@ -74,6 +74,8 @@
     "MaxGameResult": {
       "Url": "http://10.40.40.248:7020/api/MaxGameInternal/GetBetHistoryUrl",
       "VendorId": 60,
+      "ProxyIP": "lisasqd.nebula.prod",
+      "ProxyPort": 8801,
       "Debug": 0
     },
     "MGRNGResult": {
@@ -91,11 +93,11 @@
       "Debug": 0
     },
     "RNGCasinoResult": {
-      "Url": "http://10.99.99.170:9001/api/OneRngInternal/GetBetHistoryUrl",
+      "Url": "http://10.40.40.248:7034/api/OneRngInternal/GetBetHistoryUrl",
       "Debug": 0
     },
     "SabaClubResult": {
-      "Url": "http://10.3.107.45:9103/api/SabaClubInternal/GetTicketResult",
+      "Url": "http://10.40.40.248:8103/api/SabaClubInternal/GetTicketResult",
       "Login": "Login",
       "Password": "U1YwYm1IbGpSeVdMeWhTaE1Ia1I3QT09",
       "Debug": 0
@@ -110,12 +112,12 @@
       "Debug": 0
     },
     "SportsLotteryResult": {
-      "UrlPage": "http://10.99.99.180:9123/api/SportsLotteryInternal/Result",
+      "UrlPage": "http://10.40.40.248:7038/api/SportsLotteryInternal/Result",
       "SiteId": 4100200,
       "Debug": 0
     },
     "SportsLotteryDetailResult": {
-      "Url": "http://10.99.99.180:9123/api/SportsLotteryInternal/GetBetHistoryUrl",
+      "Url": "http://10.40.40.248:7038/api/SportsLotteryInternal/GetBetHistoryUrl",
       "Debug": 0
     },
     "UUSlotsResult": {
@@ -123,7 +125,7 @@
       "Debug": 0
     },
     "VGamingResult": {
-      "Url": "http://10.99.99.7:9028/api/VGamingInternal/GetBetHistoryUrl",
+      "Url": "http://10.40.40.248:7028/api/VGamingInternal/GetBetHistoryUrl",
       "Debug": 0
     },
     "VirtualGamesDetailResult": {

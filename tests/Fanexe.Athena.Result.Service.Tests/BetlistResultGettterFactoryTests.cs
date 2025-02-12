@@ -1,6 +1,7 @@
 ﻿using Fanex.Athena.Result.Service;
 using Fanex.Result.Core.ThirdParty;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using NSubstitute;
 
@@ -10,12 +11,14 @@ namespace Fanexe.Athena.Result.Service.Tests
     {
         private IConfiguration _configuration;
         private IConfigurationSection _configurationSection;
+        private ILogger<BetlistResultGettterFactory> _logger;
 
         [SetUp]
         public void SetUp()
         {
             _configuration = Substitute.For<IConfiguration>();
             _configurationSection = Substitute.For<IConfigurationSection>();
+            _logger = Substitute.For<ILogger<BetlistResultGettterFactory>>();
         }
 
         [TearDown]
@@ -41,6 +44,6 @@ namespace Fanexe.Athena.Result.Service.Tests
             Assert.That(result, Is.Not.Null);
         }
 
-        private BetlistResultGettterFactory CreateService() => new(_configuration);
+        private BetlistResultGettterFactory CreateService() => new(_configuration, _logger);
     }
 }

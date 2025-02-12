@@ -14,14 +14,6 @@
 
         public string MatchName { get; set; }
 
-        public string MatchCode { get; set; }
-
-        public string VendorMatchId { get; set; }
-
-        public string Distance { get; set; }
-
         public bool IsNeutral { get; set; }
-
-        public DateTime KickOffTime { get; set; }
     }
 }
