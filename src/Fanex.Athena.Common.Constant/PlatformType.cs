@@ -69,7 +69,10 @@
             { "m", Wap },
             { "A000", ChatRoom },
             { "A003", ChatRoom },
-            { "Q001", QuickBetWidget }
+            { "Q001", QuickBetWidget },
+            { "W012", DesktopOthers },
+            { "W013", MobileOthers }
+
         };
 
         private static readonly IDictionary<string, string> _JollysportsPlatform = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
