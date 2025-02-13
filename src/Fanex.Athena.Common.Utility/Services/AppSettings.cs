@@ -10,7 +10,7 @@
     {
         public string Environment { get; set; }
 
-        public bool IsProduction => Environment.Equals("PRO", StringComparison.OrdinalIgnoreCase);
+        public bool IsProduction => Environment.Equals("PROD", StringComparison.OrdinalIgnoreCase) || Environment.Equals("PRO", StringComparison.OrdinalIgnoreCase);
 
         public IEnumerable<int> FakeLicenseeList { get; set; } = Enumerable.Empty<int>();
 
