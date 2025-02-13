@@ -55,9 +55,16 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
             //Arrange
             var controller = CreateController();
             var isDesktop = string.Equals(platform, "d", StringComparison.OrdinalIgnoreCase);
+            var model = new Happy5LinkedGamesResultPopupController.Soccer5Request
+            {
+                MatchId = "1",
+                Balls = "2",
+                Platform = platform,
+                LanguageCode = "en"
+            };
 
             //Action
-            controller.Soccer5("1", "2", platform, "en");
+            controller.Soccer5(model);
 
             //Assert
             _resultApi.Received().GetSoccer5Result("1", "2", isDesktop, language: "en");

@@ -8,6 +8,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
 {
     [ApiController]
     [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     public class Happy5LinkedGamesResultPopupController
     {
         private readonly ILinkedGamesResult _resultApi;
@@ -34,10 +35,23 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
         }
 
         [HttpPost]
-        public string Soccer5(string matchId, string balls, string platform, string languageCode)
+        public IActionResult Soccer5(Soccer5Request metaModel)
         {
-            var isDesktop = string.Equals(platform, "d", StringComparison.OrdinalIgnoreCase);
-            return _resultApi.GetSoccer5Result(matchId, balls, isDesktop, language: languageCode);
+            var isDesktop = string.Equals(metaModel.Platform, "d", StringComparison.OrdinalIgnoreCase);
+            return new ContentResult{
+                Content = _resultApi.GetSoccer5Result(metaModel.MatchId, metaModel.Balls, isDesktop, language: metaModel.LanguageCode) 
+            }; 
+        }
+
+        public class Soccer5Request
+        {
+            public string MatchId { get; set; }
+
+            public string Balls { get; set; }
+
+            public string Platform { get; set; }
+
+            public string LanguageCode { get; set; }
         }
     }
 }

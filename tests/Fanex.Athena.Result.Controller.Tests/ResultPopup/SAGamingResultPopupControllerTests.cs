@@ -33,11 +33,18 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
             //Arrange
             const string expectedResult = "expectedResult";
             var controller = CreateController();
+            var model = new SAGamingResultPopupController.SAGamingResultMetaModel
+            {
+                TransDesc = "123",
+                MatchCode = "123",
+                BetType = "betType",
+                LanguageCode = "en-US"
+            };
 
             _resultApi.Render("123", "123", "betType", "en-US").Returns(expectedResult);
 
             //Action
-            var result = controller.Index("123", "123", "betType", "en-US");
+            var result = controller.Index(model);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));

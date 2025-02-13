@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Fanex.Athena.BetList.Controllers
 {
     [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class BetListByProductController
     {
@@ -20,7 +21,8 @@ namespace Fanex.Athena.BetList.Controllers
         }
 
         [HttpGet]
-        public async Task<object> Index([FromQuery] BetListByProductMetaModel metaModel)
+        [HttpPost]
+        public async Task<object> Index(BetListByProductMetaModel metaModel)
         {
             var ticketResult = await _service.QueryAsync(metaModel);
             var result = new

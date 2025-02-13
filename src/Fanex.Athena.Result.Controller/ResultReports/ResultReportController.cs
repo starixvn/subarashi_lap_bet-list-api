@@ -76,6 +76,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
                 }
 
                 _excelStream ??= ExportNoneData(metalModel);
+                _excelStream.Seek(0, SeekOrigin.Begin);
                 return File(_excelStream, "application/vnd.ms-excel", "Result.xls");
             }
             else
@@ -125,17 +126,17 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         }
 
         [HttpPost]
-        public async Task<IActionResult> ResultDetail(int matchId, int sportType, string languageCode)
+        public async Task<IActionResult> ResultDetail(ResultDetailMetaModel metaModel)
         {
-            var detailedData = await _resultService.GetSportsbookGameDetailAsync(matchId);
+            var detailedData = await _resultService.GetSportsbookGameDetailAsync(metaModel.MatchId);
             if (detailedData != null && detailedData.MatchId > 0)
             {
                 return Content(_resultService.HtmlGameDetailParser(
                 detailedData,
                 new ResultSetting
                 {
-                    SportType = (SportType)sportType,
-                    LanguageCode = languageCode
+                    SportType = (SportType)metaModel.SportType,
+                    LanguageCode = metaModel.LanguageCode
                 }));
             }
 

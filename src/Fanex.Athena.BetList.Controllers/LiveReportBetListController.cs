@@ -73,7 +73,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpGet]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-        public async Task<object> Outright(LiveReportBetListMetaModel metaModel, bool dataOnly)
+        public async Task<object> Outright([FromQuery] LiveReportBetListMetaModel metaModel, bool dataOnly)
         {
             metaModel.UspKey = OutRightSpKey;
             if (dataOnly)

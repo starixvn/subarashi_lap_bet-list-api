@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using System.Net;
 
@@ -16,6 +17,7 @@ namespace Fanex.Athena.Common.Site.Tests.Attributes
     {
         private IContextService _contextService;
         private ICurrencyValidation _currencyValidation;
+        private ILoggerFactory _logFactory;
         private ActionExecutingContext _actionExecutingContext;
         private ActionExecutionDelegate _nextDelegate;
 
@@ -24,15 +26,27 @@ namespace Fanex.Athena.Common.Site.Tests.Attributes
         {
             _contextService = Substitute.For<IContextService>();
             _currencyValidation = Substitute.For<ICurrencyValidation>();
+            _logFactory = Substitute.For<ILoggerFactory>();
             _actionExecutingContext = CreateExecutingContext();
             _nextDelegate = Substitute.For<ActionExecutionDelegate>();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _logFactory.Dispose();
+            _contextService = null;
+            _currencyValidation = null;
+            _logFactory = null;
+            _actionExecutingContext = null;
+            _nextDelegate = null;
         }
 
         [Test]
         public async Task OnActionExecutionAsync_InvalidParams_ReturnsBadRequest()
         {
             // Arrange
-            var attribute = new DataValidationImplAttribute(_contextService, _currencyValidation, false, false);
+            var attribute = new DataValidationImplAttribute(_contextService, _currencyValidation, _logFactory, false, false);
             var model = Substitute.For<IValidationMetaModel>();
             model.IsValid.Returns(false);
             _actionExecutingContext.ActionArguments.Add("model", model);
@@ -50,7 +64,7 @@ namespace Fanex.Athena.Common.Site.Tests.Attributes
         public async Task OnActionExecutionAsync_ValidParams_CallsNextDelegate()
         {
             // Arrange
-            var attribute = new DataValidationImplAttribute(_contextService, _currencyValidation, false, false);
+            var attribute = new DataValidationImplAttribute(_contextService, _currencyValidation, _logFactory, false, false);
             var model = Substitute.For<IValidationMetaModel>();
             model.IsValid.Returns(true);
             _actionExecutingContext.ActionArguments.Add("model", model);

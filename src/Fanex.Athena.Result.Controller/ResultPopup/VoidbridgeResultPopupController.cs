@@ -7,6 +7,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
 {
     [ApiController]
     [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     public class VoidbridgeResultPopupController
     {
         private readonly IBetlistResultGetterFactory _factory;

@@ -60,7 +60,12 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
             _resultService.GetSportsbookGameDetailAsync(MatchId).Returns(x => Task.FromResult<Sportsbook>(null));
 
             // Action
-            var result = await controller.ResultDetail(MatchId, SportType, LanguageCode) as ContentResult;
+            var result = await controller.ResultDetail(new ResultDetailMetaModel
+            {
+                MatchId = MatchId,
+                SportType = SportType,
+                LanguageCode = LanguageCode
+            }) as ContentResult;
 
             // Assert
             Assert.That(result.Content, Is.Empty);
@@ -82,7 +87,12 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
             _resultService.HtmlGameDetailParser(detailedData, Arg.Any<ResultSetting>()).Returns(ExpectedHtmlGameDetail);
 
             // Action
-            var result = await controller.ResultDetail(MatchId, SportId, LanguageCode) as ContentResult;
+            var result = await controller.ResultDetail(new ResultDetailMetaModel
+            {
+                MatchId = MatchId,
+                SportType = SportId,
+                LanguageCode = LanguageCode
+            }) as ContentResult;
 
             // Assert
             Assert.Multiple(() =>

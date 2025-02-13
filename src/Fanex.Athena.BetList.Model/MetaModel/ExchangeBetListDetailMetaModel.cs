@@ -2,7 +2,7 @@
 
 namespace Fanex.Athena.BetList.Model.MetaModel
 {
-    public class ExchangeBetListDetailMetaModel : BaseExchangeBetListMetaModel, ICurrencyIdMetaModel
+    public class ExchangeBetListDetailMetaModel : BaseExchangeBetListMetaModel, IValidationMetaModel
     {
         public long BetId { get; set; }
 

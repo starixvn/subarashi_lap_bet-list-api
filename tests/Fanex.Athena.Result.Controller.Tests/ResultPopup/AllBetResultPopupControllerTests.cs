@@ -23,13 +23,20 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
         [Test]
         public void Index_WhenCall_ReturnCorrectResult()
         {
-            //
+            //Assert
             var controller = CreateController();
             var expectedResult = "abc";
+            var model = new AllBetResultPopupController.AllBetResultMetaModel
+            {
+                TransDesc = "123",
+                BetCheck = "123",
+                BetType = "123",
+                LanguageCode = "en"
+            };
             _resultApi.Render("123", "123", "123", "en").Returns(expectedResult);
 
             //Action
-            var result = controller.Index("123", "123", "123", "en");
+            var result = controller.Index(model);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));

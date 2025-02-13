@@ -97,7 +97,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpGet]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindProductCodeList: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-        public async Task<object> Outright(BetListMetaModel metaModel, bool dataOnly = true)
+        public async Task<object> Outright([FromQuery] BetListMetaModel metaModel, bool dataOnly = true)
         {
             metaModel.IsServerPaging = true;
 
@@ -117,7 +117,7 @@ namespace Fanex.Athena.BetList.Controllers
         }
 
         [HttpGet]
-        public async Task<object> MixParlay(MixParlayMetaModel metaModel, bool dataOnly = true)
+        public async Task<object> MixParlay([FromQuery] MixParlayMetaModel metaModel, bool dataOnly = true)
         {
             if (_currencyValidation.IsValidBaseCurrency(metaModel.BaseCurrency)
                 && _currencyValidation.IsValidCurrency(metaModel.CurrencyId, _contextService.CurrencyList.ToDictionary(_ => _.Key, _ => _.Value)))

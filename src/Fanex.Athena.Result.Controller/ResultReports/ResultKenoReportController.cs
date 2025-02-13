@@ -24,12 +24,18 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         }
 
         [HttpPost]
-        public string GetResultPage([FromBody] ResultKenoMetaModel metaModel)
+        public IActionResult GetResultPage([FromBody] ResultKenoMetaModel metaModel)
         {
             var result = _resultApi.CreateResultApi(metaModel.VendorProductId);
             var request = _actionContextAccessor.ActionContext.HttpContext.Request;
             var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext);
-            return result.GetResult(metaModel.CustId, metaModel.IsDesktop, DateTimeOffset.Now.DateTime, urlHelper.Action("AccessDenied", "Utility", null, request.Scheme), metaModel.LanguageCode);
+            return new ContentResult
+            {
+                Content = result.GetResult(metaModel.CustId, 
+                metaModel.IsDesktop, 
+                DateTimeOffset.Now.DateTime, 
+                urlHelper.Action("AccessDenied", "Utility", null, request.Scheme), metaModel.LanguageCode)
+            };
         }
     }
 }

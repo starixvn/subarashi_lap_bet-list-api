@@ -1,6 +1,8 @@
-﻿namespace Fanex.Athena.BetList.Model.MetaModel
+﻿using Fanex.Core.Utils;
+
+namespace Fanex.Athena.BetList.Model.MetaModel
 {
-    public class BaseExchangeBetListMetaModel
+    public class BaseExchangeBetListMetaModel: ICurrencyIdMetaModel
     {
         private string _baseCurrency = string.Empty;
 

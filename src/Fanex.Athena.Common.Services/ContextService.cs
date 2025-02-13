@@ -10,14 +10,17 @@ namespace Fanex.Athena.Common.Services
     public class ContextService : IContextService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ISiteDBAccessor _siteDBAccessor;
 
         protected HttpContext Context => _httpContextAccessor.HttpContext;
 
         protected ClaimsPrincipal User => Context.User;
 
-        public ContextService(IHttpContextAccessor httpContextAccessor)
+        public ContextService(IHttpContextAccessor httpContextAccessor,
+            ISiteDBAccessor siteDBAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
+            _siteDBAccessor = siteDBAccessor;
         }
 
         public bool IsAllowedCustomerComm => GetClaimValue<bool>("IsAllowedCustomerComm");
@@ -42,14 +45,7 @@ namespace Fanex.Athena.Common.Services
 
         public bool IsAdministrator => GetClaimValue<bool>("Administrator");
 
-        public string SiteDBServer => !string.IsNullOrWhiteSpace(GetClaimValue("SiteDBServer"))
-            ? GetClaimValue("SiteDBServer")
-            : GetSiteDBFromHeader();
-
-        private string GetSiteDBFromHeader()
-            => !string.IsNullOrWhiteSpace(_httpContextAccessor.HttpContext?.Request?.Headers["X-SiteDBServer"])
-            ? _httpContextAccessor.HttpContext.Request.Headers["X-SiteDBServer"]
-            : string.Empty;
+        public string SiteDBServer => _siteDBAccessor.SiteDBServer;
 
         public IEnumerable<string> OfferedSubProductList
         {
@@ -112,7 +108,7 @@ namespace Fanex.Athena.Common.Services
             }
         }
 
-        public bool ForceIgnoreSharding => bool.TrueString.Equals(Context.Request.Headers["X-IgnoreSharding"], StringComparison.OrdinalIgnoreCase);
+        public bool ForceIgnoreSharding => _siteDBAccessor.ForceIgnoreSharding;
 
         public byte SubsidiaryViewType
         {

@@ -1,5 +1,6 @@
 ﻿using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Common.Services;
+using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Common.Extensions;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
@@ -13,6 +14,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
     {
         private ContextService _contextService;
         private IHttpContextAccessor _httpContextAccessorMock;
+        private ISiteDBAccessor _siteDBAccessor;
         private HttpContext _httpContextMock;
         private ClaimsPrincipal _userMock;
         private static readonly string[] stringArray = new string[] { "Role1", "Role2" };
@@ -21,13 +23,14 @@ namespace Fanex.Athena.Common.Service.UnitTests
         public void Setup()
         {
             _httpContextAccessorMock = Substitute.For<IHttpContextAccessor>();
+            _siteDBAccessor = Substitute.For<ISiteDBAccessor>();
             _httpContextMock = Substitute.For<HttpContext>();
             _userMock = Substitute.ForPartsOf<ClaimsPrincipal>();
 
             _httpContextAccessorMock.HttpContext.Returns(_httpContextMock);
             _httpContextMock.User.Returns(_userMock);
 
-            _contextService = new ContextService(_httpContextAccessorMock);
+            _contextService = new ContextService(_httpContextAccessorMock, _siteDBAccessor);
         }
 
         [TearDown]
@@ -198,7 +201,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
         {
             // Arrange
             var expectedValue = "TestDBServer";
-            SetupUserClaim("SiteDBServer", expectedValue);
+            _siteDBAccessor.SiteDBServer.Returns(expectedValue);
 
             // Act
             var actualValue = _contextService.SiteDBServer;
@@ -354,9 +357,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
         {
             // Arrange
             var expectedValue = true;
-            var _mockRequest = Substitute.ForPartsOf<HttpRequest>();
-            _mockRequest.Headers.Returns(new HeaderDictionary { { "X-IgnoreSharding", bool.TrueString } });
-            _httpContextMock.Request.Returns(_mockRequest);
+            _siteDBAccessor.ForceIgnoreSharding.Returns(expectedValue);
 
             // Act
             var actualValue = _contextService.ForceIgnoreSharding;

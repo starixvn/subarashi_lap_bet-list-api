@@ -55,9 +55,14 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
             //Arrange
             var controller = CreateController();
             var isDesktop = string.Equals(platform, "d", StringComparison.OrdinalIgnoreCase);
+            var model = new SportsLotteryResultMetaModel
+            {
+                Platform = platform,
+                LanguageCode = "en"
+            };
 
             //Action
-            controller.ResultPage(platform, "en");
+            controller.ResultPage(model);
 
             //Assert
             _resultApi.Received().GetResultPage(isDesktop, language: "en");

@@ -8,6 +8,7 @@ using Fanex.Result.Core.SabaClub;
 using Fanex.Result.Core.SAGaming;
 using Fanex.Result.Core.SportsLottery;
 using Fanex.Result.Core.WM;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
@@ -38,10 +39,10 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
             services.AddAllBetResultService(configuration);
             services.AddLinkGamesResultService(configuration);
             services.AddSabaClubResultService(configuration);
-            services.AddSAGamingResultService();
+            services.AddSAGamingResultService(configuration);
             services.AddSportLotteryResultService(configuration);
             services.AddScoped<IKenoLotteryTGResultFactory, KenoLotteryTGResultApi>();
-            services.AddScoped<IWMResultBuilder, WMResultBuilder>();
+            services.AddWMResultService(configuration);
 
             return services;
         }
@@ -71,17 +72,22 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
             return services;
         }
 
-        private static IServiceCollection AddSAGamingResultService(this IServiceCollection service)
+        private static IServiceCollection AddSAGamingResultService(this IServiceCollection service, IConfiguration configuration)
         {
-            service.AddScoped<ISAGamingResultBuilder, SAGamingResultBuilder>();
+            service.AddScoped<ISAGamingResultBuilder>(_ => new SAGamingResultBuilder(configuration.GetSection("SAGamingResultImagePath").Value));
+            return service;
+        }
+
+        private static IServiceCollection AddWMResultService(this IServiceCollection service, IConfiguration configuration)
+        {
+            service.AddScoped<IWMResultBuilder>(_ => new WMResultBuilder(configuration.GetSection("WMResultImagePath").Value));
             return service;
         }
 
         private static IServiceCollection AddSportLotteryResultService(this IServiceCollection services, IConfiguration configuration)
         {
             var config = configuration.GetSection("ResultConfigs:SportsLotteryResult").Get<SportsLotteryConfigs>();
-            services.AddSingleton(config);
-            services.AddScoped<ISportsLotteryResult, SportsLotteryResult>();
+            services.AddScoped<ISportsLotteryResult>(_ => new SportsLotteryResult(config));
             return services;
         }
     }

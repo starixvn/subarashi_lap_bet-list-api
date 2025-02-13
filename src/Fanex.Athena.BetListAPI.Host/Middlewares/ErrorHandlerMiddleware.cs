@@ -37,7 +37,7 @@ namespace Fanex.Athena.BetListAPI.Host.Middlewares
         private void HandleError(HttpContext context, Exception exception)
         {
             var errorMsg = LogMessageHelper.GenerateMessage(context, exception);
-            _logger.LogCritical(exception, errorMsg);
+            _logger.LogError(exception, errorMsg);
             context.Response.Clear();
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
         }

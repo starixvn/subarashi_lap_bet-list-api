@@ -5,6 +5,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
 {
     [ApiController]
     [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     public class SabaClubResultPopupController
     {
         private readonly ISabaClubResult _resultApi;
@@ -14,8 +15,22 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
 
 
         [HttpPost]
-        public string Index(string custId, string gameRoundId, string gameId, string siteId, int sportType, string languageCode)
-            => _resultApi.GetResult(custId, gameRoundId, gameId, siteId, sportType, languageCode);
+        public string Index(SabaClubResultMetaModel model)
+            => _resultApi.GetResult(model.CustId, model.GameRoundId, model.GameId, model.SiteId, model.SportType, model.LanguageCode);
 
+        public class SabaClubResultMetaModel
+        {
+            public string CustId { get; set; }
+
+            public string GameRoundId { get; set; }
+
+            public string GameId { get; set; }
+
+            public string SiteId { get; set; }
+
+            public int SportType { get; set; }
+
+            public string LanguageCode { get; set; }
+        }
     }
 }

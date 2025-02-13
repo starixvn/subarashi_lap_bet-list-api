@@ -5,7 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Athena.Result.Controller.ResultPopup
 {
-    public class AdvantPlayMiniResultPopupController : ControllerBase
+    [ApiController]
+    [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
+    public class AdvantPlayMiniResultPopupController
     {
         private readonly IBetlistResultGetterFactory _factory;
 

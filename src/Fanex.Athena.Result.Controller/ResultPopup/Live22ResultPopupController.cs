@@ -7,6 +7,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
 {
     [ApiController]
     [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     public class Live22ResultPopupController
     {
         private readonly IBetlistResultGetterFactory _factory;

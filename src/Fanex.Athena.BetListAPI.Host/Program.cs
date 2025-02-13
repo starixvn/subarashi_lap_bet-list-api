@@ -91,6 +91,16 @@ ResultCoreManager.RegisterRefDataHelper(new RefDataHelper());
 //Middlewares
 app.UsePing();
 
+app.MapGet("/", async context =>
+{
+    await context.Response.WriteAsync("This is Bet list API");
+});
+
+app.MapGet("/test/exception", context =>
+{
+    throw new Exception("Test exception");
+});
+
 app.UseErrorHandler();
 if (app.Environment.IsDevelopment() || string.Equals(configuration["UseErrorHandler"], "0"))
 {
@@ -143,19 +153,7 @@ app.UseRequestLocalization(options =>
 app.UseDoubleSlashHandler();
 app.UseRouting();
 app.UseAuthorization();
-app.UseEndpoints(config =>
-{
-    config.MapGet("/", async context =>
-    {
-        await context.Response.WriteAsync("This is Bet list API");
-    });
-    config.MapGet("/test/exception", async context =>
-    {
-        throw new Exception("Test exception");
-    });
-
-    config.MapDefaultControllerRoute()
-        .RequireAuthorization();
-});
+app.MapDefaultControllerRoute()
+    .RequireAuthorization();
 
 await app.RunAsync();

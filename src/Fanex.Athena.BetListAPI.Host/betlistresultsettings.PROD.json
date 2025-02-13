@@ -1,11 +1,11 @@
 {
-  "AllbetResultImagePath": "/bundles/images/results/allbet/template/public/game_result/",
+  "AllbetResultImagePath": "/Content/Fanex.Result/Allbet/template/public/game_result/",
   "AllbetUseOriginalPath": true,
 
-  "SexyGamingResultImagePath": "/bundles/images/results/sexygaming/template/public/game_result/",
-  "SexyGamingUseOriginalPath": true,
+  "SAGamingResultImagePath": "/Content/Fanex.Result/SAGaming/template/public/game_result/",
+  "SAGamingUseOriginalPath": true,
 
-  "WMResultImagePath": "/bundles/images/results/WM/template/public/game_result/",
+  "WMResultImagePath": "/Content/Fanex.Result/WM/images/",
   "WMUseOriginalPath": true,
 
   "ResultConfigs": {
@@ -160,8 +160,8 @@
     },
     "SexyGamingResult": {
       "Url": "http://10.40.40.248:7075/api/SexyCasinoInternal/GetBetHistoryUrl",
-      "Debug": 0,
-      "VendorId": 45
+      "VendorId": 45,
+      "Debug": 0
     },
     "PlaytechResult": {
       "Url": "http://10.40.40.248:7094/api/PlayTechInternal/GetBetHistoryUrl",

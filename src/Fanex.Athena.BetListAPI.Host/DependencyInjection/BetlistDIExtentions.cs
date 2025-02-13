@@ -60,7 +60,8 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
             services.AddScoped<IFileSystem, FileSystem>();
             services.AddScoped<ITempFileService, TempFileService>();
             services.AddSingleton<IShardInfoAccessor, ShardInfoAccessor>();
-            services.AddSingleton<IContextService, ContextService>();
+            services.AddSingleton<ISiteDBAccessor, SiteDBAccessor>();
+            services.AddScoped<IContextService, ContextService>();
             services.AddScoped<ICacheRefAdapter, CacheRefAdapter>();
             services.AddScoped<ITemplateBuilder, TemplateBuilder>();
             services.AddScoped<ICustomerClassService, CustomerClassService>();
@@ -68,6 +69,7 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
             services.AddScoped<ISubsidiaryService, SubsidiaryService>();
             services.AddScoped<IAuthorizationService, AuthorizationService>();
             services.AddScoped<ILicenseeSettingService, LicenseeSettingService>();
+            services.AddScoped<IReportSettingService, ReportSettingService>();
 
             return services;
         }

@@ -5,6 +5,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
 {
     [ApiController]
     [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     public class WMResultPopupController
     {
         private readonly IWMResultBuilder _resultApi;
@@ -14,8 +15,19 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
 
 
         [HttpPost]
-        public string Index(string transDesc, string gameId3rd, int betType, string languageCode)
-            => _resultApi.Render(transDesc, gameId3rd, betType, languageCode);
+        public string Index(WMResultMetaModel model)
+            => _resultApi.Render(model.TransDesc, model.GameId3rd, model.BetType, model.LanguageCode);
+
+        public class WMResultMetaModel
+        {
+            public string TransDesc { get; set; }
+
+            public string GameId3rd { get; set; }
+
+            public int BetType { get; set; }
+
+            public string LanguageCode { get; set; }
+        }
 
     }
 }

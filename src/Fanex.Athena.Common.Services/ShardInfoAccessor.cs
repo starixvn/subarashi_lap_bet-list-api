@@ -7,9 +7,9 @@ namespace Fanex.Athena.Common.Services
         private const string PrefixSharding = "shard_";
         private const string PrefixSiteDB = "sitedb_";
 
-        private readonly IContextService _contextService;
+        private readonly ISiteDBAccessor _contextService;
 
-        public ShardInfoAccessor(IContextService contextService)
+        public ShardInfoAccessor(ISiteDBAccessor contextService)
         {
             _contextService = contextService;
         }

@@ -8,6 +8,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
 {
     [ApiController]
     [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     public class SportsLotteryResultPopupController
     {
         private readonly IBetlistResultGetterFactory _factory;
@@ -36,10 +37,13 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
         }
 
         [HttpPost]
-        public string ResultPage(string platform, string languageCode)
+        public IActionResult ResultPage(SportsLotteryResultMetaModel model)
         {
-            var isDesktop = string.Equals(platform, "d", StringComparison.OrdinalIgnoreCase);
-            return _sportsLotteryResult.GetResultPage(isDesktop, languageCode);
+            var isDesktop = string.Equals(model.Platform, "d", StringComparison.OrdinalIgnoreCase);
+            return new ContentResult
+            {
+                Content = _sportsLotteryResult.GetResultPage(isDesktop, model.LanguageCode)
+            };
         }
     }
 }

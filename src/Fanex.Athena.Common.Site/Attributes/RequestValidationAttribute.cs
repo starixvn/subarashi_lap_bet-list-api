@@ -2,6 +2,8 @@
 using Fanex.Core.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System.Net;
 
 namespace Fanex.Athena.Common.Site.Attributes
@@ -25,15 +27,17 @@ namespace Fanex.Athena.Common.Site.Attributes
 
         private readonly IContextService _contextService;
         private readonly ICurrencyValidation _currencyValidation;
+        private readonly ILogger<DataValidationImplAttribute> _logger;
 
         private readonly bool _validateCurrency;
         private readonly bool _validateCurrencyList;
 
-        public DataValidationImplAttribute(IContextService contextService, ICurrencyValidation currencyValidation,
+        public DataValidationImplAttribute(IContextService contextService, ICurrencyValidation currencyValidation, ILoggerFactory loggerFactory,
             bool validateCurrency,
             bool validateCurrencyList
             )
         {
+            _logger = loggerFactory.CreateLogger<DataValidationImplAttribute>();
             _contextService = contextService;
             _currencyValidation = currencyValidation;
 
@@ -46,6 +50,9 @@ namespace Fanex.Athena.Common.Site.Attributes
             var isValid = IsValid(context.ActionArguments);
             if (!isValid)
             {
+                _logger.LogWarning($"{ErrorMsg}: \n" +
+                    $"Model: {JsonConvert.SerializeObject(context.ActionArguments)}\n" +
+                    $"Context: {JsonConvert.SerializeObject(_contextService)}");
                 context.Result = new JsonResult(new { Msg = ErrorMsg, IsSuccess = false })
                 {
                     StatusCode = (int)HttpStatusCode.BadRequest

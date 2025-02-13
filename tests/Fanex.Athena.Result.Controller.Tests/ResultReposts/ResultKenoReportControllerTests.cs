@@ -57,10 +57,10 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
                 VendorProductId = VendorProductId,
                 CustId = UserId,
                 LanguageCode = LanguageCode
-            });
+            }) as ContentResult;
 
             // Assert
-            Assert.That(result, Is.EqualTo(ExpectedUrl));
+            Assert.That(result.Content, Is.EqualTo(ExpectedUrl));
         }
 
         private ResultKenoReportController CreateController()

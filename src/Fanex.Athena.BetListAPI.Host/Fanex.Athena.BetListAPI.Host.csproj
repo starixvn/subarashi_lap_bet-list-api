@@ -9,6 +9,144 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="App_Data\Excel\ExchangeRunningTicket.xls" />
+    <None Remove="App_Data\Excel\ExchangeWinLossTicket.xls" />
+    <None Remove="App_Data\Fanex.Result\Badminton.xls" />
+    <None Remove="App_Data\Fanex.Result\Bandy.xls" />
+    <None Remove="App_Data\Fanex.Result\BaseBall.xls" />
+    <None Remove="App_Data\Fanex.Result\BasketBall.xls" />
+    <None Remove="App_Data\Fanex.Result\BeachSoccer.xls" />
+    <None Remove="App_Data\Fanex.Result\BeachVolleyball.xls" />
+    <None Remove="App_Data\Fanex.Result\BetbyBasketball.xls" />
+    <None Remove="App_Data\Fanex.Result\Billiard.xls" />
+    <None Remove="App_Data\Fanex.Result\Bitcoin.xls" />
+    <None Remove="App_Data\Fanex.Result\Cricket.xls" />
+    <None Remove="App_Data\Fanex.Result\ESport.xls" />
+    <None Remove="App_Data\Fanex.Result\Football.xls" />
+    <None Remove="App_Data\Fanex.Result\Golf.xls" />
+    <None Remove="App_Data\Fanex.Result\Happy5.xls" />
+    <None Remove="App_Data\Fanex.Result\Hockey.xls" />
+    <None Remove="App_Data\Fanex.Result\Kabaddi.xls" />
+    <None Remove="App_Data\Fanex.Result\MuayThai.xls" />
+    <None Remove="App_Data\Fanex.Result\NumberGame.xls" />
+    <None Remove="App_Data\Fanex.Result\Other.xls" />
+    <None Remove="App_Data\Fanex.Result\OtherSport.xls" />
+    <None Remove="App_Data\Fanex.Result\Outright.xls" />
+    <None Remove="App_Data\Fanex.Result\Racing.xls" />
+    <None Remove="App_Data\Fanex.Result\Soccer.xls" />
+    <None Remove="App_Data\Fanex.Result\Tennis.xls" />
+    <None Remove="App_Data\Fanex.Result\VirtualRacing.xls" />
+    <None Remove="App_Data\Fanex.Result\Volleyball.xls" />
+    <None Remove="App_Data\Fanex.Result\VSBasketBall.xls" />
+    <None Remove="App_Data\Fanex.Result\VSCockFighting.xls" />
+    <None Remove="App_Data\Fanex.Result\VSHRacing.xls" />
+    <None Remove="App_Data\Fanex.Result\VSSpeedWay.xls" />
+    <None Remove="App_Data\Fanex.Result\VSTennis.xls" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App_Data\Excel\ExchangeRunningTicket.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Excel\ExchangeWinLossTicket.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Badminton.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Bandy.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\BaseBall.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\BasketBall.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\BeachSoccer.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\BeachVolleyball.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\BetbyBasketball.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Billiard.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Bitcoin.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Cricket.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\ESport.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Football.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Golf.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Happy5.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Hockey.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Kabaddi.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\MuayThai.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\NumberGame.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Other.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\OtherSport.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Outright.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Racing.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Soccer.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Tennis.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\VirtualRacing.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Volleyball.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\VSBasketBall.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\VSCockFighting.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\VSHRacing.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\VSSpeedWay.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\VSTennis.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.OpenIdConnectServer" Version="8.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.2" />
     <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="8.0.1" />
@@ -50,7 +188,7 @@
     <PackageReference Include="Fanex.BetList.SabaClub" Version="2.0.0.4" />
     <PackageReference Include="Fanex.BetList.SAGaming" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.SealEntertainment" Version="2.0.0.1" />
-    <PackageReference Include="Fanex.BetList.SexyGaming" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.BetList.SexyGaming" Version="2.0.0.5" />
     <PackageReference Include="Fanex.BetList.Spadegaming" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.SportsLottery" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.TableGames" Version="2.0.0" />

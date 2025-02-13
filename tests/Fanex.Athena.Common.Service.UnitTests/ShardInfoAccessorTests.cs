@@ -6,13 +6,13 @@ namespace Fanex.Athena.Common.Service.UnitTests
 {
     public class ShardInfoAccessorTests
     {
-        private IContextService _contextServiceMock;
+        private ISiteDBAccessor _contextServiceMock;
         private ShardInfoAccessor _shardInfoAccessor;
 
         [SetUp]
         public void Setup()
         {
-            _contextServiceMock = Substitute.For<IContextService>();
+            _contextServiceMock = Substitute.For<ISiteDBAccessor>();
             _shardInfoAccessor = new ShardInfoAccessor(_contextServiceMock);
         }
 
