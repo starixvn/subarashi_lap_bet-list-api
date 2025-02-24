@@ -163,14 +163,15 @@ namespace Fanex.Athena.BetList.Controllers
             var title = GetTitle(metaModel);
             var totalText = $"{ViewResources.Totalin} {metaModel.BaseCurrencyName}";
 
-            var ticketResult = await _dataAccess.GetBetListForMultipleCustomersAsync(metaModel, _appSettings.MaxRowPerExcelFile);
+            var ticketResult = await _dataAccess.GetBetListForMultipleCustomersAsync(metaModel,
+                metaModel.PageSize == _appSettings.MaxRowSupportSingleExportExcel ? _appSettings.MaxRowSupportSingleExportExcel : _appSettings.MaxRowPerExcelFile);
 
             if (!ticketResult.DataPath.Any())
             {
                 return NoContent();
             }
 
-            if (ticketResult.TotalRows <= _appSettings.MaxRowPerExcelFile)
+            if (ticketResult.TotalRows <= _appSettings.MaxRowSupportSingleExportExcel)
             {
                 if (ticketResult.TotalRows == 0 || ShouldReturnEmptyResult(metaModel))
                 {
