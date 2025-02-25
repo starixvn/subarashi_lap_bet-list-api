@@ -16,7 +16,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
              => _factory = factory;
 
         [HttpPost]
-        public string Index(ThirdPartyMetaModel metaModel)
+        public IActionResult Index(ThirdPartyMetaModel metaModel)
         {
             var _resultApi = _factory.CreateThirdPartyResultGetter(ConfigHelpers.GetConfigKey(ConfigName.SexyGamingResult));
 
@@ -26,7 +26,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
                 Site = metaModel.Site
             };
 
-            return _resultApi.GetResultGET(request);
+            return new ContentResult { Content = _resultApi.GetResultGET(request) };
         }
 
     }

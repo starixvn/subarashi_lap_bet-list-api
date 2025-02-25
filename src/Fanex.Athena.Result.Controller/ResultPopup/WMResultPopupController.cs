@@ -15,8 +15,11 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
 
 
         [HttpPost]
-        public string Index(WMResultMetaModel model)
-            => _resultApi.Render(model.TransDesc, model.GameId3rd, model.BetType, model.LanguageCode);
+        public IActionResult Index(WMResultMetaModel model)
+            => new ContentResult
+            {
+                Content = _resultApi.Render(model.TransDesc, model.GameId3rd, model.BetType, model.LanguageCode)
+            };
 
         public class WMResultMetaModel
         {

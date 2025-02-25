@@ -16,7 +16,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
             => _factory = factory;
 
         [HttpPost]
-        public string Index(ThirdPartyMetaModel metaModel)
+        public IActionResult Index(ThirdPartyMetaModel metaModel)
         {
             var resultAPi = _factory.CreateThirdPartyResultGetter(ConfigHelpers.GetConfigKey(ConfigName.MGRNGResult));
             var request = new ResultRequest(metaModel.CustId, metaModel.TransId3rd, metaModel.GameId3rd, metaModel.CurrencyId, metaModel.SiteId, metaModel.LanguageCode)
@@ -24,7 +24,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
                 BetTypeId = metaModel.BetTypeId
             };
 
-            return resultAPi.GetResultGET(request);
+            return new ContentResult { Content = resultAPi.GetResultGET(request) };
         }
     }
 }

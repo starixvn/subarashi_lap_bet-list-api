@@ -15,8 +15,11 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
 
 
         [HttpPost]
-        public string Index(SabaClubResultMetaModel model)
-            => _resultApi.GetResult(model.CustId, model.GameRoundId, model.GameId, model.SiteId, model.SportType, model.LanguageCode);
+        public IActionResult Index(SabaClubResultMetaModel model)
+            => new ContentResult
+            {
+                Content = _resultApi.GetResult(model.CustId, model.GameRoundId, model.GameId, model.SiteId, model.SportType, model.LanguageCode)
+            };
 
         public class SabaClubResultMetaModel
         {

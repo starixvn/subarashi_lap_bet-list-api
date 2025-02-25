@@ -16,7 +16,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
             => _factory = factory;
 
         [HttpPost]
-        public string Index(ThirdPartyMetaModel metaModel)
+        public IActionResult Index(ThirdPartyMetaModel metaModel)
         {
             var resultApi = _factory.CreateThirdPartyResultGetter(ConfigHelpers.GetConfigKey(ConfigName.Live22Result));
 
@@ -25,7 +25,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
                 BetTypeId = metaModel.BetTypeId
             };
 
-            return resultApi.GetResultGET(request);
+            return new ContentResult { Content = resultApi.GetResultGET(request) };
         }
     }
 }

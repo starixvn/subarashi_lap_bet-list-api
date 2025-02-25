@@ -15,13 +15,13 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
         public VirtualGamesResultPopupController(IBetlistResultGetterFactory factory)
             => _factory = factory;
 
-        public string Index(ThirdPartyMetaModel metaModel)
+        public IActionResult Index(ThirdPartyMetaModel metaModel)
         {
             var resultApi = _factory.CreateThirdPartyResultGetter(ConfigHelpers.GetConfigKey(ConfigName.VirtualGamesDetailResult));
 
             var request = new ResultRequest(metaModel.CustId, metaModel.TransId3rd, metaModel.GameId3rd, metaModel.CurrencyId, metaModel.SiteId, metaModel.LanguageCode);
 
-            return resultApi.GetResultGET(request);
+            return new ContentResult { Content = resultApi.GetResultGET(request) };
         }
     }
 }

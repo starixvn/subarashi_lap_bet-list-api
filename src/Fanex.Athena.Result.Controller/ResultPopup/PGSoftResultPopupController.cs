@@ -24,7 +24,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
         }
 
         [HttpPost]
-        public string Index(ThirdPartyMetaModel metaModel)
+        public IActionResult Index(ThirdPartyMetaModel metaModel)
         {
             var resultAPI = _factory.CreateThirdPartyResultGetter(ConfigHelpers.GetConfigKey(ConfigName.PGSoftResult));
             var clientIp = string.IsNullOrEmpty(metaModel.ClientIp) ? _contextAccessor.HttpContext.Connection.RemoteIpAddress.ToString() : metaModel.ClientIp;
@@ -35,7 +35,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
                 Location = _ipInfoService.GetIpLocation(clientIp)
             };
 
-            return resultAPI.GetResultGET(request);
+            return new ContentResult { Content = resultAPI.GetResultGET(request) };
         }
     }
 }
