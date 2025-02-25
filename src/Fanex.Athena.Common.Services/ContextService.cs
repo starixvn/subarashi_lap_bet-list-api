@@ -157,7 +157,7 @@ namespace Fanex.Athena.Common.Services
             || IsHaveConfigShowIpVnInStatementService);
 #pragma warning restore S1067 // Expressions should not be too complex
 
-        private bool IsHaveConfigShowIpVnInStatementService => (User.IsInRole(Roles.StatementServiceRoleUser) && GetClaimValue<bool>("IShowIPVN"));
+        private bool IsHaveConfigShowIpVnInStatementService => (User.IsInRole(Roles.StatementServiceRoleUser) && GetClaimValue<bool>("IsShowIPVN"));
 
         private bool IsLrfUser => GetClaimValue<string>("name").StartsWith("lrf_");
 

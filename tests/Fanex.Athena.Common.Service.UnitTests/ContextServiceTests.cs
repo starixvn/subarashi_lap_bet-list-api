@@ -513,7 +513,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             // Arrange
             var expectedValue = true;
             SetupUserClaim("IsShowIP", expectedValue.ToString());
-            SetupUserClaim("IShowIPVN", true.ToString());
+            SetupUserClaim("IsShowIPVN", true.ToString());
             SetupUserClaim("name", "testuser");
             SetUpRoles([Roles.StatementServiceRoleUser]);
 
@@ -530,7 +530,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             // Arrange
             var expectedValue = false;
             SetupUserClaim("IsShowIP", expectedValue.ToString());
-            SetupUserClaim("IShowIPVN", false.ToString());
+            SetupUserClaim("IsShowIPVN", false.ToString());
             SetUpRoles([Roles.StatementServiceRoleUser]);
 
             // Act
