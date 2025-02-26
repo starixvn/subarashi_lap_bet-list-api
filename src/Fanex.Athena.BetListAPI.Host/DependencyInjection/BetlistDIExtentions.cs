@@ -85,7 +85,6 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
             services.AddScoped<IIPDataAccess, IPDataAccess>();
             services.AddScoped<ILastBetsMonitoringBetListDataAccess, LastBetsMonitoringBetListDataAccess>();
             services.AddScoped<IPlayerAdminBetListDataAccess, PlayerAdminBetListDataAccess>();
-            services.AddScoped<IPlayerSegmentationBetListDataAccess, PlayerSegmentationBetListDataAccess>();
             services.AddScoped<ISingleMatchParlayDetailDataAccess, SingleMatchParlayDetailDataAccess>();
             services.AddScoped<ISystemParlayDetailDataAccess, SystemParlayDetailDataAccess>();
             return services;
