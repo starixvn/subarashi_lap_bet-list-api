@@ -6,6 +6,7 @@ using Fanex.Athena.TestHelper;
 using Fanex.Result.Core.SabaClub;
 using Fanex.Result.Core.ThirdParty;
 using Fanex.Result.Core.ThirdParty.Models;
+using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
 
 namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
@@ -45,10 +46,10 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
             _resultApi.GetResult("123", "123", "gameId", "siteId", 1, "en-US").Returns(expectedResult);
 
             //Action
-            var result = controller.Index(model);
+            var result = controller.Index(model) as ContentResult;
 
             //Assert
-            Assert.That(result, Is.EqualTo(expectedResult));
+            Assert.That(result.Content, Is.EqualTo(expectedResult));
         }
 
         private SabaClubResultPopupController CreateController()

@@ -1,12 +1,6 @@
-﻿using Fanex.Athena.Result.Controller.Constants;
-using Fanex.Athena.Result.Controller.ResultPopup;
-using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Athena.Result.Service.Interfaces;
-using Fanex.Athena.TestHelper;
-using Fanex.Result.Core.SabaClub;
+﻿using Fanex.Athena.Result.Controller.ResultPopup;
 using Fanex.Result.Core.SAGaming;
-using Fanex.Result.Core.ThirdParty;
-using Fanex.Result.Core.ThirdParty.Models;
+using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
 
 namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
@@ -44,10 +38,10 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
             _resultApi.Render("123", "123", "betType", "en-US").Returns(expectedResult);
 
             //Action
-            var result = controller.Index(model);
+            var result = controller.Index(model) as ContentResult;
 
             //Assert
-            Assert.That(result, Is.EqualTo(expectedResult));
+            Assert.That(result.Content, Is.EqualTo(expectedResult));
         }
 
         private SAGamingResultPopupController CreateController()

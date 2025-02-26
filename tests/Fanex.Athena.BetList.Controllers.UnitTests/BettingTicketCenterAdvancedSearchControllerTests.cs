@@ -203,6 +203,8 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             var totalRow = FakeHelper.Create<int>();
             var maxRowPerFile = totalRow - 1;
             _appSettings.MaxRowPerExcelFile.Returns(maxRowPerFile);
+            _appSettings.MaxRowSupportSingleExportExcel.Returns(maxRowPerFile);
+            metaModel.PageSize = maxRowPerFile;
 
             var ticketResult = new GroupTicketResult
             {
@@ -234,6 +236,8 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             var totalRow = FakeHelper.Create<int>();
             var maxRowPerFile = totalRow + 1;
             _appSettings.MaxRowPerExcelFile.Returns(maxRowPerFile);
+            _appSettings.MaxRowSupportSingleExportExcel.Returns(maxRowPerFile);
+            metaModel.PageSize = maxRowPerFile;
 
             var ticketResult = new GroupTicketResult
             {

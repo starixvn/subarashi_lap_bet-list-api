@@ -1,5 +1,6 @@
 ﻿using Fanex.Athena.Result.Controller.ResultPopup;
 using Fanex.Result.Core.WM;
+using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
 
 namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
@@ -31,10 +32,10 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
             _resultApi.Render("123", "123", 123, "en-US").Returns(expectedResult);
 
             //Action
-            var result = controller.Index(model);
+            var result = controller.Index(model) as ContentResult;
 
             //Assert
-            Assert.That(result, Is.EqualTo(expectedResult));
+            Assert.That(result.Content, Is.EqualTo(expectedResult));
         }
 
         private WMResultPopupController CreateController()
