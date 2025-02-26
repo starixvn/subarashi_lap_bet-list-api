@@ -183,7 +183,7 @@
     <PackageReference Include="Fanex.BetList.PlayerTips" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.PlayStar" Version="1.0.0" />
     <PackageReference Include="Fanex.BetList.Playtech" Version="1.0.0" />
-    <PackageReference Include="Fanex.BetList.PP" Version="2.0.0.3" />
+    <PackageReference Include="Fanex.BetList.PP" Version="2.0.0.4" />
     <PackageReference Include="Fanex.BetList.RnGCasino" Version="2.0.0.2" />
     <PackageReference Include="Fanex.BetList.SabaClub" Version="2.0.0.4" />
     <PackageReference Include="Fanex.BetList.SAGaming" Version="2.0.0.1" />
