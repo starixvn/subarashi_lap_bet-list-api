@@ -9,8 +9,10 @@ using Fanex.Athena.BetList.Service.Interfaces;
 using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Site.Attributes;
+using Fanex.Athena.Common.Utility.Collections;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Resources;
+using Fanex.BetList.Core.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -28,7 +30,6 @@ namespace Fanex.Athena.BetList.Controllers
         private const int ServerBusyErrorCode = 1002;
 
         private const int ExportMultipleFile = 1002;
-        private const int ExportSingleFile = 1003;
 
         private readonly IAppSettings _appSettings;
         private readonly IContextService _contextService;
@@ -101,15 +102,6 @@ namespace Fanex.Athena.BetList.Controllers
                 });
             }
 
-            if (totalRow <= _appSettings.MaxRowSupportSingleExportExcel)
-            {
-                return new JsonResult(new
-                {
-                    StatusCode = ExportSingleFile,
-                    PageSize = _appSettings.MaxRowSupportSingleExportExcel
-                });
-            }
-
             return new JsonResult(new
             {
                 StatusCode = ExportMultipleFile,
@@ -163,15 +155,14 @@ namespace Fanex.Athena.BetList.Controllers
             var title = GetTitle(metaModel);
             var totalText = $"{ViewResources.Totalin} {metaModel.BaseCurrencyName}";
 
-            var ticketResult = await _dataAccess.GetBetListForMultipleCustomersAsync(metaModel,
-                metaModel.PageSize == _appSettings.MaxRowSupportSingleExportExcel ? _appSettings.MaxRowSupportSingleExportExcel : _appSettings.MaxRowPerExcelFile);
+            var ticketResult = await _dataAccess.GetBetListForMultipleCustomersAsync(metaModel, _appSettings.MaxRowPerExcelFile);
 
             if (!ticketResult.DataPath.Any())
             {
                 return NoContent();
             }
 
-            if (ticketResult.TotalRows <= _appSettings.MaxRowSupportSingleExportExcel)
+            if (ticketResult.TotalRows <= _appSettings.MaxRowForMultipleExcelFiles)
             {
                 if (ticketResult.TotalRows == 0 || ShouldReturnEmptyResult(metaModel))
                 {
@@ -237,10 +228,21 @@ namespace Fanex.Athena.BetList.Controllers
 
         private TicketResult GetTicketFromFile(GroupTicketResult groupTicket)
         {
-            var contentData = _tempFileService.ReadString(groupTicket.DataPath[0]);
-            _tempFileService.Delete(groupTicket.DataPath[0]);
-            var ticketResult = JsonConvert.DeserializeObject<TicketResult>(contentData);
+            var ticketResult = new TicketResult();
+            var mainTicketList = new SortableList<LrfTicket>();
+            var ticketDataList = new List<ITicketData>();
 
+            foreach (var filePath in groupTicket.DataPath)
+            {
+                var contentData = _tempFileService.ReadString(filePath);
+                _tempFileService.Delete(filePath);
+                var tickets = JsonConvert.DeserializeObject<TicketResult>(contentData);
+                mainTicketList.AddRange(tickets.MainTicketList);
+                ticketDataList.AddRange(tickets.TicketDataList);
+            }
+
+            ticketResult.MainTicketList = mainTicketList;
+            ticketResult.TicketDataList = ticketDataList;
             ticketResult.SumStake = groupTicket.SumStake;
             ticketResult.SumWinLoss = groupTicket.SumWinLoss;
             ticketResult.SumLicenseeWL = groupTicket.SumLicenseeWL;

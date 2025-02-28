@@ -26,8 +26,6 @@
 
         public int MaxTicketLimit { get; set; }
 
-        public int MaxRowSupportSingleExportExcel { get; set; }
-
         public string CustomerClassCategoryApiUrl { get; set; }
 
         public IEnumerable<ReportSetting> ReportSettings { get; set; }

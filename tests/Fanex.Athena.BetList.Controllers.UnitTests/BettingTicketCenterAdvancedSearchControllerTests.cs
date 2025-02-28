@@ -9,6 +9,7 @@ using Fanex.Athena.BetList.Service.Interfaces;
 using Fanex.Athena.Common.Model.DTO;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Utility.Collections;
+using Fanex.Athena.Common.Utility.Services;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Resources;
 using Fanex.Athena.TestHelper;
@@ -203,7 +204,7 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             var totalRow = FakeHelper.Create<int>();
             var maxRowPerFile = totalRow - 1;
             _appSettings.MaxRowPerExcelFile.Returns(maxRowPerFile);
-            _appSettings.MaxRowSupportSingleExportExcel.Returns(maxRowPerFile);
+            _appSettings.MaxRowForMultipleExcelFiles.Returns(maxRowPerFile);
             metaModel.PageSize = maxRowPerFile;
 
             var ticketResult = new GroupTicketResult
@@ -236,7 +237,7 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             var totalRow = FakeHelper.Create<int>();
             var maxRowPerFile = totalRow + 1;
             _appSettings.MaxRowPerExcelFile.Returns(maxRowPerFile);
-            _appSettings.MaxRowSupportSingleExportExcel.Returns(maxRowPerFile);
+            _appSettings.MaxRowForMultipleExcelFiles.Returns(maxRowPerFile);
             metaModel.PageSize = maxRowPerFile;
 
             var ticketResult = new GroupTicketResult
@@ -262,7 +263,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
                         x.TotalText == $"{ViewResources.Totalin} {metaModel.BaseCurrencyName}"
                         && x.Option.IsAllowedCustomerComm == metaModel.HasPlayerCom));
             });
-
         }
 
         [Test]
@@ -424,30 +424,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
         }
 
         [Test]
-        public async Task GetExportStatus_WhenTotalRowNotExceedMaxRowSupportSingleExportExcel_ReturnExportSingleFile()
-        {
-            // Arrange
-            var controller = CreateController();
-            var metaModel = FakeHelper.Create<AdvancedSearchBetListMetaModel>(x => x.IsExport, true);
-
-            var totalRow = FakeHelper.Create<int>();
-            _appSettings.IsDisableExportLargeBetList.Returns(false);
-            _appSettings.MaxTicketLimit.Returns(totalRow + 1);
-            _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel, _appSettings.MaxTicketLimit).Returns(totalRow);
-            _appSettings.MaxRowSupportSingleExportExcel.Returns(totalRow + 1);
-
-            // Action
-            var result = (await controller.GetExportStatus(metaModel) as JsonResult).Value;
-            var code = result.GetValue("StatusCode");
-
-            // Assert
-            Assert.Multiple(() =>
-            {
-                Assert.That(code, Is.EqualTo(ExportSingleFile));
-            });
-        }
-
-        [Test]
         public async Task GetExportStatus__WhenTotalRowNotExceedMaxRowSupportSingleExportExcel_ReturnMaxRowForMultipleExcelFiles()
         {
             // Arrange
@@ -458,7 +434,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             _appSettings.IsDisableExportLargeBetList.Returns(false);
             _appSettings.MaxTicketLimit.Returns(totalRow + 1);
             _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel, _appSettings.MaxTicketLimit).Returns(totalRow);
-            _appSettings.MaxRowSupportSingleExportExcel.Returns(totalRow - 1);
 
             // Action
             var result = (await controller.GetExportStatus(metaModel) as JsonResult).Value;

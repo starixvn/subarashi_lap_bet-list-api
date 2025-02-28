@@ -25,8 +25,6 @@
 
         int MaxTicketLimit { get; }
 
-        int MaxRowSupportSingleExportExcel { get; }
-
         int MaxRowForMultipleExcelFiles { get; }
 
         DateTime HistoryDate { get; }
