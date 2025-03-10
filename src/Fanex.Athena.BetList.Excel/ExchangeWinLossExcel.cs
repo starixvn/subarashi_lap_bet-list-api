@@ -4,6 +4,7 @@ using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.BetList.Model.ViewModel;
 using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Resources;
+using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 
 namespace Fanex.Athena.BetList.Excel
@@ -121,7 +122,7 @@ namespace Fanex.Athena.BetList.Excel
                     {
                         row.Cells[ColumnIndex].SetCellValue(++rowIndex);
                         row.Cells[ColumnMarket].SetCellValue($"{item.Ticket.EventTypeName} > {item.Ticket.EventName} > {item.Ticket.MarketName}");
-                        row.Cells[ColumnWL_Comm].SetCellValue($"{item.Ticket.WinLost.ToString("#,0.00")}\n{item.Ticket.Commission.ToString("#,0.00")}");
+                        row.Cells[ColumnWL_Comm].SetCellValue(new HSSFRichTextString($"{item.Ticket.WinLost.ToString("#,0.00")}\n{item.Ticket.Commission.ToString("#,0.00")}"));
                         isFirstRow = false;
                     }
 
