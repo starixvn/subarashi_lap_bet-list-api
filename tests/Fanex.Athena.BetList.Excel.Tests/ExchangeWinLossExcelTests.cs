@@ -6,6 +6,7 @@ using Fanex.Athena.BetList.Model.ViewModel;
 using Fanex.Athena.Resources;
 using Fanex.Athena.TestHelper;
 using Fanex.Athena.TestHelper.Extensions;
+using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NSubstitute;
 
@@ -271,7 +272,8 @@ namespace Fanex.Athena.BetList.Excel.Tests
             {
                 cell.Received().SetCellValue(1);
                 cell.Received().SetCellValue($"{ticket.Ticket.EventTypeName} > {ticket.Ticket.EventName} > {ticket.Ticket.MarketName}");
-                cell.Received().SetCellValue($"{ticket.Ticket.WinLost.ToString("#,0.00")}\n{ticket.Ticket.Commission.ToString("#,0.00")}");
+                cell.Received().SetCellValue(Arg.Is<HSSFRichTextString>(_ => 
+                    _.String.Equals($"{ticket.Ticket.WinLost.ToString("#,0.00")}{Environment.NewLine}{ticket.Ticket.Commission.ToString("#,0.00")}")));
                 _builder.DidNotReceiveWithAnyArgs().MergeCells(default, default, default, default, default);
             });
         }

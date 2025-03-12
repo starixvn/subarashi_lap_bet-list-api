@@ -188,7 +188,7 @@
     <PackageReference Include="Fanex.BetList.SabaClub" Version="2.0.0.4" />
     <PackageReference Include="Fanex.BetList.SAGaming" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.SealEntertainment" Version="2.0.0.1" />
-    <PackageReference Include="Fanex.BetList.SexyGaming" Version="2.0.0.6-tip-03" />
+    <PackageReference Include="Fanex.BetList.SexyGaming" Version="2.0.0.6" />
     <PackageReference Include="Fanex.BetList.Spadegaming" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.SportsLottery" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.TableGames" Version="2.0.0" />

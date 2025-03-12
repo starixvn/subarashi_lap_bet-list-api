@@ -122,7 +122,7 @@ namespace Fanex.Athena.BetList.Excel
                     {
                         row.Cells[ColumnIndex].SetCellValue(++rowIndex);
                         row.Cells[ColumnMarket].SetCellValue($"{item.Ticket.EventTypeName} > {item.Ticket.EventName} > {item.Ticket.MarketName}");
-                        row.Cells[ColumnWL_Comm].SetCellValue(new HSSFRichTextString($"{item.Ticket.WinLost.ToString("#,0.00")}\n{item.Ticket.Commission.ToString("#,0.00")}"));
+                        row.Cells[ColumnWL_Comm].SetCellValue(new HSSFRichTextString($"{item.Ticket.WinLost.ToString("#,0.00")}{Environment.NewLine}{item.Ticket.Commission.ToString("#,0.00")}"));
                         isFirstRow = false;
                     }
 
