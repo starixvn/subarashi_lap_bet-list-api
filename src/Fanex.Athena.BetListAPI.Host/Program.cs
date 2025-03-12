@@ -114,6 +114,7 @@ app.UseRequestLocalization(options =>
 {
 
     const string EnCultureName = "en-US";
+    const string LangHeaderKey = "Language";
     var enCulture = new CultureInfo(EnCultureName)
     {
         DateTimeFormat = new DateTimeFormatInfo
@@ -143,7 +144,8 @@ app.UseRequestLocalization(options =>
                 {
                     new CustomRequestCultureProvider(context =>
                     {
-                        var langCode = context.User.FindFirst("Language")?.Value ?? "en";
+                        var langCodeFromQuery = context.Request.Headers.FirstOrDefault(x => x.Key.Equals(LangHeaderKey,StringComparison.OrdinalIgnoreCase)).Value.ToString();
+                        var langCode = string.IsNullOrWhiteSpace(langCodeFromQuery) ?  context.User.FindFirst("Language")?.Value ?? "en" : langCodeFromQuery;
                         var culture = Languages.LanguageCodeMappers.GetValueOrDefault(langCode, "en-US");
                         return Task.FromResult(new ProviderCultureResult(culture: EnCultureName, uiCulture: culture));
                     })

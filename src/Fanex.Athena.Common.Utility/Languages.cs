@@ -9,6 +9,11 @@
             { "vn", "vi-VN" },
             { "th", "th-TH" },
             { "id", "id-ID" },
+            { "en-US", "en-US" },
+            { "zh-CN", "zh-CN" },
+            { "vi-VN", "vi-VN" },
+            { "th-TH", "th-TH" },
+            { "id-ID", "id-ID" }
         };
     }
 }
