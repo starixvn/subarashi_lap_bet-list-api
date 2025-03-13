@@ -170,6 +170,7 @@
     <PackageReference Include="Fanex.BetList.FACHAI" Version="1.0.0.1" />
     <PackageReference Include="Fanex.BetList.FastSpin" Version="1.0.0.1" />
     <PackageReference Include="Fanex.BetList.FGG" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.FunkyGames" Version="1.0.0-beta-02" />
     <PackageReference Include="Fanex.BetList.GPI" Version="1.0.1" />
     <PackageReference Include="Fanex.BetList.Habanero" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.Indo4D" Version="2.0.0.2" />
