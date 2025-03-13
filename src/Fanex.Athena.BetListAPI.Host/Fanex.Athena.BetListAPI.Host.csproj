@@ -42,6 +42,7 @@
     <None Remove="App_Data\Fanex.Result\VSHRacing.xls" />
     <None Remove="App_Data\Fanex.Result\VSSpeedWay.xls" />
     <None Remove="App_Data\Fanex.Result\VSTennis.xls" />
+    <None Remove="App_Data\Fanex.Result\VirtuallySports.xls" />
   </ItemGroup>
 
   <ItemGroup>
@@ -144,6 +145,9 @@
     <Content Include="App_Data\Fanex.Result\VSTennis.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="App_Data\Fanex.Result\VirtuallySports.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -196,7 +200,7 @@
     <PackageReference Include="Fanex.BetList.UUSlots" Version="1.0.0" />
     <PackageReference Include="Fanex.BetList.VGaming" Version="2.0.0.8" />
     <PackageReference Include="Fanex.BetList.VirtualGames" Version="2.0.0.2" />
-    <PackageReference Include="Fanex.BetList.VirtualSports" Version="2.0.2.1" />
+    <PackageReference Include="Fanex.BetList.VirtualSports" Version="2.0.2.4-vs5-01" />
     <PackageReference Include="Fanex.BetList.Voidbridge" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.WE" Version="1.0.0.1" />
     <PackageReference Include="Fanex.BetList.WM" Version="2.0.0.1" />

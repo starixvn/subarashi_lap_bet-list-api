@@ -27,6 +27,8 @@ namespace Fanex.Athena.Result.DataAccess
         private const string LeagueGroupIdColumn = "leaguegroupid";
         private const string SportTypeColumn = "sporttype";
         private const string Status = "status";
+        private const string Match3rdIdColumn = "Match3rdId";
+        private const string League3rdIdColumn = "League3rdId";
 
         private readonly IBalanceUpDataAccess _balanceUpDataAccess;
 
@@ -137,7 +139,7 @@ namespace Fanex.Athena.Result.DataAccess
                             data.Add(new League
                             {
                                 LeagueId = leagueId,
-                                LeagueName = IsLeagues3rd(sportType) ? _cacheRefAdapter.GetLeagueName3rd(leagueId) : _cacheRefAdapter.GetLeagueName(leagueId)
+                                LeagueName = _cacheRefAdapter.GetLeagueName(leagueId, sportType)
                             });
                         }
                     }
@@ -146,10 +148,6 @@ namespace Fanex.Athena.Result.DataAccess
                 }
             }
         }
-
-        private static bool IsLeagues3rd(int sportType)
-            => sportType == (int)SportType.Bitcoin || sportType == (int)SportType.VirtualDogRacing || sportType == (int)SportType.VirtualHorseRacing || sportType == (int)SportType.BetbyBasketball;
-
 
         public async Task<IList<Racing>> GetVirtualSportMatchesAsync(ResultMetaModel metalModel)
         {
@@ -225,7 +223,6 @@ namespace Fanex.Athena.Result.DataAccess
             }
         }
 
-
         public async Task<IList<Parlay>> GetPopUpParalayMatchAsync(long refNo)
         {
             const string UspName = "Lrf_BetList_SelMatchResultParlay";
@@ -256,6 +253,57 @@ namespace Fanex.Athena.Result.DataAccess
                     }
 
                     AddGameDetails(reader, results);
+
+                    return results;
+                }
+            }
+        }
+
+        public async Task<IList<Parlay>> GetPopUpVS5ParalayMatchAsync(long refNo)
+        {
+            const string UspName = "Lrf_Result_Parlay_Match3rd";
+            var uspParams = new { refno = refNo };
+
+            using (var db = this.GetObjectDb(UspName))
+            {
+                using (var reader = await db.ExecuteReaderAsync(uspParams).ConfigureAwait(false))
+                {
+                    var results = new List<Parlay>();
+
+                    while (reader.Read())
+                    {
+                        var leagueId = reader.ToInt(League3rdIdColumn);
+                        var parlay = results.SingleOrDefault(x => x.LeagueId == leagueId);
+                        if (parlay == null)
+                        {
+                            parlay = new Parlay
+                            {
+                                LeagueId = leagueId,
+                                SportId = reader.ToInt(SportTypeColumn)
+                            };
+
+                            results.Add(parlay);
+                        }
+
+                        var sportbook = new Sportsbook
+                        {
+                            AwayId = reader.ToInt("awayID"),
+                            HomeId = reader.ToInt("homeID"),
+                            BetStatus = reader.ToString(BetstatusColumn),
+                            LeagueId = leagueId,
+                            MatchId = reader.ToInt(Match3rdIdColumn),
+                            EventStatus = reader.ToString("eventstatus"),
+                            FinalAwayScore = reader.ToNullableInt("finalawayscore"),
+                            HtAwayScore = reader.ToNullableInt("htawayscore"),
+                            FinalHomeScore = reader.ToNullableInt("finalhomescore"),
+                            HtHomeScore = reader.ToNullableInt("hthomescore"),
+                            KickOffTime = DateTime.Parse(reader.ToString(EventDateColumn)),
+                            MatchCode = reader.ToString("matchcode"),
+                            RefNo = refNo.ToString(CultureInfo.InvariantCulture)
+                        };
+
+                        parlay.Sportbook.Add(sportbook);
+                    }
 
                     return results;
                 }
@@ -489,12 +537,13 @@ namespace Fanex.Athena.Result.DataAccess
                 HtAwayScore = reader.ToNullableInt("htawayscore"),
                 FinalHomeScore = reader.ToNullableInt("finalhomescore"),
                 HtHomeScore = reader.ToNullableInt("hthomescore"),
-                EventDate =reader.ToDateTime(EventDateColumn),
+                EventDate = reader.ToDateTime(EventDateColumn),
                 MatchCode = reader.ToString("matchcode")
             };
         }
 
         #region Binding
+
         private static IList<Fanex.Result.Core.Sportsbook.DTO.GameDetail> GetGameDetails(IDataReader reader)
         {
             var gameDetails = new List<Fanex.Result.Core.Sportsbook.DTO.GameDetail>();
@@ -672,7 +721,6 @@ namespace Fanex.Athena.Result.DataAccess
             return gameDetails;
         }
 
-
         public async Task<IList<T>> GetPopUpMatches3rdAsync<T>(int matchId)
         {
             const string UspName = "Lrf_BetList_Match3rdResultSel";
@@ -758,6 +806,7 @@ namespace Fanex.Athena.Result.DataAccess
             while (reader.Read())
             {
                 var result = ReadSportsbook3rd(reader);
+                result.KickOffTime = result.EventDate;
                 results.Add(result);
             }
 

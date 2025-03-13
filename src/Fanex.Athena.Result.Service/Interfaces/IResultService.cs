@@ -52,6 +52,8 @@
 
         Task<IList<Bitcoin>> GetBitcoinMatchesAsync(ResultMetaModel metalModel);
 
+        Task<IList<Sportsbook>> GetVS5MatchesAsync(ResultMetaModel metalModel);
+
         #endregion Report
 
         #region Popup
@@ -75,6 +77,10 @@
         Task<IList<VirtualRacing>> GetPopUpBetradarMatchesAsync(int eventId, DateTime eventDate);
 
         Task<Sportsbook> GetPopUpSingleMatchParlayAsync(int matchId, string marketId);
+
+        Task<IList<Parlay>> GetPopUpVS5ParlayMatchAsync(long refNo);
+
+        Task<IList<Sportsbook>> GetPopUpVS5MatchesAsync(int matchId);
 
         #endregion Popup
     }

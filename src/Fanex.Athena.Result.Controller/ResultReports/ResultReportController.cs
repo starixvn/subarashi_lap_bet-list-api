@@ -23,15 +23,24 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         private const int ParlayBetType = 9;
         private const int SystemParlayBetType = 29;
 
-        private static readonly IEnumerable<SportType> ShowingMatchCodeSportTypes = new[]
-        {
+        private static readonly IEnumerable<SportType> ShowingMatchCodeSportTypes =
+        [
             SportType.VirtualHorseRacing,
             SportType.VirtualGreyhounds,
             SportType.VirtualSpeedway,
             SportType.VirtualMotorRacing,
             SportType.VirtualCycling,
             SportType.Bitcoin
-        };
+        ];
+
+        private static readonly IEnumerable<int> PalayBetTypes =
+        [
+            ParlayBetType,
+            SystemParlayBetType,
+            (int)Common.Constant.BetType.VirtualSports2MixParlay,
+            (int)Common.Constant.BetType.VirtualSports4MixParlay,
+            (int)Common.Constant.BetType.VirtualSports5MixParlay
+        ];
 
         private readonly IResultService _resultService;
         private readonly ICacheRefAdapter _cacheRefAdapter;
@@ -83,7 +92,6 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             {
                 return BadRequest(ViewResources.InvalidParams);
             }
-
         }
 
         [HttpPost]
@@ -147,13 +155,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
 
         #region popup-page
 
-        private static bool IsPalayBetType(int betType)
-        {
-            return betType == ParlayBetType
-                || betType == SystemParlayBetType
-                || betType == (int)Common.Constant.BetType.VirtualSports2MixParlay
-                || betType == (int)Common.Constant.BetType.VirtualSports4MixParlay;
-        }
+        private static bool IsPalayBetType(int betType) => PalayBetTypes.Contains(betType);
 
         private static IEnumerable<Sport> RemoveNotAllowedSports(IEnumerable<Sport> sports, IEnumerable<string> productCodes)
         {
@@ -198,7 +200,9 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             {
                 if (metalModel.RefNo != null)
                 {
-                    var parlayData = await _resultService.GetPopUpParlayMatchAsync(metalModel.RefNo.Value);
+                    var parlayData = metalModel.Bettype == (int)Common.Constant.BetType.VirtualSports5MixParlay
+                        ? await _resultService.GetPopUpVS5ParlayMatchAsync(metalModel.RefNo.Value).ConfigureAwait(false)
+                        : await _resultService.GetPopUpParlayMatchAsync(metalModel.RefNo.Value).ConfigureAwait(false);
                     _htmlResult = _resultService.HtmlParser(parlayData, setting);
                 }
             }
@@ -281,6 +285,15 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             }
         }
 
+        private async Task GetVirtuallySportsPopUpData(ResultPopupMetaModel metalModel, ResultSetting setting)
+        {
+            var dataVirtuallySports = await _resultService.GetPopUpVS5MatchesAsync(metalModel.MatchId).ConfigureAwait(false);
+            if (dataVirtuallySports != null)
+            {
+                _htmlResult = _resultService.HtmlParser(dataVirtuallySports, setting);
+            }
+        }
+
         private async Task GetOtherNormalPopUpData(ResultPopupMetaModel metalModel, ResultSetting setting)
         {
             var data = await _resultService.GetPopUpMatchAsync(metalModel);
@@ -334,6 +347,12 @@ namespace Fanex.Athena.Result.Controller.ResultReports
                 return;
             }
 
+            if (sportType == SportType.VirtuallySports)
+            {
+                await GetVirtuallySportsPopUpData(metalModel, setting).ConfigureAwait(false);
+                return;
+            }
+
             await GetOtherNormalPopUpData(metalModel, setting);
         }
 
@@ -373,7 +392,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
 
         private async Task<JsonResult> GetOutRightSports(ResultMetaModel metalModel)
         {
-            var outRightData =  await _resultService.GetOutRightAsync(metalModel);
+            var outRightData = await _resultService.GetOutRightAsync(metalModel);
             if (outRightData != null && outRightData.Count > 0)
             {
                 var sports = outRightData.Where(i => i.SportType == metalModel.SportId || metalModel.SportId == 0)
@@ -446,6 +465,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         }
 
 #pragma warning disable S1541 // Methods and properties should not be too complex
+
         private async Task GetNormalData(ResultMetaModel metalModel)
 #pragma warning restore S1541 // Methods and properties should not be too complex
         {
@@ -484,6 +504,11 @@ namespace Fanex.Athena.Result.Controller.ResultReports
                 case SportType.VirtualDogRacing:
                     var dataDRc = await _resultService.GetBetradarSportMatchesAsync(metalModel);
                     ParseResult(dataDRc, setting, metalModel.IsExportExcel);
+                    break;
+
+                case SportType.VirtuallySports:
+                    var dataVirtuallySports = await _resultService.GetVS5MatchesAsync(metalModel).ConfigureAwait(false);
+                    ParseResult(dataVirtuallySports, setting, metalModel.IsExportExcel);
                     break;
 
                 default:

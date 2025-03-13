@@ -254,6 +254,8 @@
         /// </summary>
         Greyhound = 152,
 
+        BitCoin = 175,
+
         /// <summary>
         /// Number Game
         /// </summary>
@@ -279,6 +281,8 @@
         VirtualCockFighting = 188,
 
         BetbyBasketball = 134,
+
+        VirtuallySports = 147,
 
         Keno = 202,
 

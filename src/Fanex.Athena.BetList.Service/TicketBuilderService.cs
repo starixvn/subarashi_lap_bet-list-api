@@ -1,5 +1,4 @@
-﻿
-using Fanex.Athena.BetList.Model.DTO;
+﻿using Fanex.Athena.BetList.Model.DTO;
 using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.BetList.Service.Extensions;
 using Fanex.Athena.BetList.Service.Helpers;
@@ -187,13 +186,11 @@ namespace Fanex.Athena.BetList.Service
 
             return ticketTextList;
 
-
             static bool IsShowIp(BetListMetaModel metaModel, bool configShow)
                 => (metaModel != null) && metaModel.IsShowIp || configShow;
 
             static bool IsShowIpVn(BetListMetaModel metaModel, bool configShow)
                 => (metaModel != null) && metaModel.IsShowIpvn || configShow;
-
         }
 
         public string BuildSumWinLoss(TicketResult ticketResult, bool isAllowedCustomerComm)
@@ -217,11 +214,6 @@ namespace Fanex.Athena.BetList.Service
 
         private string BuildOddsTypeNameText(LrfTicket ticket, TicketResult ticketResult)
         {
-            if (ticket.BetTypeId == (int)BetType.VirtualSports4MixParlay)
-            {
-                ticket.OddsType = string.Empty;
-            }
-
             return _betlistHtmlBuilder.BuildOddsTypeName(ticket, ticketResult.TicketDataList, _ticketHelper.GetValidOddsTypeNameById);
         }
 
