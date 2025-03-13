@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fanex.Common" Version="1.1.1.1" />
+    <PackageReference Include="Fanex.Data" Version="4.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.Athena.BetList.Model\Fanex.Athena.BetList.Model.csproj" />
+    <ProjectReference Include="..\Fanex.Athena.Common.DataAccess\Fanex.Athena.Common.DataAccess.csproj" />
+    <ProjectReference Include="..\Fanex.Athena.Common.Services\Fanex.Athena.Common.Services.csproj" />
+  </ItemGroup>
+
+</Project>

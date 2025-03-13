@@ -1,0 +1,96 @@
+{
+  "AppSettings": {
+    "ReportSettings": [
+      {
+        "ReportKey": "LicenseeWinLoss27",
+        "MinDateString": "",
+        "MaxDateString": ""
+      },
+      {
+        "ReportKey": "SabaVirtualSportsWinLoss",
+        "MinDateString": "08/01/2018",
+        "MaxDateString": "today",
+        "LimitRecentMonths": 12
+      },
+      {
+        "ReportKey": "GodOfFortuneWinLoss",
+        "MinDateString": "01/25/2021",
+        "MaxDateString": "today"
+      },
+      {
+        "ReportKey": "ExchangeWinloss77",
+        "MinDateString": "",
+        "MaxDateString": "today",
+        "TimeZone": 8
+      },
+      {
+        "ReportKey": "CustomerWinLoss29",
+        "MinDateString": "",
+        "MaxDateString": "today",
+        "LimitRecentDays": 90
+      },
+      {
+        "ReportKey": "CasinoTurnover80",
+        "MinDateString": "08/01/2018",
+        "MaxDateString": ""
+      },
+      {
+        "ReportKey": "NewCashOutWinLoss",
+        "MinDateString": "",
+        "MaxDateString": "today",
+        "CutOffDateString": "01/01/2023"
+      },
+      {
+        "ReportKey": "AbnormalBet",
+        "MinDateString": "01/01/2021",
+        "MaxDateString": "today",
+        "LimitRecentDays": 90
+      },
+      {
+        "ReportKey": "GrossGamingRevenue",
+        "MinDateString": "",
+        "MaxDateString": ""
+      },
+      {
+        "ReportKey": "DailyBetDetails",
+        "MinDateString": "06/01/2023",
+        "MaxDateString": "today",
+        "LimitRecentMonths": 6
+      }
+    ],
+    "FakeLicenseeSettings": [
+      {
+        "SiteName": "IvoryBet",
+        "DisableBetList": true,
+        "MinDate": "01/01/2019",
+        "MaxDate": "today",
+        "BaseCurrencies": "USD",
+        "TimeZone": 8
+      },
+      {
+        "SiteName": "Opal88",
+        "DisableBetList": true,
+        "MinDate": "03/01/2018",
+        "MaxDate": "today",
+        "BaseCurrencies": "USD",
+        "TimeZone": 8
+      },
+      {
+        "SiteName": "Nova88",
+        "DisableBetList": true,
+        "MinDate": "01/01/2019",
+        "MaxDate": "today",
+        "BaseCurrencies": "USD",
+        "TimeZone": 8
+      },
+      {
+        "SiteName": "12B",
+        "DisableBetList": true,
+        "MinDate": "12/01/2019",
+        "MaxDate": "today",
+        "BaseCurrencies": "USD",
+        "TimeZone": 8
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Fanex.Core.Utils" Version="1.0.2" />
+    <PackageReference Include="Fanex.Data" Version="4.2.4" />
+    <PackageReference Include="Fanex.RemotingRef" Version="1.5.4" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Runtime.Caching" Version="8.0.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.Athena.Common.Constant\Fanex.Athena.Common.Constant.csproj" />
+    <ProjectReference Include="..\Fanex.Athena.Common.Model\Fanex.Athena.Common.Model.csproj" />
+  </ItemGroup>
+
+</Project>

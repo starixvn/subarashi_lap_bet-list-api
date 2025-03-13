@@ -1,0 +1,227 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>3732362e-1f99-4892-9f6c-608262fe4b3b</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="App_Data\Excel\ExchangeRunningTicket.xls" />
+    <None Remove="App_Data\Excel\ExchangeWinLossTicket.xls" />
+    <None Remove="App_Data\Fanex.Result\Badminton.xls" />
+    <None Remove="App_Data\Fanex.Result\Bandy.xls" />
+    <None Remove="App_Data\Fanex.Result\BaseBall.xls" />
+    <None Remove="App_Data\Fanex.Result\BasketBall.xls" />
+    <None Remove="App_Data\Fanex.Result\BeachSoccer.xls" />
+    <None Remove="App_Data\Fanex.Result\BeachVolleyball.xls" />
+    <None Remove="App_Data\Fanex.Result\BetbyBasketball.xls" />
+    <None Remove="App_Data\Fanex.Result\Billiard.xls" />
+    <None Remove="App_Data\Fanex.Result\Bitcoin.xls" />
+    <None Remove="App_Data\Fanex.Result\Cricket.xls" />
+    <None Remove="App_Data\Fanex.Result\ESport.xls" />
+    <None Remove="App_Data\Fanex.Result\Football.xls" />
+    <None Remove="App_Data\Fanex.Result\Golf.xls" />
+    <None Remove="App_Data\Fanex.Result\Happy5.xls" />
+    <None Remove="App_Data\Fanex.Result\Hockey.xls" />
+    <None Remove="App_Data\Fanex.Result\Kabaddi.xls" />
+    <None Remove="App_Data\Fanex.Result\MuayThai.xls" />
+    <None Remove="App_Data\Fanex.Result\NumberGame.xls" />
+    <None Remove="App_Data\Fanex.Result\Other.xls" />
+    <None Remove="App_Data\Fanex.Result\OtherSport.xls" />
+    <None Remove="App_Data\Fanex.Result\Outright.xls" />
+    <None Remove="App_Data\Fanex.Result\Racing.xls" />
+    <None Remove="App_Data\Fanex.Result\Soccer.xls" />
+    <None Remove="App_Data\Fanex.Result\Tennis.xls" />
+    <None Remove="App_Data\Fanex.Result\VirtualRacing.xls" />
+    <None Remove="App_Data\Fanex.Result\Volleyball.xls" />
+    <None Remove="App_Data\Fanex.Result\VSBasketBall.xls" />
+    <None Remove="App_Data\Fanex.Result\VSCockFighting.xls" />
+    <None Remove="App_Data\Fanex.Result\VSHRacing.xls" />
+    <None Remove="App_Data\Fanex.Result\VSSpeedWay.xls" />
+    <None Remove="App_Data\Fanex.Result\VSTennis.xls" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App_Data\Excel\ExchangeRunningTicket.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Excel\ExchangeWinLossTicket.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Badminton.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Bandy.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\BaseBall.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\BasketBall.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\BeachSoccer.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\BeachVolleyball.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\BetbyBasketball.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Billiard.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Bitcoin.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Cricket.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\ESport.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Football.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Golf.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Happy5.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Hockey.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Kabaddi.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\MuayThai.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\NumberGame.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Other.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\OtherSport.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Outright.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Racing.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Soccer.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Tennis.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\VirtualRacing.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\Volleyball.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\VSBasketBall.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\VSCockFighting.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\VSHRacing.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\VSSpeedWay.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Fanex.Result\VSTennis.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.OpenIdConnectServer" Version="8.0.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.2" />
+    <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="8.0.1" />
+    <PackageReference Include="Fanex.BetList.AdvantPlay" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.BetList.AdvantPlayMini" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.AGCasino" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.Allbet" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.BetList.BetTrade" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.BG" Version="2.0.0.1-test-02" />
+    <PackageReference Include="Fanex.BetList.Bitcoin" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.CardClub" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.CashOut" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.CG" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.Core.RemotingRef" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.BetList.ESports" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.FACHAI" Version="1.0.0.1" />
+    <PackageReference Include="Fanex.BetList.FastSpin" Version="1.0.0.1" />
+    <PackageReference Include="Fanex.BetList.FGG" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.GPI" Version="1.0.1" />
+    <PackageReference Include="Fanex.BetList.Habanero" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.Indo4D" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.Betlist.Jili" Version="1.0.0.3" />
+    <PackageReference Include="Fanex.BetList.Joker" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.Keno" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.KenoLottery" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.LeapGaming" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.Live22" Version="1.0.0.1" />
+    <PackageReference Include="Fanex.BetList.MaxGame" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.BetList.MGRNGCasino" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.Nextspin" Version="1.0.0" />
+    <PackageReference Include="Fanex.BetList.NumberGame" Version="2.0.0.3" />
+    <PackageReference Include="Fanex.BetList.ONCasino" Version="1.0.0" />
+    <PackageReference Include="Fanex.BetList.PGSoft" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.BetList.PlayerTips" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.PlayStar" Version="1.0.0" />
+    <PackageReference Include="Fanex.BetList.Playtech" Version="1.0.0" />
+    <PackageReference Include="Fanex.BetList.PP" Version="2.0.0.4" />
+    <PackageReference Include="Fanex.BetList.RnGCasino" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.BetList.SabaClub" Version="2.0.0.4" />
+    <PackageReference Include="Fanex.BetList.SAGaming" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.SealEntertainment" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.SexyGaming" Version="2.0.0.6" />
+    <PackageReference Include="Fanex.BetList.Spadegaming" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.SportsLottery" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.TableGames" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.UUSlots" Version="1.0.0" />
+    <PackageReference Include="Fanex.BetList.VGaming" Version="2.0.0.8" />
+    <PackageReference Include="Fanex.BetList.VirtualGames" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.BetList.VirtualSports" Version="2.0.2.1" />
+    <PackageReference Include="Fanex.BetList.Voidbridge" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.WE" Version="1.0.0.1" />
+    <PackageReference Include="Fanex.BetList.WM" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.YeeBet" Version="1.0.0.1" />
+    <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.4" />
+    <PackageReference Include="Fanex.Result.Core.ConfigurationHelper" Version="1.0.0" />
+    <PackageReference Include="Fanex.Result.Core.RemotingRef" Version="2.0.0.4" />
+    <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" Version="6.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.29" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+    <PackageReference Include="Sentry.AspNetCore" Version="2.1.6" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.Athena.BetList.Controllers\Fanex.Athena.BetList.Controllers.csproj" />
+    <ProjectReference Include="..\Fanex.Athena.Common.Utility\Fanex.Athena.Common.Utility.csproj" />
+    <ProjectReference Include="..\Fanex.Athena.Resources\Fanex.Athena.Resources.csproj" />
+    <ProjectReference Include="..\Fanex.Athena.Result.Controller\Fanex.Athena.Result.Controller.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App_Data\FanexSpName.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
