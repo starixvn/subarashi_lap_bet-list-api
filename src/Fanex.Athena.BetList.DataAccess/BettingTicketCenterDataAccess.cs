@@ -92,13 +92,10 @@
 
             using (var db = GetObjectDb(UspKey))
             {
-                var productCodes = metaModel.ProductCodeList.Split(',');
-                var productList = string.Join(",", productCodes.Except(new[] { ProductCodes.BA }));
-
                 db.SetParameterValue(DbColumn.AgentList, metaModel.AgentListXml);
                 db.SetParameterValue(DbColumn.UserName, SqlHelper.ToSqlTextSearch(metaModel.UserName));
                 db.SetParameterValue(DbColumn.BaseCurrency, metaModel.BaseCurrency);
-                db.SetParameterValue(DbColumn.ProductList, productList);
+                db.SetParameterValue(DbColumn.ProductList, metaModel.ProductCodeList);
                 db.SetParameterValue(DbColumn.OddsGroup, metaModel.OddsGroup);
                 db.SetParameterValue(DbColumn.Platform, metaModel.Platform);
                 db.SetParameterValue(DbColumn.CustomerClass, metaModel.CustomerClass);
@@ -109,7 +106,6 @@
                 db.SetParameterValue(DbColumn.Ip, metaModel.Ip);
                 db.SetParameterValue(DbColumn.LeagueList, metaModel.LeagueIds);
                 db.SetParameterValue(DbColumn.MatchId, metaModel.MatchId);
-                db.SetParameterValue(DbColumn.ShowBA, productCodes.Contains(ProductCodes.BA));
                 db.SetParameterValue(DbColumn.PageSize, metaModel.IsExport ? int.MaxValue - 1 : metaModel.PageSize);
                 db.SetParameterValue(DbColumn.PageIndex, metaModel.IsExport ? 1 : metaModel.PageIndex);
                 db.SetParameterValue(DbColumn.StatusFilter, metaModel.Status);
@@ -211,11 +207,8 @@
 
         private void AddSingleCustomerParameters(IObjectDb db, SingleCustomersBetListMetaModel metaModel)
         {
-            var productCodes = metaModel.ProductCodeList.Split(',');
-            var productList = string.Join(",", productCodes.Except(new[] { ProductCodes.BA }));
             var balanceUp = _balanceUpDataAccess.GetBalanceUp();
-            db.SetParameterValue(DbColumn.ShowBA, productCodes.Contains(ProductCodes.BA));
-            db.SetParameterValue(DbColumn.ProductList, productList);
+            db.SetParameterValue(DbColumn.ProductList, metaModel.ProductCodeList);
             db.SetParameterValue(DbColumn.FromDate, metaModel.FromDate);
             db.SetParameterValue(DbColumn.ToDate, metaModel.ToDate);
             db.SetParameterValue(DbColumn.AgentList, metaModel.AgentListXml);

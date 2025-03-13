@@ -54,8 +54,6 @@
 
         public const string RefNo = "RefNo";
 
-        public const string ShowBA = "showBA";
-
         public const string ShowSB = "showSB";
 
         public const string Sort = "Sort";

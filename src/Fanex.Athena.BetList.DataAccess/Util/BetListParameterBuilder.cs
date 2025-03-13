@@ -111,7 +111,7 @@
             db.SetParameterValue(DbColumn.ExcludeFreeBet, metaModel.ExcludeFreeBet);
             CreateBetListDateRangeParameters(db, metaModel);
             CreateBetListPagingParameters(db, metaModel);
-            CreateProductListParameters_New(db, metaModel.ProductCodeList);
+            CreateProductListParameters(db, metaModel.ProductCodeList);
         }
 
         private static void CreatePlatformWinLossBetListParameters(IObjectDb db, BetListMetaModel metaModel)
@@ -143,19 +143,10 @@
             db.SetParameterValue(DbColumn.BetType, metaModel.BetType);
             db.SetParameterValue(DbColumn.LiveIndicator, metaModel.LiveIndicator ?? -1);
             db.SetParameterValue(DbColumn.EventType, metaModel.EventType);
+            db.SetParameterValue(DbColumn.ProductList, metaModel.ProductCodeList);
             CreateBetListSortingParameters(db, metaModel);
             CreateBetListPagingParameters(db, metaModel);
             CreateSummaryOutputParameters(db);
-
-            var productList = metaModel.ProductCodeList.Split(',').ToList();
-            int indexBA = productList.IndexOf("BA");
-            if (indexBA > -1)
-            {
-                db.SetParameterValue("ShowBA", true);
-                productList.RemoveAt(indexBA);
-            }
-
-            db.SetParameterValue(DbColumn.ProductList, string.Join(",", productList));
         }
 
         private static void CreateLiveReportBetListVHRacingParameters(IObjectDb db, BetListMetaModel betlistMetaModel)
@@ -187,7 +178,7 @@
             AddLiveReportPagingParams(db, metaModel);
             db.SetParameterValue(DbColumn.BetType, metaModel.BetType);
             db.SetParameterValue(DbColumn.LiveIndicator, metaModel.LiveIndicator);
-            CreateProductListParameters_New(db, metaModel.ProductCodeList);
+            CreateProductListParameters(db, metaModel.ProductCodeList);
         }
 
         private static void CreateLiveReportNumberGameBetlistParameters(IObjectDb db, BetListMetaModel betlistMetaModel)
@@ -216,7 +207,7 @@
             db.SetParameterValue(DbColumn.ToDate, metaModel.ToDate);
             db.SetParameterValue(DbColumn.MoveBetsDay, metaModel.MoveBetsDay);
             db.SetParameterValue(DbColumn.EventType, metaModel.EventType);
-            CreateProductListParameters_New(db, metaModel.ProductCodeList);
+            CreateProductListParameters(db, metaModel.ProductCodeList);
         }
 
         private static void CreateLiveReportOutRightBetlistParameters(IObjectDb db, BetListMetaModel betlistMetaModel)
@@ -227,8 +218,7 @@
             CreateBetListDateRangeParameters(db, metaModel);
             db.SetParameterValue(DbColumn.MoveBetsDay, metaModel.MoveBetsDay);
             AddLiveReportPagingParams(db, metaModel);
-            var supportedProducts = new[] { ProductCodes.SB, ProductCodes.BA };
-            CreateProductListParameters(db, metaModel.ProductCodeList, supportedProducts);
+            CreateProductListParameters(db, metaModel.ProductCodeList);
         }
 
         private static void CreateLicenseeWLBetlistParameters(IObjectDb db, BetListMetaModel metaModel)
@@ -286,7 +276,7 @@
             CreateBetlistBUParameters(db, metaModel);
             CreateBetListPagingParameters(db, metaModel);
             CreateSummaryOutputParameters(db);
-            CreateProductListParameters_New(db, metaModel.ProductCodeList);
+            CreateProductListParameters(db, metaModel.ProductCodeList);
         }
 
         private static void CreateRunningBetListByBettypePaprameters(IObjectDb db, BetListMetaModel metaModel)
@@ -393,37 +383,14 @@
             }
         }
 
-        private static void CreateProductListParameters(IObjectDb db, string productCodeList, IEnumerable<string> supportedProducts = null)
+        private static void CreateProductListParameters(IObjectDb db, string productCodeList)
         {
             if (string.IsNullOrWhiteSpace(productCodeList))
             {
                 return;
             }
 
-            IEnumerable<string> products = productCodeList.Split(',');
-
-            if (supportedProducts != null)
-            {
-                products = products.Where(x => supportedProducts.Contains(x)).ToList();
-            }
-
-            foreach (var productCode in products)
-            {
-                db.SetParameterValue("show" + productCode, true);
-            }
-        }
-
-        private static void CreateProductListParameters_New(IObjectDb db, string productCodeList)
-        {
-            var productList = productCodeList.Split(',').ToList();
-            int indexBA = productList.IndexOf(ProductCodes.BA);
-            if (indexBA > -1)
-            {
-                db.SetParameterValue(DbColumn.ShowBA, true);
-                productList.RemoveAt(indexBA);
-            }
-
-            db.SetParameterValue(DbColumn.ProductList, string.Join(",", productList));
+            db.SetParameterValue(DbColumn.ProductList, productCodeList);
         }
 
         #endregion Utility
