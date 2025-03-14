@@ -218,7 +218,6 @@
             CreateBetListDateRangeParameters(db, metaModel);
             db.SetParameterValue(DbColumn.MoveBetsDay, metaModel.MoveBetsDay);
             AddLiveReportPagingParams(db, metaModel);
-            CreateProductListParameters(db, metaModel.ProductCodeList);
         }
 
         private static void CreateLicenseeWLBetlistParameters(IObjectDb db, BetListMetaModel metaModel)

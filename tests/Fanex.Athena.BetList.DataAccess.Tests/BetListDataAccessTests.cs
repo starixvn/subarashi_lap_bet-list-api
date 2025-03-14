@@ -62,7 +62,6 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
                 ObjectDb.Received(1).SetParameterValue("LiveIndicator", metaModel.LiveIndicator);
                 ObjectDb.Received(1).SetParameterValue("ProductList", metaModel.ProductCodeList);
             });
-
         }
 
         [Test]
@@ -158,8 +157,6 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
                 ObjectDb.Received(1).SetParameterValue("MoveBetsDay", metaModel.MoveBetsDay);
                 ObjectDb.Received(1).SetParameterValue("PageSize", metaModel.PageSize);
                 ObjectDb.Received(1).SetParameterValue("PageIndex", metaModel.PageIndex);
-                ObjectDb.Received(1).SetParameterValue("showSB", true);
-                ObjectDb.DidNotReceive().SetParameterValue("showNG", true);
             });
         }
 

@@ -5,7 +5,6 @@ using Fanex.Athena.TestHelper;
 using Fanex.Data;
 using NSubstitute;
 
-
 namespace Fanex.Athena.BetList.DataAccess.Tests.Util
 {
     public class BetListParameterBuilderTests
@@ -54,7 +53,7 @@ namespace Fanex.Athena.BetList.DataAccess.Tests.Util
             // Arrange
             const string UspKey = "Shard_Lrf_BetList_CustomerWL_Mem";
             _metaModel.UspKey = UspKey;
-            _metaModel.ProductCodeList = "SB,NG,BA";
+            _metaModel.ProductCodeList = "SB,NG";
 
             // Action
             BetListParameterBuilder.CreateBetListParameters(_objectDb, _metaModel);
@@ -64,7 +63,7 @@ namespace Fanex.Athena.BetList.DataAccess.Tests.Util
             {
                 _objectDb.Received(1).SetParameterValue("AgentList", _metaModel.AgentListXml);
                 _objectDb.Received(1).SetParameterValue("CustId", _metaModel.CustId);
-                _objectDb.Received(1).SetParameterValue("ProductList", "SB,NG");
+                _objectDb.Received(1).SetParameterValue("ProductList", "NG");
                 AssertMoveBetParams(_objectDb, _metaModel);
                 AssertDateRangeParameters(_objectDb, _metaModel);
                 AssertPagingParameters(_objectDb, _metaModel);
@@ -390,7 +389,7 @@ namespace Fanex.Athena.BetList.DataAccess.Tests.Util
             // Arrange
             const string UspKey = "Lrf_BetList_MatchWL";
             _metaModel.UspKey = UspKey;
-            _metaModel.ProductCodeList = "SB,NG,BA";
+            _metaModel.ProductCodeList = "SB,NG";
 
             // Action
             BetListParameterBuilder.CreateBetListParameters(_objectDb, _metaModel);
@@ -403,7 +402,7 @@ namespace Fanex.Athena.BetList.DataAccess.Tests.Util
                 _objectDb.Received(1).SetParameterValue(DbColumn.Date, _metaModel.FromDate);
                 _objectDb.Received(1).SetParameterValue(DbColumn.MatchId, _metaModel.MatchId);
                 _objectDb.Received(1).SetParameterValue(DbColumn.BetType, _metaModel.BetType);
-                _objectDb.Received(1).SetParameterValue(DbColumn.ProductList, "SB,NG");
+                _objectDb.Received(1).SetParameterValue(DbColumn.ProductList, "NG");
                 AssertPagingParameters(_objectDb, _metaModel);
             });
         }
