@@ -119,8 +119,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpGet]
         public async Task<object> MixParlay([FromQuery] MixParlayMetaModel metaModel, bool dataOnly = true)
         {
-            if (_currencyValidation.IsValidBaseCurrency(metaModel.BaseCurrency)
-                && _currencyValidation.IsValidCurrency(metaModel.CurrencyId, _contextService.CurrencyList.ToDictionary(_ => _.Key, _ => _.Value)))
+            if (_currencyValidation.IsValidCurrency(metaModel.CurrencyId, _contextService.CurrencyList.ToDictionary(_ => _.Key, _ => _.Value)))
             {
                 var balanceUp = GetBalanceUp();
                 string UspKey = GetSpNameBasedOnBalanceUpDay(metaModel.FromDate.Date, balanceUp.BalanceUpDay);
