@@ -154,7 +154,7 @@
     <PackageReference Include="Fanex.BetList.AdvantPlayMini" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.AGCasino" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.Allbet" Version="2.0.0.2" />
-    <PackageReference Include="Fanex.BetList.ASKMESLOT" Version="1.0.0-Beta-02" />
+    <PackageReference Include="Fanex.BetList.ASKMESLOT" Version="1.0.0" />
     <PackageReference Include="Fanex.BetList.BetTrade" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.BG" Version="2.0.0.1-test-02" />
     <PackageReference Include="Fanex.BetList.Bitcoin" Version="2.0.0.1" />
