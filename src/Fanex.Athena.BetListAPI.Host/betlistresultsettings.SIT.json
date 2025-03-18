@@ -176,6 +176,10 @@
     "PlayStarResult": {
       "Url": "http://10.40.40.248:7088/api/PlayStarInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    "ASKMESLOTResult": {
+      "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/AskMeSlotInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   },
   "KenoConfigs": {

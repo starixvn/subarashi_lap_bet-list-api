@@ -5,7 +5,6 @@ using Fanex.Athena.TestHelper;
 using Fanex.Data;
 using NSubstitute;
 
-
 namespace Fanex.Athena.BetList.DataAccess.Tests.Util
 {
     public class BetListParameterBuilderTests
@@ -54,7 +53,7 @@ namespace Fanex.Athena.BetList.DataAccess.Tests.Util
             // Arrange
             const string UspKey = "Shard_Lrf_BetList_CustomerWL_Mem";
             _metaModel.UspKey = UspKey;
-            _metaModel.ProductCodeList = "SB,NG,BA";
+            _metaModel.ProductCodeList = "SB,NG";
 
             // Action
             BetListParameterBuilder.CreateBetListParameters(_objectDb, _metaModel);
@@ -89,8 +88,7 @@ namespace Fanex.Athena.BetList.DataAccess.Tests.Util
                 _objectDb.Received(1).SetParameterValue("CustId", _metaModel.CustId);
                 AssertDateRangeParameters(_objectDb, _metaModel);
                 AssertMoveBetParams(_objectDb, _metaModel);
-                _objectDb.Received(1).SetParameterValue("showSB", true);
-                _objectDb.Received(1).SetParameterValue("showNG", true);
+                _objectDb.Received(1).SetParameterValue("ProductList", "SB,NG");
                 AssertPagingParameters(_objectDb, _metaModel);
                 AssertSummaryParameters(_objectDb);
                 _objectDb.Received(1).SetParameterValue("DrawFilter", _metaModel.DrawFilter);
@@ -152,8 +150,7 @@ namespace Fanex.Athena.BetList.DataAccess.Tests.Util
                 _objectDb.Received(1).SetParameterValue("CustId", _metaModel.CustId);
                 AssertDateRangeParameters(_objectDb, _metaModel);
                 AssertMoveBetParams(_objectDb, _metaModel);
-                _objectDb.Received(1).SetParameterValue("showSB", true);
-                _objectDb.Received(1).SetParameterValue("showNG", true);
+                _objectDb.Received(1).SetParameterValue(DbColumn.ProductList, "SB,NG");
                 AssertPagingParameters(_objectDb, _metaModel);
                 AssertSummaryParameters(_objectDb);
                 _objectDb.Received(1).SetParameterValue("DrawFilter", _metaModel.DrawFilter);
@@ -390,7 +387,7 @@ namespace Fanex.Athena.BetList.DataAccess.Tests.Util
             // Arrange
             const string UspKey = "Lrf_BetList_MatchWL";
             _metaModel.UspKey = UspKey;
-            _metaModel.ProductCodeList = "SB,NG,BA";
+            _metaModel.ProductCodeList = "SB,NG";
 
             // Action
             BetListParameterBuilder.CreateBetListParameters(_objectDb, _metaModel);

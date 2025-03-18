@@ -1,5 +1,4 @@
-﻿
-namespace Fanex.Athena.Result.Controller.Constants
+﻿namespace Fanex.Athena.Result.Controller.Constants
 {
     public static class ConfigName
     {
@@ -72,5 +71,7 @@ namespace Fanex.Athena.Result.Controller.Constants
         public const string GPILiveCasinoResult = "GPILiveCasinoResult";
 
         public const string PlayStarResult = "PlayStarResult";
+
+        public const string ASKMESLOTResult = "ASKMESLOTResult";
     }
 }

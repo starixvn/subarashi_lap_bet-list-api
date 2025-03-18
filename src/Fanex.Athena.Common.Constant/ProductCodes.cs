@@ -6,8 +6,6 @@
 
         public const string NG = "NG";
 
-        public const string BA = "BA";
-
         public const string VS = "VS";
 
         public const string CS = "CS";
