@@ -71,7 +71,7 @@
         }
 
         public Task<IList<Sportsbook>> GetMatches3rdAsync(ResultMetaModel metalModel)
-            => _dataAccess.GetMatches3rdAsync<Sportsbook>(metalModel);      
+            => _dataAccess.GetMatches3rdAsync<Sportsbook>(metalModel);
 
         public async Task<IList<NumberGame>> GetNumberGameMatchesAsync(ResultMetaModel metalModel)
         {
@@ -108,7 +108,6 @@
 
         public Task<IList<Sportsbook>> GetPopUpMatch3rdAsync(int matchId)
             => _dataAccess.GetPopUpMatches3rdAsync<Sportsbook>(matchId);
-        
 
         public async Task<IList<Racing>> GetPopUpVirtualSportMatchAsync(ResultPopupMetaModel metalModel)
         {
@@ -118,6 +117,11 @@
         public async Task<IList<Parlay>> GetPopUpParlayMatchAsync(long refNo)
         {
             return await _dataAccess.GetPopUpParalayMatchAsync(refNo);
+        }
+
+        public async Task<IList<Parlay>> GetPopUpVS5ParlayMatchAsync(long refNo)
+        {
+            return await this._dataAccess.GetPopUpVS5ParalayMatchAsync(refNo).ConfigureAwait(false);
         }
 
         public async Task<Sportsbook> GetPopUpSingleMatchParlayAsync(int matchId, string marketId)
@@ -146,6 +150,16 @@
         public async Task<IList<Bitcoin>> GetBitcoinMatchesAsync(ResultMetaModel metalModel)
         {
             return await _dataAccess.GetMatches3rdAsync<Bitcoin>(metalModel);
+        }
+
+        public async Task<IList<Sportsbook>> GetPopUpVS5MatchesAsync(int matchId)
+        {
+            return await this._dataAccess.GetPopUpMatches3rdAsync<Sportsbook>(matchId).ConfigureAwait(false);
+        }
+
+        public async Task<IList<Sportsbook>> GetVS5MatchesAsync(ResultMetaModel metalModel)
+        {
+            return await this._dataAccess.GetMatches3rdAsync<Sportsbook>(metalModel).ConfigureAwait(false);
         }
 
         #endregion Popup

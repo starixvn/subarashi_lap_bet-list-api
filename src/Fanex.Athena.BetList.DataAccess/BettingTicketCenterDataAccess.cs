@@ -9,8 +9,6 @@
     using Fanex.Athena.Common.Utility.Helpers;
     using Fanex.Common;
     using Interfaces;
-    using System;
-    using System.Linq;
     using System.Threading.Tasks;
 
     public class BettingTicketCenterDataAccess : BaseBetListDataAccess, IBettingTicketCenterDataAccess
