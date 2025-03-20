@@ -1,17 +1,16 @@
-﻿using Fanex.Common.Extensions;
-using Fanex.Result.Core.Base;
+﻿using Fanex.Athena.Common.DataAccess;
+using Fanex.Athena.Common.DataAccess.Extensions;
+using Fanex.Athena.Common.DataAccess.Interfaces;
+using Fanex.Athena.Common.Model.DTO;
+using Fanex.Athena.Common.Utility.Services.Interfaces;
+using Fanex.Athena.Result.Model.MetaModel;
+using Fanex.Common.Extensions;
 using Fanex.Result.Core.Bitcoin.DTO;
 using Fanex.Result.Core.Racing.DTO;
 using Fanex.Result.Core.Sportsbook.DTO;
 using Fanex.Result.Core.VirtualRacing.DTO;
 using System.Data;
 using System.Globalization;
-using Fanex.Athena.Common.DataAccess;
-using Fanex.Athena.Common.DataAccess.Extensions;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Result.Model.MetaModel;
 
 namespace Fanex.Athena.Result.DataAccess
 {
@@ -297,7 +296,7 @@ namespace Fanex.Athena.Result.DataAccess
                             HtAwayScore = reader.ToNullableInt("htawayscore"),
                             FinalHomeScore = reader.ToNullableInt("finalhomescore"),
                             HtHomeScore = reader.ToNullableInt("hthomescore"),
-                            KickOffTime = DateTime.Parse(reader.ToString(EventDateColumn)),
+                            KickOffTime = DateTime.Parse(reader.ToString(EventDateColumn), CultureInfo.CurrentCulture),
                             MatchCode = reader.ToString("matchcode"),
                             RefNo = refNo.ToString(CultureInfo.InvariantCulture)
                         };

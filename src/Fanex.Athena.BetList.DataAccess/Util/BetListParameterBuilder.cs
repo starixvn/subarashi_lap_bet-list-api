@@ -6,7 +6,6 @@
     using Model.MetaModel;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     public static class BetListParameterBuilder
     {
