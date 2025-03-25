@@ -180,6 +180,10 @@
     "ASKMESLOTResult": {
       "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/AskMeSlotInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    "FunkyGamesResult": {
+      "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/FunkyGamesInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   },
   "KenoConfigs": {
