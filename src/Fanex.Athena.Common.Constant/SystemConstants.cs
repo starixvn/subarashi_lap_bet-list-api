@@ -1,24 +1,21 @@
-﻿namespace Fanex.Athena.Common.Constant
+﻿namespace Fanex.Athena.Common.Constant;
+
+using System.Collections.ObjectModel;
+
+public static class SystemConstants
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
+    public const int SheetSizeExcel = 60000;
 
-    public static class SystemConstants
+    public const string DefaultBookedBetRefno = "100000000000";
+
+    public static readonly ReadOnlyCollection<string> BaseCurrencyList = new(new List<string>
     {
-        public const int SheetSizeExcel = 60000;
-
-        public const int MaxDataTotalRow = int.MaxValue - 1000;
-
-        public const string DefaultBookedBetRefno = "100000000000";
-
-        public static readonly ReadOnlyCollection<string> BaseCurrencyList = new ReadOnlyCollection<string>(new List<string> {
-            "EUR", "USD", "GBP",
-            "MYR", "CNY", "THB",
-            "IDR", "INH", "BDT",
-            "INR", "PHP", "MP",
-            "NPR", "TRY", "USDT",
-            "JPY", "MXN", "NGN",
-            "BRL"
-        });
-    }
+        "EUR", "USD", "GBP",
+        "MYR", "CNY", "THB",
+        "IDR", "INH", "BDT",
+        "INR", "PHP", "MP",
+        "NPR", "TRY", "USDT",
+        "JPY", "MXN", "NGN",
+        "BRL", "PKR"
+    });
 }
