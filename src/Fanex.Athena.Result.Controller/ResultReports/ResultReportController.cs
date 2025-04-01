@@ -2,6 +2,7 @@
 using Fanex.Athena.Common.Utility.Extensions;
 using Fanex.Athena.Common.Utility.Helpers;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
+using Fanex.Athena.Report.Common.Helpers;
 using Fanex.Athena.Resources;
 using Fanex.Athena.Result.Model.MetaModel;
 using Fanex.Athena.Result.Service.Interfaces;
@@ -335,7 +336,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
                 return;
             }
 
-            if (sportType == SportType.VirtualDogRacing || sportType == SportType.VirtualHorseRacing)
+            if (SportHelper.IsVSNewRacingSportTypes((int)sportType))
             {
                 await GetBetradarPopUpData(metalModel, setting);
                 return;
@@ -502,7 +503,10 @@ namespace Fanex.Athena.Result.Controller.ResultReports
 
                 case SportType.VirtualHorseRacing:
                 case SportType.VirtualDogRacing:
-                    var dataDRc = await _resultService.GetBetradarSportMatchesAsync(metalModel);
+                case SportType.VirtualSteepleChase:
+                case SportType.VirtualHarnessRacing:
+                case SportType.VirtualMotorRacingVS7:
+                    var dataDRc = await _resultService.GetVSNewRacingSportMatchesAsync(metalModel);
                     ParseResult(dataDRc, setting, metalModel.IsExportExcel);
                     break;
 

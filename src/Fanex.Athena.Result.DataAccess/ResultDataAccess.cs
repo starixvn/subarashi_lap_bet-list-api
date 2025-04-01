@@ -168,7 +168,7 @@ namespace Fanex.Athena.Result.DataAccess
             }
         }
 
-        public async Task<IList<VirtualRacing>> GetBetradarSportMatchesAsync(ResultMetaModel metalModel)
+        public async Task<IList<VirtualRacing>> GetVSNewRacingSportMatchesAsync(ResultMetaModel metalModel)
         {
             const string UspName = "Lrf_Result_RaceSelByLeague";
             var uspParams = new
@@ -355,7 +355,7 @@ namespace Fanex.Athena.Result.DataAccess
                         {
                             LeagueId = reader.ToInt("LeagueID"),
                             EventId = reader.ToInt("EventID"),
-                            VendorMatchId = reader.ToInt("VendorMatchId"),
+                            VendorMatchId = reader.ToString("VendorMatchId"),
                             EventTime = reader.ToDateTime("EventTime"),
                             EventStatus = reader.ToString("EventStatus"),
                             BetStatus = reader.ToString("BetStatus"),
@@ -676,7 +676,7 @@ namespace Fanex.Athena.Result.DataAccess
                 {
                     LeagueId = reader.ToInt("LeagueID"),
                     EventId = reader.ToInt("EventID"),
-                    VendorMatchId = reader.ToInt("VendorMatchId"),
+                    VendorMatchId = reader.ToString("VendorMatchId"),
                     EventTime = reader.ToDateTime("EventTime"),
                     EventStatus = reader.ToString("EventStatus"),
                     BetStatus = reader.ToString("BetStatus"),

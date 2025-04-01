@@ -229,7 +229,7 @@ namespace Fanex.Athena.BetList.Controllers
                 return string.Format(EnglishCulture, KickOfTimeFormat, metaModel.KickOffTime);
             }
 
-            if (SportHelper.IsVirtualBetRadarSports(metaModel.SportType))
+            if (SportHelper.IsVSNewRacingSportTypes(metaModel.SportType))
             {
                 var id = !string.IsNullOrEmpty(metaModel.Distance) ? $" - ID {metaModel.Distance}" : string.Empty;
                 return $"{ViewResources.Event} {metaModel.VendorMatchId}{id}";
