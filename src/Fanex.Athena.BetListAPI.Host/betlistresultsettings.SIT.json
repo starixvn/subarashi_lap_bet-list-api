@@ -184,6 +184,10 @@
     "FunkyGamesResult": {
       "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/FunkyGamesInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    "HOTDOGResult": {
+      "Url": "http://saba-wallet-group-002.3rd-party.k8s.nebula.sit/api/HOTDOGInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   },
   "KenoConfigs": {

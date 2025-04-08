@@ -72,6 +72,8 @@ public static class ConfigName
     public const string PlayStarResult = "PlayStarResult";
 
     public const string ASKMESLOTResult = "ASKMESLOTResult";
-        
+
     public const string FunkyGamesResult = "FunkyGamesResult";
+
+    public const string HOTDOGResult = "HOTDOGResult";
 }
