@@ -185,6 +185,9 @@
     },
     "FunkyGamesResult": {
       "Url": "http://10.40.40.248:7116/api/FunkyGamesInternal/GetBetHistoryUrl",
+    },
+    "HOTDOGResult": {
+      "Url": "http://10.40.40.248:7116/api/HOTDOGInternal/GetBetHistoryUrl",
       "Debug": 0
     }
   },
