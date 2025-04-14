@@ -10,9 +10,9 @@
         IDataTestableMetaModel,
         ICurrencyIdListMetaModel,
         IMetaModelProductCodeList,
-        IMetaModelSubsidiarySearch,
         IPlayerComMetaModel,
-        ISpecialPlatformMetaModel
+        ISpecialPlatformMetaModel,
+        ISubsidiarySearchMetaModel
     {
         private const int DefaultPageSize = 50;
 
