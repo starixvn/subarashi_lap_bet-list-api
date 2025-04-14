@@ -76,4 +76,6 @@ public static class ConfigName
     public const string FunkyGamesResult = "FunkyGamesResult";
 
     public const string HOTDOGResult = "HOTDOGResult";
+
+    public const string MicrogamingLiveResult = "MicrogamingLiveResult";
 }

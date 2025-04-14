@@ -188,6 +188,10 @@
     "HOTDOGResult": {
       "Url": "http://saba-wallet-group-002.3rd-party.k8s.nebula.sit/api/HOTDOGInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    "MicrogamingLiveResult": {
+      "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/MicroGamingLiveInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   },
   "KenoConfigs": {
