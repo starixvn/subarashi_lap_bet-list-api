@@ -11,6 +11,7 @@ using Fanex.Result.Core.Sportsbook.DTO;
 using Fanex.Result.Core.VirtualRacing.DTO;
 using System.Data;
 using System.Globalization;
+using System.Text;
 
 namespace Fanex.Athena.Result.DataAccess
 {
@@ -543,6 +544,13 @@ namespace Fanex.Athena.Result.DataAccess
 
         #region Binding
 
+        private static string ConvertToUTF8(string str)
+        {
+            byte[] bytes = Encoding.ASCII.GetBytes(str);
+            string text = Encoding.UTF8.GetString(bytes);
+            return text;
+        }
+
         private static IList<Fanex.Result.Core.Sportsbook.DTO.GameDetail> GetGameDetails(IDataReader reader)
         {
             var gameDetails = new List<Fanex.Result.Core.Sportsbook.DTO.GameDetail>();
@@ -558,8 +566,8 @@ namespace Fanex.Athena.Result.DataAccess
                     {
                         MatchId = int.Parse(reader[MatchidColumn].ToString()),
                         ResourceId = reader["ResourceId"].ToString(),
-                        HomeValue = reader["HomeValue"].ToString(),
-                        AwayValue = reader["AwayValue"].ToString(),
+                        HomeValue = ConvertToUTF8(reader["HomeValue"].ToString()),
+                        AwayValue = ConvertToUTF8(reader["AwayValue"].ToString()),
                         ResultStatusID = resultStatusId == DBNull.Value ? 0 : int.Parse(resultStatusId.ToString()),
                         SettlementStatusID = settlementStatusId == DBNull.Value ? 0 : int.Parse(settlementStatusId.ToString()),
                         BettypeId = reader.HasColumn("BetType") ? reader.ToInt("BetType") : 0,
