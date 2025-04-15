@@ -1,5 +1,9 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess
 {
+    using System;
+    using System.Collections;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Common.Utility.Collections;
     using Fanex.Athena.BetList.DataAccess.Interfaces;
     using Fanex.Athena.BetList.Model.DTO;
@@ -7,10 +11,6 @@
     using Fanex.Athena.Common.Constant;
     using Fanex.Athena.Common.DataAccess.Interfaces;
     using Fanex.Common;
-    using System;
-    using System.Collections;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Util;
 
     public class BetListDataAccess : BaseBetListDataAccess, IBetListDataAccess
@@ -56,8 +56,7 @@
 
                 using (var reader = await db.ExecuteReaderAsync())
                 {
-                    ticketResult.MainTicketList.AddRange(ReadBetListTicket(reader,
-                       currencyList, metaModel.CustId));
+                    ticketResult.MainTicketList.AddRange(ReadBetListTicket(reader, currencyList, metaModel.CustId));
                     if (reader.NextResult())
                     {
                         ticketResult.TicketDataList.AddRange(ReadReferneceTicket(reader).ToList());

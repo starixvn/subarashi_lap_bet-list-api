@@ -408,4 +408,7 @@
   <data name="Event" xml:space="preserve">
     <value>Acara</value>
   </data>
+  <data name="BetListRunning" xml:space="preserve">
+    <value>Daftar Taruhan (Berjalan)</value>
+  </data>
 </root>

@@ -430,4 +430,7 @@
   <data name="Event" xml:space="preserve">
     <value>项目</value>
   </data>
+  <data name="BetListRunning" xml:space="preserve">
+    <value>投注历史 (进行中)</value>
+  </data>
 </root>

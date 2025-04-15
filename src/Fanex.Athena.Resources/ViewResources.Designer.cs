@@ -115,6 +115,15 @@ namespace Fanex.Athena.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bet List (Running).
+        /// </summary>
+        public static string BetListRunning {
+            get {
+                return ResourceManager.GetString("BetListRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet Placed.
         /// </summary>
         public static string BetPlaced {

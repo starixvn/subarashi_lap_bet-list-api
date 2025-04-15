@@ -423,4 +423,7 @@
   <data name="Event" xml:space="preserve">
     <value>Sự kiện</value>
   </data>
+  <data name="BetListRunning" xml:space="preserve">
+    <value>Danh sách cược (Đang diễn ra)</value>
+  </data>
 </root>

@@ -49,11 +49,11 @@ public class CustomerPendingFundsBetListController : BetListBaseController
 
         if (dataOnly)
         {
-            return await GetBetListPagingResultAsync(metaModel);
+            return await GetBetListResultAsync(metaModel);
         }
 
         var settings = CreateDefaultSettings(metaModel);
-        settings.Title = $"{metaModel.ExternalId}{(_contextService.IsFakeLicensee ? string.Empty : $" ({metaModel.SystemId})")}";
+        settings.Title = $"{ViewResources.BetListRunning} - {metaModel.ExternalId}{(_contextService.IsFakeLicensee ? string.Empty : $" ({metaModel.SystemId})")}";
 
         return await GetBetListResultWithSettings(metaModel, settings);
     }
@@ -65,7 +65,7 @@ public class CustomerPendingFundsBetListController : BetListBaseController
         await AssignDefaultMetaModel(metaModel);
 
         metaModel.StartIndex = (metaModel.PageIndex - 1) * metaModel.PageSize + 1;
-        metaModel.Title = "Running " + ViewResources.BetList
+        metaModel.Title = ViewResources.BetListRunning
                                      + string.Format(
                                          " - {0} {1} - {2}",
                                          metaModel.ExternalId,

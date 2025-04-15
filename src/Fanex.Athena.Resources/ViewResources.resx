@@ -443,4 +443,7 @@
   <data name="Event" xml:space="preserve">
     <value>Event</value>
   </data>
+  <data name="BetListRunning" xml:space="preserve">
+    <value>Bet List (Running)</value>
+  </data>
 </root>
