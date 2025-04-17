@@ -6,21 +6,13 @@
     using System.Collections.Generic;
     using System.Data;
 
-    public class SafeDataReader : ISafeDataReader
+    public class SafeDataReader(IDataReader reader, IEnumerable<string> columns) : ISafeDataReader
     {
-        private readonly IDataReader _reader;
-
-        private readonly HashSet<string> _existingColumns;
-
-        public SafeDataReader(IDataReader reader, IEnumerable<string> columns)
-        {
-            _reader = reader;
-            _existingColumns = [.. columns.Where(i => reader.HasColumn(i))];
-        }
+        private readonly HashSet<string> _existingColumns = [.. columns.Where(reader.HasColumn)];
 
         public bool Read()
         {
-            return _reader.Read();
+            return reader.Read();
         }
 
         public bool GetBool(string column, bool defaultValue = false)
@@ -49,7 +41,7 @@
         {
             if (_existingColumns.Contains(column))
             {
-                return _reader[column];
+                return reader[column];
             }
 
             return defaultValue;
@@ -59,7 +51,7 @@
         {
             if (_existingColumns.Contains(column))
             {
-                return _reader.ToString(column);
+                return reader.ToString(column);
             }
 
             return defaultValue;
@@ -69,7 +61,7 @@
         {
             if (_existingColumns.Contains(column))
             {
-                return _reader.ToInt(column);
+                return reader.ToInt(column);
             }
 
             return defaultValue;
@@ -79,7 +71,7 @@
         {
             if (_existingColumns.Contains(column))
             {
-                return _reader.ToLong(column);
+                return reader.ToLong(column);
             }
 
             return defaultValue;
@@ -89,7 +81,7 @@
         {
             if (_existingColumns.Contains(column))
             {
-                var value = _reader[column];
+                var value = reader[column];
                 if (value != DBNull.Value)
                 {
                     return (long)value;
@@ -103,7 +95,7 @@
         {
             if (_existingColumns.Contains(column))
             {
-                return _reader.ToDecimal(column);
+                return Convert.ToDecimal(reader[column]);
             }
 
             return defaultValue;
@@ -113,7 +105,7 @@
         {
             if (_existingColumns.Contains(column))
             {
-                return _reader.ToDateTime(column);
+                return reader.ToDateTime(column);
             }
 
             return defaultValue;
@@ -123,7 +115,7 @@
         {
             if (_existingColumns.Contains(column))
             {
-                return _reader.ToByte(column);
+                return reader.ToByte(column);
             }
 
             return defaultValue;
