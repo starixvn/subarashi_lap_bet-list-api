@@ -20,16 +20,16 @@ namespace Fanex.Athena.BetList.Controllers
     [Route("api/[controller]/[action]")]
     [BearerAuthorize(Roles.ReportLiveReport, Roles.PortalSuperAdmin)]
     public class LiveReportBetListController(
-        IContextService contextService, 
-        IAuthorizationService authorizationService, 
-        IBetListService betListService, 
-        ITicketBuilderService ticketBuilderService, 
-        ISubsidiaryService subsidiaryService, 
-        IBalanceUpDataAccess balanceUpDataAccess, 
+        IContextService contextService,
+        IAuthorizationService authorizationService,
+        IBetListService betListService,
+        ITicketBuilderService ticketBuilderService,
+        ISubsidiaryService subsidiaryService,
+        IBalanceUpDataAccess balanceUpDataAccess,
         ICacheRefAdapter cacheRefAdapter,
         IAppSettings appSettings,
-        IIPService iPService) 
-        : BetListBaseController(contextService, authorizationService, betListService, ticketBuilderService, 
+        IIPService iPService)
+        : BetListBaseController(contextService, authorizationService, betListService, ticketBuilderService,
             subsidiaryService, balanceUpDataAccess, cacheRefAdapter, appSettings, iPService)
     {
         protected const string ExcelFileName = "LiveReportBetList";
@@ -43,11 +43,10 @@ namespace Fanex.Athena.BetList.Controllers
 
         private static readonly int[] HiddenColumns = { BetEffectiveColumn };
 
-
         [HttpGet]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-        public async Task<object> Match([FromQuery]LiveReportBetListMetaModel metaModel, bool dataOnly = true)
+        public async Task<object> Match([FromQuery] LiveReportBetListMetaModel metaModel, bool dataOnly = true)
         {
             metaModel.UspKey = MatchSpKey;
             if (dataOnly)
@@ -68,7 +67,6 @@ namespace Fanex.Athena.BetList.Controllers
             metaModel.UspKey = MatchSpKey;
             return await ExportExcel(metaModel);
         }
-
 
         [HttpGet]
         [RequestValidation(validateCurrency: true)]
@@ -282,7 +280,7 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpGet]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-        public async Task<object> Betradar([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows, bool dataOnly)
+        public async Task<object> VSNewRacing([FromQuery] LiveReportBetListMetaModel metaModel, int page, int rows, bool dataOnly)
         {
             metaModel.UspKey = LiveReportSpKey;
             if (dataOnly)
@@ -291,7 +289,11 @@ namespace Fanex.Athena.BetList.Controllers
             }
 
             var settings = CreateDefaultDayRangeSettings(metaModel);
-            settings.Title = $"{ViewResources.BetList} - {_cacheRefAdapter.GetSportName(metaModel.SportType)}";
+
+            var id = !string.IsNullOrEmpty(metaModel.Distance) ? $" - ID {metaModel.Distance}" : string.Empty;
+            var matchName = $"{ViewResources.Event} {metaModel.VendorMatchId}{id}";
+
+            settings.Title = $"{ViewResources.BetList} - {matchName}";
             settings.IsServerPaging = true;
 
             return await GetPagingDataWithSettings(metaModel, settings, page, rows);
@@ -300,13 +302,15 @@ namespace Fanex.Athena.BetList.Controllers
         [HttpPost]
         [RequestValidation(validateCurrency: true)]
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindPlayerCom: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
-#pragma warning disable S4144 // Methods should not have identical implementations
-        public async Task<IActionResult> BetradarExportExcel([FromBody] LiveReportBetListMetaModel metaModel)
+        public async Task<IActionResult> VSNewRacingExportExcel([FromBody] LiveReportBetListMetaModel metaModel)
 #pragma warning restore S4144 // Methods should not have identical implementations
         {
             metaModel.UspKey = LiveReportSpKey;
 
-            return await ExportExcel(metaModel);
+            var id = !string.IsNullOrEmpty(metaModel.Distance) ? $" - ID {metaModel.Distance}" : string.Empty;
+            var matchName = $"{ViewResources.Event} {metaModel.VendorMatchId}{id}";
+
+            return await ExportExcel(metaModel, matchName);
         }
 
         private async Task<BetListResultViewModel> GetData(LiveReportBetListMetaModel metaModel)
@@ -411,8 +415,8 @@ namespace Fanex.Athena.BetList.Controllers
             return $"{ViewResources.BetList} - {matchName}{betTypeName}";
         }
 
-        private async Task<BetListResultWithSettingViewModel<BetListResultViewModel>> 
-            GetDataWithSettings(LiveReportBetListMetaModel metaModel, 
+        private async Task<BetListResultWithSettingViewModel<BetListResultViewModel>>
+            GetDataWithSettings(LiveReportBetListMetaModel metaModel,
             BetListSettingViewModel settings)
         {
             AssignDefaultBetListMetaModel(metaModel);

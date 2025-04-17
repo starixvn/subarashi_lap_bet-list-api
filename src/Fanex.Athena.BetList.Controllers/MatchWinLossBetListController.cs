@@ -10,7 +10,6 @@ using Fanex.Athena.Report.Common.Helpers;
 using Fanex.Athena.Resources;
 using Fanex.Core.Utils;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Globalization;
 
 namespace Fanex.Athena.BetList.Controllers
@@ -181,17 +180,24 @@ namespace Fanex.Athena.BetList.Controllers
             var matchName = GetMatchName(metaModel);
             var currencyTitle = GetViewInCurrency(metaModel);
 
+            var bettypeName = (metaModel.BetType > 0
+                                ? _cacheRefAdapter.GetBettype(metaModel.BetType)
+                                : string.Empty);
+
             metaModel.Title = ViewResources.BetList
                               + string.Format(
-                                  " - {0}{1} - {2}",
-                                  matchName + (metaModel.BetType > 0
-                                      ? " - " + _cacheRefAdapter.GetBettype(metaModel.BetType) + " - "
-                                      : string.Empty),
+                                  " - {0} - {1} - {2}",
+                                  FormatMatchAndBetType(matchName, bettypeName),
                                   metaModel.FromDate.ToShortDateString(),
                                   currencyTitle);
 
             return await ProcessExportExcel(metaModel);
         }
+
+        public static string FormatMatchAndBetType(string matchName, string bettypeName) =>
+            string.IsNullOrWhiteSpace(matchName) || string.IsNullOrWhiteSpace(bettypeName)
+                ? $"{matchName}{bettypeName}"
+                : $"{matchName} - {bettypeName}";
 
         private string GetMatchBetTypeTitle(BetListMetaModel metaModel)
         {
@@ -215,7 +221,7 @@ namespace Fanex.Athena.BetList.Controllers
                 var prefix = metaModel.SportType == (int)SportType.NumberGameHappy5
                     ? ViewResources.No + "."
                     : ViewResources.NumberGameNo;
-                return prefix + " " + metaModel.MatchCode;
+                return $"{prefix} {metaModel.MatchCode}";
             }
 
             if (SportHelper.IsVSSportTypes(metaModel.SportType))
