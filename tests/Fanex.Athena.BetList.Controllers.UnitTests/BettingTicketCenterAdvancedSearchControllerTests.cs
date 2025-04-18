@@ -6,10 +6,8 @@ using Fanex.Athena.BetList.Excel.Model;
 using Fanex.Athena.BetList.Model.DTO;
 using Fanex.Athena.BetList.Model.MetaModel;
 using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Model.DTO;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Utility.Collections;
-using Fanex.Athena.Common.Utility.Services;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Resources;
 using Fanex.Athena.TestHelper;
@@ -27,8 +25,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
     public class BettingTicketCenterAdvancedSearchControllerTests
     {
         private const int RowsExceedLimitErrorCode = 1001;
-        private const int ServerBusyErrorCode = 1002;
-
         private const int ExportMultipleFile = 1002;
         private const int ExportSingleFile = 1003;
 
@@ -106,30 +102,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
                         && x.ShowSystemId
                         && x.IsAllowedCustomerComm == metaModel.HasPlayerCom),
                     metaModel);
-            });
-        }
-
-        [Test]
-        public async Task GetData_WhenExportWithDisabledExportLargeData_ReturnError()
-        {
-            // Arrange
-            var controller = CreateController();
-            var metaModel = FakeHelper.Create<AdvancedSearchBetListMetaModel>(x => x.IsExport, true);
-            metaModel.LicenseeName = "12B";
-
-            var totalRow = FakeHelper.Create<int>();
-            _appSettings.IsDisableExportLargeBetList.Returns(true);
-            _appSettings.LicenseesWithLargeData.Returns(["12B"]);
-            _contextService.SiteName.Returns("12B");
-
-            // Action
-            var result = (await controller.GetData(metaModel) as JsonResult).Value;
-            var errorCode = result.GetValue("ErrorCode");
-
-            // Assert
-            Assert.Multiple(() =>
-            {
-                Assert.That(errorCode, Is.EqualTo(ServerBusyErrorCode));
             });
         }
 
@@ -373,30 +345,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
         }
 
         [Test]
-        public async Task GetExportStatus_WhenDisabledExportLargeData_ReturnServerBusy()
-        {
-            // Arrange
-            var controller = CreateController();
-            var metaModel = FakeHelper.Create<AdvancedSearchBetListMetaModel>(x => x.IsExport, true);
-            metaModel.LicenseeName = "12B";
-
-            var totalRow = FakeHelper.Create<int>();
-            _appSettings.IsDisableExportLargeBetList.Returns(true);
-            _appSettings.LicenseesWithLargeData.Returns(["12B"]);
-            _contextService.SiteName.Returns("12B");
-
-            // Action
-            var result = (await controller.GetExportStatus(metaModel) as JsonResult).Value;
-            var errorCode = result.GetValue("ErrorCode");
-
-            // Assert
-            Assert.Multiple(() =>
-            {
-                Assert.That(errorCode, Is.EqualTo(ServerBusyErrorCode));
-            });
-        }
-
-        [Test]
         public async Task GetExportStatus_WhenTotalRowExceedMaxTicketLimit_ReturnRowsExceedLimitErrorCode()
         {
             // Arrange
@@ -404,7 +352,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             var metaModel = FakeHelper.Create<AdvancedSearchBetListMetaModel>(x => x.IsExport, true);
 
             var totalRow = FakeHelper.Create<int>();
-            _appSettings.IsDisableExportLargeBetList.Returns(false);
             _appSettings.MaxTicketLimit.Returns(totalRow - 1);
             _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel, _appSettings.MaxTicketLimit).Returns(totalRow);
 
@@ -427,7 +374,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             var metaModel = FakeHelper.Create<AdvancedSearchBetListMetaModel>(x => x.IsExport, true);
 
             var totalRow = FakeHelper.Create<int>();
-            _appSettings.IsDisableExportLargeBetList.Returns(false);
             _appSettings.MaxTicketLimit.Returns(totalRow + 1);
             _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel, _appSettings.MaxTicketLimit).Returns(totalRow);
 

@@ -1,10 +1,10 @@
 ﻿namespace Fanex.Athena.Common.Utility.Services
 {
-    using Fanex.Athena.Common.Model.DTO;
-    using Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Fanex.Athena.Common.Model.DTO;
+    using Interfaces;
 
     public class AppSettings : IAppSettings
     {
@@ -17,10 +17,6 @@
         public string TempFilePath { get; set; }
 
         public int MaxRowPerExcelFile { get; set; }
-
-        public bool IsDisableExportLargeBetList { get; set; }
-
-        public IEnumerable<string> LicenseesWithLargeData { get; set; }
 
         public int MaxRowForMultipleExcelFiles { get; set; }
 

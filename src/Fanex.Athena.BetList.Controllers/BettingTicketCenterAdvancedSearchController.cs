@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.BetList.Controllers.CustomActionResult;
+﻿using System.Net;
+using Fanex.Athena.BetList.Controllers.CustomActionResult;
 using Fanex.Athena.BetList.Controllers.Utility;
 using Fanex.Athena.BetList.DataAccess.Interfaces;
 using Fanex.Athena.BetList.Excel;
@@ -16,7 +17,6 @@ using Fanex.BetList.Core.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Net;
 
 namespace Fanex.Athena.BetList.Controllers
 {
@@ -27,10 +27,7 @@ namespace Fanex.Athena.BetList.Controllers
     public class BettingTicketCenterAdvancedSearchController : BettingTicketCenterBaseController
     {
         private const int RowsExceedLimitErrorCode = 1001;
-        private const int ServerBusyErrorCode = 1002;
-
         private const int ExportMultipleFile = 1002;
-
         private readonly IAppSettings _appSettings;
         private readonly IContextService _contextService;
         private readonly IBettingTicketCenterAdvancedSearchDataAccess _dataAccess;
@@ -72,11 +69,6 @@ namespace Fanex.Athena.BetList.Controllers
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindShowingBetFromIP: true, bindProductCodeList: true)]
         public async Task<IActionResult> GetData(AdvancedSearchBetListMetaModel metaModel)
         {
-            if (metaModel.IsExport && IsAllowExportLargeBetList())
-            {
-                return ServerBusy();
-            }
-
             await UpdateMetaModel(metaModel);
 
             return await GetOrExportData(metaModel);
@@ -88,10 +80,6 @@ namespace Fanex.Athena.BetList.Controllers
         [AutoBindMetaModel(bindAgent: true, applySubsidiaryBusiness: true, bindShowingBetFromIP: true, bindProductCodeList: true)]
         public async Task<IActionResult> GetExportStatus(AdvancedSearchBetListMetaModel metaModel)
         {
-            if (IsAllowExportLargeBetList())
-            {
-                return ServerBusy();
-            }
             await UpdateMetaModel(metaModel);
             var totalRow = await _dataAccess.GetTotalRowForMultipleCustomersAsync(metaModel, _appSettings.MaxTicketLimit);
             if (totalRow > _appSettings.MaxTicketLimit)
@@ -109,12 +97,6 @@ namespace Fanex.Athena.BetList.Controllers
                 PageSize = _appSettings.MaxRowForMultipleExcelFiles
             });
         }
-
-        private IActionResult ServerBusy() => new JsonResult(new
-        {
-            ErrorCode = ServerBusyErrorCode,
-            ErrorMsg = ViewResources.ServerBusyMessage
-        });
 
         private async Task UpdateMetaModel(AdvancedSearchBetListMetaModel metaModel)
         {
@@ -251,8 +233,5 @@ namespace Fanex.Athena.BetList.Controllers
             ticketResult.TotalRows = groupTicket.TotalRows;
             return ticketResult;
         }
-
-        private bool IsAllowExportLargeBetList()
-            => _appSettings.IsDisableExportLargeBetList && _appSettings.LicenseesWithLargeData.Contains(_contextService.SiteName);
     }
 }
