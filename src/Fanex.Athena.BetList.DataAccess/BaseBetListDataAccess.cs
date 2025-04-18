@@ -1,5 +1,10 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Common.DataAccess;
     using Common.Utility.Collections;
     using Common.Utility.Extensions;
@@ -11,15 +16,12 @@
     using Fanex.Common.Extensions;
     using Fanex.Data;
     using Model.DTO;
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Util;
 
     public class BaseBetListDataAccess : BaseDataAccess
     {
+        private const string SuffixSabaCoins = "_SabaCoins";
+
         private readonly ICurrencyDataAccess _currencyDataAccess;
 
         protected BaseBetListDataAccess(ICurrencyDataAccess currenyDataAccess)
@@ -74,25 +76,27 @@
             return new SafeDataReader(reader, columns);
         }
 
-        protected virtual async Task<TicketResult> GetMainTicketListBasedRangeAsync<TMetaModel>(TMetaModel metaModel, string uspKey,
-          Action<IObjectDb> assignCommonParamters,
-          bool getInOneRange = false,
-          Action<IObjectDb> assignShardSpecificParamters = null,
-          Action<IObjectDb> assignCentralSpecificParamters = null,
-          bool viewSabaCoins = false)
-          where TMetaModel : IShardDBMetaModel
+        protected virtual async Task<TicketResult> GetMainTicketListBasedRangeAsync<TMetaModel>(
+            TMetaModel metaModel,
+            string uspKey,
+            Action<IObjectDb> assignCommonParamters,
+            bool getInOneRange = false,
+            Action<IObjectDb> assignShardSpecificParamters = null,
+            Action<IObjectDb> assignCentralSpecificParamters = null,
+            bool viewSabaCoins = false) where TMetaModel : IShardDBMetaModel
         {
             var currencyList = await GetCurrencyListAsync();
             var tasks = new List<Task<SortableList<LrfTicket>>>(2);
-            if (metaModel.UseShardDB && !viewSabaCoins)
+            if (metaModel.UseShardDB)
             {
-                tasks.Add(GetMainTicketListBasedShardDBAsync($"SiteDB_{uspKey}", currencyList, assignCommonParamters, assignShardSpecificParamters));
+                var shardUspKey = viewSabaCoins ? $"{uspKey}{SuffixSabaCoins}" : $"SiteDB_{uspKey}";
+                tasks.Add(GetMainTicketListBasedShardDBAsync(shardUspKey, currencyList, assignCommonParamters, assignShardSpecificParamters));
             }
             tasks.Add(GetMainTicketListBasedShardDBAsync(uspKey, currencyList, assignCommonParamters,
                 db =>
                 {
                     assignCentralSpecificParamters?.Invoke(db);
-                    db.SetParameterValue(DbColumn.ExcludeBettrans, metaModel.UseShardDB && !viewSabaCoins);
+                    db.SetParameterValue(DbColumn.ExcludeBettrans, metaModel.UseShardDB);
                 }));
 
             var ticketResult = new TicketResult();
@@ -126,7 +130,7 @@
         protected static IDictionary<string, string> GetColumns()
         {
             var columns = new[]
-             {
+            {
                 "username", "refno", "matchcode", "status", "betteam", "betstatus", "showtime", "oddstype",
                 "nickname", "race", "betfrom", "betcheck", "liveindicator", "isneutral", "sporttype", "bettype",
                 "leagueid", "awayid", "homeid", "matchid", "custid", "currencyid", "livehomescore", "liveawayscore",

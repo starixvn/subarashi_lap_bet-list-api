@@ -5,6 +5,6 @@ namespace Fanex.Athena.BetList.Controllers.Utility
 {
     public interface IBettingTicketCenterZipBuilder
     {
-        MemoryStream BuildZip(GroupTicketResult ticketResult, string title, AdvancedSearchBetListMetaModel metaModel, string totalText);
+        MemoryStream BuildZip(GroupTicketResult ticketResult, string title, AdvancedSearchBetListMetaModel metaModel, string totalText, CancellationToken cancellationToken = default);
     }
 }

@@ -22,5 +22,4 @@ namespace Fanex.Athena.BetListAPI.Host.Middlewares
             await _next(context);
         }
     }
-
 }

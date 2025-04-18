@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
-using System.Text.Json;
+﻿using System.Text.Json;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace Fanex.Athena.BetListAPI.Host.Middlewares
 {
@@ -44,13 +44,10 @@ namespace Fanex.Athena.BetListAPI.Host.Middlewares
             return app;
         }
 
-        public static IApplicationBuilder UseDoubleSlashHandler(
-            this IApplicationBuilder builder)
+        public static IApplicationBuilder UseDoubleSlashHandler(this IApplicationBuilder builder)
             => builder.UseMiddleware<DoubleSlashMiddleware>();
 
         public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder builder)
             => builder.UseMiddleware<ErrorHandlerMiddleware>();
-
-
     }
 }

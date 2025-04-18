@@ -20,7 +20,8 @@ public class BettingTicketCenterAdvancedSearchDataAccess(
 {
     public async Task<GroupTicketResult> GetBetListForMultipleCustomersAsync(
         AdvancedSearchBetListMetaModel metaModel,
-        int rowPerGroup)
+        int rowPerGroup,
+        CancellationToken cancellationToken)
     {
         const string UspKey = "Lrf_BetList_Licensee";
         const int TimeOut = 300;
@@ -35,7 +36,7 @@ public class BettingTicketCenterAdvancedSearchDataAccess(
         {
             AddAdvancedSearchParameters(db, metaModel);
 
-            using (var reader = await db.ExecuteReaderAsync())
+            using (var reader = await db.ExecuteReaderAsync(cancellationToken: cancellationToken))
             {
                 var count = 0;
                 var ticket = new TicketResult();
@@ -74,7 +75,9 @@ public class BettingTicketCenterAdvancedSearchDataAccess(
         }
     }
 
-    public async Task<TicketResult> GetBetListForMultipleCustomersAsync(AdvancedSearchBetListMetaModel metaModel)
+    public async Task<TicketResult> GetBetListForMultipleCustomersAsync(
+        AdvancedSearchBetListMetaModel metaModel,
+        CancellationToken cancellationToken)
     {
         const string UspKey = "Lrf_BetList_Licensee";
         const int TimeOut = 300;
@@ -86,7 +89,7 @@ public class BettingTicketCenterAdvancedSearchDataAccess(
         {
             AddAdvancedSearchParameters(db, metaModel);
 
-            using (var reader = await db.ExecuteReaderAsync())
+            using (var reader = await db.ExecuteReaderAsync(cancellationToken: cancellationToken))
             {
                 ticketResult.MainTicketList.AddRange(ReadBetListTicket(reader, currencyList));
             }
@@ -103,7 +106,10 @@ public class BettingTicketCenterAdvancedSearchDataAccess(
         return ticketResult;
     }
 
-    public async Task<int> GetTotalRowForMultipleCustomersAsync(AdvancedSearchBetListMetaModel metaModel, int maxTotalRows)
+    public async Task<int> GetTotalRowForMultipleCustomersAsync(
+        AdvancedSearchBetListMetaModel metaModel,
+        int maxTotalRows,
+        CancellationToken cancellationToken)
     {
         const string UspKey = "Lrf_BetList_Licensee_TotalRows";
         const int TimeOut = 300;
@@ -116,7 +122,7 @@ public class BettingTicketCenterAdvancedSearchDataAccess(
 
             db.SetParameterValue(DbColumn.TotalRows, null);
 
-            await db.ExecuteNonQueryAsync();
+            await db.ExecuteNonQueryAsync(cancellationToken: cancellationToken);
 
             var outSqlParams = db.GetOutputParams();
             return Converter.ToInt(outSqlParams[DbColumn.TotalRows]);
@@ -144,7 +150,7 @@ public class BettingTicketCenterAdvancedSearchDataAccess(
     private void SaveDataToFile(GroupTicketResult groupData, TicketResult ticket)
     {
         var data = JsonConvert.SerializeObject(ticket);
-        var dataFileName = $"{Guid.NewGuid().ToString()}.json";
+        var dataFileName = $"{Guid.NewGuid()}.json";
         tempFileService.Save(dataFileName, data);
         groupData.DataPath.Add(dataFileName);
         ticket.MainTicketList.Clear();
