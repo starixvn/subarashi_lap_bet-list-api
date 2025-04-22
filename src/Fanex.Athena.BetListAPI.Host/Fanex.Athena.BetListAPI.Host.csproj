@@ -231,6 +231,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="App_Data\FanexSpName.KLDR.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="App_Data\FanexSpName.SIT.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
