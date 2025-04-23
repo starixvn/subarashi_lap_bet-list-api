@@ -190,6 +190,14 @@
     "MicrogamingLiveResult": {
       "Url": "http://saba-wallet-group-001.3rd-party.t2p.nebula.prod:22080/api/MicroGamingLiveInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    "PlaytechLiveResult": {
+      "Url": "http://saba-wallet-group-004.3rd-party.t2p.nebula.prod:22080/api/PlayTechLiveInternal/GetBetHistoryUrl",
+      "Debug": 0
+    },
+    "RichGamingResult": {
+      "Url": "http://saba-wallet-group-004.3rd-party.t2p.nebula.prod:22080/api/RichGamingInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   },
   "KenoConfigs": {

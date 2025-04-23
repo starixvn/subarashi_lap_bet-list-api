@@ -78,4 +78,8 @@ public static class ConfigName
     public const string HOTDOGResult = "HOTDOGResult";
 
     public const string MicrogamingLiveResult = "MicrogamingLiveResult";
+
+    public const string PlaytechLiveResult = "PlaytechLiveResult";
+    
+    public const string RichGamingResult = "RichGamingResult";
 }
