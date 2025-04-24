@@ -8,7 +8,7 @@ namespace Fanex.Athena.TestHelper
         public static void SetUpDBObjects(IObjectDb objectDb)
         {
             DbSettingProviderManager.StartTestingSession();
-            CreateObjectDbFunc createObjectDbFunc = (key, timeout) => objectDb;
+            CreateObjectDbFunc createObjectDbFunc = (key, timeout, serverIp) => objectDb;
             ObjectDbFactory.Mock(createObjectDbFunc);
         }
 

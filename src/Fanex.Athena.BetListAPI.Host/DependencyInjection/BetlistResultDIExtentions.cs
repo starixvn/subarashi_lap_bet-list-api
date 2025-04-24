@@ -1,6 +1,7 @@
 ﻿using Fanex.Athena.Result.DataAccess;
 using Fanex.Athena.Result.Service;
 using Fanex.Athena.Result.Service.Interfaces;
+using Fanex.Data.Vault;
 using Fanex.Result.Core.AllBetCasino;
 using Fanex.Result.Core.Base.Utilities;
 using Fanex.Result.Core.LinkedGames;
@@ -43,6 +44,7 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
             services.AddSportLotteryResultService(configuration);
             services.AddScoped<IKenoLotteryTGResultFactory, KenoLotteryTGResultApi>();
             services.AddWMResultService(configuration);
+            services.TryAddSingleton<VaultDbAliasService, VaultDbAliasServiceImp>();
 
             return services;
         }

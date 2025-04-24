@@ -3,21 +3,23 @@ using Fanex.Athena.BetListAPI.Host.DependencyInjection;
 using Fanex.Athena.BetListAPI.Host.HealthChecks;
 using Fanex.Athena.BetListAPI.Host.Middlewares;
 using Fanex.Athena.BetListAPI.Host.Settings;
+using Fanex.Athena.Common.Services;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Utility;
 using Fanex.BetList.Core;
 using Fanex.BetList.Core.RemotingRef;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
+using Fanex.Data.Vault;
 using Fanex.RemotingRef;
 using Fanex.Result.Core.Base;
 using Fanex.Result.Core.RemotingRef;
 using IdentityModel.AspNetCore.OAuth2Introspection;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Newtonsoft.Json.Serialization;
 using System.Globalization;
-
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseKestrel(options =>
@@ -80,10 +82,14 @@ RefDataTypeContainer
     .FromApplication("Fanex.Athena.BetListAPI.Host");
 BetListManager.RegisterRemotingRef(new CacheRef());
 
-DbSettingProviderManager.StartNewSession()
-    .WithSqlServer(configuration)
-    .UseShardDbSettingProvider(app.Services.GetRequiredService<IShardInfoAccessor>(), configuration.GetSection("StoredProcedurePath").Get<string>())
-.Run();
+DbSettingProviderManager
+        .StartNewSession()
+        .WithSqlServer(configuration)
+        .Register(ShardDbSettingProvider.ProviderName,
+            new ShardDbSettingProvider(new ShardInfoAccessor(new SiteDBAccessor(services.BuildServiceProvider().GetRequiredService<IHttpContextAccessor>())))
+            .CreateObjectDbFunc)
+        .UseDefaultDbSettingProvider("~/App_Data/FanexSpName.xml", true)
+        .Run();
 
 BetListManager.RegisterRemotingRef(new CacheRef());
 ResultCoreManager.RegisterRefDataHelper(new RefDataHelper());
@@ -112,7 +118,6 @@ app.UseHealthCheck();
 app.UseAuthentication();
 app.UseRequestLocalization(options =>
 {
-
     const string EnCultureName = "en-US";
     const string LangHeaderKey = "Language";
     var enCulture = new CultureInfo(EnCultureName)
@@ -150,7 +155,6 @@ app.UseRequestLocalization(options =>
                         return Task.FromResult(new ProviderCultureResult(culture: EnCultureName, uiCulture: culture));
                     })
                 };
-
 });
 app.UseDoubleSlashHandler();
 app.UseRouting();
