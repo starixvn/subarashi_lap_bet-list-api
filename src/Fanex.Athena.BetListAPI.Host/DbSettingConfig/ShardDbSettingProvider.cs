@@ -1,30 +1,23 @@
-﻿using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Data;
-using Fanex.Data.SqlServer;
+﻿namespace Fanex.Athena.BetListAPI.Host.DbSettingConfig;
 
-namespace Fanex.Athena.BetListAPI.Host.DbSettingConfig
+using Common.Services.Interfaces;
+using Data;
+using Data.SqlServer;
+
+public class ShardDbSettingProvider(IShardInfoAccessor shardInfoAccessor)
 {
-    public class ShardDbSettingProvider
+    public static string ProviderName => nameof(ShardDbSettingProvider);
+
+    public IObjectDb CreateObjectDbFunc(string settingKey, int? commandTimeout, string serverIp)
     {
-        private readonly IShardInfoAccessor _shardInfoAccessor;
+        var shardSpKey = shardInfoAccessor.GetShardSPKey(settingKey);
+        var server = serverIp;
 
-        public ShardDbSettingProvider(IShardInfoAccessor shardInfoAccessor)
+        if (shardInfoAccessor.TryUseShardDB(shardSpKey, out var dbServer))
         {
-            _shardInfoAccessor = shardInfoAccessor;
+            server = dbServer;
         }
 
-        public static string ProviderName => nameof(ShardDbSettingProvider);
-
-        public IObjectDb CreateObjectDbFunc(string settingKey, int? commandTimeout, string serverIp)
-        {
-            var shardSPKey = _shardInfoAccessor.GetShardSPKey(settingKey);
-
-            if (_shardInfoAccessor.TryUseShardDB(shardSPKey, out var dbServer))
-            {
-                serverIp = dbServer;
-            }
-
-            return new SqlObjectDb(settingKey, commandTimeout, serverIp);
-        }
+        return new SqlObjectDb(settingKey, commandTimeout, server);
     }
 }

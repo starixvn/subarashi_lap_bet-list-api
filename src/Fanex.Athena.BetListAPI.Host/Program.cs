@@ -1,39 +1,33 @@
+using System.Globalization;
 using Fanex.Athena.BetListAPI.Host.DbSettingConfig;
 using Fanex.Athena.BetListAPI.Host.DependencyInjection;
 using Fanex.Athena.BetListAPI.Host.HealthChecks;
 using Fanex.Athena.BetListAPI.Host.Middlewares;
 using Fanex.Athena.BetListAPI.Host.Settings;
 using Fanex.Athena.Common.Services;
-using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Utility;
 using Fanex.BetList.Core;
 using Fanex.BetList.Core.RemotingRef;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
-using Fanex.Data.Vault;
 using Fanex.RemotingRef;
 using Fanex.Result.Core.Base;
 using Fanex.Result.Core.RemotingRef;
 using IdentityModel.AspNetCore.OAuth2Introspection;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Newtonsoft.Json.Serialization;
-using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.UseKestrel(options =>
-{
-    options.AllowSynchronousIO = true;
-});
+builder.WebHost.UseKestrel(options => { options.AllowSynchronousIO = true; });
 builder.WebHost.UseSentry();
 builder.Configuration.SetBasePath(builder.Environment.ContentRootPath);
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
-        .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: false);
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: false);
 var envFromSetting = builder.Configuration.GetValue<string>("AppSettings:Environment");
-builder.Configuration.AddJsonFile($"appreportsettings.json", optional: false, reloadOnChange: false)
-        .AddJsonFile($"betlistresultsettings.json", optional: false, reloadOnChange: false)
-        .AddJsonFile($"betlistresultsettings.{envFromSetting}.json", optional: true, reloadOnChange: false);
+builder.Configuration.AddJsonFile("appreportsettings.json", optional: false, reloadOnChange: false)
+    .AddJsonFile("betlistresultsettings.json", optional: false, reloadOnChange: false)
+    .AddJsonFile($"betlistresultsettings.{envFromSetting}.json", optional: true, reloadOnChange: false);
 
 var services = builder.Services;
 var configuration = builder.Configuration;
@@ -41,7 +35,7 @@ var identityServer = configuration.GetSection("IdentityServer").Get<IdentityServ
 
 //DI
 services.AddHealthChecks()
-        .AddCheck<WhoAmIHealthCheck>("WhoAmI");
+    .AddCheck<WhoAmIHealthCheck>("WhoAmI");
 
 services.AddDistributedMemoryCache();
 services.AddAuthentication(OAuth2IntrospectionDefaults.AuthenticationScheme)
@@ -66,10 +60,7 @@ services.AddAuthorization(option =>
 });
 
 services.AddControllers()
-    .AddNewtonsoftJson(options =>
-    {
-        options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-    });
+    .AddNewtonsoftJson(options => { options.SerializerSettings.ContractResolver = new DefaultContractResolver(); });
 services.AddRazorPages();
 
 services.AddLapBetList()
@@ -83,13 +74,13 @@ RefDataTypeContainer
 BetListManager.RegisterRemotingRef(new CacheRef());
 
 DbSettingProviderManager
-        .StartNewSession()
-        .WithSqlServer(configuration)
-        .Register(ShardDbSettingProvider.ProviderName,
-            new ShardDbSettingProvider(new ShardInfoAccessor(new SiteDBAccessor(services.BuildServiceProvider().GetRequiredService<IHttpContextAccessor>())))
+    .StartNewSession()
+    .WithSqlServer(configuration)
+    .Register(ShardDbSettingProvider.ProviderName,
+        new ShardDbSettingProvider(new ShardInfoAccessor(new SiteDBAccessor(services.BuildServiceProvider().GetRequiredService<IHttpContextAccessor>())))
             .CreateObjectDbFunc)
-        .UseDefaultDbSettingProvider("~/App_Data/FanexSpName.xml", true)
-        .Run();
+    .UseDefaultDbSettingProvider("~/App_Data/FanexSpName.xml", true)
+    .Run();
 
 BetListManager.RegisterRemotingRef(new CacheRef());
 ResultCoreManager.RegisterRefDataHelper(new RefDataHelper());
@@ -97,21 +88,14 @@ ResultCoreManager.RegisterRefDataHelper(new RefDataHelper());
 //Middlewares
 app.UsePing();
 
-app.MapGet("/", async context =>
-{
-    await context.Response.WriteAsync("This is Bet list API");
-});
-
-app.MapGet("/test/exception", context =>
-{
-    throw new Exception("Test exception");
-});
+app.MapGet("/", async context => { await context.Response.WriteAsync("This is Bet list API"); });
 
 app.UseErrorHandler();
 if (app.Environment.IsDevelopment() || string.Equals(configuration["UseErrorHandler"], "0"))
 {
     app.UseDeveloperExceptionPage();
 }
+
 app.UseForwardedHeaders();
 
 app.UseHealthCheck();
@@ -134,27 +118,28 @@ app.UseRequestLocalization(options =>
 
     options.DefaultRequestCulture = new RequestCulture(EnCultureName);
     options.SupportedCultures = new List<CultureInfo>
-                {
-                    enCulture
-                };
+    {
+        enCulture
+    };
     options.SupportedUICultures = new List<CultureInfo>
-                {
-                    enCulture,
-                    csCulture,
-                    new CultureInfo("vi-VN"),
-                    new CultureInfo("id-ID"),
-                    new CultureInfo("th-TH"),
-                };
+    {
+        enCulture,
+        csCulture,
+        new("vi-VN"),
+        new("id-ID"),
+        new("th-TH")
+    };
     options.RequestCultureProviders = new List<IRequestCultureProvider>
-                {
-                    new CustomRequestCultureProvider(context =>
-                    {
-                        var langCodeFromQuery = context.Request.Headers.FirstOrDefault(x => x.Key.Equals(LangHeaderKey,StringComparison.OrdinalIgnoreCase)).Value.ToString();
-                        var langCode = string.IsNullOrWhiteSpace(langCodeFromQuery) ?  context.User.FindFirst("Language")?.Value ?? "en" : langCodeFromQuery;
-                        var culture = Languages.LanguageCodeMappers.GetValueOrDefault(langCode, "en-US");
-                        return Task.FromResult(new ProviderCultureResult(culture: EnCultureName, uiCulture: culture));
-                    })
-                };
+    {
+        new CustomRequestCultureProvider(context =>
+        {
+            var langCodeFromQuery = context.Request.Headers.FirstOrDefault(x => x.Key.Equals(LangHeaderKey, StringComparison.OrdinalIgnoreCase)).Value
+                .ToString();
+            var langCode = string.IsNullOrWhiteSpace(langCodeFromQuery) ? context.User.FindFirst("Language")?.Value ?? "en" : langCodeFromQuery;
+            var culture = Languages.LanguageCodeMappers.GetValueOrDefault(langCode, "en-US");
+            return Task.FromResult(new ProviderCultureResult(culture: EnCultureName, uiCulture: culture));
+        })
+    };
 });
 app.UseDoubleSlashHandler();
 app.UseRouting();
