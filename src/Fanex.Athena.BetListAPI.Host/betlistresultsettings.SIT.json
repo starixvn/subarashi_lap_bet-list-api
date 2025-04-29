@@ -194,12 +194,12 @@
       "Debug": 0
     },
     "PlaytechLiveResult": {
-      "Url": "http://saba-wallet-group-002.3rd-party.k8s.nebula.sit/api/PlayTechLiveInternal/GetBetHistoryUrl",
-      "Debug": 1
+      "Url": "http://saba-wallet-group-004.3rd-party.k8s.nebula.sit/api/PlayTechLiveInternal/GetBetHistoryUrl",
+      "Debug": 0
     },
     "RichGamingResult": {
-      "Url": "http://saba-wallet-group-002.3rd-party.k8s.nebula.sit/api/RichGamingInternal/GetBetHistoryUrl",
-      "Debug": 1
+      "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/RichGamingInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   },
   "KenoConfigs": {
