@@ -48,7 +48,7 @@
 
         Task<IList<Racing>> GetVirtualSportMatchesAsync(ResultMetaModel metalModel);
 
-        Task<IList<VirtualRacing>> GetBetradarSportMatchesAsync(ResultMetaModel metalModel);
+        Task<IList<VirtualRacing>> GetVSNewRacingSportMatchesAsync(ResultMetaModel metalModel);
 
         Task<IList<Bitcoin>> GetBitcoinMatchesAsync(ResultMetaModel metalModel);
 

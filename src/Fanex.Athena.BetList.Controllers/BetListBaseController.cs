@@ -14,7 +14,6 @@ using Fanex.Athena.Common.Utility.Helpers;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Resources;
 
-
 namespace Fanex.Athena.BetList.Controllers
 {
     public class BetListBaseController
@@ -32,6 +31,7 @@ namespace Fanex.Athena.BetList.Controllers
         protected readonly IIPService _ipService;
 
 #pragma warning disable S107 // Methods should not have too many parameters
+
         protected BetListBaseController(IContextService contextService,
             IAuthorizationService authorizationService,
             IBetListService betListService,
@@ -162,7 +162,6 @@ namespace Fanex.Athena.BetList.Controllers
             return result;
         }
 
-
         protected internal virtual async Task<ExcelResult> ProcessExportExcel(BetListExcelMetaModel metaModel)
         {
             var ticketResult = await _betListService.GetBetListData(metaModel);
@@ -171,7 +170,7 @@ namespace Fanex.Athena.BetList.Controllers
             if (metaModel.Title.Contains(LeagueNamePlaceHolder))
             {
                 var firstTicket = ticketResult.MainTicketList.FirstOrDefault();
-                var leagueName = firstTicket != null ? _cacheRefAdapter.GetLeagueName(firstTicket.LeagueId) : string.Empty;
+                var leagueName = firstTicket != null ? _cacheRefAdapter.GetLeagueName(firstTicket.LeagueId, firstTicket.SportTypeId) : string.Empty;
                 metaModel.Title = metaModel.Title.Replace(LeagueNamePlaceHolder, leagueName);
             }
 
@@ -289,6 +288,5 @@ namespace Fanex.Athena.BetList.Controllers
         private async Task<IDictionary<int, int[]>> CurrencyAgentListBySubsidiaryBusiness(IMetaModelSubsidiarySearch metaModel)
             => _subsidiaryService.IsIgnoredSubsidiarySearch(metaModel.SubsidiarySearch, metaModel.SubsidiaryList) ? _contextService.AgentList.ToDictionary(x => x.Key, x => x.Value)
             : await _subsidiaryService.GetAgentList(metaModel.SubsidiaryList);
-
     }
 }

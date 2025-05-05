@@ -37,7 +37,7 @@ namespace Fanex.Athena.Result.DataAccess.Tests
             MapReaderData(mapColDic);
 
             // Action
-            var result = await DataAccess.GetBetradarSportMatchesAsync(metaMedel);
+            var result = await DataAccess.GetVSNewRacingSportMatchesAsync(metaMedel);
 
             // Assert
             Assert.Multiple(() =>

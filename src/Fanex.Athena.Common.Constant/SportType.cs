@@ -284,6 +284,12 @@
 
         VirtuallySports = 147,
 
+        VirtualSteepleChase = 125,
+
+        VirtualHarnessRacing = 126,
+
+        VirtualMotorRacing = 127,
+
         Keno = 202,
 
         AllBet = 211,
