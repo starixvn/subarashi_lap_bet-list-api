@@ -110,7 +110,6 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
             services.AddSingleton<IRemotingRefService, RemotingRefService>();
             services.AddScoped<IExchangeRunningExcel, ExchangeRunningExcel>();
             services.AddScoped<IExchangeWinLossExcel, ExchangeWinLossExcel>();
-            services.AddScoped<IBettingTicketCenterSportService, BettingTicketCenterSportService>();
             return services;
         }
     }

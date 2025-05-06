@@ -308,28 +308,32 @@
 
         Bitcoin = 175,
 
-        SabaSoccer = -1,
+        Kabaddi = 47,
 
-        SabaBasketball = -2,
+        Parlay = 999,
 
-        SabaCricket = -3,
+        BtcParlay = -1,
 
-        SabaFutsal = -4,
+        SabaSoccer = -2,
 
-        SabaSoccerPingoal = -5,
+        SabaFutsal = -3,
+
+        SabaSoccerPingoal = -4,
+
+        SabaBasketball = -5,
 
         SabaBasketballPinGoal = -6,
 
         SabaESportsPinGoal = -7,
 
-        SabaTennis = -8,
+        SabaCricket = -8,
 
-        SabaIceHockey = -9,
+        SabaTennis = -9,
 
-        SabaKabaddi = -10,
+        SabaIceHockey = -10,
 
-        Kabaddi = 47,
+        SabaKabaddi = -11,
 
-        Parlay = 999
+        SabaSoccerMarble = -12,
     }
 }

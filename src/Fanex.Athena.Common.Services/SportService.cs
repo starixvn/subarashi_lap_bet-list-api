@@ -3,6 +3,7 @@ using Fanex.Athena.Common.Model.DTO;
 using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Resources;
+using System.Text;
 
 namespace Fanex.Athena.Common.Services
 {
@@ -19,7 +20,8 @@ namespace Fanex.Athena.Common.Services
             ((int)SportType.SabaKabaddi, (int)SportType.Kabaddi, new [] { 42 }),
             ((int)SportType.SabaSoccerPingoal, (int)SportType.Soccer, new [] { 113 }),
             ((int)SportType.SabaBasketballPinGoal, (int)SportType.BasketBall, new [] { 122 }),
-            ((int)SportType.SabaESportsPinGoal, (int)SportType.Esports, new [] { 151 })
+            ((int)SportType.SabaESportsPinGoal, (int)SportType.Esports, new [] { 151 }),
+            ((int)SportType.SabaSoccerMarble, (int)SportType.Soccer, new [] { 252 })
         };
 
         private readonly ICacheRefAdapter _cacheRefAdapter;
@@ -68,6 +70,41 @@ namespace Fanex.Athena.Common.Services
                     break;
             }
             return $"{prefixText}{sportName}";
+        }
+
+        public string BuildSportTypeXML(string sportIds)
+        {
+            const int Parlay = -1;
+
+            if (string.IsNullOrEmpty(sportIds) || string.Equals(sportIds, "All", StringComparison.OrdinalIgnoreCase))
+            {
+                return "All";
+            }
+
+            var result = new StringBuilder("<ROOT>");
+
+            foreach (var sport in sportIds.Split(','))
+            {
+                int.TryParse(sport, out int sportId);
+                var leagueGroupIds = "0";
+
+                if (sportId == Parlay)
+                {
+                    sportId = (int)SportType.BtcParlay;
+                }
+
+                if (SabaVirtualSports.Any(_ => _.Id == sportId))
+                {
+                    var (_, SportTypeId, LeagueGroupIds) = SabaVirtualSports.FirstOrDefault(_ => _.Id == sportId);
+                    leagueGroupIds = string.Join(",", LeagueGroupIds);
+                    sportId = SportTypeId;
+                }
+
+                result.AppendFormat("<Sport SportType=\"{0}\" LeagueGroupIds=\"{1}\"/>", sportId, leagueGroupIds);
+            }
+
+            result.Append("</ROOT>");
+            return result.ToString();
         }
     }
 }
