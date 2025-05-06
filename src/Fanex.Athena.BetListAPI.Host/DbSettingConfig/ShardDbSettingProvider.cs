@@ -1,37 +1,23 @@
-﻿using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Data;
-using Microsoft.Data.SqlClient;
+﻿namespace Fanex.Athena.BetListAPI.Host.DbSettingConfig;
 
-namespace Fanex.Athena.BetListAPI.Host.DbSettingConfig
+using Common.Services.Interfaces;
+using Data;
+using Data.SqlServer;
+
+public class ShardDbSettingProvider(IShardInfoAccessor shardInfoAccessor)
 {
-    public class ShardDbSettingProvider : XmlDbSettingProvider
+    public static string ProviderName => nameof(ShardDbSettingProvider);
+
+    public IObjectDb CreateObjectDbFunc(string settingKey, int? commandTimeout, string serverIp)
     {
-        private readonly IShardInfoAccessor _shardInfoAccessor;
+        var shardSpKey = shardInfoAccessor.GetShardSPKey(settingKey);
+        var server = serverIp;
 
-        public ShardDbSettingProvider(IShardInfoAccessor shardInfoAccessor, string resourcePath)
-            : base(resourcePath)
+        if (shardInfoAccessor.TryUseShardDB(shardSpKey, out var dbServer))
         {
-            _shardInfoAccessor = shardInfoAccessor;
+            server = dbServer;
         }
 
-        public override IDbSetting GetSetting(string key)
-        {
-            if (_shardInfoAccessor.TryUseShardDB(key, out string dbServer))
-            {
-                var shardSPKey = _shardInfoAccessor.GetShardSPKey(key);
-                var originalShardSetting = base.GetSetting(shardSPKey);
-
-                var connectionStr = new SqlConnectionStringBuilder(originalShardSetting.ConnectionString)
-                {
-                    DataSource = dbServer
-                };
-
-                var dbSetting = new DbSetting(shardSPKey, originalShardSetting.DbName, connectionStr.ToString(), originalShardSetting.SpName,
-                    originalShardSetting.CommandTimeout, originalShardSetting.ColumnMaps, originalShardSetting.FirmParameters);
-                return dbSetting;
-            }
-            return base.GetSetting(key);
-        }
+        return new SqlObjectDb(settingKey, commandTimeout, server);
     }
-
 }

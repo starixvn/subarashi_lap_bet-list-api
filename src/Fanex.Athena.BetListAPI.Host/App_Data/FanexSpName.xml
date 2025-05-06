@@ -78,19 +78,19 @@
 	</Function>
 
 	<SiteDB>
-		<Setting Key="SiteDB_Lrf_BetList_LastBetsMonitoring" SpName="SiteDB_Lrf_BetList_LastBetsMonitoring" DbName="DBSID.bodb02.wsv_lap" />
-		<Setting Key="SiteDB_Lrf_BetList_Running" SpName="SiteDB_Lrf_BetList_Running" DbName="DBSID.bodb02.wsv_lap" />
-		<Setting Key="SiteDB_Lrf_BetList_Running_Mem" SpName="SiteDB_Lrf_BetList_Running_Mem" DbName="DBSID.bodb02.wsv_lap" />
-		<Setting Key="SiteDB_Lrf_BetList_Forecast_SelByMatch" SpName="SiteDB_Lrf_BetList_Forecast_SelByMatch" DbName="DBSID.bodb02.wsv_lap" />
-		<Setting Key="SiteDB_Lrf_BetList_SelRunningByBettypeMatch" SpName="SiteDB_Lrf_BetList_SelRunningByBettypeMatch" DbName="DBSID.bodb02.wsv_lap" />
-		<Setting Key="SiteDB_Lrf_BetList_SelRunningByDate_Mem" SpName="SiteDB_Lrf_BetList_SelRunningByDate_Mem" DbName="DBSID.bodb02.wsv_lap" />
-		<Setting Key="SiteDB_Lrf_BetList_RNG_Detail" SpName="SiteDB_Lrf_BetList_RNG_Detail" DbName="DBSID.bodb02.wsv_lap" />
-		<Setting Key="SiteDB_Lrf_BetList_LC_Detail" SpName="SiteDB_Lrf_BetList_LC_Detail" DbName="DBSID.bodb02.wsv_lap" />
-		<Setting Key="SiteDB_Lrf_BetList_RefNo_Mem" SpName="SiteDB_Lrf_BetList_RefNo_Mem" DbName="DBSID.bodb02.wsv_lap" />
+		<Setting Key="SiteDB_Lrf_BetList_LastBetsMonitoring" SpName="SiteDB_Lrf_BetList_LastBetsMonitoring" DbName="Shard_DBSID.bodb02.wsv_lap" />
+		<Setting Key="SiteDB_Lrf_BetList_Running" SpName="SiteDB_Lrf_BetList_Running" DbName="Shard_DBSID.bodb02.wsv_lap" />
+		<Setting Key="SiteDB_Lrf_BetList_Running_Mem" SpName="SiteDB_Lrf_BetList_Running_Mem" DbName="Shard_DBSID.bodb02.wsv_lap" />
+		<Setting Key="SiteDB_Lrf_BetList_Forecast_SelByMatch" SpName="SiteDB_Lrf_BetList_Forecast_SelByMatch" DbName="Shard_DBSID.bodb02.wsv_lap" />
+		<Setting Key="SiteDB_Lrf_BetList_SelRunningByBettypeMatch" SpName="SiteDB_Lrf_BetList_SelRunningByBettypeMatch" DbName="Shard_DBSID.bodb02.wsv_lap" />
+		<Setting Key="SiteDB_Lrf_BetList_SelRunningByDate_Mem" SpName="SiteDB_Lrf_BetList_SelRunningByDate_Mem" DbName="Shard_DBSID.bodb02.wsv_lap" />
+		<Setting Key="SiteDB_Lrf_BetList_RNG_Detail" SpName="SiteDB_Lrf_BetList_RNG_Detail" DbName="Shard_DBSID.bodb02.wsv_lap" />
+		<Setting Key="SiteDB_Lrf_BetList_LC_Detail" SpName="SiteDB_Lrf_BetList_LC_Detail" DbName="Shard_DBSID.bodb02.wsv_lap" />
+		<Setting Key="SiteDB_Lrf_BetList_RefNo_Mem" SpName="SiteDB_Lrf_BetList_RefNo_Mem" DbName="Shard_DBSID.bodb02.wsv_lap" />
 		<Setting Key="Lrf_BetList_RefNo_Mem_SabaCoins" SpName="SiteDB_Lrf_BetList_RefNo_Mem" DbName="DBSIDSC.bodb02.wsv_lap" />
-		<Setting Key="SiteDB_Lrf_BetList_LicenseeWL_Mem" SpName="SiteDB_Lrf_BetList_LicenseeWL_Mem" DbName="DBSID.bodb02.wsv_lap" />
-		<Setting Key="SiteDB_Lrf_BetList_CustomerWL_Mem" SpName="SiteDB_Lrf_BetList_CustomerWL_Mem" DbName="DBSID.bodb02.wsv_lap" />
-		<Setting Key="SiteDB_Lrf_BetList_Jackpot_Detail" SpName="SiteDB_Lrf_BetList_Jackpot_Detail" DbName="DBSID.bodb02.wsv_lap" />
-		<Setting Key="SiteDB_Lrf_BetList_CashOut_History" SpName="SiteDB_Lrf_BetList_CashOut_History" DbName="DBSID.bodb02.wsv_lap" />
+		<Setting Key="SiteDB_Lrf_BetList_LicenseeWL_Mem" SpName="SiteDB_Lrf_BetList_LicenseeWL_Mem" DbName="Shard_DBSID.bodb02.wsv_lap" />
+		<Setting Key="SiteDB_Lrf_BetList_CustomerWL_Mem" SpName="SiteDB_Lrf_BetList_CustomerWL_Mem" DbName="Shard_DBSID.bodb02.wsv_lap" />
+		<Setting Key="SiteDB_Lrf_BetList_Jackpot_Detail" SpName="SiteDB_Lrf_BetList_Jackpot_Detail" DbName="Shard_DBSID.bodb02.wsv_lap" />
+		<Setting Key="SiteDB_Lrf_BetList_CashOut_History" SpName="SiteDB_Lrf_BetList_CashOut_History" DbName="Shard_DBSID.bodb02.wsv_lap" />
 	</SiteDB>
 </Functions>
