@@ -143,7 +143,7 @@ namespace Fanexe.Athena.Result.Service.Tests
             {
                 MatchId = 1,
                 Bettype = 3,
-                BetId = 4,
+                Extension1 = 4.ToString(),
                 Handicap1 = 3,
                 Handicap2 = 5,
                 RaceNo = 1
@@ -167,7 +167,7 @@ namespace Fanexe.Athena.Result.Service.Tests
                 MatchId = 1,
                 RaceNo = 2,
                 Bettype = 3,
-                BetId = 4
+                Extension1 = 4.ToString()
             };
 
             // Action
