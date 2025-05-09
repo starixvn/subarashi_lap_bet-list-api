@@ -196,8 +196,8 @@ namespace Fanex.Athena.Result.DataAccess
                 matchid = metaModel.MatchId,
                 raceno = metaModel.RaceNo.HasValue ? metaModel.RaceNo.Value.ToString(CultureInfo.InvariantCulture) : null,
                 bettype = metaModel.Bettype,
-                betid = metaModel.BetId,
-                transdesc = metaModel.TransDesc
+                betid = long.TryParse(metaModel.Extension1, out var result) ? result : 0L,
+                transdesc = metaModel.Extension2
             };
 
             using (var db = GetObjectDb(UspName))
@@ -604,7 +604,7 @@ namespace Fanex.Athena.Result.DataAccess
 
                     if (metaModel != null)
                     {
-                        result.BetID = IsFastMarket(metaModel.Bettype) ? metaModel.Handicap1.ToString() : (metaModel.BetId ?? 0).ToString();
+                        result.BetID = IsFastMarket(metaModel.Bettype) ? metaModel.Handicap1.ToString() : metaModel.Extension1 ?? "0";
                         result.Bettype = metaModel.Bettype;
                         result.Handicap2 = metaModel.Handicap2;
                     }

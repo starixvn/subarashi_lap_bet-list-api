@@ -13,6 +13,8 @@ using Fanex.Athena.Common.Utility.Helpers;
 using Fanex.Athena.Common.Utility.Services;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Common.Utility.Services.Internal;
+using Fanex.Athena.Result.Controller.ResultService;
+using Fanex.Athena.Result.Controller.ResultService.Interfaces;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.TicketHelper;
@@ -70,6 +72,7 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
             services.AddScoped<IAuthorizationService, AuthorizationService>();
             services.AddScoped<ILicenseeSettingService, LicenseeSettingService>();
             services.AddScoped<IReportSettingService, ReportSettingService>();
+            services.AddScoped<IThirdPartySportResultService, ThirdPartySportResultService>();
 
             return services;
         }
