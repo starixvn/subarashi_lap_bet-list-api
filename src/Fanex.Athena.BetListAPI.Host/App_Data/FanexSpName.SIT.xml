@@ -87,7 +87,6 @@
 		<Setting Key="SiteDB_Lrf_BetList_RNG_Detail" SpName="SiteDB_Lrf_BetList_RNG_Detail" DbName="Shard_DBSID.bodb02.wsv_lap" />
 		<Setting Key="SiteDB_Lrf_BetList_LC_Detail" SpName="SiteDB_Lrf_BetList_LC_Detail" DbName="Shard_DBSID.bodb02.wsv_lap" />
 		<Setting Key="SiteDB_Lrf_BetList_RefNo_Mem" SpName="SiteDB_Lrf_BetList_RefNo_Mem" DbName="Shard_DBSID.bodb02.wsv_lap" />
-		<Setting Key="Lrf_BetList_RefNo_Mem_SabaCoins" SpName="SiteDB_Lrf_BetList_RefNo_Mem" DbName="DBSIDSC.bodb02.wsv_lap" />
 		<Setting Key="SiteDB_Lrf_BetList_LicenseeWL_Mem" SpName="SiteDB_Lrf_BetList_LicenseeWL_Mem" DbName="Shard_DBSID.bodb02.wsv_lap" />
 		<Setting Key="SiteDB_Lrf_BetList_CustomerWL_Mem" SpName="SiteDB_Lrf_BetList_CustomerWL_Mem" DbName="Shard_DBSID.bodb02.wsv_lap" />
 		<Setting Key="SiteDB_Lrf_BetList_Jackpot_Detail" SpName="SiteDB_Lrf_BetList_Jackpot_Detail" DbName="Shard_DBSID.bodb02.wsv_lap" />
