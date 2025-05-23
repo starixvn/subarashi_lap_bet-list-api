@@ -111,7 +111,6 @@ namespace Fanex.Athena.Common.Service.UnitTests
                         ((int)SportType.SabaESportsPinGoal, (int)SportType.Esports, new [] { 151 })
             };
 
-
         private static Dictionary<int, string> SportNameDic
             => new Dictionary<int, string>
             {
@@ -119,5 +118,72 @@ namespace Fanex.Athena.Common.Service.UnitTests
                 { (int)SportType.SabaBasketballPinGoal,  ViewResources.BasketballPinGoal },
                 { (int)SportType.SabaESportsPinGoal, ViewResources.ESportsPinGoal },
             };
+
+        [Test]
+        public void BuildSportTypeXML_WithEmptySportIds_ReturnsEmptyString()
+        {
+            // Arrange
+            string sportIds = "";
+
+            // Act
+            string result = _sportService.BuildSportTypeXML(sportIds);
+
+            // Assert
+            Assert.That(result, Is.EqualTo("All"));
+        }
+
+        [Test]
+        public void BuildSportTypeXML_WithAllSportIds_ReturnsAllString()
+        {
+            // Arrange
+            string sportIds = "All";
+
+            // Act
+            string result = _sportService.BuildSportTypeXML(sportIds);
+
+            // Assert
+            Assert.That(result, Is.EqualTo("All"));
+        }
+
+        [Test]
+        public void BuildSportTypeXML_WithValidSportIds_ReturnsCorrectXML()
+        {
+            // Arrange
+            string sportIds = "1,2,3";
+
+            // Act
+            string result = _sportService.BuildSportTypeXML(sportIds);
+
+            // Assert
+            Assert.That(result, Is.EqualTo("<ROOT><Sport SportType=\"1\" LeagueGroupIds=\"0\"/><Sport SportType=\"2\" LeagueGroupIds=\"0\"/><Sport SportType=\"3\" LeagueGroupIds=\"0\"/></ROOT>"));
+        }
+
+        [Test]
+        public void BuildSportTypeXML_WhenSportIdIsParlay_ShouldReplaceWithParlaySportType()
+        {
+            // Arrange
+            const string sportIds = "-1";
+            const string expectedXml = "<ROOT><Sport SportType=\"999\" LeagueGroupIds=\"0\"/></ROOT>";
+
+            // Act
+            var result = _sportService.BuildSportTypeXML(sportIds);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(expectedXml));
+        }
+
+        [Test]
+        public void BuildSportTypeXML_WhenSportIdIsSabaVirtuaalSports_ShouldReplaceWithSabaVirtualSports()
+        {
+            // Arrange
+            var sportIds = $"{(int)SportType.SabaSoccer}";
+            const string expectedXml = "<ROOT><Sport SportType=\"1\" LeagueGroupIds=\"42,74\"/></ROOT>";
+
+            // Act
+            var result = _sportService.BuildSportTypeXML(sportIds);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(expectedXml));
+        }
     }
 }

@@ -38,9 +38,10 @@ namespace Fanex.Athena.BetList.Controllers
         private readonly IIPService _ipService;
         private readonly ICustomerClassService _customerClassService;
         private readonly ITempFileService _tempFileService;
-        private readonly IBettingTicketCenterSportService _bettingTicketCenterSportService;
+        private readonly ISportService _bettingTicketCenterSportService;
 
 #pragma warning disable S107 // Methods should not have too many parameters
+
         public BettingTicketCenterAdvancedSearchController(
             IAppSettings appSettings,
             IBettingTicketCenterAdvancedSearchDataAccess dataAccess,
@@ -51,7 +52,7 @@ namespace Fanex.Athena.BetList.Controllers
             IContextService contextService,
             ICustomerClassService customerClassService,
             ITempFileService tempFileService,
-            IBettingTicketCenterSportService bettingTicketCenterSportService)
+            ISportService bettingTicketCenterSportService)
 #pragma warning restore S107 // Methods should not have too many parameters
             : base(ticketBuilderService, bettingTicketCenterExcel)
         {
@@ -107,7 +108,6 @@ namespace Fanex.Athena.BetList.Controllers
                 StatusCode = ExportMultipleFile,
                 PageSize = _appSettings.MaxRowForMultipleExcelFiles
             });
-
         }
 
         private IActionResult ServerBusy() => new JsonResult(new

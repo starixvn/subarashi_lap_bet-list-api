@@ -23,7 +23,7 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
         private ITicketBuilderService _ticketBuilderService;
         private IBettingTicketCenterExcel _bettingTicketCenterExcel;
         private ICustomerClassService _customerClassService;
-        private IBettingTicketCenterSportService _bettingTicketCenterSportService;
+        private ISportService _bettingTicketCenterSportService;
 
         [SetUp]
         public void FixtureSetUp()
@@ -33,7 +33,7 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             _ticketBuilderService = Substitute.For<ITicketBuilderService>();
             _bettingTicketCenterExcel = Substitute.For<IBettingTicketCenterExcel>();
             _customerClassService = Substitute.For<ICustomerClassService>();
-            _bettingTicketCenterSportService = Substitute.For<IBettingTicketCenterSportService>();
+            _bettingTicketCenterSportService = Substitute.For<ISportService>();
         }
 
         [TearDown]
@@ -76,7 +76,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
                         && x.IsAllowedCustomerComm == metaModel.HasPlayerCom),
                     metaModel);
             });
-
         }
 
         [Test]
@@ -95,7 +94,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
 
             // Assert
             Assert.That(result.StatusCode, Is.EqualTo((int)HttpStatusCode.NoContent));
-
         }
 
         [Test]
@@ -194,7 +192,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
                     && x.TotalText == null
                     && x.Option.IsAllowedCustomerComm == metaModel.HasPlayerCom));
             });
-
         }
 
         [Test]
@@ -225,7 +222,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
                         && !x.IsAllowedCustomerComm),
                     metaModel);
             });
-
         }
 
         [Test]
@@ -260,7 +256,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
                     && x.TotalText == $"{ViewResources.Totalin} {metaModel.BaseCurrencyName}"
                     && !x.Option.IsAllowedCustomerComm));
             });
-
         }
 
         [Test]
@@ -291,7 +286,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
                         && x.IsAllowedCustomerComm == metaModel.HasPlayerCom),
                     metaModel);
             });
-
         }
 
         [Test]
@@ -326,7 +320,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
                     && x.TotalText == null
                     && x.Option.IsAllowedCustomerComm == metaModel.HasPlayerCom));
             });
-
         }
 
         [Test]
@@ -386,7 +379,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
                     && x.Option.ShowExternalId
                     && x.Option.ShowSystemId));
             });
-
         }
 
         private BettingTicketCenterController CreateController()

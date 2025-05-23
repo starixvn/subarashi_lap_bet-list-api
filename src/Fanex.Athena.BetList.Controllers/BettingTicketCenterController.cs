@@ -21,7 +21,7 @@ namespace Fanex.Athena.BetList.Controllers
         private readonly IBettingTicketCenterDataAccess _dataAccess;
         private readonly IIPService _ipService;
         private readonly ICustomerClassService _customerClassService;
-        private readonly IBettingTicketCenterSportService _bettingTicketCenterSportService;
+        private readonly ISportService _bettingTicketCenterSportService;
 
         public BettingTicketCenterController(
             IBettingTicketCenterDataAccess dataAccess,
@@ -29,7 +29,7 @@ namespace Fanex.Athena.BetList.Controllers
             IBettingTicketCenterExcel bettingTicketCenterExcel,
             IIPService ipService,
             ICustomerClassService customerClassService,
-            IBettingTicketCenterSportService bettingTicketCenterSportService)
+            ISportService bettingTicketCenterSportService)
             : base(ticketBuilderService, bettingTicketCenterExcel)
         {
             _dataAccess = dataAccess;

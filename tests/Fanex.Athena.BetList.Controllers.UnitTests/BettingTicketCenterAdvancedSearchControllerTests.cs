@@ -41,7 +41,7 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
         private IIPService _ipService;
         private IContextService _contextService;
         private ICustomerClassService _customerClassService;
-        private IBettingTicketCenterSportService _sportService;
+        private ISportService _sportService;
 
         [SetUp]
         public void SetUp()
@@ -53,7 +53,7 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             _bettingTicketCenterExcel = Substitute.For<IBettingTicketCenterExcel>();
             _ipService = Substitute.For<IIPService>();
             _tempFileService = Substitute.For<ITempFileService>();
-            _sportService = Substitute.For<IBettingTicketCenterSportService>();
+            _sportService = Substitute.For<ISportService>();
             _contextService = Substitute.For<IContextService>();
             _customerClassService = Substitute.For<ICustomerClassService>();
         }
@@ -131,7 +131,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             {
                 Assert.That(errorCode, Is.EqualTo(ServerBusyErrorCode));
             });
-
         }
 
         [Test]
@@ -160,7 +159,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             {
                 Assert.That(result.StatusCode, Is.EqualTo((int)HttpStatusCode.NoContent));
             });
-
         }
 
         [Test]
@@ -189,7 +187,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             {
                 Assert.That(result.StatusCode, Is.EqualTo((int)HttpStatusCode.NoContent));
             });
-
         }
 
         [Test]
@@ -223,7 +220,6 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             {
                 Assert.That(result.StatusCode, Is.EqualTo((int)HttpStatusCode.NoContent));
             });
-
         }
 
         [Test]
@@ -280,7 +276,7 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             var ticketResult = new GroupTicketResult
             {
                 TotalRows = totalRow,
-                DataPath = new List<string> { "123" }   
+                DataPath = new List<string> { "123" }
             };
             _dataAccess.GetBetListForMultipleCustomersAsync(metaModel, maxRowPerFile).Returns(ticketResult);
 
@@ -476,7 +472,5 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
 
             return controller;
         }
-
-
     }
 }
