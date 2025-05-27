@@ -335,5 +335,8 @@
         SabaKabaddi = -11,
 
         SabaSoccerMarble = -12,
+        
+        WCasino = 136,
+
     }
 }

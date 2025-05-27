@@ -8,6 +8,7 @@ using Fanex.Result.Core.LinkedGames;
 using Fanex.Result.Core.SabaClub;
 using Fanex.Result.Core.SAGaming;
 using Fanex.Result.Core.SportsLottery;
+using Fanex.Result.Core.WCasino;
 using Fanex.Result.Core.WM;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -44,6 +45,7 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
             services.AddSportLotteryResultService(configuration);
             services.AddScoped<IKenoLotteryTGResultFactory, KenoLotteryTGResultApi>();
             services.AddWMResultService(configuration);
+            services.AddWCasinoResultService(configuration);
             services.TryAddSingleton<VaultDbAliasService, VaultDbAliasServiceImp>();
 
             return services;
@@ -83,6 +85,12 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
         private static IServiceCollection AddWMResultService(this IServiceCollection service, IConfiguration configuration)
         {
             service.AddScoped<IWMResultBuilder>(_ => new WMResultBuilder(configuration.GetSection("WMResultImagePath").Value));
+            return service;
+        }
+
+        private static IServiceCollection AddWCasinoResultService(this IServiceCollection service, IConfiguration configuration)
+        {
+            service.AddScoped<IWCasinoResultBuilder>(_ => new WCasinoResultBuilder(configuration.GetSection("WMResultImagePath").Value));
             return service;
         }
 

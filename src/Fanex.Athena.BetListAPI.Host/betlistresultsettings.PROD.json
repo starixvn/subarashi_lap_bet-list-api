@@ -134,7 +134,7 @@
       "Debug": 0
     },
     "VoidbridgeResult": {
-      "Url": "http://10.40.40.248:8066/api/VoidBridgeInternal/GetBetHistoryUrl",
+      "Url": "http://saba-wallet-group-001.3rd-party.t2p.nebula.prod:22080/api/VoidBridgeInternal/GetBetHistoryUrl",
       "VendorId": 12,
       "Debug": 0
     },
@@ -226,5 +226,4 @@
       "Debug": 0
     }
   }
-
 }
