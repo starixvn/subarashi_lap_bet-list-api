@@ -200,6 +200,9 @@
     "RichGamingResult": {
       "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/RichGamingInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    "WCasinoResult": {
+      "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/WCasinoInternal/GetBetHistoryUrl"
     }
   },
   "KenoConfigs": {
@@ -224,5 +227,4 @@
       "Debug": 0
     }
   }
-
 }
