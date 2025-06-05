@@ -184,7 +184,7 @@
     <PackageReference Include="Fanex.BetList.KenoLottery" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.LeapGaming" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.Live22" Version="1.0.0.1" />
-    <PackageReference Include="Fanex.BetList.LiveCasinoCore" Version="1.0.0.9" />
+    <PackageReference Include="Fanex.BetList.LiveCasinoCore" Version="1.0.1" />
     <PackageReference Include="Fanex.BetList.MaxGame" Version="2.0.0.2" />
     <PackageReference Include="Fanex.BetList.MGRNGCasino" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.Nextspin" Version="1.0.0" />
