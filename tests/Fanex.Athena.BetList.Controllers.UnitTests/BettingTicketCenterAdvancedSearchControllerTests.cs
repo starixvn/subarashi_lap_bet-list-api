@@ -33,7 +33,7 @@ public class BettingTicketCenterAdvancedSearchControllerTests
     private ICustomerClassService _customerClassService;
     private IBettingTicketCenterAdvancedSearchDataAccess _dataAccess;
     private IIPService _ipService;
-    private IBettingTicketCenterSportService _sportService;
+    private ISportService _sportService;
     private ITempFileService _tempFileService;
     private ITicketBuilderService _ticketBuilderService;
     private IBettingTicketCenterZipBuilder _zipBuilder;

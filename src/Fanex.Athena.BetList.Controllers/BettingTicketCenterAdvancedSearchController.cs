@@ -29,7 +29,7 @@ public class BettingTicketCenterAdvancedSearchController : BettingTicketCenterBa
     private const int RowsExceedLimitErrorCode = 1001;
     private const int ExportMultipleFile = 1002;
     private readonly IAppSettings _appSettings;
-    private readonly IBettingTicketCenterSportService _bettingTicketCenterSportService;
+    private readonly ISportService _sportService;
     private readonly IContextService _contextService;
     private readonly ICustomerClassService _customerClassService;
     private readonly IBettingTicketCenterAdvancedSearchDataAccess _dataAccess;
@@ -51,7 +51,7 @@ public class BettingTicketCenterAdvancedSearchController : BettingTicketCenterBa
         IContextService contextService,
         ICustomerClassService customerClassService,
         ITempFileService tempFileService,
-        IBettingTicketCenterSportService bettingTicketCenterSportService)
+        ISportService sportService)
 #pragma warning restore S107 // Methods should not have too many parameters
         : base(ticketBuilderService, bettingTicketCenterExcel)
     {
@@ -62,7 +62,7 @@ public class BettingTicketCenterAdvancedSearchController : BettingTicketCenterBa
         _contextService = contextService;
         _customerClassService = customerClassService;
         _tempFileService = tempFileService;
-        _bettingTicketCenterSportService = bettingTicketCenterSportService;
+        _sportService = sportService;
     }
 
     [HttpPost]
@@ -110,7 +110,7 @@ public class BettingTicketCenterAdvancedSearchController : BettingTicketCenterBa
 
     private async Task UpdateMetaModel(AdvancedSearchBetListMetaModel metaModel)
     {
-        metaModel.SportListXML = _bettingTicketCenterSportService.BuildSportTypeXML(metaModel.SportIds);
+        metaModel.SportListXML = _sportService.BuildSportTypeXML(metaModel.SportIds);
         metaModel.HasPlayerCom = _contextService.IsAllowedCustomerComm;
         metaModel.SpecialPlatform = _contextService.SpecialPlatform;
         metaModel.FullCustomerClass = string.Join(",", await _customerClassService.GetAllCustomerClassId());
