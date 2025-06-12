@@ -194,6 +194,20 @@
         "MicrogamingLiveResult": {
             "Url": "http://saba-wallet-group-003.3rd-party.klt2p.gamora.prod:32280/api/MicroGamingLiveInternal/GetBetHistoryUrl",
             "Debug": 0
+        },
+        "PlaytechLiveResult": {
+            "Url": "http://saba-wallet-group-004.3rd-party.klt2p.gamora.prod:32280/api/PlayTechLiveInternal/GetBetHistoryUrl",
+            "Debug": 0
+        },
+        "RichGamingResult": {
+            "Url": "http://saba-wallet-group-001.3rd-party.klt2p.gamora.prod:32280/api/RichGamingInternal/GetBetHistoryUrl",
+            "Debug": 0
+        },
+        "ClotPlayResult": {
+            "Url": "http://saba-wallet-group-004.3rd-party.klt2p.gamora.prod:32280/api/ClotPlayInternal/GetBetHistoryUrl"
+        },
+        "AIGamingResult": {
+            "Url": "http://saba-wallet-group-004.3rd-party.klt2p.gamora.prod:32280/api/AIGamingInternal/GetBetHistoryUrl"
         }
     },
     "KenoConfigs": {
