@@ -203,7 +203,8 @@
       "Debug": 0
     },
     "ClotPlayResult": {
-      "Url": "http://saba-wallet-group-004.3rd-party.t2p.nebula.prod:22080/api/ClotPlayInternal/GetBetHistoryUrl"
+      "Url": "http://saba-wallet-group-004.3rd-party.t2p.nebula.prod:22080/api/ClotPlayInternal/GetBetHistoryUrl",
+      "Debug": 1
     },
     "AIGamingResult": {
       "Url": "http://saba-wallet-group-004.3rd-party.t2p.nebula.prod:22080/api/AIGamingInternal/GetBetHistoryUrl"
