@@ -4,6 +4,7 @@ using Fanex.Athena.TestHelper;
 using Fanex.Result.Core.Racing.DTO;
 using Fanex.Result.Core.Sportsbook.DTO;
 using NSubstitute;
+using Newtonsoft.Json;
 
 namespace Fanex.Athena.Result.DataAccess.Tests
 {
@@ -37,7 +38,7 @@ namespace Fanex.Athena.Result.DataAccess.Tests
             Assert.That(result, Tobe.SameProperties(expectedResult));
         }
 
-        [TestCase(null, "0")]
+        [TestCase(null, "")]
         [TestCase(1, "1")]
         public async Task GetPopUpMatchesAsync_TypeIsSportsbook_ReturnCorrectData(int? betId, string expectedBetId)
         {

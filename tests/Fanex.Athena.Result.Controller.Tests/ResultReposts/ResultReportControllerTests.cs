@@ -1,28 +1,26 @@
+using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Common.Model.DTO;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Result.Controller.ResultReports;
+using Fanex.Athena.Result.Controller.ResultService.Interfaces;
 using Fanex.Athena.Result.Model.MetaModel;
 using Fanex.Athena.Result.Service.Interfaces;
 using Fanex.Athena.TestHelper;
 using Fanex.Result.Core.Base;
-using Fanex.Result.Core.Sportsbook.DTO;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using NSubstitute;
-using Newtonsoft.Json;
-using Fanex.Result.Core.NumberGame.DTO;
-using Fanex.Result.Core.Racing.DTO;
-using Fanex.Athena.Resources;
-using System.Net;
-using System.Text;
-using Fanex.Athena.Common.Constant;
 using Fanex.Result.Core.Bitcoin.DTO;
 using Fanex.Result.Core.Happy5.DTO;
-using SportType = Fanex.Result.Core.Base.SportType;
 using Fanex.Result.Core.LeapGaming.DTO;
-using Fanex.Athena.Result.Service;
+using Fanex.Result.Core.NumberGame.DTO;
+using Fanex.Result.Core.Racing.DTO;
+using Fanex.Result.Core.Sportsbook.DTO;
 using Fanex.Result.Core.VirtualRacing.DTO;
-using Fanex.Athena.Result.Controller.Service.Interfaces;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using NSubstitute;
+using System.Net;
+using System.Text;
+using SportType = Fanex.Result.Core.Base.SportType;
 
 namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
 {

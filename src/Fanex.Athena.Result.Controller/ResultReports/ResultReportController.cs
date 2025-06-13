@@ -28,6 +28,8 @@ namespace Fanex.Athena.Result.Controller.ResultReports
 
         private static readonly Dictionary<int, string> ThirdPartySportTypeMapping = new()
         {
+            { 122, ConfigName.ClotPlayResult},
+            { 121, ConfigName.AIGamingResult}
         };
 
         private static readonly IEnumerable<SportType> ShowingMatchCodeSportTypes =

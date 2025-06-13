@@ -1,4 +1,5 @@
 ﻿namespace Fanex.Athena.Result.Controller.Constants;
+
 public static class ConfigName
 {
     public const string ConfigPrefix = "ResultConfigs";
@@ -80,6 +81,10 @@ public static class ConfigName
     public const string MicrogamingLiveResult = "MicrogamingLiveResult";
 
     public const string PlaytechLiveResult = "PlaytechLiveResult";
-    
+
     public const string RichGamingResult = "RichGamingResult";
+
+    public const string ClotPlayResult = "ClotPlayResult";
+
+    public const string AIGamingResult = "AIGamingResult";
 }
