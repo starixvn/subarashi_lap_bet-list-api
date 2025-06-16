@@ -4,12 +4,14 @@ using Fanex.Athena.Common.Utility.Helpers;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Report.Common.Helpers;
 using Fanex.Athena.Resources;
+using Fanex.Athena.Result.Controller.ResultService.Interfaces;
 using Fanex.Athena.Result.Model.MetaModel;
 using Fanex.Athena.Result.Service.Interfaces;
 using Fanex.Result.Core.Base;
 using Fanex.Result.Core.LeapGaming.DTO;
 using Fanex.Result.Core.Sportsbook.DTO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Athena.Result.Controller.ResultReports
@@ -23,6 +25,12 @@ namespace Fanex.Athena.Result.Controller.ResultReports
 
         private const int ParlayBetType = 9;
         private const int SystemParlayBetType = 29;
+
+        private static readonly Dictionary<int, string> ThirdPartySportTypeMapping = new()
+        {
+            { 122, ConfigName.ClotPlayResult},
+            { 121, ConfigName.AIGamingResult}
+        };
 
         private static readonly IEnumerable<SportType> ShowingMatchCodeSportTypes =
         [
@@ -46,6 +54,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         private readonly IResultService _resultService;
         private readonly ICacheRefAdapter _cacheRefAdapter;
         private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly IThirdPartySportResultService _thirdPartySportResultService;
 
         private string _htmlResult;
         private MemoryStream _excelStream;
@@ -55,11 +64,13 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         public ResultReportController(
             IResultService resultService,
             ICacheRefAdapter cacheRefAdapter,
-            IWebHostEnvironment webHostEnvironment)
+            IWebHostEnvironment webHostEnvironment,
+            IThirdPartySportResultService thirdPartySportResultService)
         {
             _resultService = resultService;
             _cacheRefAdapter = cacheRefAdapter;
             _hostingEnvironment = webHostEnvironment;
+            _thirdPartySportResultService = thirdPartySportResultService;
         }
 
         [HttpPost]
@@ -130,6 +141,12 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         [HttpPost]
         public async Task<IActionResult> ResultPopup(ResultPopupMetaModel metalModel)
         {
+            if (ThirdPartySportTypeMapping.TryGetValue(metalModel.SportType, out var configKey))
+            {
+                Response.StatusCode = StatusCodes.Status202Accepted;
+                return new ContentResult { Content = _thirdPartySportResultService.GetResultUrl(metalModel, configKey) };
+            }
+
             await GetPopUpData(metalModel);
             return Content(_htmlResult);
         }
@@ -209,7 +226,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             }
             else if (metalModel.Bettype == (int)Common.Constant.BetType.SingleMatchParlay)
             {
-                var singleMatchParlayData = await _resultService.GetPopUpSingleMatchParlayAsync(metalModel.MatchId, metalModel.BetId?.ToString());
+                var singleMatchParlayData = await _resultService.GetPopUpSingleMatchParlayAsync(metalModel.MatchId, metalModel.Extension1);
                 if (singleMatchParlayData != null)
                 {
                     _htmlResult = _resultService.HtmlParser(new List<Sportsbook> { singleMatchParlayData }, setting);
@@ -253,7 +270,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
 
         private void GetLeapGamingPopUpData(ResultPopupMetaModel metalModel, ResultSetting setting)
         {
-            var leapgamings = new List<LeapGaming> { new LeapGaming { TransDesc = metalModel.TransDesc } };
+            var leapgamings = new List<LeapGaming> { new LeapGaming { TransDesc = metalModel.Extension2 } };
 
             _htmlResult = _resultService.HtmlParser(leapgamings, setting);
         }

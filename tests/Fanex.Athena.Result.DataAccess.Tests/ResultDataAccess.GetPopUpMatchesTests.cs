@@ -4,6 +4,7 @@ using Fanex.Athena.TestHelper;
 using Fanex.Result.Core.Racing.DTO;
 using Fanex.Result.Core.Sportsbook.DTO;
 using NSubstitute;
+using Newtonsoft.Json;
 
 namespace Fanex.Athena.Result.DataAccess.Tests
 {
@@ -26,8 +27,8 @@ namespace Fanex.Athena.Result.DataAccess.Tests
                 matchid = metaModel.MatchId,
                 raceno = expectedRaceNo,
                 bettype = metaModel.Bettype,
-                betid = metaModel.BetId,
-                transdesc = metaModel.TransDesc
+                betid = metaModel.Extension1,
+                transdesc = metaModel.Extension2
             };
 
             // Action
@@ -37,7 +38,7 @@ namespace Fanex.Athena.Result.DataAccess.Tests
             Assert.That(result, Tobe.SameProperties(expectedResult));
         }
 
-        [TestCase(null, "0")]
+        [TestCase(null, "")]
         [TestCase(1, "1")]
         public async Task GetPopUpMatchesAsync_TypeIsSportsbook_ReturnCorrectData(int? betId, string expectedBetId)
         {
@@ -53,7 +54,7 @@ namespace Fanex.Athena.Result.DataAccess.Tests
             MapReaderData(dataMapping);
 
             var metaModel = BuildResultPopupMetalModel();
-            metaModel.BetId = betId;
+            metaModel.Extension1 = betId.ToString();
 
             var expectedData = GetExpectedSportsbookData();
             expectedData.BetID = expectedBetId;
@@ -61,7 +62,6 @@ namespace Fanex.Athena.Result.DataAccess.Tests
             expectedData.Handicap2 = metaModel.Handicap2;
 
             var expectedResult = new List<Sportsbook> { expectedData };
-
 
             // Action
             var result = await DataAccess.GetPopUpMatchesAsync<Sportsbook>(metaModel);
@@ -73,7 +73,6 @@ namespace Fanex.Athena.Result.DataAccess.Tests
                 Assert.That(result[0], Tobe.SameProperties(expectedResult[0]));
             });
         }
-
 
         [TestCase(221)]
         [TestCase(222)]
@@ -310,8 +309,8 @@ namespace Fanex.Athena.Result.DataAccess.Tests
                 MatchId = MatchId,
                 RaceNo = RaceNo,
                 Bettype = BettypeId,
-                BetId = BetId,
-                TransDesc = Transdesc
+                Extension1 = BetId.ToString(),
+                Extension2 = Transdesc
             };
         }
     }

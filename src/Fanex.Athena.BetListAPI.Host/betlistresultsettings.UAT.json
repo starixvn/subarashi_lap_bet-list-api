@@ -184,7 +184,7 @@
       "Debug": 0
     },
     "FunkyGamesResult": {
-      "Url": "http://10.40.40.248:7116/api/FunkyGamesInternal/GetBetHistoryUrl",
+      "Url": "http://10.40.40.248:7116/api/FunkyGamesInternal/GetBetHistoryUrl"
     },
     "HOTDOGResult": {
       "Url": "http://10.40.40.248:7116/api/HOTDOGInternal/GetBetHistoryUrl",
@@ -201,6 +201,12 @@
     "RichGamingResult": {
       "Url": "http://saba-wallet-group-001.3rd-party.t2p.nebula.prod:22080/api/RichGamingInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    "ClotPlayResult": {
+      "Url": "http://saba-wallet-group-preprod.3rd-party.t2p.nebula.prod:22080/api/ClotPlayInternal/GetBetHistoryUrl"
+    },
+    "AIGamingResult": {
+      "Url": "http://saba-wallet-group-preprod.3rd-party.t2p.nebula.prod:22080/api/ClotPlayInternal/GetBetHistoryUrl"
     }
   },
   "KenoConfigs": {

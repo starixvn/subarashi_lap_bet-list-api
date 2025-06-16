@@ -27,9 +27,13 @@
 
         public DateTime? WinLossDate { get; set; }
 
-        public long? BetId { get; set; }
+        public string Extension1 { get; set; }
+
+        public string Extension2 { get; set; }
 
         public int CustId { get; set; }
+
+        public string SiteId { get; set; }
 
         public int BetCheck { get; set; }
 
@@ -37,8 +41,8 @@
 
         public int Handicap2 { get; set; }
 
-        public string LanguageCode { get; set; }
+        public string TransId3rd { get; set; }
 
-        public string TransDesc { get; set; }
+        public string LanguageCode { get; set; }
     }
 }

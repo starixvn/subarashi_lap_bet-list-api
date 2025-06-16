@@ -202,6 +202,12 @@
     "RichGamingResult": {
       "Url": "http://saba-wallet-group-001.3rd-party.t2p.nebula.prod:22080/api/RichGamingInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    "ClotPlayResult": {
+      "Url": "http://saba-wallet-group-004.3rd-party.t2p.nebula.prod:22080/api/ClotPlayInternal/GetBetHistoryUrl"
+    },
+    "AIGamingResult": {
+      "Url": "http://saba-wallet-group-004.3rd-party.t2p.nebula.prod:22080/api/AIGamingInternal/GetBetHistoryUrl"
     }
   },
   "KenoConfigs": {

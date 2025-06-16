@@ -99,16 +99,17 @@ namespace Fanex.Athena.Common.Service.UnitTests
         private static List<(int Id, int SportTypeId, IEnumerable<int> LeagueGroupIds)> SabaSportList
             => new List<(int Id, int SportTypeId, IEnumerable<int> LeagueGroupIds)>
             {
-                        ((int)SportType.SabaSoccer, (int)SportType.Soccer, new [] { 42, 74 }),
-                        ((int)SportType.SabaBasketball, (int)SportType.BasketBall, new [] { 42 }),
-                        ((int)SportType.SabaCricket, (int)SportType.Cricket, new [] { 42 }),
-                        ((int)SportType.SabaFutsal, (int)SportType.Soccer, new [] { 108 }),
-                        ((int)SportType.SabaTennis, (int)SportType.Tennis, new [] { 42 }),
-                        ((int)SportType.SabaIceHockey, (int)SportType.IceHockey, new [] { 42 }),
-                        ((int)SportType.SabaKabaddi, (int)SportType.Kabaddi, new [] { 42 }),
-                        ((int)SportType.SabaSoccerPingoal, (int)SportType.Soccer, new [] { 113 }),
-                        ((int)SportType.SabaBasketballPinGoal, (int)SportType.BasketBall, new [] { 122 }),
-                        ((int)SportType.SabaESportsPinGoal, (int)SportType.Esports, new [] { 151 })
+                ((int)SportType.SabaSoccer, (int)SportType.Soccer, new [] { 42, 74 }),
+                ((int)SportType.SabaBasketball, (int)SportType.BasketBall, new [] { 42 }),
+                ((int)SportType.SabaCricket, (int)SportType.Cricket, new [] { 42 }),
+                ((int)SportType.SabaFutsal, (int)SportType.Soccer, new [] { 108 }),
+                ((int)SportType.SabaTennis, (int)SportType.Tennis, new [] { 42 }),
+                ((int)SportType.SabaIceHockey, (int)SportType.IceHockey, new [] { 42 }),
+                ((int)SportType.SabaKabaddi, (int)SportType.Kabaddi, new [] { 42 }),
+                ((int)SportType.SabaSoccerPingoal, (int)SportType.Soccer, new [] { 113 }),
+                ((int)SportType.SabaBasketballPinGoal, (int)SportType.BasketBall, new [] { 122 }),
+                ((int)SportType.SabaESportsPinGoal, (int)SportType.Esports, new [] { 151 }),
+                ((int)SportType.SabaSoccerMarble, (int)SportType.Soccer, new [] { 252 })
             };
 
         private static Dictionary<int, string> SportNameDic
@@ -163,7 +164,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
         {
             // Arrange
             const string sportIds = "-1";
-            const string expectedXml = "<ROOT><Sport SportType=\"999\" LeagueGroupIds=\"0\"/></ROOT>";
+            const string expectedXml = "<ROOT><Sport SportType=\"-1\" LeagueGroupIds=\"0\"/></ROOT>";
 
             // Act
             var result = _sportService.BuildSportTypeXML(sportIds);

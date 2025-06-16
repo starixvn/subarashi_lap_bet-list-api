@@ -1,27 +1,26 @@
+using Fanex.Athena.Common.Constant;
 using Fanex.Athena.Common.Model.DTO;
 using Fanex.Athena.Common.Utility.Services.Interfaces;
 using Fanex.Athena.Result.Controller.ResultReports;
+using Fanex.Athena.Result.Controller.ResultService.Interfaces;
 using Fanex.Athena.Result.Model.MetaModel;
 using Fanex.Athena.Result.Service.Interfaces;
 using Fanex.Athena.TestHelper;
 using Fanex.Result.Core.Base;
-using Fanex.Result.Core.Sportsbook.DTO;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using NSubstitute;
-using Newtonsoft.Json;
-using Fanex.Result.Core.NumberGame.DTO;
-using Fanex.Result.Core.Racing.DTO;
-using Fanex.Athena.Resources;
-using System.Net;
-using System.Text;
-using Fanex.Athena.Common.Constant;
 using Fanex.Result.Core.Bitcoin.DTO;
 using Fanex.Result.Core.Happy5.DTO;
-using SportType = Fanex.Result.Core.Base.SportType;
 using Fanex.Result.Core.LeapGaming.DTO;
-using Fanex.Athena.Result.Service;
+using Fanex.Result.Core.NumberGame.DTO;
+using Fanex.Result.Core.Racing.DTO;
+using Fanex.Result.Core.Sportsbook.DTO;
 using Fanex.Result.Core.VirtualRacing.DTO;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using NSubstitute;
+using System.Net;
+using System.Text;
+using SportType = Fanex.Result.Core.Base.SportType;
 
 namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
 {
@@ -33,6 +32,7 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
 
         private IResultService _resultService;
         private IWebHostEnvironment _webHostEnvironment;
+        private IThirdPartySportResultService _thirdPartySportResultService;
 
         [SetUp]
         public void SetUp()
@@ -40,6 +40,7 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
             _resultService = Substitute.For<IResultService>();
             _cacheRefAdapter = Substitute.For<ICacheRefAdapter>();
             _webHostEnvironment = Substitute.For<IWebHostEnvironment>();
+            _thirdPartySportResultService = Substitute.For<IThirdPartySportResultService>();
         }
 
         [TearDown]
@@ -401,7 +402,6 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
             Assert.That(result.Content, Is.EqualTo(HtmlResult));
         }
 
-
         [Test]
         public async Task ResultPopup_NumberGameSport_ResultIsCorrect()
         {
@@ -465,7 +465,7 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
                 metaModel.Bettype = (int)BetType.SingleMatchParlay;
 
                 Sportsbook data = null;
-                _resultService.GetPopUpSingleMatchParlayAsync(metaModel.MatchId, metaModel.BetId?.ToString())
+                _resultService.GetPopUpSingleMatchParlayAsync(metaModel.MatchId, metaModel.Extension1?.ToString())
                     .Returns(Task.FromResult(data));
 
                 // Action
@@ -485,7 +485,7 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
             metaModel.Bettype = (int)BetType.SingleMatchParlay;
 
             var data = new Sportsbook();
-            _resultService.GetPopUpSingleMatchParlayAsync(metaModel.MatchId, metaModel.BetId?.ToString())
+            _resultService.GetPopUpSingleMatchParlayAsync(metaModel.MatchId, metaModel.Extension1?.ToString())
                 .Returns(Task.FromResult(data));
             _resultService.HtmlParser(Arg.Is<List<Sportsbook>>(x => x[0] == data), Arg.Any<ResultSetting>())
                 .Returns(HtmlResult);
@@ -527,7 +527,7 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
             var controller = CreateController();
             var metaModel = CreateResultPopupMetaModel(SportType.LeapGamingVirtualSports);
 
-            _resultService.HtmlParser(Arg.Is<List<LeapGaming>>(x => x[0].TransDesc == metaModel.TransDesc),
+            _resultService.HtmlParser(Arg.Is<List<LeapGaming>>(x => x[0].TransDesc == metaModel.Extension2),
                 Arg.Any<ResultSetting>()).Returns(HtmlResult);
 
             // Action
@@ -565,7 +565,7 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
                 MatchId = 1,
                 RaceNo = 2,
                 Bettype = 3,
-                BetId = 4,
+                Extension1 = 4.ToString(),
                 SportType = (int)sportType
             };
         }
@@ -575,7 +575,8 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
             var controller = new ResultReportController(
                 _resultService,
                 _cacheRefAdapter,
-                _webHostEnvironment);
+                _webHostEnvironment,
+                _thirdPartySportResultService);
             WebHelper.SetUpFakeControllerContext(controller);
             return controller;
         }
