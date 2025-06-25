@@ -4,6 +4,6 @@ namespace Fanex.Athena.Result.Controller.ResultService.Interfaces
 {
     public interface IThirdPartySportResultService
     {
-        public string GetResultUrl(ResultPopupMetaModel metaModel, string configKey);
+        public Uri GetResultUrl(ResultPopupMetaModel metaModel, string configKey);
     }
 }

@@ -144,7 +144,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             if (ThirdPartySportTypeMapping.TryGetValue(metalModel.SportType, out var configKey))
             {
                 Response.StatusCode = StatusCodes.Status202Accepted;
-                return new ContentResult { Content = _thirdPartySportResultService.GetResultUrl(metalModel, configKey) };
+                return new ContentResult { Content = _thirdPartySportResultService.GetResultUrl(metalModel, configKey).ToString() };
             }
 
             await GetPopUpData(metalModel);

@@ -12,7 +12,7 @@ namespace Fanex.Athena.Result.Controller.ResultService
         public ThirdPartySportResultService(IBetlistResultGetterFactory factory)
             => _factory = factory;
 
-        public string GetResultUrl(ResultPopupMetaModel metaModel, string configKey)
+        public Uri GetResultUrl(ResultPopupMetaModel metaModel, string configKey)
         {
             var resultApi = _factory.CreateThirdPartyResultGetter(ConfigHelpers.GetConfigKey(configKey));
             var gameId3rd = metaModel.Extension2;
@@ -23,7 +23,8 @@ namespace Fanex.Athena.Result.Controller.ResultService
                 BetTypeId = metaModel.Bettype
             };
 
-            return resultApi.GetResultGET(request);
+            var url = resultApi.GetResultGET(request);
+            return new Uri(url);
         }
     }
 }
