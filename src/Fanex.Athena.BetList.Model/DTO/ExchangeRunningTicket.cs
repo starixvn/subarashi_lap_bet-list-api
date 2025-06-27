@@ -25,7 +25,7 @@ namespace Fanex.Athena.BetList.Model.DTO
 
         public string MarketName { get; set; }
 
-        public int SelectionId { get; set; }
+        public long SelectionId { get; set; }
 
         public string SelectionName { get; set; }
 
