@@ -88,7 +88,8 @@
             objectDb.SetParameterValue("Username", metaModel.Username ?? string.Empty);
             objectDb.SetParameterValue("PageSize", metaModel.PageSize);
             objectDb.SetParameterValue("PageIndex", metaModel.PageIndex);
-            objectDb.SetParameterValue("Sort", metaModel.Sort);
+            objectDb.SetParameterValue("SortType", metaModel.SortType);
+            objectDb.SetParameterValue("SortOrder", metaModel.SortOrder);
             objectDb.SetParameterValue("ConvertToBaseCur", metaModel.IsConvertAllToBaseCurrency);
             objectDb.SetParameterValue("SumStake", 0);
             objectDb.SetParameterValue("TotalRows", 0);

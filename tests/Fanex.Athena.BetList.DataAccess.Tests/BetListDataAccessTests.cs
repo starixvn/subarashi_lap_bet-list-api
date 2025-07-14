@@ -172,7 +172,8 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             // Assert
             Assert.Multiple(() =>
             {
-                ObjectDb.Received(1).SetParameterValue("Sort", metaModel.SortBy + " " + metaModel.SortOrder);
+                ObjectDb.Received(1).SetParameterValue("SortOrder", metaModel.SortOrder);
+                ObjectDb.Received(1).SetParameterValue("SortType", metaModel.SortType);
                 ObjectDb.Received(1).SetParameterValue("AgentList", metaModel.AgentListXml);
                 ObjectDb.Received(1).SetParameterValue("FromDate", metaModel.FromDate);
                 ObjectDb.Received(1).SetParameterValue("ToDate", metaModel.ToDate);
@@ -195,7 +196,8 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             // Assert
             Assert.Multiple(() =>
             {
-                ObjectDb.Received(1).SetParameterValue("Sort", metaModel.SortBy + " " + metaModel.SortOrder);
+                ObjectDb.Received(1).SetParameterValue("SortOrder", metaModel.SortOrder);
+                ObjectDb.Received(1).SetParameterValue("SortType", metaModel.SortType);
                 ObjectDb.Received(1).SetParameterValue("AgentList", metaModel.AgentListXml);
                 ObjectDb.Received(1).SetParameterValue("FromDate", metaModel.FromDate);
                 ObjectDb.Received(1).SetParameterValue("ToDate", metaModel.ToDate);
@@ -221,7 +223,8 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             // Assert
             Assert.Multiple(() =>
             {
-                ObjectDb.Received(1).SetParameterValue("Sort", metaModel.SortBy + " " + metaModel.SortOrder);
+                ObjectDb.Received(1).SetParameterValue("SortOrder", metaModel.SortOrder);
+                ObjectDb.Received(1).SetParameterValue("SortType", metaModel.SortType);
                 ObjectDb.Received(1).SetParameterValue("AgentList", metaModel.AgentListXml);
                 ObjectDb.Received(1).SetParameterValue("FromDate", metaModel.FromDate);
                 ObjectDb.Received(1).SetParameterValue("ToDate", metaModel.ToDate);

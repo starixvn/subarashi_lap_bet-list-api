@@ -3,7 +3,7 @@ using Fanex.Core.Utils;
 
 namespace Fanex.Athena.BetList.Model.MetaModel
 {
-    public class MixParlayMetaModel: IValidationMetaModel, IAgentMetaModel, ICurrencyIdMetaModel,
+    public class MixParlayMetaModel : IValidationMetaModel, IAgentMetaModel, ICurrencyIdMetaModel,
                                       IMetaModelProductCodeList, ISubsidiarySearchMetaModel
     {
         public int Page { get; set; }
@@ -18,9 +18,9 @@ namespace Fanex.Athena.BetList.Model.MetaModel
 
         public DateTime ToDate { get; set; }
 
-        public string SortBy { get; set; }
+        public byte SortType { get; set; }
 
-        public string SortOrder { get; set; }
+        public byte SortOrder { get; set; }
 
         public string AgentListXml { get; set; }
 

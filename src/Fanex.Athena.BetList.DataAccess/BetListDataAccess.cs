@@ -95,26 +95,18 @@
 
         private static void SortData(BetListMetaModel metaModel, SortableList<LrfTicket> ticketList)
         {
-            if (!metaModel.IsServerPaging && !string.IsNullOrWhiteSpace(metaModel.SortBy))
+            if (!metaModel.IsServerPaging)
             {
-                // Because Winloss and Commission are shared the same column (in grid)
-                // so we need to sort by the total of two values which is stored in WinlossComm property.
-                if (metaModel.SortBy.Equals("WinLoss", StringComparison.OrdinalIgnoreCase))
+                var sortBy = metaModel.SortType switch
                 {
-                    metaModel.SortBy = "WinLossComm";
-                }
+                    (byte)SortTypes.TransDate => "TransDate",
+                    (byte)SortTypes.Stake => "Stake",
+                    (byte)SortTypes.WinLoss => "WinLossComm",
+                    (byte)SortTypes.LicenseeWL => "LicenseeWLComm",
+                    _ => "TransDate"
+                };
 
-                if (metaModel.SortBy.Equals("LicenseeWL", StringComparison.OrdinalIgnoreCase))
-                {
-                    metaModel.SortBy = "LicenseeWLComm";
-                }
-
-                if (metaModel.SortBy.Equals("nickname", StringComparison.OrdinalIgnoreCase))
-                {
-                    metaModel.SortBy = "ExternalId";
-                }
-
-                ticketList.Sort(metaModel.SortBy, metaModel.SortOrder.Equals("asc", StringComparison.OrdinalIgnoreCase));
+                ticketList.Sort(sortBy, metaModel.SortOrder == (byte)Common.Constant.SortOrders.Ascending);
             }
         }
     }
