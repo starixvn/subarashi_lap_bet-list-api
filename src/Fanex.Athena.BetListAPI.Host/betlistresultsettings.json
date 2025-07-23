@@ -46,16 +46,13 @@
     "LinkedGamesResult": {
       "Url": "http://10.40.40.248:8121/api/LinkedGamesInternal/GetBetHistoryUrl",
       "VendorId": 63,
-      "ProxyIP": "lisasqd.nebula.prod",
-      "ProxyPort": 8801,
+ 
       "Debug": 0
     },
     "Soccer5Result": {
       "Url": "//plggc.155551.com/LinkedGamesWebPortal/GameResult",
       "VendorId": 63,
       "Debug": 0,
-      "ProxyIP": "lisasqd.nebula.prod",
-      "ProxyPort": 8801,
       "SiteId": 4100200
     },
     "JiliResult": {
@@ -74,8 +71,6 @@
     "MaxGameResult": {
       "Url": "http://10.40.40.248:7020/api/MaxGameInternal/GetBetHistoryUrl",
       "VendorId": 60,
-      "ProxyIP": "lisasqd.nebula.prod",
-      "ProxyPort": 8801,
       "Debug": 0
     },
     "MGRNGResult": {

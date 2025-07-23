@@ -46,8 +46,6 @@
     "LinkedGamesResult": {
       "Url": "http://lg.gamora.prod/api/LinkedGamesInternal/GetBetHistoryUrl",
       "VendorId": 63,
-      "ProxyIP": "iusqd.gamora.prod",
-      "ProxyPort": 8801,
       "Debug": 0
     },
     "Soccer5Result": {
@@ -74,8 +72,6 @@
     "MaxGameResult": {
       "Url": "http://saba-wallet-group-002.3rd-party.klt2p.gamora.prod:32280/api/MaxGameInternal/GetBetHistoryUrl",
       "VendorId": 60,
-      "ProxyIP": "iusqd.gamora.prod",
-      "ProxyPort": 8801,
       "Debug": 0
     },
     "MGRNGResult": {
