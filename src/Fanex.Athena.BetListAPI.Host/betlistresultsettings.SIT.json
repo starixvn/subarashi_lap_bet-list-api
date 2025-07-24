@@ -46,16 +46,12 @@
     "LinkedGamesResult": {
       "Url": "http://10.99.99.180:9121/api/LinkedGamesInternal/GetBetHistoryUrl",
       "VendorId": 63,
-      "ProxyIP": "lisasqd.nebula.prod",
-      "ProxyPort": 8801,
       "Debug": 0
     },
     "Soccer5Result": {
       "Url": "//plggc.155551.com/LinkedGamesWebPortal/GameResult",
       "VendorId": 63,
       "Debug": 0,
-      "ProxyIP": "lisasqd.nebula.prod",
-      "ProxyPort": 8801,
       "SiteId": 4100200
     },
     "JiliResult": {

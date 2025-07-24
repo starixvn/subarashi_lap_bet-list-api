@@ -76,6 +76,8 @@ ENV DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE=false
 ENV ASPNETCORE_HTTP_PORTS=5000
 EXPOSE 5000
 
+# Setup ssl certificates
+#
 # Dont run as root
 RUN adduser --disabled-password \
   --home /app \

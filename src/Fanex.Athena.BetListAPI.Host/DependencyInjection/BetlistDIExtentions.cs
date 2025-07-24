@@ -57,8 +57,8 @@ namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
             });
             services.AddScoped<IMetaModelBindingService, BaseMetaModelBindingService>();
             services.AddScoped<ICurrencyValidation, CurrencyValidation>();
-            services.AddScoped<ICustomMemoryCache, CustomMemoryCache>();
-            services.AddScoped<IMemoryCacheService, MemoryCacheService>();
+            services.AddSingleton<ICustomMemoryCache, CustomMemoryCache>();
+            services.AddSingleton<IMemoryCacheService, MemoryCacheService>();
             services.AddScoped<IFileSystem, FileSystem>();
             services.AddScoped<ITempFileService, TempFileService>();
             services.AddSingleton<IShardInfoAccessor, ShardInfoAccessor>();

@@ -89,7 +89,6 @@ ResultCoreManager.RegisterRefDataHelper(new RefDataHelper());
 app.UsePing();
 
 app.MapGet("/", async context => { await context.Response.WriteAsync("This is Bet list API"); });
-
 app.UseErrorHandler();
 if (app.Environment.IsDevelopment() || string.Equals(configuration["UseErrorHandler"], "0"))
 {
