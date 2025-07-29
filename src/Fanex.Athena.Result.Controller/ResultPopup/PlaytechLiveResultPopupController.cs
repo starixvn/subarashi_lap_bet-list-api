@@ -27,7 +27,7 @@ namespace Fanex.Athena.Result.Controller.ResultPopup
                 BetTypeId = metaModel.BetTypeId
             };
 
-            return new ContentResult { Content = _resultApi.GetResultGET(request) };
+            return new ContentResult { Content = _resultApi.GetResultPOST(request) };
         }
     }
 }
