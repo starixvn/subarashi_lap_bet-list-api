@@ -3,6 +3,7 @@
 using Common.Services.Interfaces;
 using Data;
 using Data.SqlServer;
+using Fanex.Athena.Common.Services;
 
 public class ShardDbSettingProvider(IShardInfoAccessor shardInfoAccessor)
 {
@@ -10,12 +11,12 @@ public class ShardDbSettingProvider(IShardInfoAccessor shardInfoAccessor)
 
     public IObjectDb CreateObjectDbFunc(string settingKey, int? commandTimeout, string serverIp)
     {
-        var shardSpKey = shardInfoAccessor.GetShardSPKey(settingKey);
         var server = serverIp;
 
-        if (shardInfoAccessor.TryUseShardDB(shardSpKey, out var dbServer))
+        if (shardInfoAccessor.TryUseShardDB(settingKey, out var dbServer))
         {
             server = dbServer;
+            settingKey = shardInfoAccessor.GetShardSPKey(settingKey);
         }
 
         return new SqlObjectDb(settingKey, commandTimeout, server);
