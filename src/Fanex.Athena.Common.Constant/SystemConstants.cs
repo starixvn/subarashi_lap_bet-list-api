@@ -16,6 +16,6 @@ public static class SystemConstants
         "INR", "PHP", "MP",
         "NPR", "TRY", "USDT",
         "JPY", "MXN", "NGN",
-        "BRL", "PKR"
+        "BRL", "PKR", "ZAR"
     });
 }
