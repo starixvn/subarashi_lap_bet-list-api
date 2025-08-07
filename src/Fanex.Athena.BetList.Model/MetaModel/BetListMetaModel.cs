@@ -25,7 +25,7 @@
             PageIndex = 1;
             PageSize = int.MaxValue - 1;
             SortType = (byte)SortTypes.TransDate;
-            SortOrder = (byte)SortOrders.Descending;
+            SortOrder = SortOrders.Descending.ToString();
         }
 
         public bool HasPlayerCom { get; set; }
@@ -46,7 +46,9 @@
 
         public byte? SortType { get; set; }
 
-        public byte? SortOrder { get; set; }
+        public string SortBy { get; set; }
+
+        public string SortOrder { get; set; }
 
         public bool IsExportExcel { get; set; }
 

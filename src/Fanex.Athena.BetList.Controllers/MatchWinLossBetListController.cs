@@ -132,7 +132,7 @@ namespace Fanex.Athena.BetList.Controllers
                     FromDate = metaModel.FromDate.Date,
                     ToDate = metaModel.ToDate.Date,
                     SortType = metaModel.SortType,
-                    SortOrder = metaModel.SortOrder,
+                    SortOrder = metaModel.SortOrder.ToString(),
                     ProductCodeList = metaModel.ProductCodeList,
                     SubsidiarySearch = metaModel.SubsidiarySearch,
                     SubsidiaryList = metaModel.SubsidiaryList,
