@@ -41,7 +41,7 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
             controller.Index(metaModel);
 
             //Assert
-            _thirdPartyResult.ReceivedWithAnyArgs().GetResultGET(Arg.Any<ResultRequest>());
+            _thirdPartyResult.ReceivedWithAnyArgs().GetResultPOST(Arg.Any<ResultRequest>());
         }
 
         private PlaytechResultPopupController CreateController()

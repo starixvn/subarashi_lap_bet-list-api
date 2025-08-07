@@ -27,8 +27,7 @@ namespace Fanex.Athena.Common.Services
 
         public bool UseShardDB => !ForceIgnoreSharding && !string.IsNullOrEmpty(SiteDBServer);
 
-        public string GetShardSPKey(string key) => key.StartsWith(PrefixSiteDB, StringComparison.OrdinalIgnoreCase)
-            ? key : $"SiteDB_{key.Substring(PrefixSharding.Length)}";
+        public string GetShardSPKey(string key) => key.StartsWith(PrefixSharding, StringComparison.OrdinalIgnoreCase) ? $"SiteDB_{key.Substring(PrefixSharding.Length)}" : key;
 
         private bool IsShardSP(string key) => key.StartsWith(PrefixSharding, StringComparison.OrdinalIgnoreCase)
             || key.StartsWith(PrefixSiteDB, StringComparison.OrdinalIgnoreCase);

@@ -11,6 +11,7 @@ using Interfaces;
 using Model.DTO;
 using Model.MetaModel;
 using Newtonsoft.Json;
+using Fanex.Athena.BetList.DataAccess.Util;
 
 public class BettingTicketCenterAdvancedSearchDataAccess(
     IBalanceUpDataAccess balanceUpDataAccess,
@@ -139,14 +140,6 @@ public class BettingTicketCenterAdvancedSearchDataAccess(
         groupData.TotalRows = Converter.ToInt(outSqlParams[DbColumn.TotalRows]);
     }
 
-    private static void AddSortParameter(IObjectDb db, string sortBy, string sortOrder)
-    {
-        if (!string.IsNullOrWhiteSpace(sortBy))
-        {
-            db.SetParameterValue(DbColumn.Sort, sortBy + " " + sortOrder);
-        }
-    }
-
     private void SaveDataToFile(GroupTicketResult groupData, TicketResult ticket)
     {
         var data = JsonConvert.SerializeObject(ticket);
@@ -167,7 +160,6 @@ public class BettingTicketCenterAdvancedSearchDataAccess(
         db.SetParameterValue(DbColumn.ConvertToBaseCur, metaModel.IsConvertAll);
         db.SetParameterValue(DbColumn.Ip, metaModel.Ip);
 
-
         db.SetParameterValue(DbColumn.TotalRows, null);
         db.SetParameterValue(DbColumn.SumStake, null);
         db.SetParameterValue(DbColumn.SumWinLost, null);
@@ -175,7 +167,7 @@ public class BettingTicketCenterAdvancedSearchDataAccess(
         db.SetParameterValue(DbColumn.SumComm, null);
         db.SetParameterValue(DbColumn.SumPlayerComm, null);
 
-        AddSortParameter(db, metaModel.SortBy, metaModel.SortOrder);
+        AddSortParameter(db, metaModel);
     }
 
     private void AddCommonParameters(IObjectDb db, AdvancedSearchBetListMetaModel metaModel)
@@ -200,5 +192,11 @@ public class BettingTicketCenterAdvancedSearchDataAccess(
         db.SetParameterValue(DbColumn.CustomerClass, metaModel.CustomerClass);
         db.SetParameterValue(DbColumn.FullCustomerClass, metaModel.FullCustomerClass);
         db.SetParameterValue(DbColumn.LeagueGroupIds, metaModel.LeagueGroupIds);
+    }
+
+    public static void AddSortParameter(IObjectDb db, BaseBettingTicketMetaModel metaModel)
+    {
+        db.SetParameterValue("SortType", metaModel.SortType);
+        db.SetParameterValue("SortOrder", metaModel.SortOrder);
     }
 }

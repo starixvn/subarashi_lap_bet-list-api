@@ -5,11 +5,13 @@ using Fanex.Athena.BetListAPI.Host.HealthChecks;
 using Fanex.Athena.BetListAPI.Host.Middlewares;
 using Fanex.Athena.BetListAPI.Host.Settings;
 using Fanex.Athena.Common.Services;
+using Fanex.Athena.Common.Services.Interfaces;
 using Fanex.Athena.Common.Utility;
 using Fanex.BetList.Core;
 using Fanex.BetList.Core.RemotingRef;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
+using Fanex.Data.Vault;
 using Fanex.RemotingRef;
 using Fanex.Result.Core.Base;
 using Fanex.Result.Core.RemotingRef;
@@ -73,11 +75,19 @@ RefDataTypeContainer
     .FromApplication("Fanex.Athena.BetListAPI.Host");
 BetListManager.RegisterRemotingRef(new CacheRef());
 
+var connectionStrings = configuration
+    .GetSection("ConnectionStrings")
+    .GetChildren().AsEnumerable()
+    .ToDictionary((IConfigurationSection x) => x.GetValue<string>("Name"), (IConfigurationSection y) => new ConnectionConfiguration(y.GetValue<string>("Name"), y.GetValue<string>("ConnectionString"), y.GetValue<string>("ProviderName")));
+
+var vaultOptions = configuration.GetSection("VaultOptions").Get<VaultOptions>();
+
 DbSettingProviderManager
     .StartNewSession()
-    .WithSqlServer(configuration)
-    .Register(ShardDbSettingProvider.ProviderName,
-        new ShardDbSettingProvider(new ShardInfoAccessor(new SiteDBAccessor(services.BuildServiceProvider().GetRequiredService<IHttpContextAccessor>())))
+    .Use(connectionStrings)
+        .Use(vaultOptions)
+        .Register("Microsoft.Data.SqlClient",
+            new ShardDbSettingProvider(new ShardInfoAccessor(services.BuildServiceProvider().GetRequiredService<ISiteDBAccessor>()))
             .CreateObjectDbFunc)
     .UseDefaultDbSettingProvider("~/App_Data/FanexSpName.xml", true)
     .Run();

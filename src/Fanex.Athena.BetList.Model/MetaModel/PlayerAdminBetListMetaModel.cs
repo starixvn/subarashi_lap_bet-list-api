@@ -4,9 +4,9 @@
     {
         public int CustId { get; set; }
 
-        public string SortBy { get; set; }
+        public int SortType { get; set; }
 
-        public string SortOrder { get; set; }
+        public int SortOrder { get; set; }
 
         public string AgentListXml { get; set; }
 

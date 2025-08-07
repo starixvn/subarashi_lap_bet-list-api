@@ -172,7 +172,8 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             // Assert
             Assert.Multiple(() =>
             {
-                ObjectDb.Received(1).SetParameterValue("Sort", metaModel.SortBy + " " + metaModel.SortOrder);
+                ObjectDb.Received(1).SetParameterValue("SortOrder", metaModel.SortOrder);
+                ObjectDb.Received(1).SetParameterValue("SortType", metaModel.SortType);
                 ObjectDb.Received(1).SetParameterValue("AgentList", metaModel.AgentListXml);
                 ObjectDb.Received(1).SetParameterValue("FromDate", metaModel.FromDate);
                 ObjectDb.Received(1).SetParameterValue("ToDate", metaModel.ToDate);
@@ -195,7 +196,8 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             // Assert
             Assert.Multiple(() =>
             {
-                ObjectDb.Received(1).SetParameterValue("Sort", metaModel.SortBy + " " + metaModel.SortOrder);
+                ObjectDb.Received(1).SetParameterValue("SortOrder", metaModel.SortOrder);
+                ObjectDb.Received(1).SetParameterValue("SortType", metaModel.SortType);
                 ObjectDb.Received(1).SetParameterValue("AgentList", metaModel.AgentListXml);
                 ObjectDb.Received(1).SetParameterValue("FromDate", metaModel.FromDate);
                 ObjectDb.Received(1).SetParameterValue("ToDate", metaModel.ToDate);
@@ -221,7 +223,8 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             // Assert
             Assert.Multiple(() =>
             {
-                ObjectDb.Received(1).SetParameterValue("Sort", metaModel.SortBy + " " + metaModel.SortOrder);
+                ObjectDb.Received(1).SetParameterValue("SortOrder", metaModel.SortOrder);
+                ObjectDb.Received(1).SetParameterValue("SortType", metaModel.SortType);
                 ObjectDb.Received(1).SetParameterValue("AgentList", metaModel.AgentListXml);
                 ObjectDb.Received(1).SetParameterValue("FromDate", metaModel.FromDate);
                 ObjectDb.Received(1).SetParameterValue("ToDate", metaModel.ToDate);
@@ -281,23 +284,23 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             });
         }
 
-        [TestCase("WinLoss", "WinLossComm")]
-        [TestCase("LicenseeWL", "LicenseeWLComm")]
-        [TestCase("nickname", "ExternalId")]
-        [TestCase("Status", "Status")]
-        public async Task GetBetListData_IsServerPagingFalseSortData_SortCorrectProperty(string sortBy, string expectedSortedProp)
+        [TestCase((byte)0)]
+        [TestCase((byte)1)]
+        [TestCase((byte)2)]
+        [TestCase((byte)3)]
+        public async Task GetBetListData_IsServerPagingFalseSortData_SortCorrectProperty(byte sortType)
         {
             // Arrange
             const string UspKey = "Shard_Lrf_BetList_LicenseeWL_Mem";
             var metaModel = GetLiveReportBetListMetaModel(UspKey);
             metaModel.IsServerPaging = false;
-            metaModel.SortBy = sortBy;
+            metaModel.SortType = sortType;
 
             // Action
             await DataAccess.GetBetListData(metaModel);
 
             // Assert
-            Assert.That(metaModel.SortBy, Is.EqualTo(expectedSortedProp));
+            Assert.That(metaModel.SortType, Is.EqualTo(sortType));
         }
 
         [TestCase("Lrf_BetList_RNG_Detail")]

@@ -359,16 +359,15 @@
 
         private static void AddLiveReportPagingParams(IObjectDb db, LiveReportBetListMetaModel metaModel)
         {
-            db.SetParameterValue(DbColumn.PageSize, metaModel.IsExportExcel ? int.MaxValue - 1 : metaModel.PageSize);
-            db.SetParameterValue(DbColumn.PageIndex, metaModel.IsExportExcel ? 1 : metaModel.PageIndex);
+            db.SetParameterValue(DbColumn.PageSize, metaModel.PageSize);
+            db.SetParameterValue(DbColumn.PageIndex, metaModel.PageIndex);
+            db.SetParameterValue(DbColumn.TotalRows, null);
         }
 
         private static void CreateBetListSortingParameters(IObjectDb db, BetListMetaModel metaModel)
         {
-            if (!string.IsNullOrWhiteSpace(metaModel.SortBy))
-            {
-                db.SetParameterValue(DbColumn.Sort, metaModel.SortBy + " " + metaModel.SortOrder);
-            }
+            db.SetParameterValue("SortType", metaModel.SortType);
+            db.SetParameterValue("SortOrder", metaModel.SortOrder);
         }
 
         private static void CreateSummaryOutputParameters(IObjectDb db)

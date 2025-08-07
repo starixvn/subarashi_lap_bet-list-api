@@ -12,8 +12,8 @@
     {
         public PlayerAdminBetListDataAccess(ICurrencyDataAccess currencyService) : base(currencyService)
         {
-
         }
+
         public async Task<TicketResult> GetRunningBetListAsync(PlayerAdminBetListMetaModel metaModel)
         {
             const string UspKey = "Shard_Lrf_BetList_Running_Mem";
@@ -51,11 +51,8 @@
             db.SetParameterValue("PageSize", metaModel.PageSize);
             db.SetParameterValue("SumStake", 0);
             db.SetParameterValue("TotalRows", 0);
-
-            if (!string.IsNullOrEmpty(metaModel.SortBy) && !string.IsNullOrEmpty(metaModel.SortOrder))
-            {
-                db.SetParameterValue("Sort", $"{metaModel.SortBy} {metaModel.SortOrder}");
-            }
+            db.SetParameterValue("SortType", metaModel.SortType);
+            db.SetParameterValue("SortOrder", metaModel.SortOrder);
         }
     }
 }

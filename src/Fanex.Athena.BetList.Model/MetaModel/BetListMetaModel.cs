@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Athena.BetList.Model.MetaModel
 {
+    using Fanex.Athena.Common.Constant;
     using Fanex.Athena.Common.Model.MetaModel;
     using Fanex.Athena.Common.Utility.Helpers;
     using Fanex.Core.Utils;
@@ -23,6 +24,8 @@
             ToDate = DateTimeHelper.Today;
             PageIndex = 1;
             PageSize = int.MaxValue - 1;
+            SortType = (byte)SortTypes.TransDate;
+            SortOrder = (byte)SortOrders.Descending;
         }
 
         public bool HasPlayerCom { get; set; }
@@ -41,9 +44,9 @@
 
         public bool IsServerPaging { get; set; }
 
-        public string SortBy { get; set; }
+        public byte SortType { get; set; }
 
-        public string SortOrder { get; set; }
+        public byte SortOrder { get; set; }
 
         public bool IsExportExcel { get; set; }
 

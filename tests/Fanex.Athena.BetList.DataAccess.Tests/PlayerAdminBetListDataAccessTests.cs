@@ -15,16 +15,16 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
                 CurrencyDataAccess);
         }
 
-        [TestCase(null, null)]
-        [TestCase("", "ASC")]
-        [TestCase("Index", "")]
-        public async Task GetRunningBetListAsync_WhenCallWithoutSort_ParameterIsPassesCorrectly(string sortBy, string sortOrder)
+        [TestCase(0, 1)]
+        [TestCase(1, 2)]
+        [TestCase(2, 1)]
+        public async Task GetRunningBetListAsync_WhenCallWithoutSort_ParameterIsPassesCorrectly(int sortType, int sortOrder)
         {
             // Arrange
             Reader.Read().Returns(false);
             Reader.NextResult().Returns(false);
 
-            var metaModel = new PlayerAdminBetListMetaModel { SortBy = sortBy, SortOrder = sortOrder };
+            var metaModel = new PlayerAdminBetListMetaModel { SortType = sortType, SortOrder = sortOrder };
 
             // Action
             await DataAccess.GetRunningBetListAsync(metaModel);
@@ -48,7 +48,7 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             Reader.Read().Returns(false);
             Reader.NextResult().Returns(false);
 
-            var metaModel = new PlayerAdminBetListMetaModel { SortBy = FakeHelper.Create<string>(), SortOrder = FakeHelper.Create<string>() };
+            var metaModel = new PlayerAdminBetListMetaModel { SortType = 1, SortOrder = 2 };
 
             // Action
             await DataAccess.GetRunningBetListAsync(metaModel);
@@ -56,7 +56,8 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             // Assert
             Assert.Multiple(() =>
             {
-                ObjectDb.Received(1).SetParameterValue("Sort", $"{metaModel.SortBy} {metaModel.SortOrder}");
+                ObjectDb.Received(1).SetParameterValue("SortType", metaModel.SortType);
+                ObjectDb.Received(1).SetParameterValue("SortOrder", metaModel.SortOrder);
             });
         }
 

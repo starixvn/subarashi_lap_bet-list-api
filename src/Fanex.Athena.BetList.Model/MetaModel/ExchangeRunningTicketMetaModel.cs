@@ -1,11 +1,16 @@
-﻿using Fanex.Athena.BetList.Model.Constants;
+﻿using Fanex.Athena.Common.Constant;
 using Fanex.Core.Utils;
-
 
 namespace Fanex.Athena.BetList.Model.MetaModel
 {
     public class ExchangeRunningTicketMetaModel : IAgentMetaModel, ICurrencyIdListMetaModel
     {
+        public ExchangeRunningTicketMetaModel()
+        {
+            SortType = (byte)SortTypes.BetPlaced;
+            SortOrder = (byte)SortOrders.Descending;
+        }
+
         public string AgentListXml { get; set; }
 
         public string Username { get; set; } = string.Empty;
@@ -20,17 +25,8 @@ namespace Fanex.Athena.BetList.Model.MetaModel
 
         public int PageIndex { get; set; }
 
-        public SortByExchange SortBy { get; set; } = SortByExchange.BetPlaced;
+        public byte SortType { get; set; }
 
-        public SortOrderExchange SortOrder { get; set; } = SortOrderExchange.Desc;
-
-        public string Sort => GetSort();
-
-        private string GetSort()
-        {
-            var sortByName = SortBy == SortByExchange.BetPlaced ? ExchangeConstant.BetPlaced : ExchangeConstant.Stake;
-            var sortOrderName = SortOrder == SortOrderExchange.Desc ? ExchangeConstant.Desc : ExchangeConstant.Asc;
-            return $"{sortByName} {sortOrderName}";
-        }
+        public byte SortOrder { get; set; }
     }
 }

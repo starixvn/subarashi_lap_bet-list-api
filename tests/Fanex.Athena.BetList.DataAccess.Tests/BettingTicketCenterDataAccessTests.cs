@@ -133,13 +133,14 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             Reader.Read().Returns(false);
             ObjectDb.GetOutputParams().Returns(new Hashtable());
 
-            var metaModel = new SingleCustomersBetListMetaModel { ProductCodeList = string.Empty, SortBy = "Colum1", SortOrder = "asc" };
+            var metaModel = new SingleCustomersBetListMetaModel { ProductCodeList = string.Empty, SortType = 1, SortOrder = 1 };
 
             // Action
             await DataAccess.GetBetListForSingleCustomerAsync(metaModel);
 
             // Assert
-            ObjectDb.Received(1).SetParameterValue("Sort", metaModel.SortBy + " " + metaModel.SortOrder);
+            ObjectDb.Received(1).SetParameterValue("SortOrder", metaModel.SortOrder);
+            ObjectDb.Received(1).SetParameterValue("SortType", metaModel.SortType);
         }
 
         [Test]
@@ -236,13 +237,14 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             Reader.Read().Returns(false);
             ObjectDb.GetOutputParams().Returns(new Hashtable());
 
-            var metaModel = new RunningBetListMetaModel { ProductCodeList = string.Empty, SortBy = "Colum1", SortOrder = "asc" };
+            var metaModel = new RunningBetListMetaModel { ProductCodeList = string.Empty, SortType = 1, SortOrder = 1 };
 
             // Action
             await DataAccess.GetRunningBetListAsync(metaModel);
 
             // Assert
-            ObjectDb.Received(1).SetParameterValue("Sort", metaModel.SortBy + " " + metaModel.SortOrder);
+            ObjectDb.Received(1).SetParameterValue("SortOrder", metaModel.SortOrder);
+            ObjectDb.Received(1).SetParameterValue("SortType", metaModel.SortType);
         }
 
         [Test]

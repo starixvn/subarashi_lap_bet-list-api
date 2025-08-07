@@ -289,7 +289,6 @@ namespace Fanex.Athena.BetList.DataAccess.Tests.Util
             AssertCasinoDetailParameters(_objectDb, _metaModel);
         }
 
-        [TestCase(true, 1, 100, 1, int.MaxValue - 1)]
         [TestCase(false, 2, 50, 2, 50)]
         public void CreateBetListParameters_CalledByLiveReportNumberGameBetlist_ParametersPassedPagingInfoCorrectly(
             bool isExportExcel,

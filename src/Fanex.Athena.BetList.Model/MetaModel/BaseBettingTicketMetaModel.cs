@@ -3,6 +3,7 @@
     using Fanex.Athena.Common.Model.MetaModel;
     using Fanex.Core.Utils;
     using System;
+    using Fanex.Athena.Common.Constant;
 
     public class BaseBettingTicketMetaModel : ICommonValueMetaModel,
         IValidationMetaModel,
@@ -24,6 +25,8 @@
         {
             PageIndex = 1;
             PageSize = DefaultPageSize;
+            SortType = (byte)SortTypes.TransDate;
+            SortOrder = (byte)SortOrders.Descending;
         }
 
         public string CurrencyIdList { get; set; }
@@ -74,9 +77,9 @@
 
         public bool IsExport { get; set; }
 
-        public string SortBy { get; set; }
+        public byte SortType { get; set; }
 
-        public string SortOrder { get; set; }
+        public byte SortOrder { get; set; }
 
         public virtual bool IsValid => FromDate <= ToDate && !string.IsNullOrWhiteSpace(ProductCodeList);
 

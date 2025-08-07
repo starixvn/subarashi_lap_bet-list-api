@@ -127,7 +127,8 @@ public class BettingTicketsCenterAdvancedSearchDataAccessTest : BaseDataAccessHe
 
         var metaModel = _fixture.Create<AdvancedSearchBetListMetaModel>();
         metaModel.IsExport = true;
-        metaModel.SortBy = string.Empty;
+        metaModel.SortType = 0;
+        metaModel.SortOrder = 1;
 
         // Action
         await DataAccess.GetBetListForMultipleCustomersAsync(metaModel, RowPerGroup, cancellationToken);

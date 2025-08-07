@@ -131,7 +131,7 @@ namespace Fanex.Athena.BetList.Controllers
                     BaseCurrency = metaModel.BaseCurrency ?? string.Empty,
                     FromDate = metaModel.FromDate.Date,
                     ToDate = metaModel.ToDate.Date,
-                    SortBy = metaModel.SortBy,
+                    SportType = metaModel.SortType,
                     SortOrder = metaModel.SortOrder,
                     ProductCodeList = metaModel.ProductCodeList,
                     SubsidiarySearch = metaModel.SubsidiarySearch,
