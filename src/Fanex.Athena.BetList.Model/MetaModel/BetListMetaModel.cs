@@ -44,9 +44,9 @@
 
         public bool IsServerPaging { get; set; }
 
-        public byte SortType { get; set; }
+        public byte? SortType { get; set; }
 
-        public byte SortOrder { get; set; }
+        public byte? SortOrder { get; set; }
 
         public bool IsExportExcel { get; set; }
 
