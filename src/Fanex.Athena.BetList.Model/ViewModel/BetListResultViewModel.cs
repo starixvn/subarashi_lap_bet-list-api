@@ -1,7 +1,6 @@
 ﻿namespace Fanex.Athena.BetList.Model.ViewModel
 {
-    using Fanex.Athena.BetList.Model.DTO;
-    using System.Collections.Generic;
+    using DTO;
 
     public class BetListResultViewModel
     {

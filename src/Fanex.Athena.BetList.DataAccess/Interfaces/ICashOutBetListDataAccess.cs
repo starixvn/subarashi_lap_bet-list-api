@@ -1,8 +1,7 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess.Interfaces
 {
-    using BetList.Model.ViewModel;
-    using Fanex.Athena.BetList.Model.MetaModel;
-    using System.Threading.Tasks;
+    using Model.MetaModel;
+    using Model.ViewModel;
 
     public interface ICashOutBetListDataAccess
     {

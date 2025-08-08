@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.Common.Constant;
-using Fanex.Core.Utils;
-
-namespace Fanex.Athena.BetList.Model.MetaModel
+﻿namespace Fanex.Athena.BetList.Model.MetaModel
 {
+    using Common.Constant;
+    using Core.Utils;
+
     public class ExchangeRunningTicketMetaModel : IAgentMetaModel, ICurrencyIdListMetaModel
     {
         public ExchangeRunningTicketMetaModel()

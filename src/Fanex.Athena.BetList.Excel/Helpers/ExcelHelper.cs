@@ -1,7 +1,7 @@
-﻿using BetListNPOI.SS.UserModel;
-
-namespace Fanex.Athena.BetList.Excel.Helpers
+﻿namespace Fanex.Athena.BetList.Excel.Helpers
 {
+    using BetListNPOI.SS.UserModel;
+
     public static class ExcelHelper
     {
         public static void HideColumn(ISheet sheet, params int[] columnIndex)

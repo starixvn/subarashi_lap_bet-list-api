@@ -1,9 +1,7 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess.Interfaces
 {
-    using BetList.Model.DTO;
-    using BetList.Model.MetaModel;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    using Model.DTO;
+    using Model.MetaModel;
 
     public interface IExchangeBetListDataAccess
     {

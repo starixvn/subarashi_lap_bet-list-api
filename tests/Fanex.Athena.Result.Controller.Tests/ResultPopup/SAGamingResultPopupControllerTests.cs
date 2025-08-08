@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.Result.Controller.ResultPopup;
-using Fanex.Result.Core.SAGaming;
-using Microsoft.AspNetCore.Mvc;
-using NSubstitute;
-
-namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
+﻿namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
 {
+    using Controller.ResultPopup;
+    using Fanex.Result.Core.SAGaming;
+    using Microsoft.AspNetCore.Mvc;
+    using NSubstitute;
+
     public class SAGamingResultPopupControllerTests
     {
         private ISAGamingResultBuilder _resultApi;
@@ -35,7 +35,7 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
                 LanguageCode = "en-US"
             };
 
-            _resultApi.Render("123", "123", "betType", "en-US").Returns(expectedResult);
+            _resultApi.Render("123", "123", "betType").Returns(expectedResult);
 
             //Action
             var result = controller.Index(model) as ContentResult;

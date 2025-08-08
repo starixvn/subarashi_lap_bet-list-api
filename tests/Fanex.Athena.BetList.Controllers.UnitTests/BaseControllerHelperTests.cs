@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.BetList.Model.DTO;
-using NUnit.Framework;
-
-namespace Fanex.Athena.BetList.Controllers.UnitTests
+﻿namespace Fanex.Athena.BetList.Controllers.UnitTests
 {
+    using Model.DTO;
+    using NUnit.Framework;
+
     public class BaseControllerHelperTests
     {
         protected void AssertClearData(TicketResult ticketResult)

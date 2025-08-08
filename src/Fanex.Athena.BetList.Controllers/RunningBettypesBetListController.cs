@@ -1,14 +1,14 @@
-﻿using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Site.Attributes;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.BetList.Controllers
+﻿namespace Fanex.Athena.BetList.Controllers
 {
+    using Common.Constant;
+    using Common.DataAccess.Interfaces;
+    using Common.Services.Interfaces;
+    using Common.Site.Attributes;
+    using Common.Utility.Services.Interfaces;
+    using Microsoft.AspNetCore.Mvc;
+    using Model.MetaModel;
+    using Service.Interfaces;
+
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class RunningBettypesBetListController : BetListBaseController

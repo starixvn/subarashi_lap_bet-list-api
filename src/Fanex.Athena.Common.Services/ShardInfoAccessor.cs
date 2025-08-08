@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.Common.Services.Interfaces;
-
-namespace Fanex.Athena.Common.Services
+﻿namespace Fanex.Athena.Common.Services
 {
+    using Interfaces;
+
     public class ShardInfoAccessor : IShardInfoAccessor
     {
         private const string PrefixSharding = "shard_";

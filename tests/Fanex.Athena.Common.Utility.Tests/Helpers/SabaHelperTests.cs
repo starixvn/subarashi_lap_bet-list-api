@@ -1,10 +1,8 @@
-﻿
-
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Utility.Helpers;
-
-namespace Fanex.Athena.Common.Utility.Tests.Helpers
+﻿namespace Fanex.Athena.Common.Utility.Tests.Helpers
 {
+    using Constant;
+    using Utility.Helpers;
+
     public class SabaHelperTests
     {
         [Test]

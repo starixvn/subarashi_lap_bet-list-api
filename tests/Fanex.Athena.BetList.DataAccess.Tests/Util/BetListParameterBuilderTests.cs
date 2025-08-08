@@ -1,12 +1,12 @@
-﻿using Fanex.Athena.BetList.DataAccess.Util;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.TestHelper;
-using Fanex.Data;
-using NSubstitute;
-
-namespace Fanex.Athena.BetList.DataAccess.Tests.Util
+﻿namespace Fanex.Athena.BetList.DataAccess.Tests.Util
 {
+    using Common.Constant;
+    using Data;
+    using DataAccess.Util;
+    using Model.MetaModel;
+    using NSubstitute;
+    using TestHelper;
+
     public class BetListParameterBuilderTests
     {
         private BetListMetaModel _metaModel;

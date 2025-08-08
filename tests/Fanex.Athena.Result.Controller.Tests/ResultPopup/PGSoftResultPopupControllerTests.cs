@@ -1,17 +1,17 @@
-﻿using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Result.Controller.Constants;
-using Fanex.Athena.Result.Controller.ResultPopup;
-using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Athena.Result.Service.Interfaces;
-using Fanex.Athena.TestHelper;
-using Fanex.Result.Core.ThirdParty;
-using Fanex.Result.Core.ThirdParty.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.CodeAnalysis;
-using NSubstitute;
-
-namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
+﻿namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
 {
+    using System.Net;
+    using BetList.Service.Interfaces;
+    using Constants;
+    using Controller.ResultPopup;
+    using Fanex.Result.Core.ThirdParty;
+    using Fanex.Result.Core.ThirdParty.Models;
+    using Microsoft.AspNetCore.Http;
+    using Model.MetaModel;
+    using NSubstitute;
+    using Service.Interfaces;
+    using TestHelper;
+
     public class PGSoftResultPopupControllerTests
     {
         private IHttpContextAccessor _contextAccessor;
@@ -60,7 +60,7 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
         {
             _contextAccessor.HttpContext.Returns(Substitute.For<HttpContext>());
             _contextAccessor.HttpContext.Connection.Returns(Substitute.For<ConnectionInfo>());
-            _contextAccessor.HttpContext.Connection.RemoteIpAddress.Returns(System.Net.IPAddress.Parse("127.0.0.1"));
+            _contextAccessor.HttpContext.Connection.RemoteIpAddress.Returns(IPAddress.Parse("127.0.0.1"));
             return new(_ipInfoService, _factory, _contextAccessor);
         }
     }

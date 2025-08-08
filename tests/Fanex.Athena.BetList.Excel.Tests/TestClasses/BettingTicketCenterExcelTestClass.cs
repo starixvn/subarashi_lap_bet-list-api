@@ -1,10 +1,10 @@
-﻿using BetListNPOI.SS.UserModel;
-using Fanex.Athena.BetList.Excel.Builders;
-using Fanex.Athena.BetList.Excel.Model;
-using Fanex.Athena.BetList.Service.Interfaces;
-
-namespace Fanex.Athena.BetList.Excel.Tests.TestClasses
+﻿namespace Fanex.Athena.BetList.Excel.Tests.TestClasses
 {
+    using BetListNPOI.SS.UserModel;
+    using Excel.Builders;
+    using Model;
+    using Service.Interfaces;
+
     public class BettingTicketCenterExcelTestClass : BettingTicketCenterExcel
     {
         public BettingTicketCenterExcelTestClass(IBettingTicketCenterExcelBuilder builder, IIPService ipService) : base(builder, ipService)

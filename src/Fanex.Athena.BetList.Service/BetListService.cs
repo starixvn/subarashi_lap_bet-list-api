@@ -1,14 +1,13 @@
 ﻿namespace Fanex.Athena.BetList.Service
 {
     using Common.DataAccess.Interfaces;
+    using Common.Model.MetaModel;
+    using Common.Services.Interfaces;
     using Common.Utility.Services.Interfaces;
-    using Fanex.Athena.BetList.DataAccess.Interfaces;
-    using Fanex.Athena.BetList.Model.DTO;
-    using Fanex.Athena.BetList.Model.MetaModel;
-    using Fanex.Athena.BetList.Service.Interfaces;
-    using Fanex.Athena.Common.Model.MetaModel;
-    using Fanex.Athena.Common.Services.Interfaces;
-    using System.Threading.Tasks;
+    using DataAccess.Interfaces;
+    using Interfaces;
+    using Model.DTO;
+    using Model.MetaModel;
 
     public class BetListService : IBetListService
     {

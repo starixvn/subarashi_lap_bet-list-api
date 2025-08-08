@@ -1,9 +1,6 @@
 ﻿namespace Fanex.Athena.BetList.Model.ViewModel
 {
-    using Fanex.Athena.BetList.Model.DTO;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    using DTO;
 
     public class SystemParlayDetailViewModel
     {

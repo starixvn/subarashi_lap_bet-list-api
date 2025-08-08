@@ -1,8 +1,8 @@
-﻿using AutoFixture;
-using System.Linq.Expressions;
-
-namespace Fanex.Athena.TestHelper
+﻿namespace Fanex.Athena.TestHelper
 {
+    using System.Linq.Expressions;
+    using AutoFixture;
+
     public static class FakeHelper
     {
         private static Fixture _fixture = new Fixture();

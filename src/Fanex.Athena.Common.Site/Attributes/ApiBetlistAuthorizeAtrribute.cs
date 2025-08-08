@@ -1,11 +1,10 @@
-﻿using Fanex.Athena.Common.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.DependencyInjection;
-
-
-namespace Fanex.Athena.Common.Site.Attributes
+﻿namespace Fanex.Athena.Common.Site.Attributes
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Filters;
+    using Microsoft.Extensions.DependencyInjection;
+    using Services.Interfaces;
+
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
     public class ApiBetlistAuthorizeAttribute : ActionFilterAttribute, IAuthorizationFilter
     {

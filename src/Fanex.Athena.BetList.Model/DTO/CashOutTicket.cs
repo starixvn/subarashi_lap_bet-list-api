@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Athena.BetList.Model.DTO
 {
-    using System;
-
     public class CashOutTicket
     {
         public int BetType { get; set; }

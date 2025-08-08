@@ -10,7 +10,6 @@ using Fanex.Athena.Common.Utility;
 using Fanex.BetList.Core;
 using Fanex.BetList.Core.RemotingRef;
 using Fanex.Data;
-using Fanex.Data.SqlServer;
 using Fanex.Data.Vault;
 using Fanex.RemotingRef;
 using Fanex.Result.Core.Base;
@@ -78,7 +77,7 @@ BetListManager.RegisterRemotingRef(new CacheRef());
 var connectionStrings = configuration
     .GetSection("ConnectionStrings")
     .GetChildren().AsEnumerable()
-    .ToDictionary((IConfigurationSection x) => x.GetValue<string>("Name"), (IConfigurationSection y) => new ConnectionConfiguration(y.GetValue<string>("Name"), y.GetValue<string>("ConnectionString"), y.GetValue<string>("ProviderName")));
+    .ToDictionary(x => x.GetValue<string>("Name"), y => new ConnectionConfiguration(y.GetValue<string>("Name"), y.GetValue<string>("ConnectionString"), y.GetValue<string>("ProviderName")));
 
 var vaultOptions = configuration.GetSection("VaultOptions").Get<VaultOptions>();
 

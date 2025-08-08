@@ -1,14 +1,14 @@
-﻿using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Site.Attributes;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Routing;
-using NSubstitute;
-
-namespace Fanex.Athena.Common.Site.Tests.Attributes
+﻿namespace Fanex.Athena.Common.Site.Tests.Attributes
 {
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Abstractions;
+    using Microsoft.AspNetCore.Mvc.Filters;
+    using Microsoft.AspNetCore.Routing;
+    using NSubstitute;
+    using Services.Interfaces;
+    using Site.Attributes;
+
     public class ApiBetlistAuthorizeAtrributeTests
     {
         private ILicenseeSettingService _licenseeSettingServiceMock;

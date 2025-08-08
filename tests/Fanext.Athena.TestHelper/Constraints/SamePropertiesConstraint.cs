@@ -1,15 +1,12 @@
-﻿using NUnit.Framework.Constraints;
-
-namespace Fanex.Athena.TestHelper.Constraints
+﻿namespace Fanex.Athena.TestHelper.Constraints
 {
+    using NUnit.Framework.Constraints;
+
     public class SamePropertiesConstraint : Constraint
     {
         private readonly object expected;
 
-        public SamePropertiesConstraint(object expected) : base(new[]
-        {
-            expected
-        })
+        public SamePropertiesConstraint(object expected) : base(expected)
         {
             this.expected = expected;
         }

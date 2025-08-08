@@ -1,11 +1,11 @@
-﻿using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Service.Helpers;
-using Fanex.Athena.Common.Constant;
-using Fanex.BetList.Core.Entities;
-using NSubstitute;
-
-namespace Fanex.Athena.BetList.Service.Tests.Helpers
+﻿namespace Fanex.Athena.BetList.Service.Tests.Helpers
 {
+    using Common.Constant;
+    using Fanex.BetList.Core.Entities;
+    using Model.DTO;
+    using NSubstitute;
+    using Service.Helpers;
+
     public class BetListHelperTests
     {
         [TestCase(BetType.BetTradeBought)]
@@ -103,7 +103,7 @@ namespace Fanex.Athena.BetList.Service.Tests.Helpers
             const long Custid = 3;
             const string BaseCurrency = "USD";
 
-            var expected = $"showCombMPDetail(&quot;1&quot;,&quot;RefNoTest&quot;,2,3,&quot;Mix Parlay&quot;,&quot;USD&quot;)";
+            var expected = "showCombMPDetail(&quot;1&quot;,&quot;RefNoTest&quot;,2,3,&quot;Mix Parlay&quot;,&quot;USD&quot;)";
 
             // Action
             var result = BetListHelper.GenerateClientDetailSystemParlayFunction(tickerHelper, BaseCurrency, ticket, Custid);

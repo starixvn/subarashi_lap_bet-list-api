@@ -1,18 +1,15 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess
 {
+    using System.Data;
+    using Common.Constant;
     using Common.DataAccess;
     using Common.Utility.Helpers;
-    using Fanex.Athena.Common.Constant;
+    using Data;
     using Fanex.Common;
     using Fanex.Common.Extensions;
-    using Fanex.Data;
     using Interfaces;
     using Model.DTO;
     using Model.MetaModel;
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Threading.Tasks;
 
     public class ExchangeBetListDataAccess : BaseDataAccess, IExchangeBetListDataAccess
     {

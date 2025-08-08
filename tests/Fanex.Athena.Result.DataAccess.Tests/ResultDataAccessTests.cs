@@ -1,16 +1,15 @@
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Athena.TestHelper;
-using Fanex.Athena.TestHelper.Extensions;
-using Fanex.Result.Core.Racing.DTO;
-using Fanex.Result.Core.Sportsbook.DTO;
-using NSubstitute;
-
 namespace Fanex.Athena.Result.DataAccess.Tests
 {
+    using Common.DataAccess.Interfaces;
+    using Common.Model.DTO;
+    using Common.Utility.Services.Interfaces;
+    using Fanex.Result.Core.Racing.DTO;
+    using Fanex.Result.Core.Sportsbook.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using TestHelper;
+    using TestHelper.Extensions;
+
     public partial class ResultDataAccessTests : BaseDataAccessHelperTest<ResultDataAccess>
     {
         private const int MatchId = 1;

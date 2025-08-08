@@ -1,17 +1,13 @@
 ﻿namespace Fanex.Athena.BetList.Service
 {
-    using Fanex.Athena.BetList.DataAccess.Interfaces;
-    using Fanex.Athena.BetList.Model.DTO;
-    using Fanex.Athena.BetList.Model.MetaModel;
-    using Fanex.Athena.BetList.Model.ViewModel;
-    using Fanex.Athena.BetList.Service.Interfaces;
-    using Fanex.Athena.Common.Utility.Services.Interfaces;
+    using Common.Utility.Services.Interfaces;
+    using DataAccess.Interfaces;
     using Fanex.BetList.Core.App_GlobalResources;
     using Fanex.BetList.Core.Entities;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
+    using Interfaces;
+    using Model.DTO;
+    using Model.MetaModel;
+    using Model.ViewModel;
 
     public class SystemParlayDetailService : ISystemParlayDetailService
     {

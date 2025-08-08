@@ -1,11 +1,9 @@
-﻿
-
-using Fanex.Athena.Common.Utility.Extensions;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Hosting;
-
-namespace Fanex.Athena.Common.Utility.Tests.Extensions
+﻿namespace Fanex.Athena.Common.Utility.Tests.Extensions
 {
+    using Microsoft.Extensions.FileProviders;
+    using Microsoft.Extensions.Hosting;
+    using Utility.Extensions;
+
     public class WebHostEnviromentExtentionTests
     {
         [Test]

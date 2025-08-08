@@ -1,11 +1,11 @@
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.TestHelper;
-using Fanex.Data;
-using NSubstitute;
-using System.Data;
-
 namespace Fanex.Athena.Common.DataAccess.UnitTests
 {
+    using System.Data;
+    using Data;
+    using Interfaces;
+    using NSubstitute;
+    using TestHelper;
+
     public class AuthorizationDataAccessTests
     {
         private IAuthorizationDataAccess _authorizationDataAccess;

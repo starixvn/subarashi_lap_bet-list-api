@@ -1,13 +1,12 @@
-﻿using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.TestHelper;
-using NUnit.Framework;
-using NSubstitute;
-
-
-namespace Fanex.Athena.BetList.Controllers.UnitTests
+﻿namespace Fanex.Athena.BetList.Controllers.UnitTests
 {
+    using Model.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using NUnit.Framework;
+    using Service.Interfaces;
+    using TestHelper;
+
     public class BetListByProductControllerTests
     {
         private IBetListByProductService _service;

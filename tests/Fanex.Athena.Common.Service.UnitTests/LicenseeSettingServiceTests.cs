@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Services;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using NSubstitute;
-
-namespace Fanex.Athena.Common.Service.UnitTests
+﻿namespace Fanex.Athena.Common.Service.UnitTests
 {
+    using Model.DTO;
+    using NSubstitute;
+    using Services;
+    using Utility.Services.Interfaces;
+
     public class LicenseeSettingServiceTests
     {
         private IAppSettings _appSettingsMock;

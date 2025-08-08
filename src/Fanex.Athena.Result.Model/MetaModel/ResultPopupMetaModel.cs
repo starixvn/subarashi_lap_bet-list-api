@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Athena.Result.Model.MetaModel
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
 
     [Serializable]

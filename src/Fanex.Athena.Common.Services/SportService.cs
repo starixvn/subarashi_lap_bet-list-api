@@ -1,12 +1,12 @@
-﻿using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Resources;
-using System.Text;
-
-namespace Fanex.Athena.Common.Services
+﻿namespace Fanex.Athena.Common.Services
 {
+    using System.Text;
+    using Constant;
+    using Interfaces;
+    using Model.DTO;
+    using Resources;
+    using Utility.Services.Interfaces;
+
     public class SportService : ISportService
     {
         private static readonly IEnumerable<(int Id, int SportTypeId, IEnumerable<int> LeagueGroupIds)> SabaVirtualSports = new List<(int, int, IEnumerable<int>)>

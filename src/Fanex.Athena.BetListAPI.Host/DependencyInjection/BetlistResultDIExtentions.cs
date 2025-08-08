@@ -1,20 +1,19 @@
-﻿using Fanex.Athena.Result.DataAccess;
-using Fanex.Athena.Result.Service;
-using Fanex.Athena.Result.Service.Interfaces;
-using Fanex.Data.Vault;
-using Fanex.Result.Core.AllBetCasino;
-using Fanex.Result.Core.Base.Utilities;
-using Fanex.Result.Core.LinkedGames;
-using Fanex.Result.Core.SabaClub;
-using Fanex.Result.Core.SAGaming;
-using Fanex.Result.Core.SportsLottery;
-using Fanex.Result.Core.WCasino;
-using Fanex.Result.Core.WM;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-
-namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
+﻿namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
 {
+    using Data.Vault;
+    using Fanex.Result.Core.AllBetCasino;
+    using Fanex.Result.Core.Base.Utilities;
+    using Fanex.Result.Core.LinkedGames;
+    using Fanex.Result.Core.SabaClub;
+    using Fanex.Result.Core.SAGaming;
+    using Fanex.Result.Core.SportsLottery;
+    using Fanex.Result.Core.WCasino;
+    using Fanex.Result.Core.WM;
+    using Microsoft.Extensions.DependencyInjection.Extensions;
+    using Result.DataAccess;
+    using Result.Service;
+    using Result.Service.Interfaces;
+
     public static class BetlistResultDIExtentions
     {
         public static IServiceCollection AddLapBetListResult(this IServiceCollection services, IConfiguration configuration)

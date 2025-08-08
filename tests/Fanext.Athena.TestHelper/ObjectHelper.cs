@@ -1,9 +1,8 @@
-﻿
-using Newtonsoft.Json;
-using System.Reflection;
-
-namespace Fanex.Athena.TestHelper
+﻿namespace Fanex.Athena.TestHelper
 {
+    using System.Reflection;
+    using Newtonsoft.Json;
+
     public static class ObjectHelper
     {
         public static string ToJson(object value)

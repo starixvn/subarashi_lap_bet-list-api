@@ -1,9 +1,9 @@
-﻿using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Result.Core.SportsLottery;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.Result.Controller.ResultPopup
+﻿namespace Fanex.Athena.Result.Controller.ResultPopup
 {
+    using Fanex.Result.Core.SportsLottery;
+    using Microsoft.AspNetCore.Mvc;
+    using Model.MetaModel;
+
     [ApiController]
     [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]

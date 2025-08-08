@@ -1,11 +1,10 @@
 ﻿namespace Fanex.Athena.Common.Utility.Tests.Services
 {
-    using Fanex.Athena.Common.Utility.Services;
-    using Fanex.Athena.Common.Utility.Services.Interfaces;
-    using Fanex.Athena.Common.Utility.Services.Internal;
     using Microsoft.Extensions.Hosting;
     using NSubstitute;
-    using NUnit.Framework;
+    using Utility.Services;
+    using Utility.Services.Interfaces;
+    using Utility.Services.Internal;
 
     [TestFixture]
     public class TempFileServiceTest

@@ -1,14 +1,14 @@
-﻿using Fanex.Athena.Result.Controller.Constants;
-using Fanex.Athena.Result.Controller.ResultPopup;
-using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Athena.Result.Service.Interfaces;
-using Fanex.Athena.TestHelper;
-using Fanex.Result.Core.ThirdParty;
-using Fanex.Result.Core.ThirdParty.Models;
-using NSubstitute;
-
-namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
+﻿namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
 {
+    using Constants;
+    using Controller.ResultPopup;
+    using Fanex.Result.Core.ThirdParty;
+    using Fanex.Result.Core.ThirdParty.Models;
+    using Model.MetaModel;
+    using NSubstitute;
+    using Service.Interfaces;
+    using TestHelper;
+
     public class ONCasinoResultPopupControllerTests
     {
         private IBetlistResultGetterFactory _factory;

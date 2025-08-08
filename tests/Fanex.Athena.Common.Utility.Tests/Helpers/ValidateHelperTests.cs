@@ -1,9 +1,9 @@
 ﻿
 
-using Fanex.Athena.Common.Utility.Helpers;
-
 namespace Fanex.Athena.Common.Utility.Tests.Helpers
 {
+    using Utility.Helpers;
+
     public class ValidateHelperTests
     {
         [Test]

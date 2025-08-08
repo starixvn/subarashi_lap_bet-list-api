@@ -1,8 +1,8 @@
-using Fanex.Data;
-using Microsoft.Data.SqlClient;
-
 namespace Fanex.Athena.TestHelper
 {
+    using Data;
+    using Microsoft.Data.SqlClient;
+
     public static class DBTestHelper
     {
         public static void SetUpDBObjects(IObjectDb objectDb)

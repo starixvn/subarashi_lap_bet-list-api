@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.Common.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
-
-namespace Fanex.Athena.Common.Services
+﻿namespace Fanex.Athena.Common.Services
 {
+    using Interfaces;
+    using Microsoft.AspNetCore.Http;
+
     public class SiteDBAccessor : ISiteDBAccessor
     {
         private readonly IHttpContextAccessor _httpContextAccessor;

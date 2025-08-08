@@ -1,21 +1,20 @@
-﻿using BetListNPOI.HSSF.UserModel;
-using BetListNPOI.HSSF.Util;
-using BetListNPOI.SS.Formula.Atp;
-using BetListNPOI.SS.UserModel;
-using BetListNPOI.SS.Util;
-using Fanex.Athena.BetList.Excel.Builders;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Resources;
-using Fanex.Athena.TestHelper;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using NSubstitute;
-
-namespace Fanex.Athena.BetList.Excel.Tests.Builders
+﻿namespace Fanex.Athena.BetList.Excel.Tests.Builders
 {
+    using BetList.Model.DTO;
+    using BetList.Model.MetaModel;
+    using BetListNPOI.HSSF.UserModel;
+    using BetListNPOI.HSSF.Util;
+    using BetListNPOI.SS.UserModel;
+    using BetListNPOI.SS.Util;
+    using Common.Constant;
+    using Excel.Builders;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using NSubstitute;
+    using Resources;
+    using Service.Interfaces;
+    using TestHelper;
+
     public class BettingTicketCenterExcelBuilderTests
     {
         private const int NumberOfColumns = 14;

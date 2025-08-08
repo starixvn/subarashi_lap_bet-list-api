@@ -1,20 +1,16 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess
 {
-    using System;
-    using System.Collections.Generic;
     using System.Data;
-    using System.Linq;
-    using System.Threading.Tasks;
+    using Common.Constant;
     using Common.DataAccess;
+    using Common.DataAccess.Extensions;
+    using Common.DataAccess.Interfaces;
+    using Common.Model.MetaModel;
     using Common.Utility.Collections;
     using Common.Utility.Extensions;
-    using Fanex.Athena.Common.Constant;
-    using Fanex.Athena.Common.DataAccess.Extensions;
-    using Fanex.Athena.Common.DataAccess.Interfaces;
-    using Fanex.Athena.Common.Model.MetaModel;
+    using Data;
     using Fanex.BetList.Core.Entities;
     using Fanex.Common.Extensions;
-    using Fanex.Data;
     using Model.DTO;
     using Util;
 

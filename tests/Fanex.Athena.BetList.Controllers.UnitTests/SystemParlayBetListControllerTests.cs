@@ -1,13 +1,13 @@
-﻿using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.TestHelper;
-using Fanex.BetList.Core.Entities;
-using Microsoft.AspNetCore.Mvc;
-using NSubstitute;
-using NUnit.Framework;
-
-namespace Fanex.Athena.BetList.Controllers.UnitTests
+﻿namespace Fanex.Athena.BetList.Controllers.UnitTests
 {
+    using Fanex.BetList.Core.Entities;
+    using Microsoft.AspNetCore.Mvc;
+    using Model.MetaModel;
+    using NSubstitute;
+    using NUnit.Framework;
+    using Service.Interfaces;
+    using TestHelper;
+
     public class SystemParlayBetListControllerTests : BaseControllerHelperTests
     {
         [Test]

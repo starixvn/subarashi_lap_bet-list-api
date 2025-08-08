@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.Common.Constant;
-
-namespace Fanex.Athena.Report.Common.Helpers
+﻿namespace Fanex.Athena.Report.Common.Helpers
 {
+    using Athena.Common.Constant;
+
     public static class SportHelper
     {
         private static readonly IEnumerable<int> VSNewRacingSportTypes = new List<int>

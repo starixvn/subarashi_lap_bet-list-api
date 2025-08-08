@@ -1,11 +1,12 @@
 ﻿namespace Fanex.Athena.BetList.Service.Extensions
 {
     using Common.Constant;
-    using Fanex.Athena.BetList.Model.DTO;
     using Fanex.BetList.Core.App_GlobalResources;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Utils;
     using Helpers;
+    using Model.DTO;
     using Resources;
 
     public static class LrfBetListHtmlBuilder
@@ -26,7 +27,7 @@
 
         public static string BuildOddsUpperLower(this IBetListHTMLBuilder builder, decimal odds)
         {
-            return string.Format("<div class='oddstype'>{0}</div>", Fanex.BetList.Core.Utils.ConvertByBetType.Odds(odds));
+            return string.Format("<div class='oddstype'>{0}</div>", ConvertByBetType.Odds(odds));
         }
 
         public static string BuildCustomerWL(this IBetListHTMLBuilder builder, Ticket ticket, bool showPlayerComm)

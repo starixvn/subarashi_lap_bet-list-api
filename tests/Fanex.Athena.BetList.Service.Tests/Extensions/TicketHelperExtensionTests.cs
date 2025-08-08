@@ -1,11 +1,11 @@
-﻿using Fanex.Athena.BetList.Service.Extensions;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Resources;
-using Fanex.BetList.Core.Entities;
-using NSubstitute;
-
-namespace Fanex.Athena.BetList.Service.Tests.Extensions
+﻿namespace Fanex.Athena.BetList.Service.Tests.Extensions
 {
+    using Common.Constant;
+    using Fanex.BetList.Core.Entities;
+    using NSubstitute;
+    using Resources;
+    using Service.Extensions;
+
     public class TicketHelperExtensionTests
     {
         [TestCase(null)]

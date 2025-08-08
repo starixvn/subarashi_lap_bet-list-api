@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.BetList.Excel.Builders;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using NPOI.SS.UserModel;
-
-namespace Fanex.Athena.BetList.Excel.Tests.TestClasses
+﻿namespace Fanex.Athena.BetList.Excel.Tests.TestClasses
 {
+    using BetList.Model.DTO;
+    using BetList.Model.MetaModel;
+    using Excel.Builders;
+    using NPOI.SS.UserModel;
+
     public class ExchangeRunningExcelTestClass(IExcelBuilder builder) : ExchangeRunningExcel(builder)
     {
         public void ProtectedAssignHeader(ISheet sheet, ISheet templateSheet)

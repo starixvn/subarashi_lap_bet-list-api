@@ -1,21 +1,21 @@
-﻿using Fanex.Athena.BetList.Controllers.CustomActionResult;
-using Fanex.Athena.BetList.Excel;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Model.ViewModel;
-using Fanex.Athena.BetList.Service.Helpers;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.BetList.Service.Optiions;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Model.MetaModel;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Helpers;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Resources;
-
-namespace Fanex.Athena.BetList.Controllers
+﻿namespace Fanex.Athena.BetList.Controllers
 {
+    using Common.DataAccess.Interfaces;
+    using Common.Model.DTO;
+    using Common.Model.MetaModel;
+    using Common.Services.Interfaces;
+    using Common.Utility.Helpers;
+    using Common.Utility.Services.Interfaces;
+    using CustomActionResult;
+    using Excel;
+    using Model.DTO;
+    using Model.MetaModel;
+    using Model.ViewModel;
+    using Resources;
+    using Service.Helpers;
+    using Service.Interfaces;
+    using Service.Optiions;
+
     public class BetListBaseController
     {
         protected const int BetEffectiveColumn = 8;
@@ -132,8 +132,8 @@ namespace Fanex.Athena.BetList.Controllers
             var startIndex = ((pageIndex - 1) * metaModel.PageSize) + 1;
 
             var sumLicenseeWl = ticketResult.SumLicenseeWL + ticketResult.SumComm;
-            var sumWinLossText = NumberHelper.DecFormat(ticketResult.SumWinLoss + ticketResult.SumPlayerComm, 2);
-            var sumLicenseeWlText = NumberHelper.DecFormat(sumLicenseeWl, 2);
+            var sumWinLossText = NumberHelper.DecFormat(ticketResult.SumWinLoss + ticketResult.SumPlayerComm);
+            var sumLicenseeWlText = NumberHelper.DecFormat(sumLicenseeWl);
             sumLicenseeWlText = sumLicenseeWl < 0
                 ? string.Format("<span class='negative-number'>{0}</span>", sumLicenseeWlText)
                 : sumLicenseeWlText;

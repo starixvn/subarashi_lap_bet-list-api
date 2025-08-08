@@ -1,16 +1,13 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess
 {
-    using Fanex.Athena.BetList.DataAccess.Interfaces;
-    using Fanex.Athena.BetList.Model.DTO;
-    using Fanex.Athena.BetList.Model.MetaModel;
-    using Fanex.Athena.Common.DataAccess;
-    using Fanex.Athena.Common.DataAccess.Interfaces;
-    using Fanex.Common;
-    using Fanex.Data;
-    using System;
-    using System.Collections.Generic;
     using System.Data;
-    using System.Threading.Tasks;
+    using Common.DataAccess;
+    using Common.DataAccess.Interfaces;
+    using Data;
+    using Fanex.Common;
+    using Interfaces;
+    using Model.DTO;
+    using Model.MetaModel;
 
     public class SystemParlayDetailDataAccess : BaseDataAccess, ISystemParlayDetailDataAccess
     {

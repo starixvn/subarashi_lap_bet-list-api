@@ -1,13 +1,12 @@
-﻿using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Athena.TestHelper.Extensions;
-using Fanex.Athena.TestHelper;
-using Fanex.Result.Core.Racing.DTO;
-using Fanex.Result.Core.Sportsbook.DTO;
-using NSubstitute;
-using Newtonsoft.Json;
-
-namespace Fanex.Athena.Result.DataAccess.Tests
+﻿namespace Fanex.Athena.Result.DataAccess.Tests
 {
+    using Fanex.Result.Core.Racing.DTO;
+    using Fanex.Result.Core.Sportsbook.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using TestHelper;
+    using TestHelper.Extensions;
+
     public partial class ResultDataAccessTests
     {
         [TestCase(null, null)]

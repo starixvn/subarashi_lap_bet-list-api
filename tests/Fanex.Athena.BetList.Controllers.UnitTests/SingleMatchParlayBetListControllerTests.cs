@@ -1,16 +1,16 @@
-﻿using Fanex.Athena.BetList.DataAccess.Interfaces;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.TestHelper;
-using Fanex.BetList.Core.App_GlobalResources;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using NSubstitute;
-using NUnit.Framework;
-
-namespace Fanex.Athena.BetList.Controllers.UnitTests
+﻿namespace Fanex.Athena.BetList.Controllers.UnitTests
 {
+    using Common.Utility.Services.Interfaces;
+    using DataAccess.Interfaces;
+    using Fanex.BetList.Core.App_GlobalResources;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Model.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using NUnit.Framework;
+    using TestHelper;
+
     public class SingleMatchParlayBetListControllerTests : BaseControllerHelperTests
     {
         private const string TextRenderTemplate = "<div class='single-match-parlay-selection'><span class='selection'>{0}</span>{1}</div>";

@@ -1,13 +1,13 @@
-﻿using AutoFixture;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.TestHelper;
-using NSubstitute;
-using System.Collections;
-
-namespace Fanex.Athena.BetList.DataAccess.Tests
+﻿namespace Fanex.Athena.BetList.DataAccess.Tests
 {
+    using System.Collections;
+    using AutoFixture;
+    using Common.DataAccess.Interfaces;
+    using Common.Model.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using TestHelper;
+
     public class BetListByProductDataAccessTests : BaseDataAccessHelperTest<BetListByProductDataAccess>
     {
         private IBalanceUpDataAccess? _balanceUpDataAccess;

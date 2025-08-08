@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.Common.Site.Helpers;
-using Microsoft.AspNetCore.Http;
-
-namespace Fanex.Athena.Common.Site.Tests.Helpers
+﻿namespace Fanex.Athena.Common.Site.Tests.Helpers
 {
+    using Microsoft.AspNetCore.Http;
+    using Site.Helpers;
+
     public class RoutingHelperTests
     {
         [Test]

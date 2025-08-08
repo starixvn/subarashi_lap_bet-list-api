@@ -1,17 +1,17 @@
-﻿using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Helpers;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Utility.Collections;
-using Fanex.Athena.TestHelper;
-using Fanex.Athena.TestHelper.Extensions;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using NSubstitute;
-
-namespace Fanex.Athena.BetList.Service.Tests
+﻿namespace Fanex.Athena.BetList.Service.Tests
 {
+    using Common.Constant;
+    using Common.Utility.Collections;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Interfaces;
+    using Model.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using Service.Helpers;
+    using TestHelper;
+    using TestHelper.Extensions;
+
     public class TicketBuilderServiceTests
     {
         private IBetListHTMLBuilder _betlistHtmlBuilder;

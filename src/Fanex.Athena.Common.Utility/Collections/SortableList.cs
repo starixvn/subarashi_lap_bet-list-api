@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Athena.Common.Utility.Collections
 {
-    using System.Collections.Generic;
     using System.ComponentModel;
 
     public class SortableList<T> : List<T>

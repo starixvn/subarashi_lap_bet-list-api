@@ -10,7 +10,7 @@
 
         public static string DecFormat(decimal value, byte digit = 2)
         {
-            var format = "N" + digit.ToString();
+            var format = "N" + digit;
             return value.ToString(format, DefaultCulture.NumberFormat);
         }
 

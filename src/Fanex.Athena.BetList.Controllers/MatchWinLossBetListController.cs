@@ -1,19 +1,19 @@
-﻿using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Site.Attributes;
-using Fanex.Athena.Common.Utility.Helpers;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Report.Common.Helpers;
-using Fanex.Athena.Resources;
-using Fanex.Core.Utils;
-using Microsoft.AspNetCore.Mvc;
-using System.Globalization;
-
-namespace Fanex.Athena.BetList.Controllers
+﻿namespace Fanex.Athena.BetList.Controllers
 {
+    using System.Globalization;
+    using Common.Constant;
+    using Common.DataAccess.Interfaces;
+    using Common.Services.Interfaces;
+    using Common.Site.Attributes;
+    using Common.Utility.Helpers;
+    using Common.Utility.Services.Interfaces;
+    using Core.Utils;
+    using Microsoft.AspNetCore.Mvc;
+    using Model.MetaModel;
+    using Report.Common.Helpers;
+    using Resources;
+    using Service.Interfaces;
+
     [BearerAuthorize(Roles.ReportMatchWinLoss)]
     [ApiController]
     [Route("api/[controller]/[action]")]

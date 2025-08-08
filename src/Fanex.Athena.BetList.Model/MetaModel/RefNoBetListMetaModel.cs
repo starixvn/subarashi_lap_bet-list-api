@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Athena.BetList.Model.MetaModel
 {
-    using Fanex.Athena.Common.Model.MetaModel;
+    using Common.Model.MetaModel;
 
     public class RefNoBetListMetaModel : BaseBettingTicketMetaModel, IShardDBMetaModel
     {

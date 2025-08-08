@@ -1,17 +1,17 @@
-﻿using Fanex.Athena.BetList.DataAccess.Interfaces;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Model.ViewModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.TestHelper;
-using Fanex.BetList.Core.App_GlobalResources;
-using Fanex.BetList.Core.Entities;
-using NSubstitute;
-using System.Collections;
-
-namespace Fanex.Athena.BetList.Service.Tests
+﻿namespace Fanex.Athena.BetList.Service.Tests
 {
+    using System.Collections;
+    using Common.Utility.Services.Interfaces;
+    using DataAccess.Interfaces;
+    using Fanex.BetList.Core.App_GlobalResources;
+    using Fanex.BetList.Core.Entities;
+    using Interfaces;
+    using Model.DTO;
+    using Model.MetaModel;
+    using Model.ViewModel;
+    using NSubstitute;
+    using TestHelper;
+
     public class SystemParlayDetailServiceTests
     {
         private ISystemParlayDetailDataAccess _dataAccess;

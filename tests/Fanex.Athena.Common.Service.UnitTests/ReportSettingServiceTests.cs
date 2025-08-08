@@ -1,12 +1,12 @@
-﻿using AutoFixture;
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Services;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using NSubstitute;
-
-namespace Fanex.Athena.Common.Service.UnitTests
+﻿namespace Fanex.Athena.Common.Service.UnitTests
 {
+    using AutoFixture;
+    using Model.DTO;
+    using NSubstitute;
+    using Services;
+    using Services.Interfaces;
+    using Utility.Services.Interfaces;
+
     public class ReportSettingServiceTests
     {
         private IMemoryCacheService _cacheMock;

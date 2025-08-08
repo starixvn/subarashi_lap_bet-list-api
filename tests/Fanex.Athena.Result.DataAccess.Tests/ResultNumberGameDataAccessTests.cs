@@ -1,12 +1,12 @@
-﻿using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Athena.TestHelper;
-using Fanex.Athena.TestHelper.Extensions;
-using Fanex.Result.Core.Happy5.DTO;
-using Fanex.Result.Core.NumberGame.DTO;
-using NSubstitute;
-
-namespace Fanex.Athena.Result.DataAccess.Tests
+﻿namespace Fanex.Athena.Result.DataAccess.Tests
 {
+    using Fanex.Result.Core.Happy5.DTO;
+    using Fanex.Result.Core.NumberGame.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using TestHelper;
+    using TestHelper.Extensions;
+
     public class ResultNumberGameDataAccessTests : BaseDataAccessHelperTest<ResultNumberGameDataAccess>
     {
         private const int MatchId = 122;

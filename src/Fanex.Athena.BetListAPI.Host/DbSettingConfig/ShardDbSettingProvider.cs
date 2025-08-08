@@ -3,7 +3,6 @@
 using Common.Services.Interfaces;
 using Data;
 using Data.SqlServer;
-using Fanex.Athena.Common.Services;
 
 public class ShardDbSettingProvider(IShardInfoAccessor shardInfoAccessor)
 {

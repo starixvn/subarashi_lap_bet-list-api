@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.Result.Model.Const;
-using Fanex.Athena.Result.Service.Interfaces;
-using Fanex.Result.Core.KenoLotteryTG;
-using Microsoft.Extensions.Configuration;
-
-namespace Fanex.Athena.Result.Service
+﻿namespace Fanex.Athena.Result.Service
 {
+    using Fanex.Result.Core.KenoLotteryTG;
+    using Interfaces;
+    using Microsoft.Extensions.Configuration;
+    using Model.Const;
+
     public class KenoLotteryTGResultApi(IConfiguration configuration) : IKenoLotteryTGResultFactory
     {
         private const string PREFIX = "KenoConfigs:";

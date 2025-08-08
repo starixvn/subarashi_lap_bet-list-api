@@ -1,14 +1,14 @@
-﻿using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.TestHelper;
-using Fanex.Athena.TestHelper.Extensions;
-using NSubstitute;
-using System.Data;
-
-namespace Fanex.Athena.BetList.DataAccess.Tests
+﻿namespace Fanex.Athena.BetList.DataAccess.Tests
 {
+    using System.Data;
+    using Common.DataAccess.Interfaces;
+    using Common.Model.DTO;
+    using Model.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using TestHelper;
+    using TestHelper.Extensions;
+
     public class SystemParlayDetailDataAccessTests : BaseDataAccessHelperTest<SystemParlayDetailDataAccess>
     {
         private IBalanceUpDataAccess _balanceUpDataAccess;

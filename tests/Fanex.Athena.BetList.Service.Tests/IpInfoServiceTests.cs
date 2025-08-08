@@ -1,9 +1,9 @@
-﻿using Fanex.Athena.BetList.DataAccess.Interfaces;
-using Fanex.Athena.TestHelper;
-using NSubstitute;
-
-namespace Fanex.Athena.BetList.Service.Tests
+﻿namespace Fanex.Athena.BetList.Service.Tests
 {
+    using DataAccess.Interfaces;
+    using NSubstitute;
+    using TestHelper;
+
     public class IpInfoServiceTests
     {
         private IIPDataAccess _dataAccess;

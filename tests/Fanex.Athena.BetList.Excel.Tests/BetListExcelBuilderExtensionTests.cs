@@ -1,15 +1,15 @@
-﻿using BetListNPOI.SS.UserModel;
-using BetListNPOI.SS.Util;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Resources;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using NSubstitute;
-
-
-namespace Fanex.Athena.BetList.Excel.Tests
+﻿namespace Fanex.Athena.BetList.Excel.Tests
 {
+    using BetList.Model.DTO;
+    using BetListNPOI.SS.UserModel;
+    using BetListNPOI.SS.Util;
+    using Common.Constant;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using NSubstitute;
+    using Resources;
+    using CellAddress = Fanex.BetList.Core.Entities.CellAddress;
+
     public class BetListExcelBuilderExtensionTests
     {
         private IBetListExcelBuilder _builder;
@@ -34,7 +34,7 @@ namespace Fanex.Athena.BetList.Excel.Tests
             };
 
             // Action
-            BetListExcelBuilderExtension.AddCustomerWL(_builder, ticket, isShowPlayerComm, _font);
+            _builder.AddCustomerWL(ticket, isShowPlayerComm, _font);
 
             // Assert
             _builder.Received(1).AddCell(Arg.Is<IRichTextString>(x => x.String == expectedValue));
@@ -53,7 +53,7 @@ namespace Fanex.Athena.BetList.Excel.Tests
             };
 
             // Action
-            BetListExcelBuilderExtension.AddCustomerWL(_builder, ticket, true, _font);
+            _builder.AddCustomerWL(ticket, true, _font);
 
             // Assert
             _builder.Received(1).AddCell(Arg.Is<IRichTextString>(x => x.String == expectedValue));
@@ -69,7 +69,7 @@ namespace Fanex.Athena.BetList.Excel.Tests
             };
 
             // Action
-            BetListExcelBuilderExtension.AddBetEffective(_builder, ticket, _font);
+            _builder.AddBetEffective(ticket, _font);
 
             // Assert
             _builder.Received(1).AddCell(Arg.Is<IRichTextString>(x => x.String == "12,345.67\n"));
@@ -87,7 +87,7 @@ namespace Fanex.Athena.BetList.Excel.Tests
             var evenStyle = Substitute.For<ICellStyle>();
 
             // Action
-            BetListExcelBuilderExtension.AddExternalId(_builder, ticketHelper, ExternalId, oddStyle, evenStyle);
+            _builder.AddExternalId(ticketHelper, ExternalId, oddStyle, evenStyle);
 
             // Assert
             _builder.Received(1).AddCell(
@@ -104,7 +104,7 @@ namespace Fanex.Athena.BetList.Excel.Tests
             _builder.LastContentRow.Returns(LastRowIndex);
 
             // Action
-            BetListExcelBuilderExtension.AddFooterForSumStake(_builder, SumStake);
+            _builder.AddFooterForSumStake(SumStake);
 
             // Assert
             Assert.Multiple(() =>
@@ -142,7 +142,7 @@ namespace Fanex.Athena.BetList.Excel.Tests
             var blackFont = Substitute.For<IFont>();
 
             // Action
-            BetListExcelBuilderExtension.AddFooter(_builder, SumCustomerWL, SumBetEffective, SumLicenseeWLComm, redFont, blackFont);
+            _builder.AddFooter(SumCustomerWL, SumBetEffective, SumLicenseeWLComm, redFont, blackFont);
 
             // Assert
             Assert.Multiple(() =>
@@ -176,11 +176,11 @@ namespace Fanex.Athena.BetList.Excel.Tests
                 CustomerWLHeader, ViewResources.EffectiveBettingValue, ViewResources.LicenseeWL + "/" + ViewResources.Comm, ViewResources.Status
             };
             var columWidths = new short[] { 1500, 4800, 5800, 5400, 15500, 3400, 7800, 7800, 5400, 9000, 4000 };
-            var cellList = Enumerable.Range(0, captions.Length).Select(x => new Fanex.BetList.Core.Entities.CellAddress(0, x)).ToArray();
+            var cellList = Enumerable.Range(0, captions.Length).Select(x => new CellAddress(0, x)).ToArray();
             _builder.AddCell(null, null).ReturnsForAnyArgs(cellList[0], cellList.Skip(1).ToArray());
 
             // Action
-            BetListExcelBuilderExtension.AddHeader(_builder, CustomerWLHeader);
+            _builder.AddHeader(CustomerWLHeader);
 
             // Assert
             Assert.Multiple(() =>
@@ -207,7 +207,7 @@ namespace Fanex.Athena.BetList.Excel.Tests
             _builder.EvenCellStyleCenterAligned = Substitute.For<ICellStyle>();
 
             // Action
-            BetListExcelBuilderExtension.AddIndex(_builder, ticketHelper, Index);
+            _builder.AddIndex(ticketHelper, Index);
 
             // Assert
             _builder.Received(1).AddCell(
@@ -234,7 +234,7 @@ namespace Fanex.Athena.BetList.Excel.Tests
             var blackFont = Substitute.For<IFont>();
 
             // Action
-            BetListExcelBuilderExtension.AddLicenseeWL(_builder, lrfTicket, true, redFont, blackFont);
+            _builder.AddLicenseeWL(lrfTicket, true, redFont, blackFont);
 
             // Assert
             _builder.Received(1).AddCell(Arg.Is<IRichTextString>(x => x.String == expectedValue));
@@ -252,7 +252,7 @@ namespace Fanex.Athena.BetList.Excel.Tests
             var evenStyle = Substitute.For<ICellStyle>();
 
             // Action
-            BetListExcelBuilderExtension.AddSystemId(_builder, ticketHelper, SystemId, oddStyle, evenStyle);
+            _builder.AddSystemId(ticketHelper, SystemId, oddStyle, evenStyle);
 
             // Assert
             _builder.Received(1).AddCell(

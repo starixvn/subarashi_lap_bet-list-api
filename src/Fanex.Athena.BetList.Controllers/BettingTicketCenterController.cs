@@ -1,17 +1,17 @@
-﻿using Fanex.Athena.BetList.DataAccess.Interfaces;
-using Fanex.Athena.BetList.Excel;
-using Fanex.Athena.BetList.Excel.Model;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Site.Attributes;
-using Fanex.Athena.Resources;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.BetList.Controllers
+﻿namespace Fanex.Athena.BetList.Controllers
 {
+    using Common.Constant;
+    using Common.Services.Interfaces;
+    using Common.Site.Attributes;
+    using DataAccess.Interfaces;
+    using Excel;
+    using Excel.Model;
+    using Microsoft.AspNetCore.Mvc;
+    using Model.DTO;
+    using Model.MetaModel;
+    using Resources;
+    using Service.Interfaces;
+
     [ApiController]
     [BearerAuthorize]
     [Route("[controller]/[action]")]

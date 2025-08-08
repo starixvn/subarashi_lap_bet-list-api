@@ -1,18 +1,18 @@
-using AutoFixture;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Services;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using NSubstitute;
-using RichardSzalay.MockHttp;
-using System.Net;
-using System.Net.Http.Json;
-
 namespace Fanex.Athena.Common.Service.UnitTests
 {
+    using System.Net;
+    using System.Net.Http.Json;
+    using AutoFixture;
+    using Constant;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.Extensions.Logging;
+    using Model.DTO;
+    using NSubstitute;
+    using RichardSzalay.MockHttp;
+    using Services;
+    using Services.Interfaces;
+    using Utility.Services.Interfaces;
+
     public class CustomerClassServiceTests
     {
         private readonly Fixture _fixture = new();

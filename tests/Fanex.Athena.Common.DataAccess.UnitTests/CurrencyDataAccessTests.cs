@@ -1,13 +1,12 @@
-﻿using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.TestHelper;
-using Fanex.Data;
-using NSubstitute;
-using System.Data;
-
-
-namespace Fanex.Athena.Common.DataAccess.UnitTests
+﻿namespace Fanex.Athena.Common.DataAccess.UnitTests
 {
+    using System.Data;
+    using Data;
+    using Interfaces;
+    using NSubstitute;
+    using TestHelper;
+    using Utility.Services.Interfaces;
+
     internal class CurrencyDataAccessTests
     {
         private ICurrencyDataAccess _currencyDataAccess;

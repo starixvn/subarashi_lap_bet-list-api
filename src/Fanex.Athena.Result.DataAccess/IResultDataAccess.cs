@@ -1,13 +1,10 @@
 ﻿namespace Fanex.Athena.Result.DataAccess
 {
     using Common.Model.DTO;
-    using Fanex.Athena.Result.Model.MetaModel;
     using Fanex.Result.Core.Racing.DTO;
     using Fanex.Result.Core.Sportsbook.DTO;
     using Fanex.Result.Core.VirtualRacing.DTO;
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    using Model.MetaModel;
 
     public interface IResultDataAccess
     {

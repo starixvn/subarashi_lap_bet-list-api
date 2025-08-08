@@ -1,12 +1,9 @@
 ﻿namespace Fanex.Athena.Common.Utility.Helpers
 {
-    using Fanex.Data;
+    using System.Text;
+    using Data;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Data.SqlClient;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     public static class LogMessageHelper
     {

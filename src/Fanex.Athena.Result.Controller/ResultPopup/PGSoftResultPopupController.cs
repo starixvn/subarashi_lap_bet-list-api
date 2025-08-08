@@ -1,12 +1,12 @@
-﻿using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Athena.Result.Service.Interfaces;
-using Fanex.Result.Core.ThirdParty.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.Result.Controller.ResultPopup
+﻿namespace Fanex.Athena.Result.Controller.ResultPopup
 {
+    using BetList.Service.Interfaces;
+    using Fanex.Result.Core.ThirdParty.Models;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Model.MetaModel;
+    using Service.Interfaces;
+
     [ApiController]
     [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]

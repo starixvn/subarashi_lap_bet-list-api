@@ -1,13 +1,13 @@
-﻿using BetListNPOI.SS.UserModel;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-
-namespace Fanex.Athena.BetList.Excel.Tests.TestClasses
+﻿namespace Fanex.Athena.BetList.Excel.Tests.TestClasses
 {
+    using BetList.Model.DTO;
+    using BetList.Model.MetaModel;
+    using BetListNPOI.SS.UserModel;
+    using Common.Utility.Services.Interfaces;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Service.Interfaces;
+
     public class BetListExcelTestClass : BetListExcel
     {
         public BetListExcelTestClass(BetListShowingOption showingOption, int licenseeId, IEnumerable<int> hiddenColumnIndexes, IAppSettings appSettings, IIPService ipService, ITicketHelper ticketHelper) 

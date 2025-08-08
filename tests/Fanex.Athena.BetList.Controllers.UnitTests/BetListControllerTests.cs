@@ -1,18 +1,18 @@
-﻿using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.BetList.Service.Optiions;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Collections;
-using Fanex.Athena.Common.Utility.Helpers;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.TestHelper;
-using NSubstitute;
-using NUnit.Framework;
-
-namespace Fanex.Athena.BetList.Controllers.UnitTests
+﻿namespace Fanex.Athena.BetList.Controllers.UnitTests
 {
+    using Common.DataAccess.Interfaces;
+    using Common.Services.Interfaces;
+    using Common.Utility.Collections;
+    using Common.Utility.Helpers;
+    using Common.Utility.Services.Interfaces;
+    using Model.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using NUnit.Framework;
+    using Service.Interfaces;
+    using Service.Optiions;
+    using TestHelper;
+
     public class BetListControllerTests : BaseControllerHelperTests
     {
         private IContextService _contextService;
@@ -211,7 +211,7 @@ namespace Fanex.Athena.BetList.Controllers.UnitTests
             _ticketBuilderService.BuildTicketText(ticketResult, metaModel, Arg.Any<int>(), Arg.Any<BuildTicketOption>())
                 .Returns(ticketText.ToList());
 
-            var expectedWinloss = NumberHelper.DecFormat(ticketResult.SumWinLoss + ticketResult.SumPlayerComm, 2);
+            var expectedWinloss = NumberHelper.DecFormat(ticketResult.SumWinLoss + ticketResult.SumPlayerComm);
 
             // Action
             var result = await controller.GetBetListPaging(metaModel);

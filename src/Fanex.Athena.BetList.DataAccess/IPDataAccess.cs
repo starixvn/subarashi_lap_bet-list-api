@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.BetList.DataAccess.Interfaces;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.Common.DataAccess;
-using Fanex.Common.Extensions;
-
-namespace Fanex.Athena.BetList.DataAccess
+﻿namespace Fanex.Athena.BetList.DataAccess
 {
+    using Common.DataAccess;
+    using Fanex.Common.Extensions;
+    using Interfaces;
+    using Model.DTO;
+
     public class IPDataAccess : BaseDataAccess, IIPDataAccess
     {
         public string GetIpLocation(string IPAddress)

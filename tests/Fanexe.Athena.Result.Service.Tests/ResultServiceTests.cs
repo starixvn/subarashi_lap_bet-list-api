@@ -1,13 +1,13 @@
-using Fanex.Athena.Result.DataAccess;
-using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Athena.Result.Service;
-using Fanex.Athena.TestHelper;
-using Fanex.Result.Core.Racing.DTO;
-using Fanex.Result.Core.Sportsbook.DTO;
-using NSubstitute;
-
 namespace Fanexe.Athena.Result.Service.Tests
 {
+    using Fanex.Athena.Result.DataAccess;
+    using Fanex.Athena.Result.Model.MetaModel;
+    using Fanex.Athena.Result.Service;
+    using Fanex.Athena.TestHelper;
+    using Fanex.Result.Core.Racing.DTO;
+    using Fanex.Result.Core.Sportsbook.DTO;
+    using NSubstitute;
+
     public class ResultServiceTests
     {
         private IResultDataAccess _dataAccess;

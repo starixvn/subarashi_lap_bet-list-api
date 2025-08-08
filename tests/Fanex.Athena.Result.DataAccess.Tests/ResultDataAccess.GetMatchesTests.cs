@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.TestHelper.Extensions;
-using Fanex.Athena.TestHelper;
-using Fanex.Result.Core.Sportsbook.DTO;
-using NSubstitute;
-
-namespace Fanex.Athena.Result.DataAccess.Tests
+﻿namespace Fanex.Athena.Result.DataAccess.Tests
 {
+    using Fanex.Result.Core.Sportsbook.DTO;
+    using NSubstitute;
+    using TestHelper;
+    using TestHelper.Extensions;
+
     public partial class ResultDataAccessTests
     {
         [Test]

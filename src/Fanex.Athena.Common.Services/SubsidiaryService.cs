@@ -1,10 +1,9 @@
-﻿using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Data;
-using System.Data;
-
-namespace Fanex.Athena.Common.Services
+﻿namespace Fanex.Athena.Common.Services
 {
+    using Constant;
+    using Data;
+    using Interfaces;
+
     public class SubsidiaryService : ISubsidiaryService
     {
         private readonly IContextService _contextService;

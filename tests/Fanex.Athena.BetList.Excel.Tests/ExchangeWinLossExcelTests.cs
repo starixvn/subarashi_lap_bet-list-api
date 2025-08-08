@@ -1,17 +1,17 @@
-﻿using Fanex.Athena.BetList.Excel.Builders;
-using Fanex.Athena.BetList.Excel.Tests.TestClasses;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Model.ViewModel;
-using Fanex.Athena.Resources;
-using Fanex.Athena.TestHelper;
-using Fanex.Athena.TestHelper.Extensions;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
-using NSubstitute;
-
-namespace Fanex.Athena.BetList.Excel.Tests
+﻿namespace Fanex.Athena.BetList.Excel.Tests
 {
+    using BetList.Model.DTO;
+    using BetList.Model.MetaModel;
+    using BetList.Model.ViewModel;
+    using Excel.Builders;
+    using NPOI.HSSF.UserModel;
+    using NPOI.SS.UserModel;
+    using NSubstitute;
+    using Resources;
+    using TestClasses;
+    using TestHelper;
+    using TestHelper.Extensions;
+
     public class ExchangeWinLossExcelTests
     {
         private const int NumberOfColumn = 10;

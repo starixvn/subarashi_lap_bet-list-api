@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.Result.Controller.ResultPopup;
-using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Result.Core.SportsLottery;
-using NSubstitute;
-
-namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
+﻿namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
 {
+    using Controller.ResultPopup;
+    using Fanex.Result.Core.SportsLottery;
+    using Model.MetaModel;
+    using NSubstitute;
+
     public class SportsLotteryResultMainPageControllerTests
     {
         private ISportsLotteryResult _resultApi;

@@ -1,7 +1,6 @@
 ﻿namespace Fanex.Athena.Common.Constant
 {
     using Resources;
-    using System.Collections.Generic;
 
     public static class PlatformType
     {

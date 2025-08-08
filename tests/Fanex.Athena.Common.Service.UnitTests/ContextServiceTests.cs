@@ -1,15 +1,15 @@
-﻿using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Services;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Common.Extensions;
-using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-using NSubstitute;
-using System.Net;
-using System.Security.Claims;
-
-namespace Fanex.Athena.Common.Service.UnitTests
+﻿namespace Fanex.Athena.Common.Service.UnitTests
 {
+    using System.Net;
+    using System.Security.Claims;
+    using Constant;
+    using Fanex.Common.Extensions;
+    using Microsoft.AspNetCore.Http;
+    using Newtonsoft.Json;
+    using NSubstitute;
+    using Services;
+    using Services.Interfaces;
+
     public class ContextServiceTests
     {
         private ContextService _contextService;
@@ -17,7 +17,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
         private ISiteDBAccessor _siteDBAccessor;
         private HttpContext _httpContextMock;
         private ClaimsPrincipal _userMock;
-        private static readonly string[] stringArray = new string[] { "Role1", "Role2" };
+        private static readonly string[] stringArray = new[] { "Role1", "Role2" };
 
         [SetUp]
         public void Setup()
@@ -255,7 +255,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
         public void IsInRoles_Should_Return_Correct_Value()
         {
             // Arrange
-            var roles = new string[] { "Role1", "Role2", "Role3" };
+            var roles = new[] { "Role1", "Role2", "Role3" };
             var expectedValue = true;
             SetUpRoles(roles);
             _userMock.IsInRole("Role1").Returns(expectedValue);
@@ -285,7 +285,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
         public void IsInRoles_Should_Return_False_When_No_Matching_Roles()
         {
             // Arrange
-            var roles = new string[] { "Role1", "Role2", "Role3" };
+            var roles = new[] { "Role1", "Role2", "Role3" };
             var expectedValue = false;
             SetUpRoles(roles);
 
@@ -376,7 +376,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             var actualValue = _contextService.SubsidiaryViewType;
 
             // Assert
-            Assert.That(actualValue, Is.EqualTo(Constant.SubsidiaryViewType.NotManagement));
+            Assert.That(actualValue, Is.EqualTo(SubsidiaryViewType.NotManagement));
         }
 
         [Test]
@@ -394,7 +394,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             var actualValue = _contextService.SubsidiaryViewType;
 
             // Assert
-            Assert.That(actualValue, Is.EqualTo(Constant.SubsidiaryViewType.MasterManagement));
+            Assert.That(actualValue, Is.EqualTo(SubsidiaryViewType.MasterManagement));
         }
 
         [Test]
@@ -412,7 +412,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             var actualValue = _contextService.SubsidiaryViewType;
 
             // Assert
-            Assert.That(actualValue, Is.EqualTo(Constant.SubsidiaryViewType.NormalManagement));
+            Assert.That(actualValue, Is.EqualTo(SubsidiaryViewType.NormalManagement));
         }
 
         [Test]
@@ -426,7 +426,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             var actualValue = _contextService.SubsidiaryViewType;
 
             // Assert
-            Assert.That(actualValue, Is.EqualTo(Constant.SubsidiaryViewType.NotManagement));
+            Assert.That(actualValue, Is.EqualTo(SubsidiaryViewType.NotManagement));
         }
 
         [Test]
@@ -442,7 +442,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             var actualValue = _contextService.SubsidiaryViewType;
 
             // Assert
-            Assert.That(actualValue, Is.EqualTo(Constant.SubsidiaryViewType.NotManagement));
+            Assert.That(actualValue, Is.EqualTo(SubsidiaryViewType.NotManagement));
         }
 
         [Test]

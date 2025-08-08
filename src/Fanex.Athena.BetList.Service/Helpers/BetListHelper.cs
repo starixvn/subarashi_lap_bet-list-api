@@ -4,8 +4,6 @@
     using Fanex.BetList.Core.Entities;
     using Model.DTO;
     using Resources;
-    using System;
-    using System.Collections.Generic;
 
     public static class BetListHelper
     {

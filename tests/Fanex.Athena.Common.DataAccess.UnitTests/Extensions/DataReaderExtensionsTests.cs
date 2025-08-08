@@ -1,10 +1,10 @@
-using Fanex.Athena.Common.DataAccess.Extensions;
-using Fanex.Common.Extensions;
-using NSubstitute;
-using System.Data;
-
 namespace Fanex.Athena.Common.DataAccess.UnitTests.Extensions
 {
+    using System.Data;
+    using DataAccess.Extensions;
+    using Fanex.Common.Extensions;
+    using NSubstitute;
+
     [TestFixture]
     public class DataReaderExtensionsTests
     {

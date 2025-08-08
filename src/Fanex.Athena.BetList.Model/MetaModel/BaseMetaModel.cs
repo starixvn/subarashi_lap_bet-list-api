@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Athena.BetList.Model.MetaModel
 {
-    using System;
     using System.ComponentModel;
 
     [Serializable]

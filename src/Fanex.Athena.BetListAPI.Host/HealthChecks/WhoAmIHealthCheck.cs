@@ -1,12 +1,12 @@
-﻿using Fanex.Athena.Common.Utility.Helpers;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Net;
-using System.Net.Sockets;
-
-namespace Fanex.Athena.BetListAPI.Host.HealthChecks
+﻿namespace Fanex.Athena.BetListAPI.Host.HealthChecks
 {
+    using System.Collections.ObjectModel;
+    using System.Globalization;
+    using System.Net;
+    using System.Net.Sockets;
+    using Common.Utility.Helpers;
+    using Microsoft.Extensions.Diagnostics.HealthChecks;
+
     public class WhoAmIHealthCheck : IHealthCheck
     {
         private readonly IHttpContextAccessor _httpContextAccessor;

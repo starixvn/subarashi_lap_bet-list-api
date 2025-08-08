@@ -1,11 +1,11 @@
-﻿using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Athena.Result.Service.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Routing;
-
-namespace Fanex.Athena.Result.Controller.ResultReports
+﻿namespace Fanex.Athena.Result.Controller.ResultReports
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.AspNetCore.Mvc.Routing;
+    using Model.MetaModel;
+    using Service.Interfaces;
+
     [ApiController]
     [Route("[controller]/[action]")]
     public class ResultKenoReportController

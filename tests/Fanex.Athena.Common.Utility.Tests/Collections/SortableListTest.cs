@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.Common.Utility.Collections;
-using Fanex.Athena.Common.Utility.Tests.ClassTests;
-
-namespace Fanex.Athena.Common.Utility.Tests.Collections
+﻿namespace Fanex.Athena.Common.Utility.Tests.Collections
 {
+    using ClassTests;
+    using Utility.Collections;
+
     public class SortableListTest
     {
         [Test]

@@ -1,11 +1,12 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess
 {
-    using Fanex.Athena.BetList.DataAccess.Interfaces;
-    using Fanex.Athena.BetList.Model.DTO;
-    using Fanex.Athena.BetList.Model.MetaModel;
-    using Fanex.Athena.Common.DataAccess.Interfaces;
+    using System.Collections;
+    using Common.DataAccess.Interfaces;
+    using Data;
     using Fanex.Common;
-    using System.Threading.Tasks;
+    using Interfaces;
+    using Model.DTO;
+    using Model.MetaModel;
 
     public class BetListByProductDataAccess : BaseBetListDataAccess, IBetListByProductDataAccess
     {
@@ -40,7 +41,7 @@
             return ticketResult;
         }
 
-        private static void GetOutPutResult(TicketResult ticketResult, System.Collections.Hashtable outSqlParams)
+        private static void GetOutPutResult(TicketResult ticketResult, Hashtable outSqlParams)
         {
             ticketResult.TotalRows = Converter.ToInt(outSqlParams["totalrows"]);
             ticketResult.SumStake = Converter.ToDecimal(outSqlParams["SumStake"]);
@@ -50,7 +51,7 @@
             ticketResult.SumPlayerComm = Converter.ToDecimal(outSqlParams["SumPlayerComm"]);
         }
 
-        private void SetParam(BetListByProductMetaModel metaModel, Data.IObjectDb db)
+        private void SetParam(BetListByProductMetaModel metaModel, IObjectDb db)
         {
             var balanceUp = _balanceUpDataAccess.GetBalanceUp();
             db.SetParameterValue("@AgentList", metaModel.AgentListXml);

@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.Common.Site.Helpers;
-
-namespace Fanex.Athena.BetListAPI.Host.Middlewares
+﻿namespace Fanex.Athena.BetListAPI.Host.Middlewares
 {
+    using Common.Site.Helpers;
+
     public class DoubleSlashMiddleware
     {
         private readonly RequestDelegate _next;

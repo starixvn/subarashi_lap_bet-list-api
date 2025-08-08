@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Athena.Common.Utility.Helpers
 {
-    using System;
-
     public static class DateTimeHelper
     {
         public static Func<DateTimeOffset> DateTimeOffsetProvider { get; set; } = () => DateTimeOffset.Now;

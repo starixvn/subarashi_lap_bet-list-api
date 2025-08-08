@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.BetList.Core.Entities;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.BetList.Controllers
+﻿namespace Fanex.Athena.BetList.Controllers
 {
+    using Fanex.BetList.Core.Entities;
+    using Microsoft.AspNetCore.Mvc;
+    using Model.MetaModel;
+    using Service.Interfaces;
+
     [ApiController]
     [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]

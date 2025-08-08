@@ -1,9 +1,9 @@
-﻿using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Common.Extensions;
-
-namespace Fanex.Athena.Common.DataAccess
+﻿namespace Fanex.Athena.Common.DataAccess
 {
+    using Fanex.Common.Extensions;
+    using Interfaces;
+    using Utility.Services.Interfaces;
+
     public class CurrencyDataAccess : BaseDataAccess, ICurrencyDataAccess
     {
         private const int CacheTime1DayInSecond = 86400;

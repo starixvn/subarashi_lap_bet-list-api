@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Site.Attributes;
-
-namespace Fanex.Athena.Common.Site.Tests.Attributes
+﻿namespace Fanex.Athena.Common.Site.Tests.Attributes
 {
+    using Constant;
+    using Site.Attributes;
+
     public class BearerAuthorizeAttributeTests
     {
         [Test]

@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace Fanex.Athena.Common.Site.Helpers
+﻿namespace Fanex.Athena.Common.Site.Helpers
 {
+    using Microsoft.AspNetCore.Http;
+
     public static class RoutingHelper
     {
         public static PathString FixDoubleSlashes(this PathString path)

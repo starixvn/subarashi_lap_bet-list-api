@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace Fanex.Athena.BetList.Model.ViewModel
+﻿namespace Fanex.Athena.BetList.Model.ViewModel
 {
+    using Newtonsoft.Json;
+
     public class BetListPagingDataResultViewModel
     {
         public int Page { get; set; }

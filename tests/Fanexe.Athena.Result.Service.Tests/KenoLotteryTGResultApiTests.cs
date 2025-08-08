@@ -1,12 +1,12 @@
-﻿using Fanex.Athena.Result.Model.Const;
-using Fanex.Athena.Result.Service;
-using Fanex.Result.Core.KenoLotteryTG;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using NSubstitute;
-
-namespace Fanexe.Athena.Result.Service.Tests
+﻿namespace Fanexe.Athena.Result.Service.Tests
 {
+    using Fanex.Athena.Result.Model.Const;
+    using Fanex.Athena.Result.Service;
+    using Fanex.Result.Core.KenoLotteryTG;
+    using Microsoft.Extensions.Configuration;
+    using Newtonsoft.Json;
+    using NSubstitute;
+
     public class KenoLotteryTGResultApiTests
     {
         private IConfiguration _configuration;

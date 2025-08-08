@@ -1,18 +1,17 @@
-﻿
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Site.Attributes;
-using Fanex.Core.Utils;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.Logging;
-using NSubstitute;
-using System.Net;
-
-namespace Fanex.Athena.Common.Site.Tests.Attributes
+﻿namespace Fanex.Athena.Common.Site.Tests.Attributes
 {
+    using System.Net;
+    using Core.Utils;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Abstractions;
+    using Microsoft.AspNetCore.Mvc.Filters;
+    using Microsoft.AspNetCore.Routing;
+    using Microsoft.Extensions.Logging;
+    using NSubstitute;
+    using Services.Interfaces;
+    using Site.Attributes;
+
     public class RequestValidationAttributeTests
     {
         private IContextService _contextService;

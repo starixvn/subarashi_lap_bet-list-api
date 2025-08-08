@@ -9,10 +9,6 @@
     using Fanex.Result.Core.Sportsbook.DTO;
     using Fanex.Result.Core.VirtualRacing.DTO;
     using Model.MetaModel;
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Threading.Tasks;
 
     public interface IResultService
     {

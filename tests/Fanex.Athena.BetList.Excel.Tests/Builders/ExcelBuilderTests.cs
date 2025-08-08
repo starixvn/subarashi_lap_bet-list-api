@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.BetList.Excel.Builders;
-using NPOI.SS.UserModel;
-using NSubstitute;
-using NSubstitute.ReturnsExtensions;
-
-namespace Fanex.Athena.BetList.Excel.Tests.Builders
+﻿namespace Fanex.Athena.BetList.Excel.Tests.Builders
 {
+    using Excel.Builders;
+    using NPOI.SS.UserModel;
+    using NSubstitute;
+    using NSubstitute.ReturnsExtensions;
+
     public class ExcelBuilderTests
     {
         private IWorkbook _workbook;

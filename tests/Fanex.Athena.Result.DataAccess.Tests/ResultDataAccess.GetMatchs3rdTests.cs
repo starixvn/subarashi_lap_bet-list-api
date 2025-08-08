@@ -1,12 +1,11 @@
-﻿
-using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Athena.TestHelper;
-using Fanex.Result.Core.Bitcoin.DTO;
-using Fanex.Result.Core.VirtualRacing.DTO;
-using NSubstitute;
-
-namespace Fanex.Athena.Result.DataAccess.Tests
+﻿namespace Fanex.Athena.Result.DataAccess.Tests
 {
+    using Fanex.Result.Core.Bitcoin.DTO;
+    using Fanex.Result.Core.VirtualRacing.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using TestHelper;
+
     public partial class ResultDataAccessTests
     {
         [Test]

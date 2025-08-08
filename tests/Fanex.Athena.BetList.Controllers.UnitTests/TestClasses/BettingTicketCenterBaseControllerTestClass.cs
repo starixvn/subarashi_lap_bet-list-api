@@ -1,12 +1,12 @@
-﻿using Fanex.Athena.BetList.Controllers.CustomActionResult;
-using Fanex.Athena.BetList.Excel;
-using Fanex.Athena.BetList.Excel.Model;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-
-namespace Fanex.Athena.BetList.Controllers.UnitTests.TestClasses
+﻿namespace Fanex.Athena.BetList.Controllers.UnitTests.TestClasses
 {
+    using CustomActionResult;
+    using Excel;
+    using Excel.Model;
+    using Model.DTO;
+    using Model.MetaModel;
+    using Service.Interfaces;
+
     public class BettingTicketCenterBaseControllerTestClass(
         ITicketBuilderService ticketBuilderService,
         IBettingTicketCenterExcel bettingTicketCenterExcel)

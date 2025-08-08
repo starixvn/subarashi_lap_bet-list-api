@@ -1,14 +1,14 @@
-﻿using AutoFixture;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.TestHelper;
-using Fanex.Athena.TestHelper.Extensions;
-using Fanex.BetList.Core.Entities;
-using NSubstitute;
-using System.Collections;
-
-namespace Fanex.Athena.BetList.DataAccess.Tests
+﻿namespace Fanex.Athena.BetList.DataAccess.Tests
 {
+    using System.Collections;
+    using AutoFixture;
+    using Fanex.BetList.Core.Entities;
+    using Model.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using TestHelper;
+    using TestHelper.Extensions;
+
     public class BetListDataAccessTests : BaseDataAccessHelperTest<BetListDataAccess>
     {
         private const string LiveReportWinlossByMatchSp = "Lrf_BetList_LiveReport_SelWinlossByMatch";

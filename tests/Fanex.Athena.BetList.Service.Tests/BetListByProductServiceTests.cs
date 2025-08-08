@@ -1,12 +1,12 @@
-﻿using Fanex.Athena.BetList.DataAccess.Interfaces;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.TestHelper;
-using NSubstitute;
-
-namespace Fanex.Athena.BetList.Service.Tests
+﻿namespace Fanex.Athena.BetList.Service.Tests
 {
+    using DataAccess.Interfaces;
+    using Interfaces;
+    using Model.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using TestHelper;
+
     public class BetListByProductServiceTests
     {
         private IBetListByProductDataAccess _betListByProductDataAccess;
