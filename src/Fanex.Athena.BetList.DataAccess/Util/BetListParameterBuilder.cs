@@ -130,6 +130,7 @@
         private static void CreateMatchWLBetListRangeBettransParameters(IObjectDb db, BetListMetaModel metaModel)
         {
             CreateMatchWLBetlistParameters(db, metaModel);
+            CreateBetListSortingParameters(db, metaModel);
             db.SetParameterValue(DbColumn.MoveBetsDay, metaModel.MoveBetsDay);
         }
 
