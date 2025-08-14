@@ -5,9 +5,19 @@
     using Model.DTO;
     using Resources;
     using System;
+    using System.Collections.Generic;
 
     public static class BetListHelper
     {
+        private static readonly IEnumerable<int> ContributionBetTypes =
+        [
+            (int)BetType.PPContribution,
+            (int)BetType.SBCContribution,
+            (int)BetType.VGAContribution,
+            (int)BetType.SGContribution,
+            (int)BetType.PTRNGContribution
+        ];
+
         public static void ClearData(TicketResult ticketResult)
         {
             ticketResult.MainTicketList.Clear();
@@ -49,7 +59,7 @@
 
         public static bool IsContribution(int bettype)
         {
-            return bettype == (int)BetType.PPContribution || bettype == (int)BetType.SBCContribution || bettype == (int)BetType.VGAContribution || bettype == (int)BetType.SGContribution;
+            return ContributionBetTypes.Contains(bettype);
         }
 
         public static bool IsRunning(string status)

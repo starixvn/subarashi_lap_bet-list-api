@@ -267,6 +267,8 @@
 
         VGAContribution = 3898,
 
-        SGContribution = 4599
+        SGContribution = 4599,
+
+        PTRNGContribution = 12998
     }
 }
