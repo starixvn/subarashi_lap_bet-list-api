@@ -207,7 +207,7 @@
     <PackageReference Include="Fanex.BetList.UUSlots" Version="1.0.0" />
     <PackageReference Include="Fanex.BetList.VGaming" Version="2.0.0.8" />
     <PackageReference Include="Fanex.BetList.VirtualGames" Version="2.0.0.2" />
-    <PackageReference Include="Fanex.BetList.VirtualSports" Version="2.0.2.6" />
+    <PackageReference Include="Fanex.BetList.VirtualSports" Version="2.0.2.7" />
     <PackageReference Include="Fanex.BetList.Voidbridge" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.WE" Version="1.0.0.1" />
     <PackageReference Include="Fanex.BetList.WM" Version="2.0.0.1" />
