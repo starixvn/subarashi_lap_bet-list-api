@@ -1,14 +1,14 @@
-﻿using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Core.Utils;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using System.Net;
-
-namespace Fanex.Athena.Common.Site.Attributes
+﻿namespace Fanex.Athena.Common.Site.Attributes
 {
-    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false)]
+    using System.Net;
+    using Core.Utils;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Filters;
+    using Microsoft.Extensions.Logging;
+    using Newtonsoft.Json;
+    using Services.Interfaces;
+
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class RequestValidationAttribute : TypeFilterAttribute
     {
         public RequestValidationAttribute(
@@ -20,7 +20,7 @@ namespace Fanex.Athena.Common.Site.Attributes
         }
     }
 
-    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class DataValidationImplAttribute : ActionFilterAttribute
     {
         private const string ErrorMsg = "Invalid Params";

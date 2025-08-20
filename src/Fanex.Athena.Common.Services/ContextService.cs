@@ -1,12 +1,12 @@
-﻿using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-using System.Collections.ObjectModel;
-using System.Security.Claims;
-
-namespace Fanex.Athena.Common.Services
+﻿namespace Fanex.Athena.Common.Services
 {
+    using System.Collections.ObjectModel;
+    using System.Security.Claims;
+    using Constant;
+    using Interfaces;
+    using Microsoft.AspNetCore.Http;
+    using Newtonsoft.Json;
+
     public class ContextService : IContextService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -140,10 +140,8 @@ namespace Fanex.Athena.Common.Services
 
                     return Constant.SubsidiaryViewType.NormalManagement;
                 }
-                else
-                {
-                    return Constant.SubsidiaryViewType.NotManagement;
-                }
+
+                return Constant.SubsidiaryViewType.NotManagement;
             }
         }
 

@@ -1,14 +1,12 @@
-﻿
-
-using Fanex.Athena.BetList.DataAccess.Interfaces;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.TestHelper;
-using NSubstitute;
-
-namespace Fanex.Athena.BetList.Service.Tests
+﻿namespace Fanex.Athena.BetList.Service.Tests
 {
+    using DataAccess.Interfaces;
+    using Interfaces;
+    using Model.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using TestHelper;
+
     public class ExchangeBetListServiceTests
     {
         private IExchangeBetListDataAccess _dataAccess;
@@ -40,7 +38,7 @@ namespace Fanex.Athena.BetList.Service.Tests
             // Arrange
             var expectedData = new List<ExchangeTicketDetail>
             {
-                new ExchangeTicketDetail { BetTaken = new System.DateTime(2018, 5, 16), OddsReq = 1, Stake = 2, Liability = "3", OddsMatched = 4 }
+                new ExchangeTicketDetail { BetTaken = new DateTime(2018, 5, 16), OddsReq = 1, Stake = 2, Liability = "3", OddsMatched = 4 }
             };
             _dataAccess.GetTicketDetailListAsync(Arg.Any<ExchangeBetListDetailMetaModel>()).Returns(expectedData);
 
@@ -87,14 +85,14 @@ namespace Fanex.Athena.BetList.Service.Tests
         public async Task GetBetListData_HasDataReturnedFromDataAccess_ReturnCorrectData()
         {
             // Arrange
-            var sumWinLossList = new List<ExchangeSumWinLoss>()
+            var sumWinLossList = new List<ExchangeSumWinLoss>
             {
                 new ExchangeSumWinLoss { UserId = "1", MarketId = "1", EventId = 1, EventName = "Event1" },
                 new ExchangeSumWinLoss { UserId = "1", MarketId = "2", EventId = 2, EventName = "Event2" },
                 new ExchangeSumWinLoss { UserId = "2", MarketId = "3", EventId = 3, EventName = "Event3" }
             };
 
-            var ticketList = new List<ExchangeTicket>()
+            var ticketList = new List<ExchangeTicket>
             {
                 new ExchangeTicket { UserId = "1", MarketId = "1", EventId = 1, BetId = 1, SelectionName = "Selection1" },
                 new ExchangeTicket { UserId = "1", MarketId = "1", EventId = 1, BetId = 2, SelectionName = "Selection2" },

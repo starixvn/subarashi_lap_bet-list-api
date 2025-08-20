@@ -3,8 +3,6 @@
     using Fanex.Result.Core.Happy5.DTO;
     using Fanex.Result.Core.NumberGame.DTO;
     using Model.MetaModel;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     public interface IResultNumberGameDataAccess
     {

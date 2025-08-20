@@ -1,9 +1,9 @@
-﻿using BetListNPOI.SS.UserModel;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-
-namespace Fanex.Athena.BetList.Excel.Builders
+﻿namespace Fanex.Athena.BetList.Excel.Builders
 {
+    using BetList.Model.DTO;
+    using BetList.Model.MetaModel;
+    using BetListNPOI.SS.UserModel;
+
     public interface IBettingTicketCenterExcelBuilder
     {
         void CreateSheet(string sheetName, BettingTicketCenterOption option);

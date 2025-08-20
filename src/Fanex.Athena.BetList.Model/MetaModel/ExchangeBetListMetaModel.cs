@@ -1,8 +1,7 @@
 ﻿namespace Fanex.Athena.BetList.Model.MetaModel
 {
-    using Fanex.Athena.BetList.Model.Constants;
-    using Fanex.Core.Utils;
-    using System;
+    using Constants;
+    using Core.Utils;
 
     public class ExchangeBetListMetaModel : BaseExchangeBetListMetaModel, IValidationMetaModel
     {

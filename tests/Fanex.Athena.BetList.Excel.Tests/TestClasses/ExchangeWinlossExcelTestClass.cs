@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.BetList.Excel.Builders;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Model.ViewModel;
-using NPOI.SS.UserModel;
-
-namespace Fanex.Athena.BetList.Excel.Tests.TestClasses
+﻿namespace Fanex.Athena.BetList.Excel.Tests.TestClasses
 {
+    using BetList.Model.MetaModel;
+    using BetList.Model.ViewModel;
+    using Excel.Builders;
+    using NPOI.SS.UserModel;
+
     public class ExchangeWinlossExcelTestClass(IExcelBuilder builder) : ExchangeWinLossExcel(builder)
     {
         public void ProtectedAssignHeader(ISheet sheet, ISheet templateSheet)

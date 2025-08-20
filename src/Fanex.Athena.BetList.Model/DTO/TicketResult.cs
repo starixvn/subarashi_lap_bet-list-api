@@ -2,7 +2,6 @@
 {
     using Common.Utility.Collections;
     using Fanex.BetList.Core.Entities;
-    using System.Collections.Generic;
 
     public class TicketResult
     {

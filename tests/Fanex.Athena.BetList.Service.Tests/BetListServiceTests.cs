@@ -1,17 +1,17 @@
-﻿using Fanex.Athena.BetList.DataAccess.Interfaces;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.TestHelper;
-using Fanex.BetList.Core.Entities;
-using NSubstitute;
-
-namespace Fanex.Athena.BetList.Service.Tests
+﻿namespace Fanex.Athena.BetList.Service.Tests
 {
+    using Common.DataAccess.Interfaces;
+    using Common.Model.DTO;
+    using Common.Services.Interfaces;
+    using Common.Utility.Services.Interfaces;
+    using DataAccess.Interfaces;
+    using Fanex.BetList.Core.Entities;
+    using Interfaces;
+    using Model.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using TestHelper;
+
     public class BetListServiceTests
     {
         private IBetListDataAccess _betlistDataAccess;

@@ -1,9 +1,9 @@
 ﻿namespace Fanex.Athena.Common.DataAccess
 {
-    using Fanex.Athena.Common.Utility.Services.Interfaces;
     using Fanex.Common.Extensions;
     using Interfaces;
     using Model.DTO;
+    using Utility.Services.Interfaces;
 
     public class BalanceUpDataAccess : BaseDataAccess, IBalanceUpDataAccess
     {

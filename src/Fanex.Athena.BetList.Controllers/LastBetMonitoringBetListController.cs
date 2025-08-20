@@ -1,20 +1,21 @@
-﻿using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Extensions;
-using Fanex.Athena.BetList.Service.Helpers;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Site.Attributes;
-using Fanex.Athena.Common.Utility.Helpers;
-using Fanex.Athena.Resources;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using Microsoft.AspNetCore.Mvc;
-using System.Xml.Linq;
-
-namespace Fanex.Athena.BetList.Controllers
+﻿namespace Fanex.Athena.BetList.Controllers
 {
+    using System.Xml.Linq;
+    using Common.Constant;
+    using Common.Services.Interfaces;
+    using Common.Site.Attributes;
+    using Common.Utility.Helpers;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Utils;
+    using Microsoft.AspNetCore.Mvc;
+    using Model.DTO;
+    using Model.MetaModel;
+    using Resources;
+    using Service.Extensions;
+    using Service.Helpers;
+    using Service.Interfaces;
+
     [ApiController]
     [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]
@@ -88,13 +89,11 @@ namespace Fanex.Athena.BetList.Controllers
                 BetListHelper.ClearData(ticketResult);
                 return result;
             }
-            else
+
+            return new
             {
-                return new
-                {
-                    NewRow = false
-                };
-            }
+                NewRow = false
+            };
         }
 
         private string GetLastMonitorBetListContent(LastBetsMonitoringMetaModel metaModel, TicketResult ticketResult)
@@ -178,7 +177,7 @@ namespace Fanex.Athena.BetList.Controllers
                 builder.Append(
                     string.Format(
                         OddStr,
-                        Fanex.BetList.Core.Utils.ConvertByBetType.Odds(ticket.Odds),
+                        ConvertByBetType.Odds(ticket.Odds),
                         ticket.Odds < 0 ? "negative" : string.Empty,
                         metaModel.OddsType));
             }

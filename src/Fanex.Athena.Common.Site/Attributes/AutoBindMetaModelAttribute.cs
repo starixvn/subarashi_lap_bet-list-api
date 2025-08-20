@@ -1,13 +1,13 @@
-﻿using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Model.MetaModel;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Extensions;
-using Fanex.Core.Utils;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-
-namespace Fanex.Athena.Common.Site.Attributes
+﻿namespace Fanex.Athena.Common.Site.Attributes
 {
+    using Core.Utils;
+    using DataAccess.Interfaces;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Filters;
+    using Model.MetaModel;
+    using Services.Interfaces;
+    using Utility.Extensions;
+
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class AutoBindMetaModelAttribute : TypeFilterAttribute
     {

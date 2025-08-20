@@ -1,10 +1,9 @@
-﻿using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-
-
-namespace Fanex.Athena.Common.Services
+﻿namespace Fanex.Athena.Common.Services
 {
+    using Interfaces;
+    using Model.DTO;
+    using Utility.Services.Interfaces;
+
     public class LicenseeSettingService : ILicenseeSettingService
     {
         private readonly IAppSettings _appSettings;

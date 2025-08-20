@@ -1,14 +1,13 @@
-﻿using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Services;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.TestHelper;
-using Fanex.Data;
-using NSubstitute;
-using System.Data;
-
-
-namespace Fanex.Athena.Common.Service.UnitTests
+﻿namespace Fanex.Athena.Common.Service.UnitTests
 {
+    using System.Data;
+    using Constant;
+    using Data;
+    using NSubstitute;
+    using Services;
+    using Services.Interfaces;
+    using TestHelper;
+
     public class SubsidiaryServiceTests
     {
         private IContextService _contextService;
@@ -105,9 +104,9 @@ namespace Fanex.Athena.Common.Service.UnitTests
             string subsidiaryList = "sub1,sub2,sub3";
             var agentList = new Dictionary<int, int[]>
                     {
-                        { 1, new int[] { 1, 2, 3 } },
-                        { 2, new int[] { 4, 5, 6 } },
-                        { 3, new int[] { 7, 8, 9 } }
+                        { 1, new[] { 1, 2, 3 } },
+                        { 2, new[] { 4, 5, 6 } },
+                        { 3, new[] { 7, 8, 9 } }
                     };
             _contextService.AgentList.Returns(agentList);
             _contextService.SiteName.Returns("SiteName");

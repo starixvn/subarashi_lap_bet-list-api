@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.Common.Model.DTO;
-
-namespace Fanex.Athena.Common.Services.Interfaces
+﻿namespace Fanex.Athena.Common.Services.Interfaces
 {
+    using Model.DTO;
+
     public interface ILicenseeSettingService
     {
         bool IsFakeLicensee(string licenseeName);

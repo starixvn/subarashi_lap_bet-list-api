@@ -1,12 +1,9 @@
 ﻿namespace Fanex.Athena.TestHelper
 {
+    using System.Collections;
+    using System.Data;
     using NSubstitute;
     using NSubstitute.Core;
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
 
     public static class DataAccessTestHelper
     {

@@ -1,15 +1,15 @@
-﻿using AutoFixture;
-using Fanex.Athena.BetList.DataAccess.Tests.TestClasses;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.Common.Model.MetaModel;
-using Fanex.Athena.TestHelper;
-using Fanex.Athena.TestHelper.Extensions;
-using Fanex.BetList.Core.Entities;
-using Fanex.Data;
-using NSubstitute;
-
-namespace Fanex.Athena.BetList.DataAccess.Tests
+﻿namespace Fanex.Athena.BetList.DataAccess.Tests
 {
+    using AutoFixture;
+    using Common.Model.MetaModel;
+    using Data;
+    using Fanex.BetList.Core.Entities;
+    using Model.DTO;
+    using NSubstitute;
+    using TestClasses;
+    using TestHelper;
+    using TestHelper.Extensions;
+
     [TestFixture]
     public class BaseBetListDataAccessTests : BaseDataAccessHelperTest<BaseBetListDataAccessTestClass>
     {
@@ -62,7 +62,7 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             metaModel.UseShardDB.Returns(true);
 
             //Action
-            var result = await DataAccess.GetMainTicketListBasedRangeAsync(metaModel, spName, Substitute.For<Action<IObjectDb>>(), false);
+            var result = await DataAccess.GetMainTicketListBasedRangeAsync(metaModel, spName, Substitute.For<Action<IObjectDb>>());
 
             //Assert
             Assert.That(result.MainTicketList, Has.Count.EqualTo(2));
@@ -82,7 +82,7 @@ namespace Fanex.Athena.BetList.DataAccess.Tests
             metaModel.UseShardDB.Returns(false);
 
             //Action
-            var result = await DataAccess.GetMainTicketListBasedRangeAsync(metaModel, _fixture.Create<string>(), Substitute.For<Action<IObjectDb>>(), false);
+            var result = await DataAccess.GetMainTicketListBasedRangeAsync(metaModel, _fixture.Create<string>(), Substitute.For<Action<IObjectDb>>());
 
             //Assert
             Assert.That(result.MainTicketList, Has.Count.EqualTo(1));

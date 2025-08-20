@@ -1,14 +1,14 @@
-﻿using Fanex.Athena.BetList.Excel.Builders;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Model.ViewModel;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Resources;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
-
-namespace Fanex.Athena.BetList.Excel
+﻿namespace Fanex.Athena.BetList.Excel
 {
+    using BetList.Model.DTO;
+    using BetList.Model.MetaModel;
+    using BetList.Model.ViewModel;
+    using Builders;
+    using Common.Constant;
+    using NPOI.HSSF.UserModel;
+    using NPOI.SS.UserModel;
+    using Resources;
+
     public class ExchangeWinLossExcel(IExcelBuilder builder) : IExchangeWinLossExcel
     {
         private const string TemplateSheetName = "Template";

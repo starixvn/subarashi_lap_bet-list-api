@@ -1,12 +1,12 @@
-﻿using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.TestHelper;
-using Fanex.Athena.TestHelper.Extensions;
-using Fanex.BetList.Core.Entities;
-using NSubstitute;
-using System.Collections;
-
-namespace Fanex.Athena.BetList.DataAccess.Tests
+﻿namespace Fanex.Athena.BetList.DataAccess.Tests
 {
+    using System.Collections;
+    using Fanex.BetList.Core.Entities;
+    using Model.MetaModel;
+    using NSubstitute;
+    using TestHelper;
+    using TestHelper.Extensions;
+
     public class PlayerAdminBetListDataAccessTests : BaseDataAccessHelperTest<PlayerAdminBetListDataAccess>
     {
         protected override void SetUpDataAccess()

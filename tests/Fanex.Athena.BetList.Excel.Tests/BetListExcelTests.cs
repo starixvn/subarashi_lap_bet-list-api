@@ -1,21 +1,21 @@
-﻿using BetListNPOI.SS.UserModel;
-using Fanex.Athena.BetList.Excel.Tests.TestClasses;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Resources;
-using Fanex.Athena.TestHelper.Extensions;
-using Fanex.BetList.Core;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using Fanex.BetList.Core.TicketHelper;
-using NSubstitute;
-using Fanex.Athena.BetList.Service.Extensions;
-
-namespace Fanex.Athena.BetList.Excel.Tests
+﻿namespace Fanex.Athena.BetList.Excel.Tests
 {
+    using BetList.Model.DTO;
+    using BetList.Model.MetaModel;
+    using BetListNPOI.SS.UserModel;
+    using Common.Constant;
+    using Common.Utility.Services.Interfaces;
+    using Fanex.BetList.Core;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.TicketHelper;
+    using NSubstitute;
+    using Resources;
+    using Service.Extensions;
+    using Service.Interfaces;
+    using TestClasses;
+    using TestHelper.Extensions;
+
     public class BetListExcelTests
     {
         private const int LicenseeId = 9999;

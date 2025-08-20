@@ -1,11 +1,11 @@
-﻿using Fanex.Athena.BetList.DataAccess.Interfaces;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.TestHelper;
-using NSubstitute;
-
-namespace Fanex.Athena.BetList.Service.Tests
+﻿namespace Fanex.Athena.BetList.Service.Tests
 {
+    using DataAccess.Interfaces;
+    using Interfaces;
+    using Model.DTO;
+    using NSubstitute;
+    using TestHelper;
+
     public class IPServiceTests
     {
         private IIPDataAccess _ipDataAccess;
@@ -57,8 +57,8 @@ namespace Fanex.Athena.BetList.Service.Tests
         {
             // Arrange
             var ip = "1.1.1.1";
-            var expectedResult = Tuple.Create<IList<IPV4RangeEntity>, IList<IPV6RangeEntity>>(new List<IPV4RangeEntity>() { new IPV4RangeEntity { IPFrom = 1234, IPTo = 5678 } },
-                new List<IPV6RangeEntity>() { new IPV6RangeEntity { IPFrom = "aaaa", IPTo = "ffff" } });
+            var expectedResult = Tuple.Create<IList<IPV4RangeEntity>, IList<IPV6RangeEntity>>(new List<IPV4RangeEntity> { new IPV4RangeEntity { IPFrom = 1234, IPTo = 5678 } },
+                new List<IPV6RangeEntity> { new IPV6RangeEntity { IPFrom = "aaaa", IPTo = "ffff" } });
             _ipDataAccess.GetVNIPs().Returns(expectedResult);
 
             // Action
@@ -73,7 +73,7 @@ namespace Fanex.Athena.BetList.Service.Tests
         {
             // Arrange
             var ip = "1.1.1.1";
-            var expectedResult = Tuple.Create<IList<IPV4RangeEntity>, IList<IPV6RangeEntity>>(new List<IPV4RangeEntity>() { new IPV4RangeEntity { IPFrom = 1234, IPTo = 16843009 } }, new List<IPV6RangeEntity>() { });
+            var expectedResult = Tuple.Create<IList<IPV4RangeEntity>, IList<IPV6RangeEntity>>(new List<IPV4RangeEntity> { new IPV4RangeEntity { IPFrom = 1234, IPTo = 16843009 } }, new List<IPV6RangeEntity>());
             _ipDataAccess.GetVNIPs().Returns(expectedResult);
 
             // Action

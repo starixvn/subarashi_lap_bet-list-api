@@ -11,7 +11,6 @@ using Interfaces;
 using Model.DTO;
 using Model.MetaModel;
 using Newtonsoft.Json;
-using Fanex.Athena.BetList.DataAccess.Util;
 
 public class BettingTicketCenterAdvancedSearchDataAccess(
     IBalanceUpDataAccess balanceUpDataAccess,

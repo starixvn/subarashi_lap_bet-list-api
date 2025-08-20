@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-
-namespace Fanex.Athena.BetList.Excel.Model
+﻿namespace Fanex.Athena.BetList.Excel.Model
 {
+    using BetList.Model.DTO;
+    using BetList.Model.MetaModel;
+
     public class BettingTicketCenterExcelModel
     {
         public TicketResult Data { get; set; }

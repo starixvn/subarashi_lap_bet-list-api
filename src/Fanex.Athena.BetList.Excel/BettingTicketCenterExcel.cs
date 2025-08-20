@@ -3,12 +3,10 @@
     using BetListNPOI.SS.UserModel;
     using Builders;
     using Common.Constant;
-    using Fanex.Athena.BetList.Excel.Helpers;
-    using Fanex.Athena.BetList.Service.Interfaces;
+    using Helpers;
     using Model;
     using Resources;
-    using System;
-    using System.Linq;
+    using Service.Interfaces;
 
     public class BettingTicketCenterExcel : IBettingTicketCenterExcel
     {

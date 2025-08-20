@@ -1,9 +1,9 @@
-﻿using Fanex.Athena.Common.Utility.Helpers;
-using Microsoft.AspNetCore.Diagnostics;
-using System.Net;
-
-namespace Fanex.Athena.BetListAPI.Host.Middlewares
+﻿namespace Fanex.Athena.BetListAPI.Host.Middlewares
 {
+    using System.Net;
+    using Common.Utility.Helpers;
+    using Microsoft.AspNetCore.Diagnostics;
+
     public class ErrorHandlerMiddleware
     {
         private readonly RequestDelegate _next;

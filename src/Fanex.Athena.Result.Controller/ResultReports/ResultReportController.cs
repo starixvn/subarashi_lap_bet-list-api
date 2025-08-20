@@ -1,21 +1,23 @@
-﻿using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Utility.Extensions;
-using Fanex.Athena.Common.Utility.Helpers;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Report.Common.Helpers;
-using Fanex.Athena.Resources;
-using Fanex.Athena.Result.Controller.ResultService.Interfaces;
-using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Athena.Result.Service.Interfaces;
-using Fanex.Result.Core.Base;
-using Fanex.Result.Core.LeapGaming.DTO;
-using Fanex.Result.Core.Sportsbook.DTO;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.Result.Controller.ResultReports
+﻿namespace Fanex.Athena.Result.Controller.ResultReports
 {
+    using Common.Constant;
+    using Common.Model.DTO;
+    using Common.Utility.Extensions;
+    using Common.Utility.Helpers;
+    using Common.Utility.Services.Interfaces;
+    using Fanex.Result.Core.Base;
+    using Fanex.Result.Core.LeapGaming.DTO;
+    using Fanex.Result.Core.Sportsbook.DTO;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Model.MetaModel;
+    using Report.Common.Helpers;
+    using Resources;
+    using ResultService.Interfaces;
+    using Service.Interfaces;
+    using SportType = Fanex.Result.Core.Base.SportType;
+
     [ApiController]
     [Route("api/[controller]/[action]")]
     [Route("[controller]/[action]")]
@@ -46,9 +48,9 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         [
             ParlayBetType,
             SystemParlayBetType,
-            (int)Common.Constant.BetType.VirtualSports2MixParlay,
-            (int)Common.Constant.BetType.VirtualSports4MixParlay,
-            (int)Common.Constant.BetType.VirtualSports5MixParlay
+            (int)BetType.VirtualSports2MixParlay,
+            (int)BetType.VirtualSports4MixParlay,
+            (int)BetType.VirtualSports5MixParlay
         ];
 
         private readonly IResultService _resultService;
@@ -100,10 +102,8 @@ namespace Fanex.Athena.Result.Controller.ResultReports
                 _excelStream.Seek(0, SeekOrigin.Begin);
                 return File(_excelStream, "application/vnd.ms-excel", "Result.xls");
             }
-            else
-            {
-                return BadRequest(ViewResources.InvalidParams);
-            }
+
+            return BadRequest(ViewResources.InvalidParams);
         }
 
         [HttpPost]
@@ -178,12 +178,12 @@ namespace Fanex.Athena.Result.Controller.ResultReports
         private static IEnumerable<Sport> RemoveNotAllowedSports(IEnumerable<Sport> sports, IEnumerable<string> productCodes)
         {
             var limitedSports = sports;
-            if (!productCodes.Contains(Common.Constant.ProductCodes.NG))
+            if (!productCodes.Contains(ProductCodes.NG))
             {
                 limitedSports = limitedSports.Where(i => i.SportId != (int)SportType.NumberGame && i.SportId != (int)SportType.Happy5);
             }
 
-            if (!productCodes.Contains(Common.Constant.ProductCodes.VS))
+            if (!productCodes.Contains(ProductCodes.VS))
             {
                 limitedSports = limitedSports.Where(i => i.SportId != (int)SportType.VirtualSports);
             }
@@ -218,13 +218,13 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             {
                 if (metalModel.RefNo != null)
                 {
-                    var parlayData = metalModel.Bettype == (int)Common.Constant.BetType.VirtualSports5MixParlay
+                    var parlayData = metalModel.Bettype == (int)BetType.VirtualSports5MixParlay
                         ? await _resultService.GetPopUpVS5ParlayMatchAsync(metalModel.RefNo.Value).ConfigureAwait(false)
                         : await _resultService.GetPopUpParlayMatchAsync(metalModel.RefNo.Value).ConfigureAwait(false);
                     _htmlResult = _resultService.HtmlParser(parlayData, setting);
                 }
             }
-            else if (metalModel.Bettype == (int)Common.Constant.BetType.SingleMatchParlay)
+            else if (metalModel.Bettype == (int)BetType.SingleMatchParlay)
             {
                 var singleMatchParlayData = await _resultService.GetPopUpSingleMatchParlayAsync(metalModel.MatchId, metalModel.Extension1);
                 if (singleMatchParlayData != null)
@@ -385,7 +385,7 @@ namespace Fanex.Athena.Result.Controller.ResultReports
             {
                 var productCodes = metalModel.ProductCodeList.Split(',');
 
-                var isAllowAllProducts = productCodes.Contains(Common.Constant.ProductCodes.NG) && productCodes.Contains(Common.Constant.ProductCodes.VS);
+                var isAllowAllProducts = productCodes.Contains(ProductCodes.NG) && productCodes.Contains(ProductCodes.VS);
 
                 var limitedSports = isAllowAllProducts ? sports : RemoveNotAllowedSports(sports, productCodes);
 

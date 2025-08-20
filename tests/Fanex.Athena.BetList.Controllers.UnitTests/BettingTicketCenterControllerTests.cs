@@ -1,21 +1,21 @@
-﻿using Fanex.Athena.BetList.DataAccess.Interfaces;
-using Fanex.Athena.BetList.Excel;
-using Fanex.Athena.BetList.Excel.Model;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Collections;
-using Fanex.Athena.Resources;
-using Fanex.Athena.TestHelper;
-using NSubstitute;
-using NUnit.Framework;
-using System.Net;
-using Fanex.Athena.TestHelper.Extensions;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.BetList.Controllers.UnitTests
+﻿namespace Fanex.Athena.BetList.Controllers.UnitTests
 {
+    using System.Net;
+    using Common.Services.Interfaces;
+    using Common.Utility.Collections;
+    using DataAccess.Interfaces;
+    using Excel;
+    using Excel.Model;
+    using Microsoft.AspNetCore.Mvc;
+    using Model.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using NUnit.Framework;
+    using Resources;
+    using Service.Interfaces;
+    using TestHelper;
+    using TestHelper.Extensions;
+
     public class BettingTicketCenterControllerTests : BaseControllerHelperTests
     {
         private IBettingTicketCenterDataAccess _dataAccess;

@@ -1,11 +1,11 @@
-﻿using Fanex.Athena.Common.Utility.Services;
-using Fanex.Athena.Common.Utility.Services.Internal;
-using Fanex.Athena.TestHelper;
-using NSubstitute;
-using System.Runtime.Caching;
-
-namespace Fanex.Athena.Common.Utility.Tests.Services
+﻿namespace Fanex.Athena.Common.Utility.Tests.Services
 {
+    using System.Runtime.Caching;
+    using NSubstitute;
+    using TestHelper;
+    using Utility.Services;
+    using Utility.Services.Internal;
+
     public class MemoryCacheServiceTest
     {
         private const string REGIONNAME = "LAP_BETLIST_MAIN_MEMORY";

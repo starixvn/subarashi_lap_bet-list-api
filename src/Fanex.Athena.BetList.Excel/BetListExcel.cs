@@ -1,23 +1,20 @@
 ﻿namespace Fanex.Athena.BetList.Excel
 {
-    using Athena.BetList.Model.DTO;
-    using Athena.BetList.Model.MetaModel;
+    using BetList.Model.DTO;
+    using BetList.Model.MetaModel;
     using BetListNPOI.HSSF.UserModel;
     using BetListNPOI.HSSF.Util;
     using BetListNPOI.SS.UserModel;
     using BetListNPOI.SS.Util;
     using Common.Constant;
     using Common.Utility.Services.Interfaces;
-    using Fanex.Athena.BetList.Service.Interfaces;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
     using Helpers;
     using Resources;
     using Service.Extensions;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    using Service.Interfaces;
 
     public class BetListExcel
     {

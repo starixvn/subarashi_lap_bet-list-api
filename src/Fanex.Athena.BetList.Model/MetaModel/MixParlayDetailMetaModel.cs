@@ -1,7 +1,6 @@
 ﻿namespace Fanex.Athena.BetList.Model.MetaModel
 {
-    using Fanex.Athena.Common.Model.MetaModel;
-    using System;
+    using Common.Model.MetaModel;
 
     public class MixParlayDetailMetaModel : IBalanceUpMetaModel, IShardDBMetaModel
     {

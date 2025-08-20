@@ -1,7 +1,6 @@
 ﻿namespace Fanex.Athena.Common.Utility.Services.Interfaces
 {
-    using System.Collections.Generic;
-    using Fanex.Athena.Common.Model.DTO;
+    using Model.DTO;
 
     public interface IAppSettings
     {

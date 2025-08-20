@@ -1,16 +1,10 @@
-﻿using Fanex.Athena.Result.Controller.Constants;
-using Fanex.Athena.Result.Controller.ResultPopup;
-using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Athena.Result.Service.Interfaces;
-using Fanex.Athena.TestHelper;
-using Fanex.Result.Core.SabaClub;
-using Fanex.Result.Core.ThirdParty;
-using Fanex.Result.Core.ThirdParty.Models;
-using Microsoft.AspNetCore.Mvc;
-using NSubstitute;
-
-namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
+﻿namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
 {
+    using Controller.ResultPopup;
+    using Fanex.Result.Core.SabaClub;
+    using Microsoft.AspNetCore.Mvc;
+    using NSubstitute;
+
     public class SabaClubResultPopupControllerTests
     {
         private ISabaClubResult _resultApi;
@@ -43,7 +37,7 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
                 LanguageCode = "en-US"
             };
 
-            _resultApi.GetResult("123", "123", "gameId", "siteId", 1, "en-US").Returns(expectedResult);
+            _resultApi.GetResult("123", "123", "gameId", "siteId", 1).Returns(expectedResult);
 
             //Action
             var result = controller.Index(model) as ContentResult;

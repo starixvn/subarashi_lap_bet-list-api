@@ -1,9 +1,9 @@
-﻿using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.TestHelper;
-using NSubstitute;
-
-namespace Fanex.Athena.BetList.DataAccess.Tests
+﻿namespace Fanex.Athena.BetList.DataAccess.Tests
 {
+    using Model.DTO;
+    using NSubstitute;
+    using TestHelper;
+
     [TestFixture]
     public class IPDataAccessTests : BaseDataAccessHelperTest<IPDataAccess>
     {

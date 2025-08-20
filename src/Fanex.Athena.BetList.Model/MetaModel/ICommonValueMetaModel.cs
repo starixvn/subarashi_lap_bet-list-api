@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.Common.Model.MetaModel;
-
-namespace Fanex.Athena.BetList.Model.MetaModel
+﻿namespace Fanex.Athena.BetList.Model.MetaModel
 {
+    using Common.Model.MetaModel;
+
     public interface ICommonValueMetaModel : IMetaModelShowBetFromIP
     {
         string BaseCurrency { get; set; }

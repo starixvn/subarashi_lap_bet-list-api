@@ -1,8 +1,8 @@
-﻿using Fanex.Result.Core.WCasino;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.Result.Controller.ResultPopup
+﻿namespace Fanex.Athena.Result.Controller.ResultPopup
 {
+    using Fanex.Result.Core.WCasino;
+    using Microsoft.AspNetCore.Mvc;
+
     [ApiController]
     [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]

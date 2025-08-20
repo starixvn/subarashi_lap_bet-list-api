@@ -1,15 +1,15 @@
-﻿using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Helpers;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Resources;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-
-namespace Fanex.Athena.Common.Services
+﻿namespace Fanex.Athena.Common.Services
 {
+    using Constant;
+    using Interfaces;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.Extensions.Logging;
+    using Model.DTO;
+    using Newtonsoft.Json;
+    using Resources;
+    using Utility.Helpers;
+    using Utility.Services.Interfaces;
+
     public class CustomerClassService : ICustomerClassService
     {
         private readonly IMemoryCacheService _cache;

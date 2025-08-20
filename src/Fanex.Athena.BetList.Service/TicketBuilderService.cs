@@ -1,16 +1,16 @@
-﻿using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Extensions;
-using Fanex.Athena.BetList.Service.Helpers;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.BetList.Service.Optiions;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Utility.Helpers;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-
-namespace Fanex.Athena.BetList.Service
+﻿namespace Fanex.Athena.BetList.Service
 {
+    using Common.Constant;
+    using Common.Utility.Helpers;
+    using Extensions;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Helpers;
+    using Interfaces;
+    using Model.DTO;
+    using Model.MetaModel;
+    using Optiions;
+
     public class TicketBuilderService : ITicketBuilderService
     {
         private readonly IBetListHTMLBuilder _betlistHtmlBuilder;

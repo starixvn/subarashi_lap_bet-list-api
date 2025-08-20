@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Athena.Common.Utility.Services.Internal
 {
-    using System;
-    using System.Linq;
     using System.Runtime.Caching;
 
     public class CustomMemoryCache : MemoryCache, ICustomMemoryCache

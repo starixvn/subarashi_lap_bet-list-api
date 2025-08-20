@@ -1,12 +1,12 @@
-﻿using Fanex.Athena.Result.Service;
-using Fanex.Result.Core.ThirdParty;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using NSubstitute;
-
-namespace Fanexe.Athena.Result.Service.Tests
+﻿namespace Fanexe.Athena.Result.Service.Tests
 {
+    using Fanex.Athena.Result.Service;
+    using Fanex.Result.Core.ThirdParty;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Logging;
+    using Newtonsoft.Json;
+    using NSubstitute;
+
     public class BetlistResultGettterFactoryTests
     {
         private IConfiguration _configuration;

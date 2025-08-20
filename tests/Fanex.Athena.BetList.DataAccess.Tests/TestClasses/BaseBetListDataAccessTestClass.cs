@@ -1,14 +1,14 @@
-﻿using Fanex.Athena.BetList.DataAccess.Util;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Model.MetaModel;
-using Fanex.Athena.Common.Utility.Collections;
-using Fanex.BetList.Core.Entities;
-using Fanex.Data;
-using System.Data;
-
-namespace Fanex.Athena.BetList.DataAccess.Tests.TestClasses
+﻿namespace Fanex.Athena.BetList.DataAccess.Tests.TestClasses
 {
+    using System.Data;
+    using Common.DataAccess.Interfaces;
+    using Common.Model.MetaModel;
+    using Common.Utility.Collections;
+    using Data;
+    using DataAccess.Util;
+    using Fanex.BetList.Core.Entities;
+    using Model.DTO;
+
     public class BaseBetListDataAccessTestClass : BaseBetListDataAccess
     {
         protected BaseBetListDataAccessTestClass(ICurrencyDataAccess currenyDataAccess) : base(currenyDataAccess)

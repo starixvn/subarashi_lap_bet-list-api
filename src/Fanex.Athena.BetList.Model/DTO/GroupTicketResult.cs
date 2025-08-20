@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Athena.BetList.Model.DTO
 {
-    using System.Collections.Generic;
-
     public class GroupTicketResult
     {
         public IList<string> DataPath { get; set; } = new List<string>();

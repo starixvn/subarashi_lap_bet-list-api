@@ -1,9 +1,9 @@
-﻿using Fanex.Athena.Common.Services;
-using Fanex.Athena.Common.Services.Interfaces;
-using NSubstitute;
-
-namespace Fanex.Athena.Common.Service.UnitTests
+﻿namespace Fanex.Athena.Common.Service.UnitTests
 {
+    using NSubstitute;
+    using Services;
+    using Services.Interfaces;
+
     public class ShardInfoAccessorTests
     {
         private ISiteDBAccessor _contextServiceMock;
@@ -147,7 +147,7 @@ namespace Fanex.Athena.Common.Service.UnitTests
             string result = _shardInfoAccessor.GetShardSPKey(key);
 
             // Assert
-            Assert.That(result.ToUpper(), Is.EqualTo($"SiteDB_other_key".ToUpper()));
+            Assert.That(result.ToUpper(), Is.EqualTo("SiteDB_other_key".ToUpper()));
         }
     }
 }

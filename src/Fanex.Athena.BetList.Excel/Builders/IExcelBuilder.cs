@@ -1,7 +1,7 @@
-﻿using NPOI.SS.UserModel;
-
-namespace Fanex.Athena.BetList.Excel.Builders
+﻿namespace Fanex.Athena.BetList.Excel.Builders
 {
+    using NPOI.SS.UserModel;
+
     public interface IExcelBuilder
     {
         IWorkbook LoadTemplate(string path);

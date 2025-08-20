@@ -1,8 +1,9 @@
-﻿using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Resources;
-
-namespace Fanex.Athena.Common.Utility.Helpers
+﻿namespace Fanex.Athena.Common.Utility.Helpers
 {
+    using System.Text.RegularExpressions;
+    using Constant;
+    using Resources;
+
     public static class SabaHelper
     {
         private const int TIME_OUT = 10;
@@ -19,9 +20,9 @@ namespace Fanex.Athena.Common.Utility.Helpers
         public static string RemoveSabaText(string text)
         {
             var sabaText = ViewResources.Saba.Trim();
-            var result = System.Text.RegularExpressions.Regex.Replace(text, sabaText, string.Empty, System.Text.RegularExpressions.RegexOptions.IgnoreCase, TimeSpan.FromSeconds(TIME_OUT));
+            var result = Regex.Replace(text, sabaText, string.Empty, RegexOptions.IgnoreCase, TimeSpan.FromSeconds(TIME_OUT));
             // remove duplicate space
-            return System.Text.RegularExpressions.Regex.Replace(result, "  ", " ", System.Text.RegularExpressions.RegexOptions.IgnoreCase, TimeSpan.FromSeconds(TIME_OUT));
+            return Regex.Replace(result, "  ", " ", RegexOptions.IgnoreCase, TimeSpan.FromSeconds(TIME_OUT));
         }
     }
 }

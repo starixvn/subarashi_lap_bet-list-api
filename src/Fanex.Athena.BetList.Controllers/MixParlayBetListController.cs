@@ -1,15 +1,15 @@
-﻿using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Helpers;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.BetList.Service.Optiions;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.BetList.Controllers
+﻿namespace Fanex.Athena.BetList.Controllers
 {
+    using Common.Utility.Services.Interfaces;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Microsoft.AspNetCore.Mvc;
+    using Model.DTO;
+    using Model.MetaModel;
+    using Service.Helpers;
+    using Service.Interfaces;
+    using Service.Optiions;
+
     [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]
     [ApiController]

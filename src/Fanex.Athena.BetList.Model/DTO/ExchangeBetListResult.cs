@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Athena.BetList.Model.DTO
 {
-    using System.Collections.Generic;
-
     public class ExchangeBetListResult
     {
         public IEnumerable<ExchangeSumWinLoss> SumWinLossList { get; set; }

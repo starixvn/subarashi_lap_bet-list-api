@@ -1,16 +1,17 @@
-﻿using Fanex.Athena.Result.Controller.ResultReports;
-using Fanex.Athena.Result.Service.Interfaces;
-using Fanex.Result.Core.KenoLotteryTG;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Routing;
-using Microsoft.AspNetCore.Routing;
-using NSubstitute;
-
-namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
+﻿namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
 {
+    using Fanex.Result.Core.KenoLotteryTG;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Abstractions;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.AspNetCore.Mvc.Routing;
+    using Microsoft.AspNetCore.Routing;
+    using Model.MetaModel;
+    using NSubstitute;
+    using ResultReports;
+    using Service.Interfaces;
+
     public class ResultKenoReportControllerTests
     {
         private const int VendorProductId = 34343;
@@ -52,7 +53,7 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
             var controller = CreateController();
 
             // Action
-            var result = controller.GetResultPage(new Model.MetaModel.ResultKenoMetaModel
+            var result = controller.GetResultPage(new ResultKenoMetaModel
             {
                 VendorProductId = VendorProductId,
                 CustId = UserId,

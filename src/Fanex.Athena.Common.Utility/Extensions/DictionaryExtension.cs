@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Athena.Common.Utility.Extensions
 {
-    using System.Collections.Generic;
-
     public static class DictionaryExtension
     {
         public static TValue GetValueOrDefault<TKey, TValue>(

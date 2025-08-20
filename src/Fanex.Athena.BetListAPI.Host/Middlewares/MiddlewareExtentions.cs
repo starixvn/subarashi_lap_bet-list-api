@@ -1,8 +1,8 @@
-﻿using System.Text.Json;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-
-namespace Fanex.Athena.BetListAPI.Host.Middlewares
+﻿namespace Fanex.Athena.BetListAPI.Host.Middlewares
 {
+    using System.Text.Json;
+    using Microsoft.Extensions.Diagnostics.HealthChecks;
+
     public static class MiddlewareExtentions
     {
         public static IApplicationBuilder UsePing(this IApplicationBuilder app)

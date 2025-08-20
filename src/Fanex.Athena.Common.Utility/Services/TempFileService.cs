@@ -1,9 +1,9 @@
-﻿using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Internal;
-using Microsoft.Extensions.Hosting;
-
-namespace Fanex.Athena.Common.Utility.Services
+﻿namespace Fanex.Athena.Common.Utility.Services
 {
+    using Interfaces;
+    using Internal;
+    using Microsoft.Extensions.Hosting;
+
     public class TempFileService : ITempFileService
     {
         private readonly IAppSettings _appSettings;

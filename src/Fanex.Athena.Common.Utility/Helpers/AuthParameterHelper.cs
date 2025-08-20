@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.Common.Constant;
-using System.Text;
-
-namespace Fanex.Athena.Common.Utility.Helpers
+﻿namespace Fanex.Athena.Common.Utility.Helpers
 {
+    using System.Text;
+    using Constant;
+
     public static class AuthParameterHelper
     {
         public static string GenerateAgentListXml(IDictionary<int, int[]> currencyAgentList, int currencyId = 0, bool isExcludeTestData = false)

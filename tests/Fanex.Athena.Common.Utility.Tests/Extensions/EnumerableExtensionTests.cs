@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.Common.Utility.Extensions;
-
-namespace Fanex.Athena.Common.Utility.Tests.Extensions
+﻿namespace Fanex.Athena.Common.Utility.Tests.Extensions
 {
+    using Utility.Extensions;
+
     public class EnumerableExtensionTests
     {
         [Test]

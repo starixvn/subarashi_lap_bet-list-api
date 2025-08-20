@@ -1,20 +1,20 @@
-﻿using BetListNPOI.HSSF.UserModel;
-using BetListNPOI.HSSF.Util;
-using BetListNPOI.SS.UserModel;
-using BetListNPOI.SS.Util;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Extensions;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Utility.Helpers;
-using Fanex.Athena.Resources;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using Fanex.BetList.Core.TicketHelper;
-
-namespace Fanex.Athena.BetList.Excel.Builders
+﻿namespace Fanex.Athena.BetList.Excel.Builders
 {
+    using BetList.Model.DTO;
+    using BetList.Model.MetaModel;
+    using BetListNPOI.HSSF.UserModel;
+    using BetListNPOI.HSSF.Util;
+    using BetListNPOI.SS.UserModel;
+    using BetListNPOI.SS.Util;
+    using Common.Constant;
+    using Common.Utility.Helpers;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.TicketHelper;
+    using Resources;
+    using Service.Extensions;
+    using Service.Interfaces;
+
     public class BettingTicketCenterExcelBuilder : IBettingTicketCenterExcelBuilder, IDisposable
     {
         private const int NumberOfColumns = 16;

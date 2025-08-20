@@ -1,8 +1,8 @@
-﻿using System.Globalization;
-using System.Numerics;
-
-namespace Fanex.Athena.BetList.Model.DTO
+﻿namespace Fanex.Athena.BetList.Model.DTO
 {
+    using System.Globalization;
+    using System.Numerics;
+
     public record IPV6RangeEntity
     {
         public string IPFrom { get; set; }

@@ -1,9 +1,9 @@
-﻿using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Optiions;
-
-namespace Fanex.Athena.BetList.Service.Interfaces
+﻿namespace Fanex.Athena.BetList.Service.Interfaces
 {
+    using Model.DTO;
+    using Model.MetaModel;
+    using Optiions;
+
     public interface ITicketBuilderService
     {
         IList<TicketText> BuildBookedBetTicketText(TicketResult ticketResult, ICommonValueMetaModel metaModel);

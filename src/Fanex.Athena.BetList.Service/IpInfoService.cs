@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.BetList.DataAccess.Interfaces;
-using Fanex.Athena.BetList.Service.Interfaces;
-
-namespace Fanex.Athena.BetList.Service
+﻿namespace Fanex.Athena.BetList.Service
 {
+    using DataAccess.Interfaces;
+    using Interfaces;
+
     public class IpInfoService : IIpInfoService
     {
         private readonly IIPDataAccess _ipDataAccess;

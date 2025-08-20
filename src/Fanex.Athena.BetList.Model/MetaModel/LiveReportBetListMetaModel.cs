@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.Common.Model.MetaModel;
-using Fanex.Core.Utils;
-
-namespace Fanex.Athena.BetList.Model.MetaModel
+﻿namespace Fanex.Athena.BetList.Model.MetaModel
 {
+    using Common.Model.MetaModel;
+    using Core.Utils;
+
     public class LiveReportBetListMetaModel : BetListExcelMetaModel, IAgentMetaModel, ISubsidiarySearchMetaModel
     {
         public string ProductName { get; set; }

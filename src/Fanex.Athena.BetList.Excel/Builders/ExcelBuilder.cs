@@ -1,9 +1,9 @@
-﻿using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
-using NPOI.SS.Util;
-
-namespace Fanex.Athena.BetList.Excel.Builders
+﻿namespace Fanex.Athena.BetList.Excel.Builders
 {
+    using NPOI.HSSF.UserModel;
+    using NPOI.SS.UserModel;
+    using NPOI.SS.Util;
+
     public class ExcelBuilder : IExcelBuilder
     {
         public const string TemplateSheetName = "Template";
@@ -61,9 +61,9 @@ namespace Fanex.Athena.BetList.Excel.Builders
            int columnCount,
            string value)
         {
-            var row = this.CopyRow(sheet, sourceSheet, sourceRowIndex, destRowIndex);
+            var row = CopyRow(sheet, sourceSheet, sourceRowIndex, destRowIndex);
 
-            this.MergeCells(sheet, firstRow: destRowIndex, lastRow: destRowIndex, firstCol: 0, lastCol: columnCount - 1);
+            MergeCells(sheet, firstRow: destRowIndex, lastRow: destRowIndex, firstCol: 0, lastCol: columnCount - 1);
             row.Cells[0].SetCellValue(value);
         }
 

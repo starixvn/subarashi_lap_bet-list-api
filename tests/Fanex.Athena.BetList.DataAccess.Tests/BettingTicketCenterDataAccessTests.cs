@@ -1,16 +1,16 @@
-﻿using AutoFixture;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Helpers;
-using Fanex.Athena.TestHelper;
-using NSubstitute;
-using System.Collections;
-
-namespace Fanex.Athena.BetList.DataAccess.Tests
+﻿namespace Fanex.Athena.BetList.DataAccess.Tests
 {
+    using System.Collections;
+    using AutoFixture;
+    using Common.Constant;
+    using Common.DataAccess.Interfaces;
+    using Common.Model.DTO;
+    using Common.Services.Interfaces;
+    using Common.Utility.Helpers;
+    using Model.MetaModel;
+    using NSubstitute;
+    using TestHelper;
+
     public class BettingTicketCenterDataAccessTests : BaseDataAccessHelperTest<BettingTicketCenterDataAccess>
     {
         private const string BetListByRefnoUspKey = "Lrf_BetList_RefNo_Mem";

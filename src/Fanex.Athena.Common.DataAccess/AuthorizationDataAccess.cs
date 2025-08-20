@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.Common.DataAccess.Interfaces;
-
-namespace Fanex.Athena.Common.DataAccess
+﻿namespace Fanex.Athena.Common.DataAccess
 {
+    using Interfaces;
+
     public class AuthorizationDataAccess : BaseDataAccess, IAuthorizationDataAccess
     {
         public (int CurrencyId, int CustId) IsCustomerBelonging(int custId, long transId)

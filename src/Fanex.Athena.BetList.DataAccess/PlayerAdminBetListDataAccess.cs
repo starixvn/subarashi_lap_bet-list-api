@@ -1,12 +1,11 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess
 {
-    using Fanex.Athena.BetList.DataAccess.Interfaces;
-    using Fanex.Athena.BetList.Model.DTO;
-    using Fanex.Athena.BetList.Model.MetaModel;
-    using Fanex.Athena.Common.DataAccess.Interfaces;
+    using Common.DataAccess.Interfaces;
+    using Data;
     using Fanex.Common;
-    using Fanex.Data;
-    using System.Threading.Tasks;
+    using Interfaces;
+    using Model.DTO;
+    using Model.MetaModel;
 
     public class PlayerAdminBetListDataAccess : BaseBetListDataAccess, IPlayerAdminBetListDataAccess
     {

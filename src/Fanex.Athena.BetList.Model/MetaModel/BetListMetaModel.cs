@@ -1,10 +1,9 @@
 ﻿namespace Fanex.Athena.BetList.Model.MetaModel
 {
-    using Fanex.Athena.Common.Constant;
-    using Fanex.Athena.Common.Model.MetaModel;
-    using Fanex.Athena.Common.Utility.Helpers;
-    using Fanex.Core.Utils;
-    using System;
+    using Common.Constant;
+    using Common.Model.MetaModel;
+    using Common.Utility.Helpers;
+    using Core.Utils;
 
     public class BetListMetaModel : BaseMetaModel,
         ICommonValueMetaModel,

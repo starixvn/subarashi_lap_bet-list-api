@@ -1,19 +1,19 @@
-﻿using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Model.MetaModel;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Site.Attributes;
-using Fanex.Core.Utils;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Routing;
-using NSubstitute;
-
-namespace Fanex.Athena.Common.Site.Tests.Attributes
+﻿namespace Fanex.Athena.Common.Site.Tests.Attributes
 {
+    using Constant;
+    using Core.Utils;
+    using DataAccess.Interfaces;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Abstractions;
+    using Microsoft.AspNetCore.Mvc.Filters;
+    using Microsoft.AspNetCore.Routing;
+    using Model.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using Services.Interfaces;
+    using Site.Attributes;
+
     public class AutoBindMetaModelAttributeTests
     {
         private ActionExecutingContext _context;

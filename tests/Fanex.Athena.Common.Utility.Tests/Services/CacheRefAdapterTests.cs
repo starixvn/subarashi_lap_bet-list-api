@@ -1,9 +1,9 @@
-﻿using Fanex.Athena.Common.Utility.Services;
-using Fanex.RemotingRef;
-using NSubstitute;
-
-namespace Fanex.Athena.Common.Utility.Tests.Services
+﻿namespace Fanex.Athena.Common.Utility.Tests.Services
 {
+    using NSubstitute;
+    using RemotingRef;
+    using Utility.Services;
+
     public class CacheRefAdapterTests
     {
         private IRemotingRefService remotingRefServiceMock;

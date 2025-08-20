@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Services.Interfaces;
-
-namespace Fanex.Athena.Common.Services
+﻿namespace Fanex.Athena.Common.Services
 {
+    using DataAccess.Interfaces;
+    using Interfaces;
+
     public class AuthorizationService : IAuthorizationService
     {
         private readonly IAuthorizationDataAccess _authorizationDataAccess;

@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Athena.Common.DataAccess
 {
-    using Fanex.Data;
+    using Data;
 
     public class BaseDataAccess
     {

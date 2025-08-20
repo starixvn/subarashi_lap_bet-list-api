@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.Common.Utility.Helpers;
-using Fanex.Athena.TestHelper;
-using Fanex.Data;
-using Microsoft.AspNetCore.Http;
-
-namespace Fanex.Athena.Common.Utility.Tests.Helpers
+﻿namespace Fanex.Athena.Common.Utility.Tests.Helpers
 {
+    using Data;
+    using Microsoft.AspNetCore.Http;
+    using TestHelper;
+    using Utility.Helpers;
+
     public class LogMessageHelperTests
     {
         [Test]

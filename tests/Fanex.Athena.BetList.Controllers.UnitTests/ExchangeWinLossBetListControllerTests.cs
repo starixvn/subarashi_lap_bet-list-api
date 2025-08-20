@@ -1,17 +1,17 @@
-﻿using Fanex.Athena.BetList.Excel;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Model.ViewModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.TestHelper;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using NSubstitute;
-using NUnit.Framework;
-
-namespace Fanex.Athena.BetList.Controllers.UnitTests
+﻿namespace Fanex.Athena.BetList.Controllers.UnitTests
 {
+    using Common.Services.Interfaces;
+    using Excel;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
+    using Model.DTO;
+    using Model.MetaModel;
+    using Model.ViewModel;
+    using NSubstitute;
+    using NUnit.Framework;
+    using Service.Interfaces;
+    using TestHelper;
+
     public class ExchangeWinLossBetListControllerTests
     {
         private IExchangeBetListService _service;

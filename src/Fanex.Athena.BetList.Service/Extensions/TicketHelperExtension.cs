@@ -1,8 +1,8 @@
 ﻿namespace Fanex.Athena.BetList.Service.Extensions
 {
-    using Fanex.Athena.Common.Constant;
-    using Fanex.Athena.Resources;
+    using Common.Constant;
     using Fanex.BetList.Core.Entities;
+    using Resources;
 
     public static class TicketHelperExtension
     {

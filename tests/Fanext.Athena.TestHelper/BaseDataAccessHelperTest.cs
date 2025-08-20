@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Data;
-using NSubstitute;
-using System.Data;
-
-namespace Fanex.Athena.TestHelper
+﻿namespace Fanex.Athena.TestHelper
 {
+    using System.Data;
+    using Common.DataAccess.Interfaces;
+    using Data;
+    using NSubstitute;
+
     public class BaseDataAccessHelperTest<T> where T : class
     {
         protected const int CurrencyId = 123;

@@ -1,29 +1,31 @@
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Result.Controller.ResultReports;
-using Fanex.Athena.Result.Controller.ResultService.Interfaces;
-using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Athena.Result.Service.Interfaces;
-using Fanex.Athena.TestHelper;
-using Fanex.Result.Core.Base;
-using Fanex.Result.Core.Bitcoin.DTO;
-using Fanex.Result.Core.Happy5.DTO;
-using Fanex.Result.Core.LeapGaming.DTO;
-using Fanex.Result.Core.NumberGame.DTO;
-using Fanex.Result.Core.Racing.DTO;
-using Fanex.Result.Core.Sportsbook.DTO;
-using Fanex.Result.Core.VirtualRacing.DTO;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using NSubstitute;
-using System.Net;
-using System.Text;
 using SportType = Fanex.Result.Core.Base.SportType;
 
 namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
 {
+    using System.Net;
+    using System.Text;
+    using Common.Constant;
+    using Common.Model.DTO;
+    using Common.Utility.Services.Interfaces;
+    using Fanex.Result.Core.Base;
+    using Fanex.Result.Core.Bitcoin.DTO;
+    using Fanex.Result.Core.Happy5.DTO;
+    using Fanex.Result.Core.LeapGaming.DTO;
+    using Fanex.Result.Core.NumberGame.DTO;
+    using Fanex.Result.Core.Racing.DTO;
+    using Fanex.Result.Core.Sportsbook.DTO;
+    using Fanex.Result.Core.VirtualRacing.DTO;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
+    using Model.MetaModel;
+    using Newtonsoft.Json;
+    using NSubstitute;
+    using ResultReports;
+    using ResultService.Interfaces;
+    using Service.Interfaces;
+    using TestHelper;
+    using SportType = Fanex.Result.Core.Base.SportType;
+
     public class ResultReportControllerTests
     {
         private const string LanguageCode = "vi-VN";
@@ -465,7 +467,7 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
                 metaModel.Bettype = (int)BetType.SingleMatchParlay;
 
                 Sportsbook data = null;
-                _resultService.GetPopUpSingleMatchParlayAsync(metaModel.MatchId, metaModel.Extension1?.ToString())
+                _resultService.GetPopUpSingleMatchParlayAsync(metaModel.MatchId, metaModel.Extension1)
                     .Returns(Task.FromResult(data));
 
                 // Action
@@ -485,7 +487,7 @@ namespace Fanex.Athena.Result.Controller.Tests.ResultReposts
             metaModel.Bettype = (int)BetType.SingleMatchParlay;
 
             var data = new Sportsbook();
-            _resultService.GetPopUpSingleMatchParlayAsync(metaModel.MatchId, metaModel.Extension1?.ToString())
+            _resultService.GetPopUpSingleMatchParlayAsync(metaModel.MatchId, metaModel.Extension1)
                 .Returns(Task.FromResult(data));
             _resultService.HtmlParser(Arg.Is<List<Sportsbook>>(x => x[0] == data), Arg.Any<ResultSetting>())
                 .Returns(HtmlResult);

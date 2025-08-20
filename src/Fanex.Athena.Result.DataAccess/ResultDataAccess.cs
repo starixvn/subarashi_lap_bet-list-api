@@ -1,19 +1,20 @@
-﻿using Fanex.Athena.Common.DataAccess;
-using Fanex.Athena.Common.DataAccess.Extensions;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Common.Extensions;
-using Fanex.Result.Core.Bitcoin.DTO;
-using Fanex.Result.Core.Racing.DTO;
-using Fanex.Result.Core.Sportsbook.DTO;
-using Fanex.Result.Core.VirtualRacing.DTO;
-using System.Data;
-using System.Globalization;
-
-namespace Fanex.Athena.Result.DataAccess
+﻿namespace Fanex.Athena.Result.DataAccess
 {
+    using System.Data;
+    using System.Globalization;
+    using Common.DataAccess;
+    using Common.DataAccess.Extensions;
+    using Common.DataAccess.Interfaces;
+    using Common.Model.DTO;
+    using Common.Utility.Services.Interfaces;
+    using Fanex.Common.Extensions;
+    using Fanex.Result.Core.Bitcoin.DTO;
+    using Fanex.Result.Core.Racing.DTO;
+    using Fanex.Result.Core.Sportsbook.DTO;
+    using Fanex.Result.Core.VirtualRacing.DTO;
+    using Model.MetaModel;
+    using GameDetail = Fanex.Result.Core.Sportsbook.DTO.GameDetail;
+
     public class ResultDataAccess : BaseDataAccess, IResultDataAccess
     {
         private const string MatchidColumn = "matchid";
@@ -179,7 +180,7 @@ namespace Fanex.Athena.Result.DataAccess
                 movebetsday = _balanceUpDataAccess.GetBalanceUp().MoveBetsDay
             };
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
                 using (var reader = await db.ExecuteReaderAsync(uspParams))
                 {
@@ -210,14 +211,13 @@ namespace Fanex.Athena.Result.DataAccess
                     {
                         return (IList<T>)ReadSportbookMatches(reader, metaModel);
                     }
-                    else if (type == typeof(Racing))
+
+                    if (type == typeof(Racing))
                     {
                         return (IList<T>)ReadVirtualSportMatches(reader);
                     }
-                    else
-                    {
-                        throw new NotSupportedException($"The type '{type.FullName}' is not supported.");
-                    }
+
+                    throw new NotSupportedException($"The type '{type.FullName}' is not supported.");
                 }
             }
         }
@@ -263,7 +263,7 @@ namespace Fanex.Athena.Result.DataAccess
             const string UspName = "Lrf_Result_Parlay_Match3rd";
             var uspParams = new { refno = refNo };
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
                 using (var reader = await db.ExecuteReaderAsync(uspParams).ConfigureAwait(false))
                 {
@@ -340,7 +340,7 @@ namespace Fanex.Athena.Result.DataAccess
             var balanceUp = _balanceUpDataAccess.GetBalanceUp();
             var result = new List<VirtualRacing>();
 
-            using (var db = this.GetObjectDb(UspName))
+            using (var db = GetObjectDb(UspName))
             {
                 db.SetParameterValue("EventId", eventId);
                 db.SetParameterValue("EventDate", eventDate);
@@ -408,10 +408,8 @@ namespace Fanex.Athena.Result.DataAccess
                     {
                         return (IList<T>)ReadSportbookMatches(reader, specialLeagues: metalModel.SpecialLeagues);
                     }
-                    else
-                    {
-                        throw new NotSupportedException($"The type '{type.FullName}' is not supported.");
-                    }
+
+                    throw new NotSupportedException($"The type '{type.FullName}' is not supported.");
                 }
             }
         }
@@ -437,14 +435,13 @@ namespace Fanex.Athena.Result.DataAccess
                     {
                         return (IList<T>)ReadBitCoinMatches(reader);
                     }
-                    else if (type == typeof(Sportsbook))
+
+                    if (type == typeof(Sportsbook))
                     {
                         return (IList<T>)ReadSportbookMatches3rd(reader);
                     }
-                    else
-                    {
-                        throw new NotSupportedException($"The type '{type.FullName}' is not supported.");
-                    }
+
+                    throw new NotSupportedException($"The type '{type.FullName}' is not supported.");
                 }
             }
         }
@@ -543,9 +540,9 @@ namespace Fanex.Athena.Result.DataAccess
 
         #region Binding
 
-        private static IList<Fanex.Result.Core.Sportsbook.DTO.GameDetail> GetGameDetails(IDataReader reader)
+        private static IList<GameDetail> GetGameDetails(IDataReader reader)
         {
-            var gameDetails = new List<Fanex.Result.Core.Sportsbook.DTO.GameDetail>();
+            var gameDetails = new List<GameDetail>();
 
             if (reader.NextResult())
             {
@@ -554,7 +551,7 @@ namespace Fanex.Athena.Result.DataAccess
                     var resultStatusId = reader["ResultStatusID"];
                     var settlementStatusId = reader["SettlementStatusID"];
 
-                    gameDetails.Add(new Fanex.Result.Core.Sportsbook.DTO.GameDetail
+                    gameDetails.Add(new GameDetail
                     {
                         MatchId = int.Parse(reader[MatchidColumn].ToString()),
                         ResourceId = reader["ResourceId"].ToString(),
@@ -738,14 +735,13 @@ namespace Fanex.Athena.Result.DataAccess
                     {
                         return (IList<T>)ReadBitCoinMatches(reader);
                     }
-                    else if (type == typeof(Sportsbook))
+
+                    if (type == typeof(Sportsbook))
                     {
                         return (IList<T>)ReadSportbookMatches3rd(reader);
                     }
-                    else
-                    {
-                        throw new NotSupportedException($"The type '{type.FullName}' is not supported.");
-                    }
+
+                    throw new NotSupportedException($"The type '{type.FullName}' is not supported.");
                 }
             }
         }
@@ -821,15 +817,15 @@ namespace Fanex.Athena.Result.DataAccess
             return results;
         }
 
-        private static IList<Fanex.Result.Core.Sportsbook.DTO.GameDetail> GetGame3rdDetails(IDataReader reader)
+        private static IList<GameDetail> GetGame3rdDetails(IDataReader reader)
         {
-            var gameDetails = new List<Fanex.Result.Core.Sportsbook.DTO.GameDetail>();
+            var gameDetails = new List<GameDetail>();
 
             if (reader.NextResult())
             {
                 while (reader.Read())
                 {
-                    gameDetails.Add(new Fanex.Result.Core.Sportsbook.DTO.GameDetail
+                    gameDetails.Add(new GameDetail
                     {
                         MatchId = int.Parse(reader["Match3rdId"].ToString()),
                         HomeValue = reader["Custom1"].ToString(),

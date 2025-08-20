@@ -1,8 +1,7 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess.Interfaces
 {
-    using Fanex.Athena.BetList.Model.DTO;
-    using Fanex.Athena.BetList.Model.MetaModel;
-    using System.Threading.Tasks;
+    using Model.DTO;
+    using Model.MetaModel;
 
     public interface ISystemParlayDetailDataAccess
     {

@@ -1,13 +1,13 @@
-﻿using AutoFixture;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.Services;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Resources;
-using NSubstitute;
-
-namespace Fanex.Athena.Common.Service.UnitTests
+﻿namespace Fanex.Athena.Common.Service.UnitTests
 {
+    using AutoFixture;
+    using Constant;
+    using NSubstitute;
+    using Resources;
+    using Services;
+    using Services.Interfaces;
+    using Utility.Services.Interfaces;
+
     public class SportServiceTests
     {
         private ISportService _sportService;

@@ -1,9 +1,9 @@
-﻿using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Services;
-using NSubstitute;
-
-namespace Fanex.Athena.Common.Service.UnitTests
+﻿namespace Fanex.Athena.Common.Service.UnitTests
 {
+    using DataAccess.Interfaces;
+    using NSubstitute;
+    using Services;
+
     [TestFixture]
     internal class AuthorizationServiceTests
     {

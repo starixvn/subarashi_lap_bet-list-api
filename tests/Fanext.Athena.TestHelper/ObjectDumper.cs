@@ -1,8 +1,8 @@
-﻿using System.Reflection;
-using System.Text;
-
-namespace Fanex.Athena.TestHelper
+﻿namespace Fanex.Athena.TestHelper
 {
+    using System.Reflection;
+    using System.Text;
+
     internal static class ObjectDumper
     {
         internal static string Dump(object obj, string separator = "\n")

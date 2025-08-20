@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.Result.Controller.ResultService.Interfaces;
-using Fanex.Athena.Result.Model.MetaModel;
-using Fanex.Athena.Result.Service.Interfaces;
-using Fanex.Result.Core.ThirdParty.Models;
-
-namespace Fanex.Athena.Result.Controller.ResultService
+﻿namespace Fanex.Athena.Result.Controller.ResultService
 {
+    using Fanex.Result.Core.ThirdParty.Models;
+    using Interfaces;
+    using Model.MetaModel;
+    using Service.Interfaces;
+
     public class ThirdPartySportResultService : IThirdPartySportResultService
     {
         private readonly IBetlistResultGetterFactory _factory;

@@ -1,13 +1,13 @@
-﻿using Fanex.Athena.BetList.DataAccess.Interfaces;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Service.Interfaces;
-using System.Net;
-using System.Net.Sockets;
-using System.Numerics;
-using System.Text.RegularExpressions;
-
-namespace Fanex.Athena.BetList.Service
+﻿namespace Fanex.Athena.BetList.Service
 {
+    using System.Net;
+    using System.Net.Sockets;
+    using System.Numerics;
+    using System.Text.RegularExpressions;
+    using DataAccess.Interfaces;
+    using Interfaces;
+    using Model.DTO;
+
     public class IPService : IIPService
     {
         private const int TIME_OUT = 10;

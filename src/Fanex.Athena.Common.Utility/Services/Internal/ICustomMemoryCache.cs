@@ -1,7 +1,7 @@
-﻿using System.Runtime.Caching;
-
-namespace Fanex.Athena.Common.Utility.Services.Internal
+﻿namespace Fanex.Athena.Common.Utility.Services.Internal
 {
+    using System.Runtime.Caching;
+
     public interface ICustomMemoryCache
     {
         DefaultCacheCapabilities DefaultCacheCapabilities { get; }

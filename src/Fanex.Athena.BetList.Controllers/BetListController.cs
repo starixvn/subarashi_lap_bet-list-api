@@ -1,14 +1,14 @@
-﻿using Fanex.Athena.BetList.Controllers.CustomActionResult;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Model.ViewModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.BetList.Controllers
+﻿namespace Fanex.Athena.BetList.Controllers
 {
+    using Common.DataAccess.Interfaces;
+    using Common.Services.Interfaces;
+    using Common.Utility.Services.Interfaces;
+    using CustomActionResult;
+    using Microsoft.AspNetCore.Mvc;
+    using Model.MetaModel;
+    using Model.ViewModel;
+    using Service.Interfaces;
+
     [Route("[controller]/[action]")]
     [Route("api/[controller]/[action]")]
     [ApiController]

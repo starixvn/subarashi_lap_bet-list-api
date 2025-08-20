@@ -1,16 +1,13 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess
 {
-    using Common.Utility.Collections;
-    using Fanex.Athena.BetList.DataAccess.Interfaces;
-    using Fanex.Athena.BetList.Model.DTO;
-    using Fanex.Athena.BetList.Model.MetaModel;
-    using Fanex.Athena.Common.Constant;
-    using Fanex.Athena.Common.DataAccess.Interfaces;
-    using Fanex.Common;
-    using System;
     using System.Collections;
-    using System.Linq;
-    using System.Threading.Tasks;
+    using Common.Constant;
+    using Common.DataAccess.Interfaces;
+    using Common.Utility.Collections;
+    using Fanex.Common;
+    using Interfaces;
+    using Model.DTO;
+    using Model.MetaModel;
     using Util;
 
     public class BetListDataAccess : BaseBetListDataAccess, IBetListDataAccess
@@ -106,7 +103,7 @@
                     _ => "TransDate"
                 };
 
-                ticketList.Sort(sortBy, metaModel.SortOrder == (byte)Common.Constant.SortOrders.Ascending);
+                ticketList.Sort(sortBy, metaModel.SortOrder == (byte)SortOrders.Ascending);
             }
         }
     }

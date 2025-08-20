@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Athena.Common.Utility.Collections
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
 
     /// <summary>

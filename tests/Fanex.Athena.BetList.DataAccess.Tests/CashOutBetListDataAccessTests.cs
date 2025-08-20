@@ -1,19 +1,18 @@
-﻿
-using AutoFixture;
-using Fanex.Athena.BetList.DataAccess.Util;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Model.ViewModel;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.TestHelper;
-using Fanex.Athena.TestHelper.Extensions;
-using NSubstitute;
-using System.Data;
-
-namespace Fanex.Athena.BetList.DataAccess.Tests
+﻿namespace Fanex.Athena.BetList.DataAccess.Tests
 {
+    using System.Data;
+    using AutoFixture;
+    using Common.Constant;
+    using Common.DataAccess.Interfaces;
+    using Common.Model.DTO;
+    using Common.Services.Interfaces;
+    using DataAccess.Util;
+    using Model.MetaModel;
+    using Model.ViewModel;
+    using NSubstitute;
+    using TestHelper;
+    using TestHelper.Extensions;
+
     public class CashOutBetListDataAccessTests : BaseDataAccessHelperTest<CashOutBetListDataAccess>
     {
         private const string UspName = "Lrf_BetList_CashOut_Detail";

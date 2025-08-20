@@ -1,8 +1,9 @@
-﻿using Fanex.Athena.Common.Model.MetaModel;
-using Fanex.Core.Utils;
-
-namespace Fanex.Athena.BetList.Model.MetaModel
+﻿namespace Fanex.Athena.BetList.Model.MetaModel
 {
+    using Common.Model.MetaModel;
+    using Core.Utils;
+    using SystemConstants = Common.Constant.SystemConstants;
+
     public class MixParlayMetaModel : IValidationMetaModel, IAgentMetaModel, ICurrencyIdMetaModel,
                                       IMetaModelProductCodeList, ISubsidiarySearchMetaModel
     {
@@ -36,7 +37,7 @@ namespace Fanex.Athena.BetList.Model.MetaModel
 
         public bool IsValid => FromDate <= ToDate && IsValidBaseCurrency;
 
-        private bool IsValidBaseCurrency => string.IsNullOrEmpty(BaseCurrency) || Common.Constant.SystemConstants.BaseCurrencyList
+        private bool IsValidBaseCurrency => string.IsNullOrEmpty(BaseCurrency) || SystemConstants.BaseCurrencyList
             .Any(x => x.Equals(BaseCurrency, StringComparison.OrdinalIgnoreCase));
     }
 }

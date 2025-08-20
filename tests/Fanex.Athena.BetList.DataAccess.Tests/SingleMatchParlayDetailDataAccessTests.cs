@@ -1,12 +1,10 @@
-﻿
-
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.TestHelper;
-using NSubstitute;
-
-namespace Fanex.Athena.BetList.DataAccess.Tests
+﻿namespace Fanex.Athena.BetList.DataAccess.Tests
 {
+    using Model.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using TestHelper;
+
     public class SingleMatchParlayDetailDataAccessTests : BaseDataAccessHelperTest<SingleMatchParlayDetailDataAccess>
     {
         [Test]

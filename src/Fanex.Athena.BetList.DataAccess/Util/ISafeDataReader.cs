@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess.Util
 {
-    using System;
-
     public interface ISafeDataReader
     {
         bool GetBool(string column, bool defaultValue = false);

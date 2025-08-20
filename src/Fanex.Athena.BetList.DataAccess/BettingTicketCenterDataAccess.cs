@@ -1,23 +1,22 @@
 ﻿namespace Fanex.Athena.BetList.DataAccess
 {
-    using BetList.Model.DTO;
-    using BetList.Model.MetaModel;
     using Common.Constant;
     using Common.DataAccess.Interfaces;
+    using Common.Services.Interfaces;
+    using Common.Utility.Helpers;
     using Data;
-    using Fanex.Athena.Common.Services.Interfaces;
-    using Fanex.Athena.Common.Utility.Helpers;
     using Fanex.Common;
     using Interfaces;
-    using System.Threading.Tasks;
-    using Fanex.Athena.BetList.DataAccess.Util;
+    using Model.DTO;
+    using Model.MetaModel;
 
     public class BettingTicketCenterDataAccess : BaseBetListDataAccess, IBettingTicketCenterDataAccess
     {
         private readonly IBalanceUpDataAccess _balanceUpDataAccess;
         private readonly IShardInfoAccessor _shardInfoAccessor;
 
-        public BettingTicketCenterDataAccess(IBalanceUpDataAccess balanceUpDataAccess,
+        public BettingTicketCenterDataAccess(
+            IBalanceUpDataAccess balanceUpDataAccess,
             ICurrencyDataAccess currencyService,
             IShardInfoAccessor shardInfoAccessor) : base(currencyService)
         {
@@ -196,6 +195,12 @@
             return ticketResult;
         }
 
+        public static void AddSortParameter(IObjectDb db, BaseBettingTicketMetaModel metaModel)
+        {
+            db.SetParameterValue("SortType", metaModel.SortType);
+            db.SetParameterValue("SortOrder", metaModel.SortOrder);
+        }
+
         private void AddSingleCustomerParameters(IObjectDb db, SingleCustomersBetListMetaModel metaModel)
         {
             var balanceUp = _balanceUpDataAccess.GetBalanceUp();
@@ -223,12 +228,6 @@
             db.SetParameterValue(DbColumn.SumComm, null);
             db.SetParameterValue(DbColumn.SumPlayerComm, null);
             AddSortParameter(db, metaModel);
-        }
-
-        public static void AddSortParameter(IObjectDb db, BaseBettingTicketMetaModel metaModel)
-        {
-            db.SetParameterValue("SortType", metaModel.SortType);
-            db.SetParameterValue("SortOrder", metaModel.SortOrder);
         }
     }
 }

@@ -1,18 +1,17 @@
-﻿using Fanex.Athena.BetList.Excel.Builders;
-using Fanex.Athena.BetList.Excel.Model;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Resources;
-using Fanex.Athena.TestHelper;
-using NSubstitute;
-using BetListNPOI.SS.UserModel;
-using Fanex.Athena.BetList.Excel.Tests.TestClasses;
-using Fanex.Athena.TestHelper.Extensions;
-
-
-namespace Fanex.Athena.BetList.Excel.Tests
+﻿namespace Fanex.Athena.BetList.Excel.Tests
 {
+    using BetList.Model.DTO;
+    using BetList.Model.MetaModel;
+    using BetListNPOI.SS.UserModel;
+    using Excel.Builders;
+    using Model;
+    using NSubstitute;
+    using Resources;
+    using Service.Interfaces;
+    using TestClasses;
+    using TestHelper;
+    using TestHelper.Extensions;
+
     public class BettingTicketCenterExcelTests
     {
         private IBettingTicketCenterExcelBuilder _builder;

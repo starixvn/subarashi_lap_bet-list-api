@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.Result.Controller.ResultPopup;
-using Fanex.Result.Core.AllBetCasino;
-using Microsoft.AspNetCore.Mvc;
-using NSubstitute;
-
-namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
+﻿namespace Fanex.Athena.Result.Controller.Tests.ResultPopup
 {
+    using Controller.ResultPopup;
+    using Fanex.Result.Core.AllBetCasino;
+    using Microsoft.AspNetCore.Mvc;
+    using NSubstitute;
+
     public class AllBetResultPopupControllerTests
     {
         private IAllbetResultBuilder _resultApi;

@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.Common.Utility.Helpers;
-
-namespace Fanex.Athena.Common.Utility.Tests.Helpers
+﻿namespace Fanex.Athena.Common.Utility.Tests.Helpers
 {
+    using Utility.Helpers;
+
     public class NumberHelperTest
     {
         [TestCase(0, "0.00")]
@@ -54,7 +54,7 @@ namespace Fanex.Athena.Common.Utility.Tests.Helpers
         public void ToPercentage_ReturnPercentageValue(decimal value, decimal expected)
         {
             // Action
-            var result = NumberHelper.ToPercentage(value);
+            var result = value.ToPercentage();
 
             // Assert
             Assert.That(result, Is.EqualTo(expected));
@@ -68,7 +68,7 @@ namespace Fanex.Athena.Common.Utility.Tests.Helpers
         public void IsEvenNumber_DecimalValue_ReturnsCorrectResult(decimal value, bool expected)
         {
             // Action
-            var result = NumberHelper.IsEvenNumber(value);
+            var result = value.IsEvenNumber();
 
             // Assert
             Assert.That(result, Is.EqualTo(expected));
@@ -82,7 +82,7 @@ namespace Fanex.Athena.Common.Utility.Tests.Helpers
         public void IsEvenNumber_IntValue_ReturnsCorrectResult(int value, bool expected)
         {
             // Action
-            var result = NumberHelper.IsEvenNumber(value);
+            var result = value.IsEvenNumber();
 
             // Assert
             Assert.That(result, Is.EqualTo(expected));
@@ -93,7 +93,7 @@ namespace Fanex.Athena.Common.Utility.Tests.Helpers
         public void ToInt_ReturnsCorrectIntValue(bool value, int expected)
         {
             // Action
-            var result = NumberHelper.ToInt(value);
+            var result = value.ToInt();
 
             // Assert
             Assert.That(result, Is.EqualTo(expected));

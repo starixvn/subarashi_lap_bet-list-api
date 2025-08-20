@@ -1,21 +1,19 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-using BetListNPOI.SS.UserModel;
-using Fanex.Athena.BetList.Controllers.CustomActionResult;
-using Fanex.Athena.BetList.Controllers.UnitTests.TestClasses;
-using Fanex.Athena.BetList.Excel.Model;
-using Fanex.Athena.BetList.Excel;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Utility.Collections;
-using Fanex.Athena.TestHelper;
-using NSubstitute;
-using NUnit.Framework;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Resources;
-
-namespace Fanex.Athena.BetList.Controllers.UnitTests
+﻿namespace Fanex.Athena.BetList.Controllers.UnitTests
 {
+    using BetListNPOI.SS.UserModel;
+    using Common.Constant;
+    using Common.Utility.Collections;
+    using Excel;
+    using Excel.Model;
+    using Model.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using NUnit.Framework;
+    using Resources;
+    using Service.Interfaces;
+    using TestClasses;
+    using TestHelper;
+
     public class BettingTicketCenterBaseControllerTests : BaseControllerHelperTests
     {
         private ITicketBuilderService _ticketBuilderService;

@@ -1,12 +1,12 @@
-using Fanex.Athena.Common.Model.DTO;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.TestHelper;
-using Fanex.Data;
-using NSubstitute;
-using System.Data;
-
 namespace Fanex.Athena.Common.DataAccess.UnitTests
 {
+    using System.Data;
+    using Data;
+    using Model.DTO;
+    using NSubstitute;
+    using TestHelper;
+    using Utility.Services.Interfaces;
+
     public class BalanceUpDataAccessTests
     {
         private BalanceUpDataAccess _balanceUpDataAccess;

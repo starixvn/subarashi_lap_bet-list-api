@@ -1,8 +1,8 @@
 ﻿
-using Fanex.Athena.Resources;
-
 namespace Fanex.Athena.Common.Utility.Helpers
 {
+    using Resources;
+
     public static class DataHelper
     {
         public static string GetCurrencyColumnName(string columnName, bool isConvert, string baseCurrency)

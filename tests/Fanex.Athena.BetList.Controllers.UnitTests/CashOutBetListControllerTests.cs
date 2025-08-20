@@ -1,20 +1,20 @@
-﻿using Fanex.Athena.BetList.DataAccess.Interfaces;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Model.ViewModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Constant;
-using Fanex.Athena.Resources;
-using Fanex.Athena.TestHelper;
-using Fanex.BetList.Core.Builder.StatusBuilder;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using Fanex.BetList.Core.Templates;
-using NSubstitute;
-using NUnit.Framework;
-
-namespace Fanex.Athena.BetList.Controllers.UnitTests
+﻿namespace Fanex.Athena.BetList.Controllers.UnitTests
 {
+    using Common.Constant;
+    using DataAccess.Interfaces;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Builder.StatusBuilder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Templates;
+    using Model.DTO;
+    using Model.MetaModel;
+    using Model.ViewModel;
+    using NSubstitute;
+    using NUnit.Framework;
+    using Resources;
+    using Service.Interfaces;
+    using TestHelper;
+
     public class CashOutBetListControllerTests
     {
         private ICashOutBetListDataAccess _cashOutBetListDataAccess;

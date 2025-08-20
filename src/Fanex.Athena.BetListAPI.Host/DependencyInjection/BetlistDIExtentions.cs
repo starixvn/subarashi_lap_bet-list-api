@@ -1,29 +1,29 @@
-﻿using Fanex.Athena.BetList.Controllers.Utility;
-using Fanex.Athena.BetList.DataAccess;
-using Fanex.Athena.BetList.DataAccess.Interfaces;
-using Fanex.Athena.BetList.Excel;
-using Fanex.Athena.BetList.Excel.Builders;
-using Fanex.Athena.BetList.Service;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.DataAccess;
-using Fanex.Athena.Common.DataAccess.Interfaces;
-using Fanex.Athena.Common.Services;
-using Fanex.Athena.Common.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Helpers;
-using Fanex.Athena.Common.Utility.Services;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Internal;
-using Fanex.Athena.Result.Controller.ResultService;
-using Fanex.Athena.Result.Controller.ResultService.Interfaces;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using Fanex.BetList.Core.TicketHelper;
-using Fanex.Core.Utils;
-using Fanex.RemotingRef;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-
-namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
+﻿namespace Fanex.Athena.BetListAPI.Host.DependencyInjection
 {
+    using BetList.Controllers.Utility;
+    using BetList.DataAccess;
+    using BetList.DataAccess.Interfaces;
+    using BetList.Excel;
+    using BetList.Excel.Builders;
+    using BetList.Service;
+    using BetList.Service.Interfaces;
+    using Common.DataAccess;
+    using Common.DataAccess.Interfaces;
+    using Common.Services;
+    using Common.Services.Interfaces;
+    using Common.Utility.Helpers;
+    using Common.Utility.Services;
+    using Common.Utility.Services.Interfaces;
+    using Common.Utility.Services.Internal;
+    using Core.Utils;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.TicketHelper;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using RemotingRef;
+    using Result.Controller.ResultService;
+    using Result.Controller.ResultService.Interfaces;
+
     public static class BetlistDIExtentions
     {
         public static IServiceCollection AddLapBetList(this IServiceCollection services)

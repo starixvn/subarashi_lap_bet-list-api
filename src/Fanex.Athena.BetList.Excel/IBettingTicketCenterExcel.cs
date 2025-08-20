@@ -1,8 +1,8 @@
-﻿using BetListNPOI.SS.UserModel;
-using Fanex.Athena.BetList.Excel.Model;
-
-namespace Fanex.Athena.BetList.Excel
+﻿namespace Fanex.Athena.BetList.Excel
 {
+    using BetListNPOI.SS.UserModel;
+    using Model;
+
     public interface IBettingTicketCenterExcel : IDisposable
     {
         IWorkbook Export(BettingTicketCenterExcelModel excelModel);

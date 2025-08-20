@@ -12,10 +12,6 @@
     using Fanex.Result.Core.VirtualRacing.DTO;
     using Interfaces;
     using Model.MetaModel;
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Threading.Tasks;
 
     public class ResultService : IResultService
     {
@@ -48,7 +44,7 @@
 
         public MemoryStream ExcelParser<T>(IList<T> dataList, ResultSetting setting)
         {
-            return ResultEngine.ExcelParser<T>(dataList, setting);
+            return ResultEngine.ExcelParser(dataList, setting);
         }
 
         public string HtmlGameDetailParser(dynamic data, ResultSetting setting)
@@ -121,7 +117,7 @@
 
         public async Task<IList<Parlay>> GetPopUpVS5ParlayMatchAsync(long refNo)
         {
-            return await this._dataAccess.GetPopUpVS5ParalayMatchAsync(refNo).ConfigureAwait(false);
+            return await _dataAccess.GetPopUpVS5ParalayMatchAsync(refNo).ConfigureAwait(false);
         }
 
         public async Task<Sportsbook> GetPopUpSingleMatchParlayAsync(int matchId, string marketId)
@@ -154,12 +150,12 @@
 
         public async Task<IList<Sportsbook>> GetPopUpVS5MatchesAsync(int matchId)
         {
-            return await this._dataAccess.GetPopUpMatches3rdAsync<Sportsbook>(matchId).ConfigureAwait(false);
+            return await _dataAccess.GetPopUpMatches3rdAsync<Sportsbook>(matchId).ConfigureAwait(false);
         }
 
         public async Task<IList<Sportsbook>> GetVS5MatchesAsync(ResultMetaModel metalModel)
         {
-            return await this._dataAccess.GetMatches3rdAsync<Sportsbook>(metalModel).ConfigureAwait(false);
+            return await _dataAccess.GetMatches3rdAsync<Sportsbook>(metalModel).ConfigureAwait(false);
         }
 
         #endregion Popup

@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Athena.BetList.Model.MetaModel
 {
-    using System;
-
     public class BetListByProductMetaModel : ICommonValueMetaModel
     {
         public string BaseCurrency { get; set; }

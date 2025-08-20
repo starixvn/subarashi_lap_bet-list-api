@@ -1,7 +1,6 @@
 ﻿namespace Fanex.Athena.BetList.Model.ViewModel
 {
     using DTO;
-    using System.Collections.Generic;
 
     public class CashOutBetListDetailViewModel
     {

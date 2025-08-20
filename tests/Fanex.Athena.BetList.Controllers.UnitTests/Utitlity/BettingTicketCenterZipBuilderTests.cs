@@ -1,19 +1,17 @@
-﻿using BetListNPOI.SS.UserModel;
-using Fanex.Athena.BetList.Controllers.Utility;
-using Fanex.Athena.BetList.Excel.Model;
-using Fanex.Athena.BetList.Excel;
-using Fanex.Athena.BetList.Model.DTO;
-using Fanex.Athena.BetList.Model.MetaModel;
-using Fanex.Athena.BetList.Service.Interfaces;
-using Fanex.Athena.Common.Utility.Services.Interfaces;
-using Fanex.Athena.TestHelper.Extensions;
-using NSubstitute;
-using NUnit.Framework;
-using Microsoft.AspNetCore.Http;
-
-
-namespace Fanex.Athena.BetList.Controllers.UnitTests.Utitlity
+﻿namespace Fanex.Athena.BetList.Controllers.UnitTests.Utitlity
 {
+    using BetListNPOI.SS.UserModel;
+    using Common.Utility.Services.Interfaces;
+    using Excel;
+    using Excel.Model;
+    using Model.DTO;
+    using Model.MetaModel;
+    using NSubstitute;
+    using NUnit.Framework;
+    using Service.Interfaces;
+    using TestHelper.Extensions;
+    using Utility;
+
     public class BettingTicketCenterZipBuilderTests
     {
         private IAppSettings _appSettings;
