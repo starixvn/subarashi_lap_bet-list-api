@@ -87,4 +87,6 @@ public static class ConfigName
     public const string ClotPlayResult = "ClotPlayResult";
 
     public const string AIGamingResult = "AIGamingResult";
+
+    public const string SmartsoftResult = "SmartsoftResult";
 }
