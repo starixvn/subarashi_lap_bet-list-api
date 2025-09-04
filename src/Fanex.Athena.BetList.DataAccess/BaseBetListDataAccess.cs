@@ -33,11 +33,15 @@
                 long custId = 0)
         {
             var currencyId = reader.GetInt("currency");
+            var betTypeId = reader.GetInt("bettype");
+
             var ticket = new LrfTicket
             {
                 CurrencyId = currencyId,
                 CustId = reader.GetLong("custid", custId),
-                Currency = currencyList?.GetValueOrDefault(currencyId, currencyId.ToString())
+                Currency = currencyList?.GetValueOrDefault(currencyId, currencyId.ToString()),
+                BetTypeId = betTypeId,
+                OddsType = betTypeId == (int)BetType.CombinationMixParlay ? "0" : reader.GetString("oddstype", "0")
             };
 
             ReadStringData(ticket, reader);
@@ -176,7 +180,6 @@
             ticket.BetTeam = reader.GetString("betteam");
             ticket.EventStatus = reader.GetString("betstatus");
             ticket.ShowTime = reader.GetString("showtime");
-            ticket.OddsType = reader.GetString("oddstype", "0");
             ticket.ExternalId = reader.GetString("nickname");
             ticket.Race = reader.GetString("race");
             ticket.BetFrom = reader.GetString("betfrom");
@@ -206,7 +209,6 @@
         {
             // Int
             ticket.SportTypeId = reader.GetInt("sporttype");
-            ticket.BetTypeId = reader.GetInt("bettype");
             ticket.LeagueId = reader.GetInt("leagueid");
             ticket.HomeId = reader.GetInt("homeid");
             ticket.AwayId = reader.GetInt("awayid");
