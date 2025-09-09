@@ -31,7 +31,8 @@
         private static readonly Dictionary<int, string> ThirdPartySportTypeMapping = new()
         {
             { 122, ConfigName.ClotPlayResult},
-            { 121, ConfigName.AIGamingResult}
+            { 121, ConfigName.AIGamingResult},
+            { 135, ConfigName.SmartsoftResult}
         };
 
         private static readonly IEnumerable<SportType> ShowingMatchCodeSportTypes =

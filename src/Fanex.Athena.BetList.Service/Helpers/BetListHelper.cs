@@ -13,7 +13,8 @@
             (int)BetType.SBCContribution,
             (int)BetType.VGAContribution,
             (int)BetType.SGContribution,
-            (int)BetType.PTRNGContribution
+            (int)BetType.PTRNGContribution,
+            (int)BetType.PTLCContribution
         ];
 
         public static void ClearData(TicketResult ticketResult)

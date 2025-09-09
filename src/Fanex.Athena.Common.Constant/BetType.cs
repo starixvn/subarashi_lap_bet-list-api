@@ -269,6 +269,8 @@
 
         SGContribution = 4599,
 
-        PTRNGContribution = 12998
+        PTRNGContribution = 12998,
+
+        PTLCContribution = 15798
     }
 }

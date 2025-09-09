@@ -204,6 +204,9 @@
     },
     "AIGamingResult": {
       "Url": "http://saba-wallet-group-004.3rd-party.klt2p.gamora.prod:32280/api/AIGamingInternal/GetBetHistoryUrl"
+    },
+    "SmartsoftResult": {
+      "Url": "http://saba-wallet-group-004.3rd-party.klt2p.gamora.prod:32280/api/SmartSoftGamingInternal/GetBetHistoryUrl"
     }
   },
   "KenoConfigs": {

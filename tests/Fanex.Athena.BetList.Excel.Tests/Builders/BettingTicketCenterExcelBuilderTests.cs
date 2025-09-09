@@ -520,7 +520,7 @@
         [TestCase("_", "MobileOthers")]
         [TestCase("@", "MobileCompact")]
         [TestCase("%", "MobileEuro")]
-        public void AssignRowData_AddPlatfromCell_IndexIsEven_BuildCorrectCellWithOddCellStyle(string betFrom, string platformName)
+        public void AssignRowData_AddPlatformCell_IndexIsEven_BuildCorrectCellWithOddCellStyle(string betFrom, string platformName)
         {
             // Arrange
             var tickets = new TicketResult();
