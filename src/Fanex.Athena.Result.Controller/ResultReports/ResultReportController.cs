@@ -32,7 +32,8 @@
         {
             { 122, ConfigName.ClotPlayResult},
             { 121, ConfigName.AIGamingResult},
-            { 135, ConfigName.SmartsoftResult}
+            { 135, ConfigName.SmartsoftResult},
+            { 132, ConfigName.GPILotteryResult}
         };
 
         private static readonly IEnumerable<SportType> ShowingMatchCodeSportTypes =
