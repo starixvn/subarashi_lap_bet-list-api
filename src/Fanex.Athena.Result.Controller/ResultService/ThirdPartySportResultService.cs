@@ -20,7 +20,8 @@
 
             var request = new ResultRequest(metaModel.CustId, metaModel.TransId3rd, gameId3rd, betTypeId, metaModel.SiteId, metaModel.LanguageCode)
             {
-                BetTypeId = metaModel.Bettype
+                BetTypeId = metaModel.Bettype,
+                EndTime = metaModel.WinLossDate.ToString()
             };
 
             var url = resultApi.GetResultGET(request);

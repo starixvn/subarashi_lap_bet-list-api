@@ -205,6 +205,10 @@
     },
     "SmartsoftResult": {
       "Url": "http://saba-wallet-group-004.3rd-party.klt2p.gamora.prod:32280/api/SmartSoftGamingInternal/GetBetHistoryUrl"
+    },
+    "GPILotteryResult": {
+      "Url": "http://saba-wallet-group-003.3rd-party.klt2p.gamora.prod:32280/api/GamePlayIntLotteryInternal/GetBetHistoryUrl",
+      "VendorId": 84
     }
   },
   "KenoConfigs": {
