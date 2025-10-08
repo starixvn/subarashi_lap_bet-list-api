@@ -169,7 +169,7 @@
     <PackageReference Include="Fanex.BetList.CardClub" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.CashOut" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.CG" Version="2.0.0" />
-    <PackageReference Include="Fanex.BetList.Core.RemotingRef" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.BetList.Core.RemotingRef" Version="2.0.0.3-basketball-01" />
     <PackageReference Include="Fanex.BetList.ESports" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.FACHAI" Version="1.0.0.1" />
     <PackageReference Include="Fanex.BetList.FastSpin" Version="1.0.0.1" />
