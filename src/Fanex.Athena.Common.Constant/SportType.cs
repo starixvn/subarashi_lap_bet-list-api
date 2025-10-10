@@ -282,6 +282,10 @@
 
         BetbyBasketball = 134,
 
+        BetbyeSoccer = 116,
+
+        BetbyeVolleyball = 114,
+
         VirtuallySports = 147,
 
         VirtualSteepleChase = 125,
@@ -335,8 +339,7 @@
         SabaKabaddi = -11,
 
         SabaSoccerMarble = -12,
-        
-        WCasino = 136,
 
+        WCasino = 136,
     }
 }

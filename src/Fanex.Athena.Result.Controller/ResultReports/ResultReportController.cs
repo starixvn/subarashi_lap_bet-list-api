@@ -361,7 +361,7 @@
                 return;
             }
 
-            if (sportType == SportType.BetbyBasketball)
+            if (SportHelper.IsBetbySportTypes((int)sportType))
             {
                 await GetBetbyPopUpData(metalModel, setting);
                 return;
@@ -516,6 +516,8 @@
                     break;
 
                 case SportType.BetbyBasketball:
+                case SportType.EVolleyball:
+                case SportType.ESoccer:
                     var dataBetby = await _resultService.GetMatches3rdAsync(metalModel);
                     ParseResult(dataBetby, setting, metalModel.IsExportExcel);
                     break;
