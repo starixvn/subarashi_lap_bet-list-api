@@ -91,4 +91,6 @@ public static class ConfigName
     public const string SmartsoftResult = "SmartsoftResult";
 
     public const string GPILotteryResult = "GPILotteryResult";
+
+    public const string BGamingResult = "BGamingResult";
 }

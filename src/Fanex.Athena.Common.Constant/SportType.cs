@@ -335,8 +335,17 @@
         SabaKabaddi = -11,
 
         SabaSoccerMarble = -12,
-        
+
         WCasino = 136,
 
+        ClotPlay = 122,
+
+        AIGaming = 121,
+
+        Smartsoft = 135,
+
+        GPILottery = 132,
+
+        BGaming = 118,
     }
 }

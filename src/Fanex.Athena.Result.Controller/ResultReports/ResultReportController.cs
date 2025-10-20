@@ -30,10 +30,11 @@
 
         private static readonly Dictionary<int, string> ThirdPartySportTypeMapping = new()
         {
-            { 122, ConfigName.ClotPlayResult},
-            { 121, ConfigName.AIGamingResult},
-            { 135, ConfigName.SmartsoftResult},
-            { 132, ConfigName.GPILotteryResult}
+            {(int)Common.Constant.SportType.ClotPlay, ConfigName.ClotPlayResult},
+            {(int)Common.Constant.SportType.AIGaming, ConfigName.AIGamingResult},
+            {(int)Common.Constant.SportType.Smartsoft, ConfigName.SmartsoftResult},
+            {(int)Common.Constant.SportType.GPILottery, ConfigName.GPILotteryResult},
+            {(int)Common.Constant.SportType.BGaming, ConfigName.BGamingResult}
         };
 
         private static readonly IEnumerable<SportType> ShowingMatchCodeSportTypes =
