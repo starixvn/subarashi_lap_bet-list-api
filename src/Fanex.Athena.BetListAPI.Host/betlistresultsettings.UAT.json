@@ -209,6 +209,9 @@
     "GPILotteryResult": {
       "Url": "http://saba-wallet-group-003.3rd-party.klt2p.gamora.prod:32280/api/GamePlayIntLotteryInternal/GetBetHistoryUrl",
       "VendorId": 84
+    },
+    "BGamingResult": {
+      "Url": "http://saba-wallet-group-preprod.3rd-party.klt2p.gamora.prod:32280/api/BGamingInternal/GetBetHistoryUrl"
     }
   },
   "KenoConfigs": {
