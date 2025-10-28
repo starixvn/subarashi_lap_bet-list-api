@@ -347,5 +347,9 @@
         GPILottery = 132,
 
         BGaming = 118,
+
+        Gemini = 117,
+
+        VertexPlay = 115
     }
 }
