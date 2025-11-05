@@ -93,4 +93,8 @@ public static class ConfigName
     public const string GPILotteryResult = "GPILotteryResult";
 
     public const string BGamingResult = "BGamingResult";
+
+    public const string GeminiResult = "GeminiResult";
+
+    public const string VertexPlayResult = "VertexPlayResult";
 }

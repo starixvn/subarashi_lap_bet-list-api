@@ -212,6 +212,12 @@
     },
     "BGamingResult": {
       "Url": "http://saba-wallet-group-001.3rd-party.k8s.nebula.sit/api/BGamingInternal/GetBetHistoryUrl"
+    },
+    "GeminiResult": {
+      "Url": "http://saba-wallet-group-004.3rd-party.k8s.nebula.sit/api/GeminiInternal/GetBetHistoryUrl"
+    },
+    "VertexPlayResult": {
+      "Url": "http://saba-wallet-group-005.3rd-party.k8s.nebula.sit/api/VertexPlayInternal/GetBetHistoryUrl"
     }
   },
   "KenoConfigs": {
