@@ -36,7 +36,8 @@
             {(int)Common.Constant.SportType.GPILottery, ConfigName.GPILotteryResult},
             {(int)Common.Constant.SportType.BGaming, ConfigName.BGamingResult},
             {(int)Common.Constant.SportType.Gemini, ConfigName.GeminiResult},
-            {(int)Common.Constant.SportType.VertexPlay, ConfigName.VertexPlayResult}
+            {(int)Common.Constant.SportType.VertexPlay, ConfigName.VertexPlayResult},
+            {(int)Common.Constant.SportType.WowGaming, ConfigName.WowGamingResult}
         };
 
         private static readonly IEnumerable<SportType> ShowingMatchCodeSportTypes =

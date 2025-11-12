@@ -218,6 +218,9 @@
     },
     "VertexPlayResult": {
       "Url": "http://saba-wallet-group-005.3rd-party.klt2p.gamora.prod:32280/api/VertexPlayInternal/GetBetHistoryUrl"
+    },
+    "WowGamingResult": {
+      "Url": "http://saba-wallet-group-004.3rd-party.klt2p.gamora.prod:32280/api/WowGamingInternal/GetBetHistoryUrl"
     }
   },
   "KenoConfigs": {

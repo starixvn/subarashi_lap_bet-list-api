@@ -218,6 +218,9 @@
     },
     "VertexPlayResult": {
       "Url": "http://saba-wallet-group-005.3rd-party.k8s.nebula.sit/api/VertexPlayInternal/GetBetHistoryUrl"
+    },
+    "WowGamingResult": {
+      "Url": "http://saba-wallet-group-004.3rd-party.k8s.nebula.sit/api/WowGamingInternal/GetBetHistoryUrl"
     }
   },
   "KenoConfigs": {
