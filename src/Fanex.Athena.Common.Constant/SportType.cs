@@ -350,6 +350,8 @@
 
         Gemini = 117,
 
-        VertexPlay = 115
+        VertexPlay = 115,
+
+        WowGaming = 113
     }
 }

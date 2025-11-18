@@ -97,4 +97,6 @@ public static class ConfigName
     public const string GeminiResult = "GeminiResult";
 
     public const string VertexPlayResult = "VertexPlayResult";
+
+    public const string WowGamingResult = "WowGamingResult";
 }
