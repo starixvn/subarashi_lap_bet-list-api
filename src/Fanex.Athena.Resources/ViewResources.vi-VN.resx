@@ -423,4 +423,7 @@
   <data name="Event" xml:space="preserve">
     <value>Sự kiện</value>
   </data>
+  <data name="CasinoRoyale" xml:space="preserve">
+    <value>Sòng Bạc Hoàng Gia</value>
+  </data>
 </root>

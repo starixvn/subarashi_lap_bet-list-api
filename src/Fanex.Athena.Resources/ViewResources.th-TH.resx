@@ -423,4 +423,7 @@
   <data name="Event" xml:space="preserve">
     <value>กิจกรรม</value>
   </data>
+  <data name="CasinoRoyale" xml:space="preserve">
+    <value>Casino Royale</value>
+  </data>
 </root>
