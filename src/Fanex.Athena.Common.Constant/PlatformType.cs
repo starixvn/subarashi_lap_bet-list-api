@@ -24,6 +24,7 @@
         private const string Wap = "Wap";
         private const string QuickBetWidget = "QuickBetWidget";
         private const string ChatRoom = "ChatRoom";
+        private const string CasinoRoyale = "CasinoRoyale";
         private const string Mobile = "Mobile";
         private const string Desktop = "Desktop";
 
@@ -68,11 +69,16 @@
             { "m", Wap },
             { "A000", ChatRoom },
             { "A003", ChatRoom },
+            { "$001", CasinoRoyale },
+            { "$002", CasinoRoyale },
+            { "$003", CasinoRoyale },
+            { "$004", CasinoRoyale },
+            { "$005", CasinoRoyale },
+            { "$006", CasinoRoyale },
             { "Q001", QuickBetWidget },
             { "Q002", QuickBetWidget },
             { "W012", DesktopOthers },
             { "W013", MobileOthers }
-
         };
 
         private static readonly IDictionary<string, string> _JollysportsPlatform = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)

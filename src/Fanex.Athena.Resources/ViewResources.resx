@@ -287,7 +287,6 @@
   </data>
   <data name="MobileGalaxy" xml:space="preserve">
     <value>Mobile Galaxy</value>
-    
   </data>
   <data name="LicenseeTxId" xml:space="preserve">
     <value>LicTxID</value>
@@ -442,5 +441,8 @@
   </data>
   <data name="Event" xml:space="preserve">
     <value>Event</value>
+  </data>
+  <data name="CasinoRoyale" xml:space="preserve">
+    <value>Casino Royale</value>
   </data>
 </root>
