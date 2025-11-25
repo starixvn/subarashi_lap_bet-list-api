@@ -78,13 +78,15 @@
             {
                 Comm = Converter.ToDecimal(row["comm"]),
                 MOdds = Converter.ToDecimal(row["modds"]),
+                Odds = Converter.ToDecimal(row["odds"]),
                 PlayerComm = Converter.ToDecimal(row["playercomm"]),
                 Serial = Convert.ToInt64(row["serial"]),
                 Stake = Converter.ToDecimal(row["stake"]),
                 Status = Converter.ToString2(row["status"]),
                 StatusId = Converter.ToInt(row["statusid"]),
                 WinLost = Converter.ToDecimal(row["winlost"]),
-                WinLostDate = Converter.ToDateTime(row["winlostdate"])
+                WinLostDate = Converter.ToDateTime(row["winlostdate"]),
+                BetTeam = Converter.ToString2(row["BetTeam"])
             };
         }
 

@@ -27,6 +27,8 @@
             ticketResult.TicketDataList = null;
         }
 
+        public const int MixParlayOddsSpread = 3;
+
         public static string GenerateClientDetailSystemParlayFunction(
             ITicketHelper tickerHelper,
             string baseCurrency,
@@ -85,6 +87,11 @@
 
         private static string GetBetTypeName(ITicketHelper tickerHelper, LrfTicket ticket)
         {
+            if (ticket.BetTypeId == (int)BetType.CombinationMixParlay && ticket.OddsSpread == MixParlayOddsSpread)
+            {
+                return ViewResources.BetBuilderPlus;
+            }
+
             return (ticket.BetTypeId == (int)BetType.CombinationMixParlay && ticket.BetTeam == "1") ?
                             ViewResources.MixParlay :
                             tickerHelper.GetBetTypeNameById(ticket.BetTypeId);

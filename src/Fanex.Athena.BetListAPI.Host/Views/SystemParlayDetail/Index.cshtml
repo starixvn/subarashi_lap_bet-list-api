@@ -97,7 +97,28 @@
                                     <div class="match-group" title="@matchText">@matchText</div>
                                 }
                             </td>
-                            <td>@NumberHelper.DecFormat(dataByMatch.Odds, 4)</td>
+                            @{
+                                var betTeamInt = 0;
+                                int.TryParse(dataByMatch.BetTeam, out betTeamInt);
+                            }
+                            @if (dataByMatch.Odds == dataByMatch.MOdds || betTeamInt != 1)
+                            {
+                                <td>@NumberHelper.DecFormat(dataByMatch.MOdds, 4)</td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <div class="width120 height34 table-cell r">
+                                        <span class="underdog strikethrough">
+                                            @NumberHelper.DecFormat(@dataByMatch.Odds, 4)
+                                        </span>
+                                        <br>
+                                        <span class="oddstype">
+                                            <span class="underdog">@NumberHelper.DecFormat(@dataByMatch.MOdds, 4)</span>
+                                        </span>
+                                    </div>
+                                </td>
+                            }
                             <td>@NumberHelper.DecFormat(dataByMatch.Stake)</td>
                             <td>
                                 <div class="@(dataByMatch.WinLoss < 0 ? "negative" : string.Empty)">@NumberHelper.DecFormat(dataByMatch.WinLoss)</div>

@@ -64,7 +64,7 @@
 
         [Test]
         public async Task
-            GetPopUpParalayMatchAsync_ParlayItemHasMultipleSportsbookItems_ReturnCorrectLengthOfSportsbookList()
+            GetPopUpParalayMatchAsync_ParlayItemHasDuplicateMatchIds_ReturnDistinctSportsbookItems()
         {
             // Arrange
             Reader.Read().Returns(true, true, false, true, false);
@@ -73,15 +73,18 @@
             var dataMapping = GetReaderDataMappingForSportsbookType();
             dataMapping["LeagueID"] = 11;
             dataMapping["sporttype"] = 12;
+            dataMapping.Remove("matchid");
             var dataMappingForGameDetail = GetreaderDataMappingForGameDetail();
             MergeReaderDataMapping(dataMapping, dataMappingForGameDetail);
             DataAccessTestHelper.MapReaderData(Reader, dataMapping);
+
+            Reader["matchid"].Returns(4);
 
             // Action
             var result = await DataAccess.GetPopUpParalayMatchAsync(FakeHelper.Create<long>());
 
             // Assert
-            Assert.That(result[0].Sportbook.Count, Is.EqualTo(2));
+            Assert.That(result[0].Sportbook.Count, Is.EqualTo(1));
         }
     }
 }

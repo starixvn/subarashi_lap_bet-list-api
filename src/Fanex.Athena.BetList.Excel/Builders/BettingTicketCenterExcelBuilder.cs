@@ -8,6 +8,7 @@
     using BetListNPOI.SS.Util;
     using Common.Constant;
     using Common.Utility.Helpers;
+    using Fanex.Athena.BetList.Service.Helpers;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
@@ -228,7 +229,7 @@
             }
             else
             {
-                _builder.AddOddsValue(ticket, ticketResult.TicketDataList, _ticketHelper.GetValidOddsTypeNameById);
+                AddOdds(ticket, ticketResult);
             }
 
             AddOddType(ticket, ticketResult);
@@ -286,6 +287,18 @@
 
             _oddsFont = _builder.CreateFont();
             _winLossFont.IsBold = true;
+        }
+
+        private void AddOdds(LrfTicket ticket, TicketResult ticketResult)
+        {
+            if (ticket.BetTypeId == (int)BetType.CombinationMixParlay && ticket.OddsSpread == BetListHelper.MixParlayOddsSpread)
+            {
+                _builder.AddOdds(ticket, ticketResult.TicketDataList, _ticketHelper.GetValidOddsTypeNameById);
+            }
+            else
+            {
+                _builder.AddOddsValue(ticket, ticketResult.TicketDataList, _ticketHelper.GetValidOddsTypeNameById);
+            }
         }
 
         private void AddOddType(LrfTicket ticket, TicketResult ticketResult)

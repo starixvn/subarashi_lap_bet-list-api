@@ -68,7 +68,6 @@
 
                 ticketTextList.Add(ticketText);
             }
-
             return ticketTextList;
         }
 
@@ -102,7 +101,7 @@
                     TransTime = _betlistHtmlBuilder.BuildTransTime(ticket),
                     RefNo = _betlistHtmlBuilder.BuildRefNo(ticket),
                     Choice = _betlistHtmlBuilder.BuildChoice(ticket, _ticketHelper, ticketResult.TicketDataList, false),
-                    Odds = _betlistHtmlBuilder.BuildOddsValue(ticket, ticketResult.TicketDataList, _ticketHelper.GetValidOddsTypeNameById),
+                    Odds = BuildOddsText(ticket, ticketResult),
                     OddsType = BuildOddsTypeNameText(ticket, ticketResult),
                     Stake = _betlistHtmlBuilder.BuildStake(ticket, _ticketHelper),
                     LicenseeWL = _betlistHtmlBuilder.BuildLicenseeWL(ticket),
@@ -205,21 +204,30 @@
             ticketText.WinLoss = HyphenTextHTML;
         }
 
+        private string BuildOddsText(LrfTicket ticket, TicketResult ticketResult)
+        {
+            return ticket.BetTypeId != (int)BetType.CombinationMixParlay || ticket.OddsSpread != BetListHelper.MixParlayOddsSpread
+                ? _betlistHtmlBuilder.BuildOddsValue(ticket, ticketResult.TicketDataList, _ticketHelper.GetValidOddsTypeNameById)
+                : _betlistHtmlBuilder.BuildOdds(ticket, ticketResult.TicketDataList, _ticketHelper.GetValidOddsTypeNameById);
+        }
+
         private string BuildOddsText(LrfTicket ticket, bool isMobileView)
         {
-            return isMobileView
-                   ? _betlistHtmlBuilder.BuildOddsValue(ticket, null, _ticketHelper.GetValidOddsTypeNameById)
-                   : _betlistHtmlBuilder.BuildOdds(ticket, null, _ticketHelper.GetValidOddsTypeNameById);
+            return isMobileView && (ticket.BetTypeId != (int)BetType.CombinationMixParlay || ticket.OddsSpread != BetListHelper.MixParlayOddsSpread)
+                ? _betlistHtmlBuilder.BuildOddsValue(ticket, null, _ticketHelper.GetValidOddsTypeNameById)
+                : _betlistHtmlBuilder.BuildOdds(ticket, null, _ticketHelper.GetValidOddsTypeNameById);
         }
 
         private string BuildOddsTypeNameText(LrfTicket ticket, TicketResult ticketResult)
         {
-            return _betlistHtmlBuilder.BuildOddsTypeName(ticket, ticketResult.TicketDataList, _ticketHelper.GetValidOddsTypeNameById);
+            return ticket.BetTypeId != (int)BetType.CombinationMixParlay
+                ? _betlistHtmlBuilder.BuildOddsTypeName(ticket, ticketResult.TicketDataList, _ticketHelper.GetValidOddsTypeNameById)
+                : null;
         }
 
         private string BuildOddsTypeNameText(LrfTicket ticket, bool isMobileView)
         {
-            return isMobileView
+            return isMobileView && ticket.BetTypeId != (int)BetType.CombinationMixParlay
                 ? _betlistHtmlBuilder.BuildOddsTypeName(ticket, null, _ticketHelper.GetValidOddsTypeNameById)
                 : null;
         }

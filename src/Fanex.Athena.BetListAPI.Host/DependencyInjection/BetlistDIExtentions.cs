@@ -17,6 +17,7 @@
     using Common.Utility.Services.Internal;
     using Core.Utils;
     using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Builder.HybridParlayBuilder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -113,6 +114,7 @@
             services.AddSingleton<IRemotingRefService, RemotingRefService>();
             services.AddScoped<IExchangeRunningExcel, ExchangeRunningExcel>();
             services.AddScoped<IExchangeWinLossExcel, ExchangeWinLossExcel>();
+            services.AddScoped<IHybridParlayBuilder, HyBridParlayBuilder>();
             return services;
         }
     }

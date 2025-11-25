@@ -94,6 +94,7 @@
             dataSet.Tables.Add(table);
             table.Columns.Add("comm", typeof(decimal));
             table.Columns.Add("modds", typeof(decimal));
+            table.Columns.Add("odds", typeof(decimal));
             table.Columns.Add("playercomm", typeof(decimal));
             table.Columns.Add("serial", typeof(long));
             table.Columns.Add("stake", typeof(decimal));
@@ -102,10 +103,12 @@
             table.Columns.Add("transid", typeof(long));
             table.Columns.Add("winlost", typeof(decimal));
             table.Columns.Add("winlostdate", typeof(DateTime));
+            table.Columns.Add("BetTeam", typeof(string));
 
             table.Rows.Add(
                 data.Comm,
                 data.MOdds,
+                data.Odds,
                 data.PlayerComm,
                 data.Serial,
                 data.Stake,
@@ -113,7 +116,8 @@
                 data.StatusId,
                 data.TransId,
                 data.WinLost,
-                data.WinLostDate);
+                data.WinLostDate,
+                data.BetTeam ?? string.Empty);
 
             return dataSet;
         }

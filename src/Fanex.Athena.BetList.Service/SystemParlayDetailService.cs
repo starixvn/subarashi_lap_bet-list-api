@@ -64,11 +64,13 @@
                     (ticket, serialList) => new SystemParlayDetailItem
                     {
                         Date = ticket.WinLostDate,
-                        Odds = ticket.MOdds,
+                        MOdds = ticket.MOdds,
+                        Odds = ticket.Odds,
                         Stake = ticket.Stake,
                         WinLoss = ticket.WinLost,
                         PlayerComm = ticket.PlayerComm,
                         Status = GetBetListStatusName(ticket.StatusId),
+                        BetTeam = ticket.BetTeam,
                         MatchList = serialList.Select(x => new SystemParlayDetailMatch
                         {
                             HomeTeam = ticketHelper.GetTeamNameById(x.HomeId),
