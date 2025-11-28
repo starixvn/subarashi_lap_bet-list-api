@@ -17,6 +17,7 @@
     public class BaseBetListDataAccess : BaseDataAccess
     {
         private readonly ICurrencyDataAccess _currencyDataAccess;
+        private const int MixParlayOddsSpread = 3;
 
         protected BaseBetListDataAccess(ICurrencyDataAccess currenyDataAccess)
         {
@@ -34,6 +35,7 @@
         {
             var currencyId = reader.GetInt("currency");
             var betTypeId = reader.GetInt("bettype");
+            var oddsSpread = reader.GetDecimal("oddsspread");
 
             var ticket = new LrfTicket
             {
@@ -41,7 +43,8 @@
                 CustId = reader.GetLong("custid", custId),
                 Currency = currencyList?.GetValueOrDefault(currencyId, currencyId.ToString()),
                 BetTypeId = betTypeId,
-                OddsType = betTypeId == (int)BetType.CombinationMixParlay ? "0" : reader.GetString("oddstype", "0")
+                OddsType = betTypeId == (int)BetType.CombinationMixParlay && oddsSpread != MixParlayOddsSpread ? "0" : reader.GetString("oddstype", "0"),
+                OddsSpread = oddsSpread
             };
 
             ReadStringData(ticket, reader);
@@ -241,7 +244,6 @@
             ticket.Handicap1 = reader.GetDecimal("hdp1");
             ticket.Handicap2 = reader.GetDecimal("hdp2");
             ticket.OriginalStake = reader.GetDecimal(columns["originalStakeCol"], -1);
-            ticket.OddsSpread = reader.GetDecimal("oddsspread");
 
             ticket.SettlementStatus = reader.GetByte("SettlementStatus");
 

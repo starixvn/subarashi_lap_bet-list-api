@@ -49,7 +49,6 @@
             _sportService = sportService;
         }
 
-
         [HttpPost]
         [RequestValidation]
         [AutoBindMetaModel(bindProductCodeList: true, bindShowingBetFromIP: true, bindSpecialPlatform: true)]
@@ -161,9 +160,12 @@
                 return;
             }
 
-            if (string.IsNullOrEmpty(metaModel.OddsType)
-                || !ConvertingDecimalOddsBetType.Contains(ticket.BetTypeId)
-                || ticket.OddsType == OddsType.Myanmar)
+            bool isOddsTypeEmpty = string.IsNullOrEmpty(metaModel.OddsType);
+            bool isNotConvertingBetType = !ConvertingDecimalOddsBetType.Contains(ticket.BetTypeId);
+            bool isMyanmarOdds = ticket.OddsType == OddsType.Myanmar;
+            bool isMixParlay = ticket.BetTypeId == (int)BetType.CombinationMixParlay;
+
+            if (isOddsTypeEmpty || isNotConvertingBetType || isMyanmarOdds || isMixParlay)
             {
                 builder.AddOdds(
                     ticket,
@@ -174,11 +176,12 @@
             }
             else
             {
+                string oddsClass = ticket.Odds < 0 ? "negative" : string.Empty;
                 builder.Append(
                     string.Format(
                         OddStr,
                         ConvertByBetType.Odds(ticket.Odds),
-                        ticket.Odds < 0 ? "negative" : string.Empty,
+                        oddsClass,
                         metaModel.OddsType));
             }
         }
