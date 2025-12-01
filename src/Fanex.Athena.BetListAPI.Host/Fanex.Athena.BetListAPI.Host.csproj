@@ -172,7 +172,7 @@
     <PackageReference Include="Fanex.BetList.Core.RemotingRef" Version="2.0.0.3" />
     <PackageReference Include="Fanex.BetList.ESports" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.FACHAI" Version="1.0.0.1" />
-    <PackageReference Include="Fanex.BetList.FastSpin" Version="1.0.0.1" />
+    <PackageReference Include="Fanex.BetList.FastSpin" Version="1.0.0.2" />
     <PackageReference Include="Fanex.BetList.FGG" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.FunkyGames" Version="1.0.0" />
     <PackageReference Include="Fanex.BetList.GPI" Version="1.0.2" />
@@ -196,7 +196,7 @@
     <PackageReference Include="Fanex.BetList.Playtech" Version="1.0.1" />
     <PackageReference Include="Fanex.BetList.PP" Version="2.0.0.4" />
     <PackageReference Include="Fanex.BetList.RnGCasino" Version="2.0.0.2" />
-    <PackageReference Include="Fanex.BetList.RNGCore" Version="1.1.0.3-WowGaming-01" />
+    <PackageReference Include="Fanex.BetList.RNGCore" Version="1.1.0.3" />
     <PackageReference Include="Fanex.BetList.SabaClub" Version="2.0.0.4" />
     <PackageReference Include="Fanex.BetList.SAGaming" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.SealEntertainment" Version="2.0.0.1" />
